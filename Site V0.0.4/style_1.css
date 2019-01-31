@@ -39,7 +39,7 @@ header {
 	top: 0;
 	left: 0;
 	right: 0;
-	width: 100%;
+	max-width: 100%;
 	height: 70px;
 	z-index: 999;
 	display: flex;
@@ -51,14 +51,13 @@ header {
 .header-global {
 	margin: auto;
 	max-width: 70em;
-	min-width: 52.5em;
 	width: 70em;
 }
 
 .logo {
 	height: 70px;
 	float: left;
-	width: 144px;
+	width: 281px;
 	display: block;
 	background-size: cover;
 	background-image: url("/image/main_logo_small.png");
@@ -67,6 +66,25 @@ header {
 	margin-left: 5px;
 }
 
+/* debut bouton show menu */
+.show-menu {
+    font-family: Roboto-Light, Arial, sans-serif;
+    text-decoration: none;
+    color: #fff;
+    background: #444;
+    text-align: center;
+    padding: 10px 0;
+    display: none;
+}
+
+input[type=checkbox]{
+    display: none;
+}
+
+input[type=checkbox]:checked ~ .menu-global-nav{
+    display: block;
+}
+/* fin bouton show menu */
 
 /* debut menu */
 .menu-global-nav {
@@ -106,6 +124,31 @@ header {
 			}
 /* fin menu */
 
+@media screen and (max-width: 1000px)
+{
+	header {
+		height: auto;
+	}
+
+	.logo {
+		float: none;
+		margin: auto;
+	}
+
+    .show-menu {
+        display:block;
+    }
+
+	.menu-global-nav {
+		float: none;
+		display: none;
+	}
+
+	.menu-global-li {
+		float: none;
+		background-color: #151515;
+	}
+}
 /* _-_-_-_-_-_-_-_-_-_-_-_-</Header>-_-_-_-_-_-_-_-_-_-_-_-_ */
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-<Content>-_-_-_-_-_-_-_-_-_-_-_-_ */
@@ -117,7 +160,7 @@ header {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	width: 100%;
+	max-width: 100%;
 	height: calc(100vh - 70px);
 	background-image: radial-gradient(closest-side ellipse at center, transparent, #0c0c0c), url(image/test.jpg);
 	background-size: 70em;
@@ -161,6 +204,10 @@ header {
 		font-family: Roboto-Light;
 	}
 
+	#title-page {
+		display: block;
+	}
+
 @keyframes glissement-load {
 	from {
 		margin-left: -50em;
@@ -178,17 +225,16 @@ header {
 
 .index-section {
 	display: inline-block;
-	width: 100%;
+	max-width: 100%;
 	padding: 50px 0 ;
 }
 
 .section-right {
-	display: block;
+	display: flex;
 	float: right;
 	background-color: #1b1b1b;
 	width: 60%;
 	padding: 20px;
-	justify-content: center;
 	align-items: center;
 	
 	animation-name: glissement-content-right;
@@ -196,12 +242,11 @@ header {
 }
 
 .section-left {
-	display: block;
+	display: flex;
 	float: left;
 	background-color: #1b1b1b;
 	width: 60%;
 	padding: 20px;
-	justify-content: center;
 	align-items: center;
 	
 	animation-name: glissement-content-left;
@@ -227,13 +272,15 @@ header {
 }
 
 .section-outer-text {
-	
+	text-align: center;
+	width: 100%;
+	padding: 20px;
 }
 
 .section-inner-text {
 	display: inline-block;
-	align-items: center;
-	margin: 20px 75px 20px 75px;
+	width: 100%;
+	margin: 20px 5px;
 }
 
 .section-inner-text p {
@@ -244,11 +291,10 @@ header {
 
 /*Style barres de chargement*/
 .load-bar { 
-	height: 10px;
+	height: 12px;
 	position: relative;
 	background: #555;
-	padding: 3px;
-	width: 400px;
+	width: 100%;
 }
 
 .load-bar p {
@@ -268,34 +314,34 @@ header {
 }
 
 .bar1 span{
-  max-width: 1%;
+  width: 1%;
 }
 .bar2 span{
-  max-width: 1%;
+  width: 1%;
 }
 .bar3 span{
-  max-width: 1%;
+  width: 1%;
 }
 .bar4 span{
-  max-width: 1%;
+  width: 1%;
 }
 .bar5 span{
-  max-width: 1%;
+  width: 1%;
 }
 .bar6 span{
-  max-width: 1%;
+  width: 1%;
 }
 .bar7 span{
-  max-width: 1%;
+  width: 2%;
 }
 .bar8 span{
-  max-width: 25%;
+  width: 35%;
 }
 .bar9 span{
-  max-width: 1%;
+  width: 1%;
 }
 .bar10 span{
-  max-width: 1%;
+  width: 1%;
 }
 
 /*Fin style barres de chargement*/
@@ -308,7 +354,7 @@ header {
 		width: 1%;
 	}
 	100%{
-		width: 100%;
+		max-width: 100%;
 	}
 }
 
@@ -319,7 +365,7 @@ footer {
 	top: 0;
 	left: 0;
 	right: 0;
-	width: 100%;
+	max-width: 100%;
 	z-index: 998;
 	display: flex;
 	justify-content: center;
@@ -333,7 +379,7 @@ footer {
 }
 
 		.footer-global-li {
-			display: inline;
+			display: inline-block;
 			padding: 0 40px;
 		}
 
@@ -358,3 +404,32 @@ footer {
 	padding: 10px 0 0;
 }
 /* _-_-_-_-_-_-_-_-_-_-_-_-</Footer>-_-_-_-_-_-_-_-_-_-_-_-_ */
+
+@media screen and (max-width: 1024px)
+{
+	.Mytho-Logic-title{
+		font-size: 10vw;
+	}
+	
+	.section-right{
+		width: 100%;
+		padding: 20px 0;
+		display: block;
+	}
+	
+	.section-left{
+		width: 100%;
+		padding: 20px 0;
+		display: block;
+	}
+	
+	.section-outer-text{
+		padding: 0 20px;
+		width: auto;
+	}
+	
+	.section-inner-text{
+		margin: 20px 0;
+		width: 100%;
+	}
+}

@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="style_1.css" />
-		<link rel="icon" href="image/favicon.ico" />
-		<title>Mytho-Logic</title>
+		<?php include("include/head_html_1.php")?>
+		<title>Médias</title>
 	</head>
 
 	<body>
@@ -13,48 +11,15 @@
 		</header>
 		<div class="global-content">
 			<div class="center-content">
-				<p>1er paragraphe</p>
-				<p>Ceci est un test Ceci est un test Ceci est un test Ceci est un test Ceci est un test Ceci est un test Ceci est un test Ceci est un test Ceci est un test Ceci est un test Ceci est un test Ceci est un test Ceci est un test Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
-				<p>Ceci est un test</p>
+				<section class="index-section">
+					<div class="under-section section-left" id="title-page">
+						<h1 class="Mytho-Logic-title" style="text-align: center;">Médias</h1>
+					</div>
+				</section>
+				<section class="index-section">
+					<div class="under-section section-right">
+					</div>
+				</section>
 			</div>
 		</div>
 		<footer>

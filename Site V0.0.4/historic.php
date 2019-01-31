@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="style_1.css" />
-		<link rel="icon" href="image/favicon.ico" />
-		<title>Mytho-Logic</title>
+		<?php include("include/head_html_1.php")?>
+		<title>Historique</title>
 	</head>
 
 	<body>
@@ -14,7 +12,7 @@
 		<div class="global-content">
 			<div class="center-content">
 				<section class="index-section">
-					<div class="under-section section-left">
+					<div class="under-section section-left" id="title-page">
 						<h1 class="Mytho-Logic-title" style="text-align: center;">Historique</h1>
 					</div>
 				</section>
@@ -56,6 +54,8 @@
 								<p>Plateau</p>
 								<p style="float: right;">0%</p>
 							</div>
+						</div>
+						<div class="section-outer-text">
 							<div class="section-inner-text">
 								<div class="load-bar bar6">
   									<span></span>
@@ -68,14 +68,14 @@
   									<span></span>
 								</div>
 								<p>Initialisation du jeu</p>
-								<p style="float: right;">0%</p>
+								<p style="float: right;">2%</p>
 							</div>
 							<div class="section-inner-text">
 								<div class="load-bar bar8">
   									<span></span>
 								</div>
 								<p>Site internet</p>
-								<p style="float: right;">25%</p>
+								<p style="float: right;">35%</p>
 							</div>
 							<div class="section-inner-text">
 								<div class="load-bar bar9">

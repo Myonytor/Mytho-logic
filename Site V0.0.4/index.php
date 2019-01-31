@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="style_1.css" />
-		<link rel="icon" href="image/favicon.ico" />
+		<?php include("include/head_html_1.php")?>
 		<title>Mytho-Logic</title>
 	</head>
 

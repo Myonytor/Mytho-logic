@@ -10,7 +10,7 @@
 	</div>
 	<div class="footer-legal">
 		<small>
-			<p>©2018 Myonitor, All right reserved</p>
+			<p>©2018 Myonytor, All right reserved</p>
 		</small>
 	</div>
 </div>
