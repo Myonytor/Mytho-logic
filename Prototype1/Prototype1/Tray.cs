@@ -1,12 +1,19 @@
-namespace Prototype1
+namespace Prototype1//TODO definir utilite
 {
     public class Tray
     {
-        private int[] tray;
+        private Tile[] tray;
 
-        public Tray(int[] t)
+        public Tray(Tile[] t)
         {
             tray = t;
         }
+    }
+
+    public enum Tile
+    {
+        DISABLE,
+        ENABLE,
+        GENOS
     }
 }

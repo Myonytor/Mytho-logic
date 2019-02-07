@@ -4,13 +4,15 @@ namespace Prototype1
 {
     public class Player
     {
-        private Monster[] bestiary;
+        private string name;
         private List<Monster> monstersAlive;
+        private Mythology mythology;
 
-        public Player()
+        public Player(string n)
         {
-            bestiary = new Monster[] { };
+            mythology = new Mythology();
             monstersAlive = new List<Monster>();
+            name = n;
         }
     }
 }

@@ -2,6 +2,7 @@ namespace Prototype1
 {
     public class Monster
     {
+        private Player player;
         private State state;
         private int life;
         private int mana;
@@ -12,16 +13,17 @@ namespace Prototype1
         private int x;
         private int y;
 
-        public Monster()
+        public Monster(Player p)
         {
-            state = State.Alive;
+            state = State.ALIVE;
+            player = p;
         }
     }
 
     enum State
     {
-        Alive,
-        Midlife,
-        Dead
+        ALIVE,
+        MIDLIFE,
+        DEAD
     }
 }
