@@ -1,12 +1,12 @@
 namespace Prototype1//TODO definir utilite
 {
-    public class Tray
+    public class Board
     {
-        private Tile[] tray;
+        private Tile[] board;
 
-        public Tray(Tile[] t)
+        public Board(Tile[] b)
         {
-            tray = t;
+            board = b;
         }
     }
 

@@ -3,6 +3,7 @@
   <component name="ContentModelStore">
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="Prototype1" t="IncludeRecursive">
+        <e p="Board.cs" t="Include" />
         <e p="Game.cs" t="Include" />
         <e p="Monster.cs" t="Include" />
         <e p="Mythology.cs" t="Include" />
@@ -12,7 +13,6 @@
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
         <e p="Prototype1.csproj" t="IncludeRecursive" />
-        <e p="Tray.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive" />
       </e>

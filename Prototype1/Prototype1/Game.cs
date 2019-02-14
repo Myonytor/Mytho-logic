@@ -4,12 +4,12 @@ namespace Prototype1
 {
     public class Game
     {
-        private Tray tray;
+        private Board board;
         private List<Player> players;
 
         public Game(Tile[] t)
         {
-            tray = new Tray(t);
+            board = new Board(t);
             players = new List<Player>();
         }
     }
