@@ -20,9 +20,9 @@ namespace Prototype1
         private List<Monster> monstersAlive;
         private Mythology mythology;
 
-        public Player(string n)
+        public Player(string n, int nbrMithology)
         {
-            mythology = new Mythology();
+            mythology = new Mythology(nbrMithology, this);
             monstersAlive = new List<Monster>();
             name = n;
         }
