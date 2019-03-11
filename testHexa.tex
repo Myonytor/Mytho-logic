@@ -2,17 +2,30 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric}
 
+\tikzstyle{monsterBody} = [regular polygon, regular polygon sides=3, fill, very thick, inner sep=1mm, below]
+\tikzstyle{monsterHead} = [circle, fill, inner sep=1.5mm]
+
+\newcommand{\hexagons}[3]{
+        \foreach \i in {0,..., #2}
+                \foreach \j in {0, 2,..., #3} {
+			\path ({#1*\i},{#1*cos(30)*\j}) node[regular polygon, regular polygon sides=6, draw, thick, inner sep = {#1*10}, rotate = 90] {};
+			\path ({#1*\i-#1/2},{#1*cos(30)*\j-#1*cos(30)}) node[regular polygon, regular polygon sides=6, draw, thick, inner sep = {#1*10}, rotate = 90] {};
+			}
+}
+
+\newcommand{\monster}[3]{
+        \path (#1, #2) node[monsterBody] [#3] {};
+        \path (#1, #2) node[monsterHead] [#3] {};
+}
+
 \begin{document}
 
 \section{Cas 1}
 
 \subsection{Situation de départ:}
 
-\begin{tikzpicture}[
-monsterBody/.style={regular polygon, regular polygon sides=3, fill, very thick, inner sep=1mm, below},
-monsterHead/.style={circle, fill, inner sep=1.5mm},
-]
-
+\begin{tikzpicture}
+	
         \foreach \i in {0,..., 2}
                 \foreach \j in {0, 2,..., 2} {
                         \path (3*\i, 2.6*\j) node[regular polygon, regular polygon sides=6, draw, thick, inner sep = 30, rotate = 90] (hexa) {};
@@ -32,10 +45,7 @@ monsterHead/.style={circle, fill, inner sep=1.5mm},
 
 \subsection{Egalite, rouge et bleu subisse un dégat:}%TODO degat pour les deux ou pas de degat?
 
-\begin{tikzpicture}[
-monsterBody/.style={regular polygon, regular polygon sides=3, fill, very thick, inner sep=1mm, below},
-monsterHead/.style={circle, fill, inner sep=1.5mm},
-]
+\begin{tikzpicture}
 
         \foreach \i in {0,..., 2}
                 \foreach \j in {0, 2,..., 2} {
@@ -55,8 +65,6 @@ monsterHead/.style={circle, fill, inner sep=1.5mm},
 \subsection{Victoire de rouge, bleu subit un dégat}
 
 \begin{tikzpicture}[
-monsterBody/.style={regular polygon, regular polygon sides=3, fill, very thick, inner sep=1mm, below},
-monsterHead/.style={circle, fill, inner sep=1.5mm},
 ]
 
         \foreach \i in {0,..., 2}
@@ -74,17 +82,23 @@ monsterHead/.style={circle, fill, inner sep=1.5mm},
 
 \newpage
 
-\begin{tikzpicture}[
-monsterBody/.style={regular polygon, regular polygon sides=3, fill, very thick, inner sep=1mm, below},
-monsterHead/.style={circle, fill, inner sep=1.5mm},
-]
+\begin{tikzpicture}
 
-        \foreach \i in {0,..., 2}
-                \foreach \j in {0, 2,..., 2} {
-			\path (2*\i, 2*$\cos(\pi/6)$*\j) node[regular polygon, regular polygon sides=6, draw, thick, inner sep = 20, rotate = 90] {};
-			\path (2*\i-1, 2*$\cos(\pi/6)$*\j-2*$\cos(\pi/6)$) node[regular polygon, regular polygon sides=6, draw, thick, inner sep = 20, rotate = 90] {};
+	\foreach \a in {1.5}
+        	\foreach \i in {0,..., 2}
+                	\foreach \j in {0, 2,..., 2} {
+				\path (\a*\i,{\a*cos(30)*\j}) node[regular polygon, regular polygon sides=6, draw, thick, inner sep = \a*10, rotate = 90] {};
+				\path (\a*\i-\a/2,{\a*cos(30)*\j-\a*cos(30)}) node[regular polygon, regular polygon sides=6, draw, thick, inner sep = \a*10, rotate = 90] {};
                 }
+	
+	\path (0,0) node[monsterBody] [red] {};
+	\path (0,0) node[monsterHead] [blue] {};
 
+\end{tikzpicture}
+
+\begin{tikzpicture}
+	\hexagons{2}{2}{2}
+	\monster{0}{0}{red}
 \end{tikzpicture}
 
 \end{document}
