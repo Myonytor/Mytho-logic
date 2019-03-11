@@ -5,6 +5,9 @@ namespace Prototype1
     public class Player
     {
         private string name;
+
+        public string Name => name;
+
         private List<Monster> monstersAlive;
         private Mythology mythology;
 

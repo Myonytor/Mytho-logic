@@ -10,8 +10,8 @@ namespace Prototype1
         private int movement;
         private int attack;
 
-        private int x;
-        private int y;
+        public int x;
+        public int y;
 
         public Monster(Player p)
         {
