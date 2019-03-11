@@ -7,7 +7,7 @@ namespace Prototype1
         private Board board;
         private List<Player> players;
 
-        public Game(Tile[] t)
+        public Game(Tile[,] t)
         {
             board = new Board(t);
             players = new List<Player>();
