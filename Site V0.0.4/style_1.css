@@ -1,0 +1,435 @@
+@font-face {
+    font-family: 'Roboto-Light';
+    src: url('fonts/Roboto-Light.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Thin';
+    src: url('fonts/Roboto-Thin.ttf');
+}
+@font-face {
+    font-family: 'Roboto-Thin';
+    src: url('fonts/Roboto-Thin.ttf');
+}
+
+@font-face {
+	font-family: 'Roboto-BoldCondensed';
+	src: url('fonts/Roboto-BoldCondensed.ttf');
+}
+
+@font-face {
+	font-family: 'Shining Times';
+	src: url('fonts/Shining Times.ttf');
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	overflow-x:hidden;
+	margin: 0;
+	color: white;
+	font-family: Arial;
+}
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-<Header>-_-_-_-_-_-_-_-_-_-_-_-_ */
+
+header {
+	position: relative;
+	top: 0;
+	left: 0;
+	right: 0;
+	max-width: 100%;
+	height: 70px;
+	z-index: 999;
+	display: flex;
+	justify-content: center;
+	background-color: #151515;
+	box-shadow: 0 5px 50px #000000a6;
+}
+
+.header-global {
+	margin: auto;
+	max-width: 70em;
+	width: 70em;
+}
+
+.logo {
+	height: 70px;
+	float: left;
+	width: 281px;
+	display: block;
+	background-size: cover;
+	background-image: url("/image/main_logo_small.png");
+	background-repeat: no-repeat;
+	background-position: 0;
+	margin-left: 5px;
+}
+
+/* debut bouton show menu */
+.show-menu {
+    font-family: Roboto-Light, Arial, sans-serif;
+    text-decoration: none;
+    color: #fff;
+    background: #444;
+    text-align: center;
+    padding: 10px 0;
+    display: none;
+}
+
+input[type=checkbox]{
+    display: none;
+}
+
+input[type=checkbox]:checked ~ .menu-global-nav{
+    display: block;
+}
+/* fin bouton show menu */
+
+/* debut menu */
+.menu-global-nav {
+	float: left;
+	margin: 0 20px;
+}
+
+	.menu-global-ul {
+		overflow: hidden;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+		.menu-global-li {
+			float: left;
+		}
+
+			.menu-global-li a {
+				display: block;
+				padding: 0 40px;
+				line-height: 70px;
+				color: #fff;
+				text-align: center;
+				text-decoration: none;
+				font-family: Roboto-Light, 'Arial';
+				font-size: 1em;
+				transition: all 0.3s;
+			}
+
+			.menu-global-li a:hover {
+				color: white;
+				background-color: #ffffff24;
+				
+				transition: all 0.5s;
+				padding: 0 50px;
+			}
+/* fin menu */
+
+@media screen and (max-width: 1000px)
+{
+	header {
+		height: auto;
+	}
+
+	.logo {
+		float: none;
+		margin: auto;
+	}
+
+    .show-menu {
+        display:block;
+    }
+
+	.menu-global-nav {
+		float: none;
+		display: none;
+	}
+
+	.menu-global-li {
+		float: none;
+		background-color: #151515;
+	}
+}
+/* _-_-_-_-_-_-_-_-_-_-_-_-</Header>-_-_-_-_-_-_-_-_-_-_-_-_ */
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-<Content>-_-_-_-_-_-_-_-_-_-_-_-_ */
+
+.global-image {
+	overflow: hidden;
+	display: flex;
+	margin: auto;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	max-width: 100%;
+	height: calc(100vh - 70px);
+	background-image: radial-gradient(closest-side ellipse at center, transparent, #0c0c0c), url(image/test.jpg);
+	background-size: 70em;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.global-content {
+	background-color: #0c0c0c;
+}
+
+.global-image-center {
+	width: 70em;
+}
+
+	.title-box {
+		margin: 0 3em;
+		padding: 20px;
+		float: left;
+		background-color: #1f1f1f;
+		box-shadow: 0 0 50px #000000a6;
+		
+		animation-name: glissement-load;
+		animation-duration: 2s;
+	}
+
+	.Mytho-Logic-title {
+		margin: 0;
+		color: white;
+		text-decoration: none;
+		font-size: 4.5em;
+		font-family: Roboto-BoldCondensed;
+	}
+
+	.Mytho-Logic-subtitle {
+		float: left;
+		margin: 0;
+		color: white;
+		text-decoration: none;
+		font-size: 1.5em;
+		font-family: Roboto-Light;
+	}
+
+	#title-page {
+		display: block;
+	}
+
+@keyframes glissement-load {
+	from {
+		margin-left: -50em;
+	}
+	to {
+		margin-left: 3em;
+	}
+}
+
+.center-content {
+	display: grid;
+	min-height: calc(100vh - 70px);
+	margin: auto;
+}
+
+.index-section {
+	display: inline-block;
+	max-width: 100%;
+	padding: 50px 0 ;
+}
+
+.section-right {
+	display: flex;
+	float: right;
+	background-color: #1b1b1b;
+	width: 60%;
+	padding: 20px;
+	align-items: center;
+	
+	animation-name: glissement-content-right;
+	animation-duration: 1.5s;
+}
+
+.section-left {
+	display: flex;
+	float: left;
+	background-color: #1b1b1b;
+	width: 60%;
+	padding: 20px;
+	align-items: center;
+	
+	animation-name: glissement-content-left;
+	animation-duration: 1.5s;
+}
+
+@keyframes glissement-content-right {
+	from {
+		margin-right: -65%;
+	}
+	to {
+		margin-right: 0;
+	}
+}
+
+@keyframes glissement-content-left {
+	from {
+		margin-left: -65%;
+	}
+	to {
+		margin-left: 0;
+	}
+}
+
+.section-outer-text {
+	text-align: center;
+	width: 100%;
+	padding: 20px;
+}
+
+.section-inner-text {
+	display: inline-block;
+	width: 100%;
+	margin: 20px 5px;
+}
+
+.section-inner-text p {
+	display: flex;
+	float: left;
+	margin: 5px 0 10px;
+}
+
+/*Style barres de chargement*/
+.load-bar { 
+	height: 12px;
+	position: relative;
+	background: #555;
+	width: 100%;
+}
+
+.load-bar p {
+	position: absolute;
+}
+
+.load-bar span {
+	display: block;
+	height: 100%;
+	background-color: #20CD4E;
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	
+	animation-name: glissement-load-bar;
+	animation-duration: 3.5s;
+}
+
+.bar1 span{
+  width: 1%;
+}
+.bar2 span{
+  width: 1%;
+}
+.bar3 span{
+  width: 1%;
+}
+.bar4 span{
+  width: 1%;
+}
+.bar5 span{
+  width: 1%;
+}
+.bar6 span{
+  width: 1%;
+}
+.bar7 span{
+  width: 2%;
+}
+.bar8 span{
+  width: 35%;
+}
+.bar9 span{
+  width: 1%;
+}
+.bar10 span{
+  width: 1%;
+}
+
+/*Fin style barres de chargement*/
+
+@keyframes glissement-load-bar {
+	0%{
+		width: 1%;
+	}
+	50%{
+		width: 1%;
+	}
+	100%{
+		max-width: 100%;
+	}
+}
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-</Content>-_-_-_-_-_-_-_-_-_-_-_-_ */
+/* _-_-_-_-_-_-_-_-_-_-_-_-<Footer>-_-_-_-_-_-_-_-_-_-_-_-_ */
+footer {
+	position: relative;
+	top: 0;
+	left: 0;
+	right: 0;
+	max-width: 100%;
+	z-index: 998;
+	display: flex;
+	justify-content: center;
+	background-color: #060606;
+	list-style: none;
+}
+
+.footer-global {
+	margin: auto;
+	text-align: center;
+}
+
+		.footer-global-li {
+			display: inline-block;
+			padding: 0 40px;
+		}
+
+			.footer-global-li a {
+				line-height: 70px;
+				color: #CFCFCF;
+				text-align: center;
+				text-decoration: none;
+				font-family: Roboto-Light, 'Arial';
+				font-size: 1em;
+			}
+
+			.footer-global-li a:hover {
+				color: white;
+			}
+
+.footer-global nav {
+	display: inline-block;
+}
+
+.footer-legal {
+	padding: 10px 0 0;
+}
+/* _-_-_-_-_-_-_-_-_-_-_-_-</Footer>-_-_-_-_-_-_-_-_-_-_-_-_ */
+
+@media screen and (max-width: 1024px)
+{
+	.Mytho-Logic-title{
+		font-size: 10vw;
+	}
+	
+	.section-right{
+		width: 100%;
+		padding: 20px 0;
+		display: block;
+	}
+	
+	.section-left{
+		width: 100%;
+		padding: 20px 0;
+		display: block;
+	}
+	
+	.section-outer-text{
+		padding: 0 20px;
+		width: auto;
+	}
+	
+	.section-inner-text{
+		margin: 20px 0;
+		width: 100%;
+	}
+}
