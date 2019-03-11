@@ -10,8 +10,8 @@ namespace Prototype1
         private int life;
         private int mana;
 
-        private int movement;
-        private int attack;
+        public int movement;
+        public int attack;
 
         public int x;
         public int y;

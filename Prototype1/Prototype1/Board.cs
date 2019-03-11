@@ -8,38 +8,46 @@ namespace Prototype1//TODO definir utilite
     {
         private Tile[,] board;
         private Monster[,] _monsters;
-        private Mythology[,] _mythologies;
-        private List<(Player, int, int)> genos;
 
         public Board(Tile[,] b)
         {
             board = b;
-            int h = board.GetUpperBound(0);
-            int w = board.GetUpperBound(1);
-            _monsters = new Monster[h,w];
-            _mythologies = new Mythology[h,w];
+            _monsters = new Monster[board.GetUpperBound(0), board.GetUpperBound(1)];
             //TODO définir genos en fonction du nombre de joueurs
         }
 
-        public void AddMonster(Monster monster, Player player)
+        public void AddMonster(Monster monster)
         {
-            int x = 1;
-            int y = 1;
-            Random rnd = new Random();
-            foreach (var geno in genos)
-            {
-                (Player p, int X, int Y) = geno;
-                if (player.Name == p.Name)
-                {
-                    x = X - 1;
-                    y = Y - 1;
-                }
-            }
+            _monsters[monster.x, monster.y] = monster;
+        }
 
-            int n = rnd.Next(3);
-            monster.x = x;
-            monster.y = y;
-            _monsters[x + n, y + n] = monster;
+        public void MoveMonster(Monster monster)
+        {
+            _monsters[monster.x, monster.y] = null;
+            switch (monster.movement)
+            {
+                case 1:
+                    monster.x += 1;
+                    break;
+                case 2:
+                    monster.x += 1;
+                    monster.y += 1;
+                    break;
+                case 3:
+                    monster.y += 1;
+                    break;
+                case 4:
+                    monster.x -= 1;
+                    break;
+                case 5:
+                    monster.x -= 1;
+                    monster.y -= 1;
+                    break;
+                case 6:
+                    monster.y -= 1;
+                    break;
+            }
+            _monsters[monster.x, monster.y] = monster;
         }
     }
 
