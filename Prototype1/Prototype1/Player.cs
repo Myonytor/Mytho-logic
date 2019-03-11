@@ -5,6 +5,7 @@ namespace Prototype1
     public class Player
     {
         private string name;
+        private const int nbrMonsterMax = 6;
 
         public string Name => name;
 
@@ -16,6 +17,16 @@ namespace Prototype1
             mythology = new Mythology();
             monstersAlive = new List<Monster>();
             name = n;
+        }
+
+        public void CreateMonster()
+        {
+            
+        }
+
+        public void DestroyMonster()
+        {
+            
         }
     }
 }
