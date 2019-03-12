@@ -6,8 +6,8 @@ namespace Prototype1
     {
         private string name;
         private Player player;
-        private State state;
-        private int strength;
+        public State state;
+        public int strength;
         public Power power;
 
         public int movement;
@@ -28,10 +28,10 @@ namespace Prototype1
         }
     }
 
-    enum State
+    public enum State
     {
-        ALIVE,
+        DEAD = 0,
         MIDLIFE,
-        DEAD
+        ALIVE,
     }
 }
