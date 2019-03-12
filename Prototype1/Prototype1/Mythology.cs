@@ -35,7 +35,7 @@ namespace Prototype1
             {
                 string[] stats = monsters[i].Split('$');
                 
-                Monster m = new Monster(stats[0], p, Int32.Parse(stats[1]), Int32.Parse(stats[2]), 0, 0 );
+                Monster m = new Monster(stats[0], p, Int32.Parse(stats[1]), 0, 0 );
                 
                 bestiary.Add(m);
             }

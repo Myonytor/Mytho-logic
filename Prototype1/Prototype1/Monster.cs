@@ -7,8 +7,8 @@ namespace Prototype1
         private string name;
         private Player player;
         private State state;
-        private int life;
-        private int mana;
+        private int strength;
+        public Power power;
 
         public int movement;
         public int attack;
@@ -16,14 +16,13 @@ namespace Prototype1
         public int x;
         public int y;
 
-        public Monster(string name,Player p, int mana, int life, int x, int y)
+        public Monster(string name,Player p, int strength, int x, int y)
         {
             this.name = name;
             state = State.ALIVE;
             player = p;
             movement = attack = 0;
-            this.mana = mana;
-            this.life = life;
+            this.strength = strength;
             this.x = x;
             this.y = y;
         }
