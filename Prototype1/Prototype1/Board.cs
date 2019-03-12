@@ -20,57 +20,42 @@ namespace Prototype1//TODO definir utilite
             _monsters[monster.x, monster.y] = monster;
         }
 
-        public void MoveMonster(Monster monster)
+        public (int, int) Move(Monster monster)
         {
-            _monsters[monster.x, monster.y] = null;
-            switch (monster.movement)
-            {
-                case 1:
-                    monster.x += 1;
-                    break;
-                case 2:
-                    monster.x += 1;
-                    monster.y += 1;
-                    break;
-                case 3:
-                    monster.y += 1;
-                    break;
-                case 4:
-                    monster.x -= 1;
-                    break;
-                case 5:
-                    monster.x -= 1;
-                    monster.y -= 1;
-                    break;
-                case 6:
-                    monster.y -= 1;
-                    break;
-            }
-
-            monster.movement = 0;
-            Monster place = _monsters[monster.x, monster.y];
-            if (place != null)
-            {
-                if (place.movement != 0)
-                {
-                    MoveMonster(place);
-                }
-                else
-                {
-                    //TODO appliquer la fonction de combat
-                }
-            }
-
-            place = monster;
+            //dans cette version, movement ne peut être égale qu'à 0, 3, 4, 7, -3, -4, -7
+            return (monster.x + monster.movement % 2, monster.y + monster.movement % 3);
         }
 
         public void NextMove(List<Player> players)
         {
+            HashSet<(int, int)> move = new HashSet<(int, int)>();
+            HashSet<(int, int)> attack = new HashSet<(int, int)>();
+            List<Monster> monsters = new List<Monster>();
             foreach (var player in players)
             {
                 foreach (var monster in player.monstersAlive)
                 {
-                    MoveMonster(monster);
+                    (int x, int y) = Move(monster);
+
+                    if (move.Contains((x, y)))
+                    {
+                        attack.Add((x, y));
+                        move.Remove((x, y));
+                    }
+                    else move.Add((x, y));
+                    
+                    monsters.Add(monster);
+                }
+            }
+
+            foreach (var monster in monsters)
+            {
+                (int x, int y) = Move(monster);
+                
+                if (move.Contains((x, y)))
+                {
+                    move.Remove((x, y));
+                    monsters.Remove(monster);
                 }
             }
         }
