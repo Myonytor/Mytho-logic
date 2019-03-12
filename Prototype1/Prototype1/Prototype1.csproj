@@ -42,6 +42,7 @@
     <Compile Include="Monster.cs" />
     <Compile Include="Mythology.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="Power.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Board.cs" />

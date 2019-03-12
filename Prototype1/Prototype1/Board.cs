@@ -13,7 +13,6 @@ namespace Prototype1//TODO definir utilite
         {
             board = b;
             _monsters = new Monster[board.GetUpperBound(0), board.GetUpperBound(1)];
-            //TODO définir genos en fonction du nombre de joueurs
         }
 
         public void AddMonster(Monster monster)
@@ -47,7 +46,33 @@ namespace Prototype1//TODO definir utilite
                     monster.y -= 1;
                     break;
             }
-            _monsters[monster.x, monster.y] = monster;
+
+            monster.movement = 0;
+            Monster place = _monsters[monster.x, monster.y];
+            if (place != null)
+            {
+                if (place.movement != 0)
+                {
+                    MoveMonster(place);
+                }
+                else
+                {
+                    //TODO appliquer la fonction de combat
+                }
+            }
+
+            place = monster;
+        }
+
+        public void NextMove(List<Player> players)
+        {
+            foreach (var player in players)
+            {
+                foreach (var monster in player.monstersAlive)
+                {
+                    MoveMonster(monster);
+                }
+            }
         }
     }
 

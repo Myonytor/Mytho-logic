@@ -17,7 +17,7 @@ namespace Prototype1
 
         public int YGenos => yGenos;
 
-        private List<Monster> monstersAlive;
+        public List<Monster> monstersAlive;
         private Mythology mythology;
 
         public Player(string n, int nbrMithology)
