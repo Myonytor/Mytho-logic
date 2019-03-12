@@ -13,13 +13,35 @@
 			}
 }
 
-\newcommand{\monster}[3]{
-        \path (#1, #2) node[monsterBody] [#3] {};
-        \path (#1, #2) node[monsterHead] [#3] {};
+\newcommand{\monster}[4]{
+	\ifodd#3
+        	\path ({#1*#2-#1/2},{#1*cos(30)*#3}) node[monsterBody] [#4] {};
+		\path ({#1*#2-#1/2},{#1*cos(30)*#3}) node[monsterHead] [#4] {};
+	\else
+        	\path ({#1*#2},{#1*cos(30)*#3}) node[monsterBody] [#4] {};
+        	\path ({#1*#2},{#1*cos(30)*#3}) node[monsterHead] [#4] {};
+	\fi
+}
+
+\newcommand{\arrow}[6]{
+	\ifodd#3
+		\def \i {({#1*#2-#1/2},{#1*cos(30)*#3})}
+	\else
+		\def \i {({#1*#2},{#1*cos(30)*#3})}
+	\fi
+
+	\ifodd#5
+		\def \j {({#1*#4-#1/2},{#1*cos(30)*#5})}
+	\else
+		\def \j {({#1*#4},{#1*cos(30)*#5})}
+	\fi
+
+        \draw[->, ultra thick, #6] \i -- \j;
 }
 
 \begin{document}
 
+\iffalse
 \section{Cas 1}
 
 \subsection{Situation de départ:}
@@ -43,7 +65,7 @@
 
 \newpage
 
-\subsection{Egalite, rouge et bleu subisse un dégat:}%TODO degat pour les deux ou pas de degat?
+\subsection{Egalite, rouge et bleu subisse un dégat:}
 
 \begin{tikzpicture}
 
@@ -95,10 +117,40 @@
 	\path (0,0) node[monsterHead] [blue] {};
 
 \end{tikzpicture}
+\fi
 
-\begin{tikzpicture}
-	\hexagons{2}{2}{2}
-	\monster{0}{0}{red}
-\end{tikzpicture}
+\section{Legende}
+
+\begin{table}[!ht]
+	\begin{center}
+		\begin{tabular}{| c | c | c |}
+			\hline
+			& rouge & bleu \\ \hline
+			monstre & \begin{tikzpicture}\monster{2}{0}{0}{red}\end{tikzpicture} & \begin{tikzpicture}\monster{2}{0}{0}{blue}\end{tikzpicture} \\ \hline
+			déplacement & \begin{tikzpicture}\arrow{2}{0}{0}{1}{0}{red}\end{tikzpicture} & \begin{tikzpicture}\arrow{2}{0}{0}{1}{0}{blue}\end{tikzpicture} \\ \hline
+			attaque & \begin{tikzpicture}\arrow{2}{0}{0}{1}{0}{orange}\end{tikzpicture} & \begin{tikzpicture}\arrow{2}{0}{0}{1}{0}{cyan}\end{tikzpicture} \\ \hline
+			
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\section{Cas 1}
+
+\begin{table}[!ht]
+	\begin{center}
+		\begin{tabular}{c c c}
+			\multicolumn{3}{c}{
+				\begin{tikzpicture}
+					\hexagons{2}{2}{2}
+					\monster{2}{0}{0}{red}
+					\monster{2}{1}{2}{blue}
+					\arrow{2}{0}{0}{1}{1}{red}
+					\arrow{2}{1}{2}{1}{1}{blue}
+				\end{tikzpicture}} \\
+			egalite & victoire de rouge & victoire de bleu \\
+			\begin{tikzpicture}\hexagons{1}{2}{2}\end{tikzpicture} & \begin{tikzpicture}\hexagons{1}{2}{2}\end{tikzpicture} & \begin{tikzpicture}\hexagons{1}{2}{2}\end{tikzpicture} \\
+		\end{tabular}
+	\end{center}
+\end{table}
 
 \end{document}
