@@ -26,6 +26,12 @@ namespace Prototype1
             this.x = x;
             this.y = y;
         }
+        
+        public (int, int) NextPos()
+        {
+            //dans cette version, movement ne peut être égale qu'à 0, 3, 4, 7, -3, -4, -7
+            return (x + movement % 2, y + movement % 3);
+        }
     }
 
     public enum State

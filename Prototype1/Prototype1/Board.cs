@@ -20,43 +20,60 @@ namespace Prototype1//TODO definir utilite
             _monsters[monster.x, monster.y] = monster;
         }
 
-        public (int, int) Move(Monster monster)
-        {
-            //dans cette version, movement ne peut être égale qu'à 0, 3, 4, 7, -3, -4, -7
-            return (monster.x + monster.movement % 2, monster.y + monster.movement % 3);
-        }
-
         public void NextMove(List<Player> players)
         {
             HashSet<(int, int)> move = new HashSet<(int, int)>();
             HashSet<(int, int)> attack = new HashSet<(int, int)>();
-            List<Monster> monsters = new List<Monster>();
+            Dictionary<(int, int), List<Monster>> dictionary = new Dictionary<(int, int), List<Monster>>();
             foreach (var player in players)
             {
                 foreach (var monster in player.monstersAlive)
                 {
-                    (int x, int y) = Move(monster);
+                    var nextPos = monster.NextPos();
 
-                    if (move.Contains((x, y)))
+                    if (move.Contains(nextPos))
                     {
-                        attack.Add((x, y));
-                        move.Remove((x, y));
+                        attack.Add(nextPos);
+                        move.Remove(nextPos);
                     }
-                    else move.Add((x, y));
-                    
-                    monsters.Add(monster);
+                    else
+                    {
+                        if (!attack.Contains(nextPos)) move.Add(nextPos);
+                    }
                 }
             }
 
-            foreach (var monster in monsters)
+            foreach (var player in players)
             {
-                (int x, int y) = Move(monster);
-                
-                if (move.Contains((x, y)))
+                foreach (var monster in player.monstersAlive)
                 {
-                    move.Remove((x, y));
-                    monsters.Remove(monster);
+                    (int x, int y) = monster.NextPos();
+
+                    if (move.Contains((x, y)))
+                    {
+                        monster.x = x;
+                        monster.y = y;
+                    }
+                    else
+                    {
+                        if (dictionary.ContainsKey((x, y)))
+                        {
+                            List<Monster> monsters = dictionary[(x, y)];
+                            monsters.Add(monster);
+                        }
+                        else
+                        {
+                            dictionary.Add((x, y), new List<Monster>(){monster});   
+                        }
+                    }
                 }
+            }
+
+            //TODO mise en place des attaques des monstres qui se sont déjà déplacé
+            
+            foreach (var monsters in dictionary)
+            {
+                //TODO attaque des monstres qu'il reste sur la même case
             }
         }
     }
