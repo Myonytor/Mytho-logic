@@ -42,34 +42,24 @@ namespace Prototype1//TODO definir utilite
                 }
             }
 
-            foreach (var player in players)
+            foreach (KeyValuePair<(int,int), List<Monster>> kvp in dictionary)
             {
-                foreach (var monster in player.monstersAlive)
+                if (kvp.Value.Count == 1)
                 {
-                    (int x, int y) = monster.NextPos();
-
-                    if (dictionary.ContainsKey((x, y)))
-                    {
-                        monster.x = x;
-                        monster.y = y;
-                    }
-                    else
-                    {
-                        if (dictionary.ContainsKey((x, y)))
-                        {
-                            List<Monster> monsters = dictionary[(x, y)];
-                            monsters.Add(monster);
-                        }
-                        else
-                        {
-                            dictionary.Add((x, y), new List<Monster>(){monster});   
-                        }
-                    }
+                    (int x, int y) = kvp.Key;
+                    kvp.Value[0].x = x;
+                    kvp.Value[0].y = y;
+                    dictionary.Remove(kvp.Key);
+                }
+                else
+                {
+                    foreach (var monster in kvp.Value)
+                        monster.attack = 0;
                 }
             }
-
+        
             //TODO mise en place des attaques des monstres qui se sont déjà déplacé
-            
+
             foreach (var monsters in dictionary)
             {
                 //TODO attaque des monstres qu'il reste sur la même case
