@@ -22,8 +22,6 @@ namespace Prototype1//TODO definir utilite
 
         public void NextMove(List<Player> players)
         {
-            HashSet<(int, int)> move = new HashSet<(int, int)>();
-            HashSet<(int, int)> attack = new HashSet<(int, int)>();
             Dictionary<(int, int), List<Monster>> dictionary = new Dictionary<(int, int), List<Monster>>();
             foreach (var player in players)
             {
@@ -31,14 +29,15 @@ namespace Prototype1//TODO definir utilite
                 {
                     var nextPos = monster.NextPos();
 
-                    if (move.Contains(nextPos))
+                    if (dictionary.ContainsKey(nextPos))
                     {
-                        attack.Add(nextPos);
-                        move.Remove(nextPos);
+                        dictionary[nextPos].Add(monster);
                     }
                     else
                     {
-                        if (!attack.Contains(nextPos)) move.Add(nextPos);
+                        List<Monster> l = new List<Monster>();
+                        l.Add(monster);
+                        dictionary.Add(nextPos, l);
                     }
                 }
             }
@@ -49,7 +48,7 @@ namespace Prototype1//TODO definir utilite
                 {
                     (int x, int y) = monster.NextPos();
 
-                    if (move.Contains((x, y)))
+                    if (dictionary.ContainsKey((x, y)))
                     {
                         monster.x = x;
                         monster.y = y;
