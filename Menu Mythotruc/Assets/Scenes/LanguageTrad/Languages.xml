@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<languages>
+
+    <language>
+
+        <Name>
+            English
+        </Name>
+
+        <Play> PLAY </Play>
+        <Option> OPTIONS </Option>
+        <Save> LOAD </Save>
+        <Quit> QUIT </Quit>
+        <Volume> Volume </Volume>
+        <Graphics> Graphics </Graphics>
+        <Key_inputs> Key Inputs </Key_inputs>
+        <Langue> Language </Langue>
+
+    </language>
+    
+    <language>
+        
+        <Name>
+            Français
+        </Name>
+        
+        <Play> JOUER </Play>
+        <Option> OPTIONS </Option>
+        <Save> CHARGER </Save>
+        <Quit> QUITTER </Quit>
+        <Volume> Volume </Volume>
+        <Graphics> Graphisme </Graphics>
+        <Key_inputs> Contrôles </Key_inputs>
+        <Langue> Langue </Langue>
+        
+    </language>
+
+    
+    
+</languages>
+
