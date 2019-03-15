@@ -36,10 +36,6 @@ public class MouseManager : MonoBehaviour
                 selectedObject.GetComponent<SpriteRenderer>().color = Color.red;
             }
         }
-        else
-        {
-            ClearSelection(hoveredObject);
-        }
     }
 
     void SelectObject(GameObject hitObject)
