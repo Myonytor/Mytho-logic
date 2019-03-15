@@ -17,13 +17,13 @@ namespace Prototype1
 
         public int YGenos => yGenos;
 
-        public List<Monster> monstersAlive;
+        public List<MonsterAlive> monstersAlive;
         private Mythology mythology;
 
         public Player(string n, int nbrMithology)
         {
             mythology = new Mythology(nbrMithology, this);
-            monstersAlive = new List<Monster>();
+            monstersAlive = new List<MonsterAlive>();
             name = n;
         }
 

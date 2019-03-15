@@ -35,7 +35,8 @@ namespace Prototype1
             {
                 string[] stats = monsters[i].Split('$');
                 
-                Monster m = new Monster(stats[0], p, Int32.Parse(stats[1]), 0, 0 );
+                Monster m = new MonsterAlive(stats[0], p, Int32.Parse(stats[1]), new Fusion(), 0, 0 );
+                //TODO power est censé être SpecialPower a mais il manque des infos pour le moment 
                 
                 bestiary.Add(m);
             }

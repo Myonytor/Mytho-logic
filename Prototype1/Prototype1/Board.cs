@@ -7,22 +7,22 @@ namespace Prototype1//TODO definir utilite
     public class Board
     {
         private Tile[,] board;
-        private Monster[,] _monsters;
+        private MonsterAlive[,] _monsters;
 
         public Board(Tile[,] b)
         {
             board = b;
-            _monsters = new Monster[board.GetUpperBound(0), board.GetUpperBound(1)];
+            _monsters = new MonsterAlive[board.GetUpperBound(0), board.GetUpperBound(1)];
         }
 
-        public void AddMonster(Monster monster)
+        public void AddMonster(MonsterAlive monster)
         {
             _monsters[monster.x, monster.y] = monster;
         }
 
         public void NextMove(List<Player> players)
         {
-            Dictionary<(int, int), List<Monster>> dictionary = new Dictionary<(int, int), List<Monster>>();
+            Dictionary<(int, int), List<MonsterAlive>> dictionary = new Dictionary<(int, int), List<MonsterAlive>>();
             foreach (var player in players)
             {
                 foreach (var monster in player.monstersAlive)
@@ -35,14 +35,14 @@ namespace Prototype1//TODO definir utilite
                     }
                     else
                     {
-                        List<Monster> l = new List<Monster>();
+                        List<MonsterAlive> l = new List<MonsterAlive>();
                         l.Add(monster);
                         dictionary.Add(nextPos, l);
                     }
                 }
             }
 
-            foreach (KeyValuePair<(int,int), List<Monster>> kvp in dictionary)
+            foreach (KeyValuePair<(int,int), List<MonsterAlive>> kvp in dictionary)
             {
                 if (kvp.Value.Count == 1)
                 {
