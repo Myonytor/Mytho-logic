@@ -18,10 +18,10 @@ namespace Prototype1
     public class SpecialPower : Power
     {
         private bool targetAlly;
-        private List<Monster> targets;
+        private List<MonsterAlive> targets;
         private TargetStat targetStat;
 
-        public SpecialPower(bool targetAlly, List<Monster> targets, TargetStat targetStat)
+        public SpecialPower(bool targetAlly, List<MonsterAlive> targets, TargetStat targetStat)
         {
             this.targetAlly = targetAlly;
             this.targets = targets;

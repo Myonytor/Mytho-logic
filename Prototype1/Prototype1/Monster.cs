@@ -6,27 +6,36 @@ namespace Prototype1
     {
         private string name;
         private Player player;
-        public State state;
         public int strength;
         public Power power;
 
+        public Monster(string name, Player player, int strength, Power power)
+        {
+            this.name = name;
+            this.player = player;
+            this.strength = strength;
+            this.power = power;
+        }
+    }
+
+    public class MonsterAlive : Monster
+    {
+
+        public State state;
         public int movement;
         public int attack;
 
         public int x;
         public int y;
-
-        public Monster(string name,Player p, int strength, int x, int y)
+        
+        public MonsterAlive(string name, Player player, int strength, Power power, int x, int y) : base(name, player, strength, power)
         {
-            this.name = name;
             state = State.ALIVE;
-            player = p;
             movement = attack = 0;
-            this.strength = strength;
             this.x = x;
             this.y = y;
         }
-        
+       
         public (int, int) NextPos()
         {
             //dans cette version, movement ne peut être égale qu'à 0, 3, 4, 7, -3, -4, -7
