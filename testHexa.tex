@@ -49,6 +49,12 @@
 
 \begin{document}
 
+\begin{center}\Huge
+	Détails du principe du jeu
+\end{center}
+
+\tableofcontents
+
 \section{Legende}
 
 \begin{table}[!ht]
@@ -179,8 +185,7 @@
 				\monster{2}{0}{0}{blue}
 				\monster{2}{1}{1}{blue}
 			\end{tikzpicture} \\
-			si le bleu en bas est plus faible que celui du haut, il prend un point de dégat\\
-			sinon il ne se passe rien
+			si le bleu en bas est plus faible que celui du haut,\\ il prend un point de dégat sinon il ne se passe rien
 		\end{tabular}
 	\end{center}
 \end{table}
@@ -274,7 +279,8 @@
 			\multicolumn{3}{c}{on compare l'attaque du bleu avec la somme de celle de chacun des rouges}\\
 			egalite & victoire de rouge & victoire de bleu \\
 			\begin{tikzpicture}\hexagons{1}{2}{2}\monster{1}{0}{0}{red}\monster{1}{1}{0}{red}\monster{1}{1}{2}{blue}\end{tikzpicture} & \begin{tikzpicture}\hexagons{1}{2}{2}\monster{1}{1}{1}{red}\monster{1}{1}{0}{red}\monster{1}{1}{2}{blue}\end{tikzpicture} & \begin{tikzpicture}\hexagons{1}{2}{2}\monster{1}{0}{0}{red}\monster{1}{1}{0}{red}\monster{1}{1}{1}{blue}\end{tikzpicture} \\
-			le rouge de gauche et bleu blessés & bleu blessé & le rouge de gauche blessé \\
+			le rouge de gauche & bleu blessé & le rouge de gauche \\
+			et bleu blessés && blessé 
 		\end{tabular}
 	\end{center}
 \end{table}
@@ -340,5 +346,23 @@
 		\end{tabular}
 	\end{center}
 \end{table}
+
+\section{Condition de victoire}
+
+\subsection{proposition 1}
+
+Prendre le contrôle des différentes cases clefs
+
+\subsection{proposition 2}
+
+Détruire la base adverse
+
+\subsection{proposition 3}
+
+Emmener un objet près la base adverse
+
+\subsection{proposition 4}
+
+
 
 \end{document}
