@@ -35,7 +35,7 @@ namespace Prototype1
                 switch (targetStat)
                 {
                         case TargetStat.STATE:
-                            m.state = (targetAlly? (m.state +1): (m.state -1));
+                            m.state = (targetAlly? (m.state +1): (m.state -1));//incomplete
                             break;
                         
                         case TargetStat.STRENGTH:
