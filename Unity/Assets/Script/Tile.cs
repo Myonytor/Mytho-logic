@@ -5,8 +5,8 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     Board boardParent;
-    int x;
-    int y;
+    public int x;
+    public int y;
     // Start is called before the first frame update
     void Start()
     {

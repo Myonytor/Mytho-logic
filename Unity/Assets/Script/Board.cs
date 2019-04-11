@@ -27,6 +27,8 @@ public class Board : MonoBehaviour
                 GameObject hex = Instantiate(hexPrefab, new Vector2(xPos, yPos), Quaternion.identity) as GameObject;
                 hex.transform.parent = transform;
                 hex.name = "Hex_x" + x + "_y" + y;
+                hex.GetComponent<Tile>().x = x;
+                hex.GetComponent<Tile>().y = y;
                 hexGrid[x, y] = hex;
             }
         }
