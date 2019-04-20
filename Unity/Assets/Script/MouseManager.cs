@@ -49,7 +49,6 @@ public class MouseManager : MonoBehaviour
         hoveredObject = hitObject;
         hoveredObject.GetComponent<SpriteRenderer>().color = Color.grey;
     }
-
     void ClearSelection(GameObject objectToClear)
     {
         if (objectToClear == null)
