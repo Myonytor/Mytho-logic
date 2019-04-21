@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using UnityEngine;
-using UnityEngine.Experimental.UIElements.StyleEnums;
 
 namespace Assets.Script
 {
