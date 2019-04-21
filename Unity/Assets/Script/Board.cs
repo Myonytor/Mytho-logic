@@ -31,6 +31,7 @@ public class Board : MonoBehaviour
                 GameObject hex = Instantiate(hexPrefab, new Vector2(xPos, yPos), Quaternion.identity) as GameObject;
                 hex.transform.parent = transform;
                 hex.name = "Hex_x" + x + "_y" + y;
+                hex.tag = "Tile";
                 hexGrid[x, y] = hex;
             }
         }
@@ -48,6 +49,7 @@ public class Board : MonoBehaviour
                     float yPos = spawnY * yOffset - yOffset * spawnX;
                     GameObject hexSpawn = Instantiate(hexPrefab, new Vector2(xPos,yPos), Quaternion.identity, Spawn1.transform) as GameObject;
                     hexSpawn.name = "Hex_x" + spawnX + "_y" + spawnY;
+                    hexSpawn.tag = "Spawn1";
                 }
             }
         }
@@ -66,6 +68,7 @@ public class Board : MonoBehaviour
                     float yPos = spawnY * yOffset - yOffset * spawnX;
                     GameObject hexSpawn = Instantiate(hexPrefab, new Vector2(xPos, yPos), Quaternion.identity, Spawn2.transform) as GameObject;
                     hexSpawn.name = "Hex_x" + spawnX + "_y" + spawnY;
+                    hexSpawn.tag = "Spawn2";
                 }
             }
         }
