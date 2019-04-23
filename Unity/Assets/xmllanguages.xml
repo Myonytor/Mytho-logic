@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- 
+
+Ce script a été rédigé par la chaîne Youtube TUTOUNITYFR, Pour savoir comment l'utiliser
+rendez-vous sur cette vidéo : https://www.youtube.com/watch?v=jVgukYyEURM
+ 
+Pour ajoute une langue, copier puis coller le template entre
+les balises <languages></languages> et adaptez les différentes valeurs.
+
+Pour ajouter un mot ou expression à traduire, donnez un nom à cette expression
+et faites des balises pour chacune des langues.
+exemple : <merci>Traduction de Merci</merci>
+
+
+Template :
+
+<language>
+	<Name>Nom de la langue</Name>
+	<bonjour>Traduction de Bonjour</bonjour>
+	<aurevoir>Traduction de Aurevoir</aurevoir>
+</language>
+	
+	
+ -->
+
+<languages>
+
+	<language>
+		
+		<Name>Français</Name>
+		
+		<Play>Jouer</Play>
+		<Load>Charger</Load>
+		<Options>Options</Options>
+		<Quit>Quitter</Quit>
+		<Volume>Volume</Volume>
+		<Languages>Langue</Languages>
+		<KeyIn>Contrôles</KeyIn>
+		<Graphism>Graphisme</Graphism>
+		<Back>Retour</Back>
+		
+	</language>
+
+	<language>
+
+		<Name>English</Name>
+		
+		<Play>Play</Play>
+		<Load>Load</Load>
+		<Options>Options</Options>
+		<Quit>Quit</Quit>
+		<Volume>Volume</Volume>
+		<Languages>Language</Languages>
+		<KeyIn>Key Inputs</KeyIn>
+		<Graphism>Graphics</Graphism>
+		<Back>Back</Back>
+
+	</language>
+	
+
+</languages>
