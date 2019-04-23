@@ -12,14 +12,15 @@
           <e p="Board.cs" t="Include" />
           <e p="CameraController.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
-          <e p="Monster.cs" t="Include" />
           <e p="MouseManager.cs" t="Include" />
           <e p="NetworkManager_Custom.cs" t="Include" />
           <e p="Tile.cs" t="Include" />
           <e p="Unit.cs" t="Include" />
         </e>
         <e p="xmllanguages.xml" t="Include" />
+        <e p="xmllanguages1.xml" t="Include" />
         <e p="xmlReader.cs" t="Include" />
+        <e p="xmlReader1.cs" t="Include" />
       </e>
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />

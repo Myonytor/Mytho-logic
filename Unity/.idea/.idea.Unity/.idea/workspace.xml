@@ -7,23 +7,11 @@
       <change beforePath="$PROJECT_DIR$/../Méduse face.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Nout dos.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Nout face.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hex.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Hex.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Sphere.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Sphere.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/BoardScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BoardScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Board.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Board.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CameraController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/New Material.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/New Material.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Tile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Tile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Unit.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Unit.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/XRSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/XRSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UnityPackageManager/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/chants-des-chasseurs-les-allobroges.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/chants-des-chasseurs-les-allobroges.mp3.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/xmlReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/xmlReader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/xmllanguages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/xmllanguages.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,12 +21,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Script/CameraController.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
+            <state relative-caret-position="615">
               <caret line="46" column="9" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
               <folding>
+                <marker date="1556018377785" expanded="false" signature="6:78" ph="..." />
                 <marker date="1556018377785" expanded="true" signature="125:1794" ph="{...}" />
                 <marker date="1556018377785" expanded="true" signature="549:615" ph="{...}" />
                 <marker date="1556018377785" expanded="true" signature="637:1792" ph="{...}" />
@@ -49,6 +38,15 @@
                 <marker date="1556018377785" expanded="true" signature="1490:1578" ph="{...}" />
                 <marker date="1556018377785" expanded="true" signature="1698:1786" ph="{...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/xmllanguages.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -68,10 +66,11 @@
         <option value="$PROJECT_DIR$/Assets/Script/Monster.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/NetworkManager_Custom.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/CameraController.cs" />
+        <option value="$PROJECT_DIR$/Assets/xmllanguages.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="22" />
     <option name="y" value="11" />
     <option name="width" value="974" />
@@ -82,7 +81,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AssemblyExplorer" />
       <pane id="UnityExplorer">
         <subPane>
           <expand>
@@ -106,10 +104,11 @@
         <option name="show-hidden-items" value="false" />
         <option name="show-project-names" value="true" />
       </pane>
-      <pane id="FileSystemExplorer" />
       <pane id="SolutionExplorer">
         <option name="show-all-files" value="false" />
       </pane>
+      <pane id="FileSystemExplorer" />
+      <pane id="AssemblyExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -161,11 +160,12 @@
       <workItem from="1556018251839" duration="705000" />
       <workItem from="1556020401499" duration="357000" />
       <workItem from="1556021348126" duration="85000" />
+      <workItem from="1556023791890" duration="1015000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3031000" />
+    <option name="totallyTimeSpent" value="4046000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -177,9 +177,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19364598" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19667171" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -241,9 +242,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Script/CameraController.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
+        <state relative-caret-position="615">
           <caret line="46" column="9" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
           <folding>
+            <marker date="1556018377785" expanded="false" signature="6:78" ph="..." />
             <marker date="1556018377785" expanded="true" signature="125:1794" ph="{...}" />
             <marker date="1556018377785" expanded="true" signature="549:615" ph="{...}" />
             <marker date="1556018377785" expanded="true" signature="637:1792" ph="{...}" />
@@ -254,6 +256,13 @@
             <marker date="1556018377785" expanded="true" signature="1490:1578" ph="{...}" />
             <marker date="1556018377785" expanded="true" signature="1698:1786" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/xmllanguages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>

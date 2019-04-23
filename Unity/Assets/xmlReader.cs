@@ -24,7 +24,6 @@ public class xmlReader : MonoBehaviour
     string Quit;
     string Volume;
     string Languages;
-    string KeyIn;
     string Graphism;
     string Back;
     
@@ -38,7 +37,6 @@ public class xmlReader : MonoBehaviour
     public Text textQuit;
     public Text textVolume;
     public Text textLanguages;
-    public Text textKeyIn;
     public Text textGraphism;
     public Text textBack;
     
@@ -64,7 +62,6 @@ public class xmlReader : MonoBehaviour
         languages[currentLanguage].TryGetValue("Quit", out Quit);
         languages[currentLanguage].TryGetValue("Volume", out Volume);
         languages[currentLanguage].TryGetValue("Languages", out Languages);
-        languages[currentLanguage].TryGetValue("KeyIn", out KeyIn);
         languages[currentLanguage].TryGetValue("Graphism", out Graphism);
         languages[currentLanguage].TryGetValue("Back", out Back);
 
@@ -77,7 +74,6 @@ public class xmlReader : MonoBehaviour
         textQuit.text = Quit;
         textVolume.text = Volume;
         textLanguages.text = Languages;
-        textKeyIn.text = KeyIn;
         textGraphism.text = Graphism;
         textBack.text = Back;
 
@@ -118,9 +114,6 @@ public class xmlReader : MonoBehaviour
 
                 if (value.Name == "Languages")
                     obj.Add(value.Name, value.InnerText);
-                
-                if (value.Name == "KeyIn")
-                    obj.Add(value.Name, value.InnerText);
 
                 if (value.Name == "Graphism")
                     obj.Add(value.Name, value.InnerText);
@@ -138,5 +131,9 @@ public class xmlReader : MonoBehaviour
     public void ValueChangeCheck()
     {
         currentLanguage = selectDropdown.value;
+
+        PlayerPrefs.SetInt("lang", currentLanguage);
+
     }
+
 }
