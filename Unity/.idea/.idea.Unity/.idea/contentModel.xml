@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Marion\.Rider2018.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Marion\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_Unity.-1704171478.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Marion\Documents\EPITA\Projet\Mytho-logic\Unity" t="IncludeRecursive">
+    <e p="D:\Users\SawDarkness\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="D:\Users\SawDarkness\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_Unity.328851601.00" t="ExcludeRecursive" />
+    <e p="D:\Users\SawDarkness\Documents\GitHub\Mytho-logic\Unity" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+<<<<<<< HEAD
       <e p="Assets\Script" t="Include">
         <e p="Board.cs" t="Include" />
         <e p="CameraController.cs" t="Include" />
@@ -13,6 +14,23 @@
         <e p="Player.cs" t="Include" />
         <e p="Tile.cs" t="Include" />
         <e p="Unit.cs" t="Include" />
+=======
+      <e p="Assets" t="Include">
+        <e p="ChangeScene.cs" t="Include" />
+        <e p="MainMenu.cs" t="Include" />
+        <e p="Script" t="Include">
+          <e p="Board.cs" t="Include" />
+          <e p="CameraController.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
+          <e p="Monster.cs" t="Include" />
+          <e p="MouseManager.cs" t="Include" />
+          <e p="NetworkManager_Custom.cs" t="Include" />
+          <e p="Tile.cs" t="Include" />
+          <e p="Unit.cs" t="Include" />
+        </e>
+        <e p="xmllanguages.xml" t="Include" />
+        <e p="xmlReader.cs" t="Include" />
+>>>>>>> e37aaa3176cb0be062135d1e452f018f6ab1bc13
       </e>
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
