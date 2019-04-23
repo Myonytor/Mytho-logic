@@ -6,18 +6,16 @@ using System.Xml;
 using System.Text;
 using UnityEngine.UI;
 
-// Ce script a été rédigé par la chaîne Youtube TUTOUNITYFR, Pour savoir comment l'utiliser
-// rendez-vous sur cette vidéo : https://www.youtube.com/watch?v=jVgukYyEURM
 
-public class xmlReader : MonoBehaviour
+
+public partial class xmlReader : MonoBehaviour
 {
-	// Glissez ici votre dictionnaire XML
+
     public TextAsset dictionary;
 
     public string languageName;
     public int currentLanguage;
-
-	// Ces variables s'adaptent en fonction du langage utilisé
+    
     string Play;
     string Load;
     string Options;
@@ -27,10 +25,7 @@ public class xmlReader : MonoBehaviour
     string Graphism;
     string Back;
     
-    
 
-	// Ces 3 variables UI ne sont pas nécessaires et peuvent être supprimées (Voir vidéo tuto)
-	// MAIS il vous faudra aussi supprimer les différentes lignes relatives à ces variables
     public Text textPlay;
     public Text textLoad;
     public Text textOptions;
@@ -52,9 +47,7 @@ public class xmlReader : MonoBehaviour
 
     void Update()
     {
-		// Pour chaque phrase / mot se trouvant dans votre dictionnaire, il vous faut
-		// ajouter une ligne semblable aux suivantes en modifiant la valeur se trouvant 
-		// entre les " " ainsi que le "out NomDeLaVariable"
+
         languages[currentLanguage].TryGetValue("Name", out languageName);
         languages[currentLanguage].TryGetValue("Play", out Play);
         languages[currentLanguage].TryGetValue("Load", out Load);
@@ -66,8 +59,6 @@ public class xmlReader : MonoBehaviour
         languages[currentLanguage].TryGetValue("Back", out Back);
 
 
-		// Ces lignes ne sont pas nécessaires vous pouvez les supprimer à condition 
-		// d'avoir supprimer les variables UI plus haut (Voir vidéo)
         textPlay.text = Play;
         textLoad.text = Load;
         textOptions.text = Options;
@@ -95,8 +86,7 @@ public class xmlReader : MonoBehaviour
 
             foreach (XmlNode value in languageContent)
             {
-				// Ajouter ici une condition pour chaque expression / mot de votre dictionnaire
-				// n'oubliez pas de remplacer la valeur entre les " " (Attention à la casse !)
+
                 if (value.Name == "Play")
                     obj.Add(value.Name, value.InnerText);
 
@@ -126,8 +116,7 @@ public class xmlReader : MonoBehaviour
         }
     }
 
-	// Fonction non nécessaire, vous pouvez la supprimer à condition d'avoir 
-	// supprimé les variables UI.
+
     public void ValueChangeCheck()
     {
         currentLanguage = selectDropdown.value;

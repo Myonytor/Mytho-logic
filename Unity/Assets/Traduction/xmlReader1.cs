@@ -6,29 +6,21 @@ using System.Xml;
 using System.Text;
 using UnityEngine.UI;
 
-// Ce script a été rédigé par la chaîne Youtube TUTOUNITYFR, Pour savoir comment l'utiliser
-// rendez-vous sur cette vidéo : https://www.youtube.com/watch?v=jVgukYyEURM
 
 public class xmlReader1 : MonoBehaviour
 {
-	// Glissez ici votre dictionnaire XML
     public TextAsset dictionary;
 
     public string languageName;
     public int currentLanguage;
 
-    
-    
 
-	// Ces variables s'adaptent en fonction du langage utilisé
 
     string Quit;
     string Back;
     
     
 
-	// Ces 3 variables UI ne sont pas nécessaires et peuvent être supprimées (Voir vidéo tuto)
-	// MAIS il vous faudra aussi supprimer les différentes lignes relatives à ces variables
 
     public Text textQuit;
     public Text textBack;
@@ -38,7 +30,7 @@ public class xmlReader1 : MonoBehaviour
 
 	 void Start()
 	{
-		currentLanguage = (PlayerPrefs.GetInt("lang", 0));
+		currentLanguage = (PlayerPrefs.GetInt("lang",0));
 	}
 
 
@@ -49,17 +41,11 @@ public class xmlReader1 : MonoBehaviour
 
     void Update()
     {
-		// Pour chaque phrase / mot se trouvant dans votre dictionnaire, il vous faut
-		// ajouter une ligne semblable aux suivantes en modifiant la valeur se trouvant 
-		// entre les " " ainsi que le "out NomDeLaVariable"
+
         languages[currentLanguage].TryGetValue("Name", out languageName);
 
         languages[currentLanguage].TryGetValue("Quit", out Quit);
         languages[currentLanguage].TryGetValue("Back", out Back);
-
-
-		// Ces lignes ne sont pas nécessaires vous pouvez les supprimer à condition 
-		// d'avoir supprimer les variables UI plus haut (Voir vidéo)
 
         textQuit.text = Quit;
         textBack.text = Back;
@@ -82,8 +68,6 @@ public class xmlReader1 : MonoBehaviour
 
             foreach (XmlNode value in languageContent)
             {
-				// Ajouter ici une condition pour chaque expression / mot de votre dictionnaire
-				// n'oubliez pas de remplacer la valeur entre les " " (Attention à la casse !)
 
                 if (value.Name == "Quit")
                     obj.Add(value.Name, value.InnerText);

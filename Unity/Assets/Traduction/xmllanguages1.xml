@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<languages>
+
+    <language>
+
+        <Name>Français</Name>
+        
+        <Quit>Quitter</Quit>
+        <Back>Retour</Back>
+
+    </language>
+
+    <language>
+
+        <Name>English</Name>
+        
+        <Quit>Quit</Quit>
+        <Back>Back</Back>
+
+    </language>
+
+
+</languages>
