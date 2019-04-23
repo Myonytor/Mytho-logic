@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public List<Sprite> Sprites = new List<Sprite>();
-    private List<GameObject> images = new List<GameObject>();
+    public List<GameObject> Prefabs = new List<GameObject>();
+    private List<GameObject> monsters = new List<GameObject>();
 
     public GameObject ParentPanel;
     
@@ -21,17 +21,15 @@ public class GameManager : MonoBehaviour
         unit.Add("Bob", "Spawn2");
         //unit.Add("Boggs", "Spawn2");
         //board.hexGrid[1, 2].GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        
-        foreach (var currentSprite in Sprites)
+
+        int i = 0;
+        foreach (var currentPrefab in Prefabs)
         {
-            GameObject newGameObject = new GameObject();
-            Image newImage = newGameObject.AddComponent<Image>();
-            newImage.sprite = currentSprite;
-            newGameObject.GetComponent<RectTransform>().SetParent(ParentPanel.transform);
-            newGameObject.SetActive(true);
-            newImage.GetComponent<Transform>().localPosition = new Vector3(0, 0, 0);
-            //newImage.GetComponent<Transform>().
-            images.Add(newGameObject);
+            GameObject newGameObject = Instantiate(currentPrefab, new Vector3(board.hexGrid[i, 0].transform.position.x, board.hexGrid[i, 0].transform.position.y + 1f, -1), Quaternion.identity) as GameObject;
+            newGameObject.GetComponent<Transform>().parent = ParentPanel.transform;
+            newGameObject.transform.localScale = new Vector3( 0.05f, 0.05f, 1f);
+            monsters.Add(newGameObject);
+            i += 1;
         }
     }
 
