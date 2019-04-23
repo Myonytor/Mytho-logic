@@ -6,15 +6,8 @@ using UnityEngine.UI;
 
 public class NetworkManager_Custom : NetworkManager
 {
-    // Start is called before the first frame update
-    void Start()
+    public void StartHosting()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        StartHost();
     }
 }

@@ -2,22 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd1f2c6d-d6e1-4810-95ea-128bcd8ccf32" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Script/Player.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Script/Player.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Décor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Méduse dos.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Méduse face.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nout dos.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Nout face.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/vcs.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity/riderModule.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BoardScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BoardScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/NetworkManager_Custom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/NetworkManager_Custom.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +51,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/xmlReader.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1733">
+            <state>
               <folding>
                 <marker date="1556019876610" expanded="false" signature="6:154" ph="..." />
                 <marker date="1556019876610" expanded="true" signature="156:324" ph="/* Ce script a été rédigé par la chaîne Youtube TUTOUNITYFR, Pour savoir comment l'utiliser ... */" />
@@ -81,10 +72,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/xmlReader1.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
+            <state relative-caret-position="-30">
               <caret line="40" column="55" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
               <folding>
                 <marker date="1556025677750" expanded="false" signature="6:154" ph="..." />
@@ -105,6 +96,20 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/Script/NetworkManager_Custom.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+              <folding>
+                <marker date="1556033990718" expanded="false" signature="6:130" ph="..." />
+                <marker date="1556033990718" expanded="true" signature="183:251" ph="{...}" />
+                <marker date="1556033990718" expanded="true" signature="216:249" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -120,24 +125,29 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Script/Monster.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/NetworkManager_Custom.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/CameraController.cs" />
         <option value="$PROJECT_DIR$/Assets/xmllanguages.xml" />
         <option value="$PROJECT_DIR$/Assets/xmlReader1.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/NetworkManager_Custom.cs" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="22" />
     <option name="y" value="11" />
     <option name="width" value="974" />
     <option name="height" value="788" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="UnityExplorer" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="SolutionExplorer">
+        <option name="show-all-files" value="false" />
+      </pane>
+      <pane id="AssemblyExplorer" />
       <pane id="UnityExplorer">
         <subPane>
           <expand>
@@ -161,11 +171,7 @@
         <option name="show-hidden-items" value="false" />
         <option name="show-project-names" value="true" />
       </pane>
-      <pane id="SolutionExplorer">
-        <option name="show-all-files" value="false" />
-      </pane>
       <pane id="FileSystemExplorer" />
-      <pane id="AssemblyExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -218,11 +224,12 @@
       <workItem from="1556020401499" duration="357000" />
       <workItem from="1556021348126" duration="85000" />
       <workItem from="1556023791890" duration="1664000" />
+      <workItem from="1556033736167" duration="1439000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4695000" />
+    <option name="totallyTimeSpent" value="6134000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -234,9 +241,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19667171" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19969743" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -283,19 +291,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Assets/Script/Monster.cs" />
-    <entry file="file://$PROJECT_DIR$/Assets/Script/NetworkManager_Custom.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="51" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#130#0" expanded="true" />
-            <marker date="1556011324843" expanded="true" signature="183:357" ph="{...}" />
-            <marker date="1556011324843" expanded="true" signature="255:276" ph="{...}" />
-            <marker date="1556011324843" expanded="true" signature="334:355" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Script/CameraController.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
@@ -324,7 +319,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/xmlReader.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1733">
+        <state>
           <folding>
             <marker date="1556019876610" expanded="false" signature="6:154" ph="..." />
             <marker date="1556019876610" expanded="true" signature="156:324" ph="/* Ce script a été rédigé par la chaîne Youtube TUTOUNITYFR, Pour savoir comment l'utiliser ... */" />
@@ -346,7 +341,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/xmlReader1.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
+        <state relative-caret-position="-30">
           <caret line="40" column="55" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
           <folding>
             <marker date="1556025677750" expanded="false" signature="6:154" ph="..." />
@@ -362,6 +357,18 @@
             <marker date="1556025677750" expanded="true" signature="2017:2643" ph="{...}" />
             <marker date="1556025677750" expanded="true" signature="2203:2600" ph="{...}" />
             <marker date="1556025677750" expanded="true" signature="2222:2384" ph="/* Ajouter ici une condition pour chaque expression / mot de votre dictionnaire ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Script/NetworkManager_Custom.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding>
+            <marker date="1556033990718" expanded="false" signature="6:130" ph="..." />
+            <marker date="1556033990718" expanded="true" signature="183:251" ph="{...}" />
+            <marker date="1556033990718" expanded="true" signature="216:249" ph="{...}" />
           </folding>
         </state>
       </provider>
