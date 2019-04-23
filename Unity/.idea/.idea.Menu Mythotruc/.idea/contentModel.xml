@@ -27,8 +27,9 @@
         <e p="xmlReader.cs" t="Include" />
         <e p="xmlReader1.cs" t="Include" />
       </e>
-      <e p="Assets\xmllanguages.xml" t="Include" />
+      <e p="Assets\xmllanguages1.xml" t="Include" />
       <e p="Assets\xmlReader.cs" t="Include" />
+      <e p="Assets\xmlReader1.cs" t="Include" />
       <e p="Library" t="ExcludeRecursive" />
       <e p="Menu Mythotruc.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />
