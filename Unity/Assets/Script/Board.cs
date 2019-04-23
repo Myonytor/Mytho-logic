@@ -22,19 +22,27 @@ public class Board : MonoBehaviour
     {
         //Apparition du Plateau
         hexGrid = new GameObject[width, height];
+
+        foreach (var element in hexGrid)
+        {
+            Debug.Log(element);
+        }
+        
+        GameObject Hex = new GameObject("Hex");
+        Hex.transform.parent = transform;
         for (int y = 0; y < width; y++)
         {
             for (int x = 0; x < height; x++)
             {
                 float xPos = x * xOffset + xOffset * y;
                 float yPos = y * yOffset - yOffset * x;
-                GameObject hex = Instantiate(hexPrefab, new Vector2(xPos, yPos), Quaternion.identity) as GameObject;
-                hex.transform.parent = transform;
+                GameObject hex = Instantiate(hexPrefab, new Vector2(xPos, yPos), Quaternion.identity, Hex.transform) as GameObject;
                 hex.name = "Hex_x" + x + "_y" + y;
                 hex.tag = "Tile";
                 hexGrid[x, y] = hex;
             }
         }
+        Hex.transform.position = new Vector2(0, 0);
 
         //Apparition du Spawn 1
         GameObject Spawn1 = new GameObject("Spawn1");
@@ -48,7 +56,7 @@ public class Board : MonoBehaviour
                     float xPos = spawnX * xOffset + xOffset * spawnY;
                     float yPos = spawnY * yOffset - yOffset * spawnX;
                     GameObject hexSpawn = Instantiate(hexPrefab, new Vector2(xPos,yPos), Quaternion.identity, Spawn1.transform) as GameObject;
-                    hexSpawn.name = "Hex_x" + spawnX + "_y" + spawnY;
+                    hexSpawn.name = "Spawn1_x" + spawnX + "_y" + spawnY;
                     hexSpawn.tag = "Spawn1";
                 }
             }
@@ -67,7 +75,7 @@ public class Board : MonoBehaviour
                     float xPos = spawnX * xOffset + xOffset * spawnY;
                     float yPos = spawnY * yOffset - yOffset * spawnX;
                     GameObject hexSpawn = Instantiate(hexPrefab, new Vector2(xPos, yPos), Quaternion.identity, Spawn2.transform) as GameObject;
-                    hexSpawn.name = "Hex_x" + spawnX + "_y" + spawnY;
+                    hexSpawn.name = "Spawn2_x" + spawnX + "_y" + spawnY;
                     hexSpawn.tag = "Spawn2";
                 }
             }

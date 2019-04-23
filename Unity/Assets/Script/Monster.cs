@@ -11,13 +11,11 @@ namespace Assets.Script
         
         void Start()
         {
-            /*
             monsters = new GameObject[1];
             GameObject monster = Instantiate(prefabMonster, new Vector2(0, 0), Quaternion.identity);
             monster.transform.parent = transform;
-            monster.name = "m";
+            monster.name = "Sullivan";
             monsters[0] = monster;
-            */
         }
 
         void Update()

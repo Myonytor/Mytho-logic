@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Tile
+  - Spawn1
+  - Spawn2
+  - Monster
   layers:
   - Default
   - TransparentFX
