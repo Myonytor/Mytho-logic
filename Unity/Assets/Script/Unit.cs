@@ -12,31 +12,19 @@ public class Unit : MonoBehaviour
 		monsters = new List<GameObject>();
 	}
 
-	public void Add(string name) // give in parameter the monster and player
+	public void Add(string name, string tagSpawn) // give in parameter the monster and player
 	{
-		GameObject[] spawn = GameObject.FindGameObjectsWithTag("Spawn1");
-		int i = 0;
-		int l = spawn.Length;
-		bool add = false;
+		GameObject[] spawn = GameObject.FindGameObjectsWithTag(tagSpawn);
 
-		while (i < l && !add)
-		{
-			if (spawn[i])
-			{
-				GameObject monster = Instantiate(prefabMonster, new Vector2(0, 0), Quaternion.identity) as GameObject;
-				monster.transform.parent = transform;
-				monster.name = name;
-				monster.tag = "Monster";
-				monster.SetActive(true);
-				
-				monsters.Add(monster);
+		GameObject monster = Instantiate(prefabMonster, spawn[3].transform.position, Quaternion.identity) as GameObject;
+		monster.transform.parent = transform;
+		monster.name = name;
+		monster.tag = "Monster";
+		monster.SetActive(true);
+		
+		monsters.Add(monster);
 
-				Debug.Log("Add a monster in the map");
-				add = true;
-			}
-			
-			i += 1;
-		}
+		Debug.Log("Add a monster in the map");
 	}
 
 	public void Move(Vector3 direction, Vector3 position) // to change for a lot of move

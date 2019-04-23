@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     {
         board.Setup();
         unit.SetUp();
-        unit.Add("Sullivan");
+        unit.Add("Sullivan", "Spawn2");
+        unit.Add("Bob", "Spawn1");
         //board.hexGrid[1, 2].GetComponentInChildren<SpriteRenderer>().color = Color.red;
     }
 
