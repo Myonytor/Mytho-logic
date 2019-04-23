@@ -16,12 +16,14 @@ public class Unit : MonoBehaviour
 	{
 		GameObject[] spawn = GameObject.FindGameObjectsWithTag(tagSpawn);
 
-		GameObject monster = Instantiate(prefabMonster, new Vector3(0, 0), Quaternion.identity) as GameObject;
+		GameObject monster = Instantiate(prefabMonster, spawn[3].transform.position, Quaternion.identity) as GameObject;
+		spawn[3].GetComponent<Tile>().isEmpty = false;
 		monster.transform.parent = transform;
 		monster.name = name;
 		monster.tag = "Monster";
 		monster.SetActive(true);
 		
+		spawn[3].GetComponent<Tile>().monster = monster;
 		monsters.Add(monster);
 
 		Debug.Log("Add a monster in the map");
