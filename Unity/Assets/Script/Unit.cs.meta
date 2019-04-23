@@ -1,9 +1,13 @@
 fileFormatVersion: 2
 guid: bad8c86ffc08fd843ac66ea58896d3d0
+timeCreated: 1556021078
+licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - prefabMonster: {fileID: 1400186984580238, guid: 49b2f8adf353d514299259d08983ae6e,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

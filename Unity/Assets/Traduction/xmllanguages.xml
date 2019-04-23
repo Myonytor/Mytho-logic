@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+
+<languages>
+
+	<language>
+		
+		<Name>Français</Name>
+		
+		<Play>Jouer</Play>
+		<Load>Charger</Load>
+		<Options>Options</Options>
+		<Quit>Quitter</Quit>
+		<Volume>Volume</Volume>
+		<Languages>Langue</Languages>
+		<Graphism>Graphisme</Graphism>
+		<Back>Retour</Back>
+		
+	</language>
+
+	<language>
+
+		<Name>English</Name>
+		
+		<Play>Play</Play>
+		<Load>Load</Load>
+		<Options>Options</Options>
+		<Quit>Quit</Quit>
+		<Volume>Volume</Volume>
+		<Languages>Language</Languages>
+		<Graphism>Graphics</Graphism>
+		<Back>Back</Back>
+
+	</language>
+	
+
+</languages>
