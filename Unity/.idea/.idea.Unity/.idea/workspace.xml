@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd1f2c6d-d6e1-4810-95ea-128bcd8ccf32" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/BoardScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BoardScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Tile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Tile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Unit.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +36,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Script/Unit.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
+            <state relative-caret-position="-37">
               <caret line="25" column="56" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
               <folding>
                 <marker date="1556046206389" expanded="false" signature="6:78" ph="..." />
@@ -274,12 +271,12 @@
       <workItem from="1556020401499" duration="357000" />
       <workItem from="1556021348126" duration="85000" />
       <workItem from="1556023791890" duration="1664000" />
-      <workItem from="1556041920286" duration="2141000" />
+      <workItem from="1556041920286" duration="3584000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6836000" />
+    <option name="totallyTimeSpent" value="8279000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -292,7 +289,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="0" width="591" height="830" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.55932206" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -455,7 +451,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Script/Unit.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
+        <state relative-caret-position="-37">
           <caret line="25" column="56" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
           <folding>
             <marker date="1556046206389" expanded="false" signature="6:78" ph="..." />
