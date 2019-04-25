@@ -22,7 +22,7 @@ public class CustomHUDNet : NetworkManager
 
    void SetIPAddress()
    {
-      string IpAddress = GameObject.Find("InputFieldIPAddress").transform.FindChild("Text").GetComponent<Text>().text;
+      string IpAddress = GameObject.Find("InputFieldIPAddress").transform.Find("Text").GetComponent<Text>().text;
       NetworkManager.singleton.networkAddress = IpAddress;
    }
 
