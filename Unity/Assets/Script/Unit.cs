@@ -2,10 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour 
+public class Unit : MonoBehaviour
 {
+	string _name;
+	Player _player;
+	
+	int _power;
+	int _state;
+	
+	Vector2 _mouvement;
+	Vector2 _attack;
+	int x;
+	int y;
+	
 	public GameObject prefabMonster;
 	public List<GameObject> monsters;
+
+	public void Move()
+	{
+		
+	}
 
 	public void SetUp()
 	{

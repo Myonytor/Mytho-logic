@@ -5,13 +5,24 @@ using UnityEngine;
 public class Player : MonoBehaviour 
 {
 	private string name;
-	private const int nbrMonsterMax = 6;
 
 	public string Name => name;
 
 	private string spawn;
 
 	public string Spawn => spawn;
+
+	public List<Unit> monster;
+
+	public void Add()
+	{
+		
+	}
+
+	public void Delete()
+	{
+		
+	}
 
 	// Use this for initialization
 	void Start () 
