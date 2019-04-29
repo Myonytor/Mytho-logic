@@ -10,5 +10,11 @@ namespace Script
         
         private List<GameObject> _monsters;
         public List<GameObject> Monsters => _monsters;
+
+        public void Setup(string name, List<GameObject> monsters)
+        {
+            _name = name;
+            _monsters = monsters;
+        }
     }
 }

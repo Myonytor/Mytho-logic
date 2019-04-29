@@ -1,22 +1,44 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Script;
 using UnityEngine;
 
 public class Player : MonoBehaviour 
 {
-	private string name;
+	private string _name;
+	public string Name => _name;
 
-	public string Name => name;
+	private string _spawn;
+	public string Spawn => _spawn;
 
-	private string spawn;
+	private Mythologie _mythologie;
+	public Mythologie Mythologie => _mythologie;
 
-	public string Spawn => spawn;
+	public List<Unit> monsters;
 
-	public List<Unit> monster;
-
-	public void Add()
+	public void Setup(string name, string spawn)
 	{
-		
+		_name = name;
+		_spawn = spawn;
+		monsters = new List<Unit>();
+		_mythologie = new Mythologie();
+		_mythologie.Setup("Japonaise", new List<GameObject>(new GameObject[0]));
+	}
+
+	public void Add(string name) // give in parameter the monster and player
+	{
+		GameObject[] spawn = GameObject.FindGameObjectsWithTag(_spawn);
+
+		Unit unit = new Unit();
+		unit.monster = Instantiate(unit.prefabMonster, spawn[3].transform.position, Quaternion.identity) as GameObject;
+		unit.monster.transform.parent = transform;
+		unit.monster.tag = "Monster";
+
+		unit.SetUp(name, this);
+		spawn[3].GetComponent<Tile>().isEmpty = false;
+		monsters.Add(unit);
+
+		Debug.Log("Add a monster in the map");
 	}
 
 	public void Delete()

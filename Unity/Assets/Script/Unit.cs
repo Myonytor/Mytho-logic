@@ -1,34 +1,41 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-	string _name;
-	Player _player;
+	private string _name;
+	public string Name => _name;
 	
-	int _power;
-	int _state;
+	private Player _player;
+	public Player Player => _player;
+
+	private int _power;
+	public int Power => _power;
 	
-	Vector2 _mouvement;
-	Vector2 _attack;
-	int x;
-	int y;
+	public Enum _state;
+	
+	public Vector2 _mouvement;
+	public Vector2 _attack;
+	public GameObject prefabMove;
+	public GameObject prefabAttack;
+	
+	public int x;
+	public int y;
 	
 	public GameObject prefabMonster;
-	public List<GameObject> monsters;
+	public GameObject monster;
 
-	public void Move()
+	public void SetUp(string name, Player player) //int power)
 	{
-		
+		_name = name;
+		_player = player;
+		_state = State.ALIVE;
+		_power = 2;
 	}
 
-	public void SetUp()
-	{
-		monsters = new List<GameObject>();
-	}
-
-	public void Add(string name, string tagSpawn) // give in parameter the monster and player
+	/*public void Add(string name, string tagSpawn) // give in parameter the monster and player
 	{
 		GameObject[] spawn = GameObject.FindGameObjectsWithTag(tagSpawn);
 
@@ -39,7 +46,6 @@ public class Unit : MonoBehaviour
 		monster.tag = "Monster";
 		monster.SetActive(true);
 		
-		spawn[3].GetComponent<Tile>().monster = monster;
 		monsters.Add(monster);
 
 		Debug.Log("Add a monster in the map");
@@ -47,14 +53,22 @@ public class Unit : MonoBehaviour
 
 	public void Move(Vector3 direction, Vector3 position) // to change for a lot of move
 	{
-		/* int i = 0;
-		 * foreach (Vector3 position in positions)
-		 * {
-		 * 		Vector3 direcion = directions[i]
-		 */
-		GameObject monster = monsters.Find(x => x.transform.position == position);
-		monster.transform.position = direction;
+		int i = 0;
+		foreach (Vector3 position in positions)
+		{
+			Vector3 direcion = directions[i]
+		 
+			GameObject monster = monsters.Find(x => x.transform.position == position);
+			monster.transform.position = direction;
 		
-		Debug.Log(monster.name + " move");
+			Debug.Log(monster.name + " move");
+		}
+	}*/
+
+	public enum State
+	{
+		DEAD,
+		HURT,
+		ALIVE
 	}
 }
