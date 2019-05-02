@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    /*
     public List<GameObject> Prefabs = new List<GameObject>();
     private List<GameObject> monsters = new List<GameObject>();
 
     public GameObject ParentPanel;
+    */
     
     public Board board;
     public Unit unit;
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour
         player.Add("Sullivan");
         //board.hexGrid[1, 2].GetComponentInChildren<SpriteRenderer>().color = Color.red;
 
+        /*
         int i = 0;
         foreach (var currentPrefab in Prefabs)
         {
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
             monsters.Add(newGameObject);
             i += 1;
         }
+        */
     }
 
     // Update is called once per frame
