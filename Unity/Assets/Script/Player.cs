@@ -15,13 +15,12 @@ public class Player : MonoBehaviour
 	private Mythologie _mythologie;
 	public Mythologie Mythologie => _mythologie;
 
-	public List<GameObject> _monsters;
+	public List<Unit> _monsters;
 
 	public void Setup(string name, string spawn)
 	{
 		_name = name;
 		_spawn = spawn;
-		_monsters = new List<GameObject>();
 		_mythologie = new Mythologie();
 		_mythologie.Setup("Japonaise", new List<GameObject>(new GameObject[0]));
 	}
@@ -29,10 +28,11 @@ public class Player : MonoBehaviour
 	public void Add(string name) // give in parameter the monster and player
 	{
 		GameObject[] spawn = GameObject.FindGameObjectsWithTag(_spawn);
-		GameObject unit = Instantiate(_monsters[0], spawn[3].transform.position, Quaternion.identity, transform) as GameObject;
-		unit.GetComponent<Unit>().SetUp(name, this);
-		unit.tag = "Monster";
-		unit.name = name;
+		Unit unit = _monsters[0];
+		
+		GameObject monster = Instantiate(unit.PrefabMonster, spawn[3].transform.position, Quaternion.identity, transform) as GameObject;
+		monster.tag = "Monster";
+		monster.name = name;
 
 		Debug.Log("Add a monster in the map");
 	}

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4288391250842262}
   - component: {fileID: 114577563517882664}
   m_Layer: 0
-  m_Name: Monster
+  m_Name: Monster 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   prefabAttack: {fileID: 0}
   x: 0
   y: 0
+  PrefabMonster: {fileID: 0}
 --- !u!212 &212122361075422416
 SpriteRenderer:
   m_ObjectHideFlags: 1
