@@ -314,6 +314,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 0.5
+--- !u!1 &535042170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 535042172}
+  - component: {fileID: 535042171}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &535042171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 535042170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c05f41b41ad90b4f87da227db9b86ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsters: []
+--- !u!4 &535042172
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 535042170}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &722744974
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,10 +382,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08d9ec526003574fb38d89a1c495239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sprites: []
+  Prefabs: []
   ParentPanel: {fileID: 0}
   board: {fileID: 124286717}
   unit: {fileID: 2082525811}
+  player: {fileID: 0}
+  Players: []
 --- !u!4 &722744976
 Transform:
   m_ObjectHideFlags: 0
@@ -561,9 +604,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad8c86ffc08fd843ac66ea58896d3d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabMonster: {fileID: 1400186984580238, guid: 49b2f8adf353d514299259d08983ae6e,
+  _mouvement: {x: 0, y: 0}
+  _attack: {x: 0, y: 0}
+  prefabMove: {fileID: 0}
+  prefabAttack: {fileID: 0}
+  x: 0
+  y: 0
+  prefabMonster: {fileID: 590247010836195157, guid: 1688dad33bcdd224f992d7e4f6ab963c,
     type: 2}
-  monsters: []
+  monster: {fileID: 0}
 --- !u!4 &2082525812
 Transform:
   m_ObjectHideFlags: 0

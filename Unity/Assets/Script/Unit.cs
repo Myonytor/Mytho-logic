@@ -23,9 +23,6 @@ public class Unit : MonoBehaviour
 	
 	public int x;
 	public int y;
-	
-	public GameObject prefabMonster;
-	public GameObject monster;
 
 	public void SetUp(string name, Player player) //int power)
 	{

@@ -12,14 +12,13 @@ public class GameManager : MonoBehaviour
     
     public Board board;
     public Unit unit;
+    public Player player;
 
     public List<Player> Players;
     // Start is called before the first frame update
     void Start()
     {
         board.Setup();
-        Players = new List<Player>();
-        Player player = new Player();
         player.Setup("Zeus", "Spawn1");
         player.Add("Sullivan");
         //board.hexGrid[1, 2].GetComponentInChildren<SpriteRenderer>().color = Color.red;

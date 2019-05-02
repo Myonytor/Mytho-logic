@@ -15,6 +15,8 @@ namespace Script
         {
             _name = name;
             _monsters = monsters;
+            
+            Debug.Log("mise en place de la mythologie : " + _name);
         }
     }
 }
