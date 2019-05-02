@@ -15,11 +15,15 @@ public class GameManager : MonoBehaviour
     public Board board;
     public Unit unit;
     public Player player;
+    
+    private float decompte;
 
     public List<Player> Players;
     // Start is called before the first frame update
     void Start()
     {
+        decompte = 90;
+        
         board.Setup();
         player.Setup("Zeus", "Spawn1");
         player.Add("Sullivan");
@@ -41,5 +45,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (decompte <= 0)
+            decompte = 90;
+        if((int)(decompte - Time.deltaTime) != (int)(decompte))
+            Debug.Log((int)(decompte - Time.deltaTime));
+        decompte -= Time.deltaTime;
     }
 }
