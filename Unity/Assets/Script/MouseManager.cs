@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,10 @@ public class MouseManager : MonoBehaviour
 {
     public GameObject hoveredObject;
     public GameObject selectedObject;
+
+    public Player player;
+    private Unit unit; //unité sélectionné
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +36,7 @@ public class MouseManager : MonoBehaviour
                 ClearSelection(selectedObject);
                 selectedObject = hitObject;
             }
+
             if (selectedObject != null)
             {
                 selectedObject.GetComponent<SpriteRenderer>().color = Color.red;
@@ -46,15 +52,26 @@ public class MouseManager : MonoBehaviour
                 return;
             ClearSelection(hoveredObject);
         }
+
         hoveredObject = hitObject;
         hoveredObject.GetComponent<SpriteRenderer>().color = Color.grey;
     }
-    
+
     void ClearSelection(GameObject objectToClear)
     {
         if (objectToClear == null)
             return;
         objectToClear.GetComponent<SpriteRenderer>().color = Color.white;
         objectToClear = null;
+    }
+
+    bool IsBelonged()
+    {
+        throw new NotImplementedException();
+    }
+
+    void Clear()
+    {
+        throw new NotImplementedException();
     }
 }
