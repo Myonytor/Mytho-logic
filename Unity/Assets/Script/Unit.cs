@@ -35,6 +35,11 @@ public class Unit : MonoBehaviour
 		power = 2;
 	}
 
+	public void Move(Vector3 destination)
+	{
+		
+	}
+
 	public enum State
 	{
 		DEAD,
