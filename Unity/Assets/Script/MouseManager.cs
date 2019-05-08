@@ -70,7 +70,7 @@ public class MouseManager : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    void Clear()
+    public void Clear()
     {
         throw new NotImplementedException();
     }

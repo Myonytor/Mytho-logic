@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
         
         if (decompte <= 0)
         {
+            mouse.Clear();
             decompte = 90;
         }
     }
