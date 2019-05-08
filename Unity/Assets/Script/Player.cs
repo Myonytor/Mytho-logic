@@ -47,8 +47,7 @@ public class Player : MonoBehaviour
 				monster.name = name;
 				monster.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 				
-				Unit unit = gameObject.AddComponent<Unit>();
-				unit.SetUp(name, this, monster);
+				Unit unit = new Unit(name, this, monster);
 				_monsters.Add(unit);
 
 				add = true;

@@ -25,7 +25,7 @@ public class Unit : MonoBehaviour
 
 	public GameObject PrefabMonster;
 
-	public void SetUp(string name, Player player, GameObject monster) //int power)
+	public Unit(string name, Player player, GameObject monster) //int power)
 	{
 		PrefabMonster = monster;
 		_name = name;
