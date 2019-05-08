@@ -20,9 +20,8 @@ public class Unit : MonoBehaviour
 	public Vector2 _attack;
 	public GameObject prefabMove;
 	public GameObject prefabAttack;
-	
-	public int x;
-	public int y;
+
+	public Vector2 position;
 
 	public GameObject PrefabMonster;
 

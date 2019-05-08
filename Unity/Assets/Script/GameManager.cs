@@ -60,6 +60,43 @@ public class GameManager : MonoBehaviour
         {
             mouse.Clear();
             decompte = 90;
+            NextBoard();
+        }
+    }
+
+    void NextBoard()
+    {
+        HashSet<Vector2> movAlone = new HashSet<Vector2>(), movMult = new HashSet<Vector2>();
+
+        foreach (var p in Players)
+        {
+            foreach (var m in p._monsters)
+            {
+                if (movAlone.Contains(m._mouvement))
+                {
+                    movAlone.Remove(m._mouvement);
+                    movMult.Add(m._mouvement);
+                }
+                else
+                {
+                    movAlone.Add(m._mouvement);
+                }
+            }
+        }
+
+        foreach (var p in Players)
+        {
+            foreach (var m in p._monsters)
+            {
+                if (movAlone.Contains(m._mouvement))
+                {
+                    m.position = m._mouvement;
+                }
+                else
+                {
+                    
+                }
+            }
         }
     }
 }
