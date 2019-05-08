@@ -33,10 +33,8 @@ public class MouseManager : MonoBehaviour
 
             SelectObject(hitObject);
 
-            if (Input.GetMouseButton(0) && hitObject != null)
+            if (Input.GetMouseButtonDown(0) && hitObject != null)
             {
-                Debug.Log("0");
-                
                 int i = IsBelonged(hitObject.GetComponent<Tile>().coordinate);
                 if (i != -1)
                 {
@@ -49,9 +47,8 @@ public class MouseManager : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButton(1) && hitObject != null)
+            if (Input.GetMouseButtonDown(1) && hitObject != null)
             {
-                Debug.Log("1");
                 if (unit != null)
                     unit._attack = hitObject.GetComponent<Tile>().coordinate;
             }
