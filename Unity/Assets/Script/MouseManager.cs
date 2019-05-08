@@ -35,7 +35,7 @@ public class MouseManager : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                int i = IsBelonged(hoveredObject.GetComponent<Tile>().coordinate);
+                int i = IsBelonged(hoveredObject.transform.parent.GetComponent<Tile>().coordinate);
                 if (i != -1)
                 {
                     selectedObject = hitObject;
@@ -43,14 +43,14 @@ public class MouseManager : MonoBehaviour
                 }
                 else if(unit != null)
                 {
-                    unit._mouvement = hitObject.GetComponent<Tile>().coordinate;
+                    unit._mouvement = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
                 }
             }
 
             if (Input.GetMouseButtonDown(1))
             {
                 if (unit != null)
-                    unit._attack = hitObject.GetComponent<Tile>().coordinate;
+                    unit._attack = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
             }
 
             if (selectedObject != null)
