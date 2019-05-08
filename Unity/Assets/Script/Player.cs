@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 		_mythologie = new Mythologie("nameMythologie", monsters);
 	}
 
-	public void Add(string name) // give in parameter the monster and player
+	public void Add(string name, GameObject gameObject) // give in parameter the monster and player
 	{
 		GameObject[] spawns = GameObject.FindGameObjectsWithTag(_spawn);
 		int l = spawns.Length;
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
 				spawn.z = -1;
 
 				GameObject prefab = _mythologie._monsters[0];
-				GameObject monster = Instantiate(prefab, spawn, Quaternion.identity) as GameObject;
+				GameObject monster = Instantiate(prefab, spawn, Quaternion.identity, gameObject.transform) as GameObject;
 				monster.tag = "Monster";
 				monster.name = name;
 				monster.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
