@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
                 new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 1)),
                 new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(1, 1))
             };
+        mouse.ChangePlayer(Players[indexPlayer]);
         
         Players[0].Add("Meduse");
         Players[1].Add("Nout");

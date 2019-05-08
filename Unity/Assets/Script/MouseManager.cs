@@ -60,6 +60,11 @@ public class MouseManager : MonoBehaviour
         }
     }
 
+    public void ChangePlayer(Player p)
+    {
+        player = p;
+    }
+    
     void SelectObject(GameObject hitObject)
     {
         if (hoveredObject != null)
