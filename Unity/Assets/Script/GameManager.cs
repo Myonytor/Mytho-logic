@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,11 +46,14 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (decompte <= 0)
-            decompte = 90;
+    {        
         if((int)(decompte - Time.deltaTime) != (int)(decompte))
             Debug.Log((int)(decompte - Time.deltaTime));
         decompte -= Time.deltaTime;
+        
+        if (decompte <= 0)
+        {
+            decompte = 90;
+        }
     }
 }
