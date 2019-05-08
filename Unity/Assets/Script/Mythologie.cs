@@ -9,21 +9,11 @@ namespace Script
         
         public List<GameObject> _monsters;
 
-        public void Setup(string name, List<string> monsters)
+        public void Setup(string name, List<GameObject> monsters)
         {
             _name = name;
-            List<GameObject> prefabs = new List<GameObject>();
+            _monsters = monsters;
             
-            foreach (var monster in monsters)
-            {
-                List<GameObject> unit = _monsters.FindAll(x => x.CompareTag(monster));
-                foreach (var prefab in unit)
-                {
-                    prefabs.Add(prefab);
-                }
-            }
-
-            _monsters = prefabs;
             Debug.Log("mise en place de la mythologie : " + _name);
         }
     }

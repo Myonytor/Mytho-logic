@@ -383,8 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: 
-  _monsters:
-  - {fileID: 1139581982422244, guid: 96d3edf69d35e304688e267def4cb547, type: 2}
+  _monsters: []
 --- !u!4 &722652578
 Transform:
   m_ObjectHideFlags: 0
@@ -428,7 +427,8 @@ MonoBehaviour:
   board: {fileID: 124286717}
   player: {fileID: 535042171}
   mouse: {fileID: 1184362323}
-  PrefabsMonsters: []
+  PrefabsMonsters:
+  - {fileID: 1139581982422244, guid: 96d3edf69d35e304688e267def4cb547, type: 2}
   Players: []
 --- !u!4 &722744976
 Transform:

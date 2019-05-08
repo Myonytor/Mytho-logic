@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
 	public List<Unit> _monsters;
 
-	public void Setup(string name, string spawn, List<string> monsters)
+	public void Setup(string name, string spawn, List<GameObject> monsters)
 	{
 		_name = name;
 		_spawn = spawn;

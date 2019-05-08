@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -21,7 +22,6 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> PrefabsMonsters;
     public List<Player> Players;
-    private List<string> Japonaise = new List<string>(){"Monster"};
     
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         decompte = 90;
         
         board.Setup();
-        player.Setup("Zeus", "Spawn1", Japonaise);
+        player.Setup("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 1));
         player.Add("Sullivan");
         //board.hexGrid[1, 2].GetComponentInChildren<SpriteRenderer>().color = Color.red;
 
