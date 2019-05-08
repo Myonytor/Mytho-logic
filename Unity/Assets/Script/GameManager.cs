@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
         indexPlayer = 0;
         board.Setup();
         
+        Players = new List<Player>();
         Players.Add(new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 1)));
         Players.Add(new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(1, 1)));
         
