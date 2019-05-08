@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -13,11 +14,11 @@ public class GameManager : MonoBehaviour
     */
     
     public Board board;
-    public Unit unit;
     public Player player;
     
     private float decompte;
 
+    public List<GameObject> PrefabsMonsters;
     public List<Player> Players;
     private List<string> Japonaise = new List<string>(){"Monster"};
     
