@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
 			if (!spawns[i].GetComponent<Tile>().isEmpty)
 			{
 				Vector3 spawn = spawns[i].transform.position;
+				spawns[i].GetComponent<Tile>().isEmpty = true;
 				spawn.z = -1;
 
 				GameObject prefab = _mythologie._monsters[1];
@@ -50,11 +51,14 @@ public class Player : MonoBehaviour
 				_monsters.Add(unit);
 
 				add = true;
-				Debug.Log("Add a monster in the map");
+				Debug.Log("Add a monster in the map " + i);
 			}
 
 			i += 1;
 		}
+
+		if (!add) Debug.Log("Le monstre n'a pas pu être ajouté, manque de place");
+		// message au joueur
 	}
 
 	public void Delete()
