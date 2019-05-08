@@ -30,24 +30,24 @@ public class GameManager : MonoBehaviour
         indexPlayer = 0;
         board.Setup();
         
+        // Entré des noms des joueurs à la place de Zeus et Poseidon"
+        GameObject player = new GameObject("Player");
+        GameObject player0 = new GameObject("Zeus");
+        player0.transform.parent = player.transform;
+        GameObject player1 = new GameObject("Poseidon");
+        player1.transform.parent = player.transform;
+        
         Players = new List<Player>()
             {
-                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 1)),
-                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(1, 1))
+                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2), player0),
+                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(1, 2), player1)
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         
-        GameObject player = new GameObject("Player");
-        GameObject player0 = new GameObject(Players[0].Name);
-        player0.transform.parent = player.transform;
-        GameObject player1 = new GameObject(Players[1].Name);
-        player1.transform.parent = player.transform;
         
-        Players[0].Add("Meduse", player0);
-        Players[1].Add("Nout", player1);
+        Players[0].Add("Meduse");
+        Players[1].Add("Nout");
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
-
-        //player.Add("Nout");
 
         //board.hexGrid[1, 2].GetComponentInChildren<SpriteRenderer>().color = Color.red;
 
