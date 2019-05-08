@@ -9,7 +9,7 @@ namespace Script
         
         public List<GameObject> _monsters;
 
-        public void Setup(string name, List<GameObject> monsters)
+        public Mythologie(string name, List<GameObject> monsters)
         {
             _name = name;
             _monsters = monsters;

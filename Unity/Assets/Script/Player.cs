@@ -22,8 +22,8 @@ public class Player : MonoBehaviour
 		_name = name;
 		_spawn = spawn;
 		_monsters = new List<Unit>();
-		_mythologie = gameObject.AddComponent<Mythologie>();
-		_mythologie.Setup("nameMythologie", monsters);
+		//_mythologie = gameObject.AddComponent<Mythologie>();
+		_mythologie = new Mythologie("nameMythologie", monsters);
 		return this;
 	}
 
