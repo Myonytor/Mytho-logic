@@ -429,6 +429,7 @@ MonoBehaviour:
   mouse: {fileID: 1184362323}
   PrefabsMonsters:
   - {fileID: 1139581982422244, guid: 96d3edf69d35e304688e267def4cb547, type: 2}
+  - {fileID: 5329818881676410387, guid: a86260f7df5dc9a41a262e3e5d0a283b, type: 2}
   Players: []
 --- !u!4 &722744976
 Transform:
