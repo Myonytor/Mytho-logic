@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
 				spawn.z = -1;
 
 				GameObject prefab = _mythologie._monsters[0];
-				GameObject monster = Instantiate(prefab, spawn, Quaternion.identity, transform) as GameObject;
+				GameObject monster = Instantiate(prefab, spawn, Quaternion.identity) as GameObject;
 				monster.tag = "Monster";
 				monster.name = name;
 				monster.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
