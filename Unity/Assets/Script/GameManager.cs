@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     
     public Board board;
     public Player player;
+    public MouseManager mouse;
     
     private float decompte;
 
