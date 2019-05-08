@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     */
     
     public Board board;
-    public Player player;
+    public int indexPlayer;
     public MouseManager mouse;
     
     private float decompte;
@@ -29,10 +29,10 @@ public class GameManager : MonoBehaviour
         decompte = 90;
         
         board.Setup();
-        player.Setup("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2));
+        //player.Setup("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2));
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
         
-        player.Add("Nout");
+        //player.Add("Nout");
         
         //board.hexGrid[1, 2].GetComponentInChildren<SpriteRenderer>().color = Color.red;
 
