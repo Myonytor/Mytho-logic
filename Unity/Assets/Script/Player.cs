@@ -28,19 +28,33 @@ public class Player : MonoBehaviour
 	public void Add(string name) // give in parameter the monster and player
 	{
 		GameObject[] spawns = GameObject.FindGameObjectsWithTag(_spawn);
-		Vector3 spawn = spawns[3].transform.position;
-		spawn.z = -1;
+		int l = spawns.Length;
+		int i = 0;
+		bool add = false;
 
-		GameObject prefab = _mythologie._monsters[1];
-		GameObject monster = Instantiate(prefab, spawn, Quaternion.identity, transform) as GameObject;
-		monster.tag = "Monster";
-		monster.name = name;
-		monster.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-		
-		monster.AddComponent(typeof(Unit));
-		monster.GetComponent<Unit>().SetUp(name, this, prefab);
+		while (i < l && !add)
+		{
+			if (!spawns[i].GetComponent<Tile>().isEmpty)
+			{
+				Vector3 spawn = spawns[i].transform.position;
+				spawn.z = -1;
 
-		Debug.Log("Add a monster in the map");
+				GameObject prefab = _mythologie._monsters[1];
+				GameObject monster = Instantiate(prefab, spawn, Quaternion.identity, transform) as GameObject;
+				monster.tag = "Monster";
+				monster.name = name;
+				monster.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+				
+				Unit unit = gameObject.AddComponent<Unit>();
+				unit.SetUp(name, this, monster);
+				_monsters.Add(unit);
+
+				add = true;
+				Debug.Log("Add a monster in the map");
+			}
+
+			i += 1;
+		}
 	}
 
 	public void Delete()
