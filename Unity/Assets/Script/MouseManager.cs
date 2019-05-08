@@ -43,7 +43,7 @@ public class MouseManager : MonoBehaviour
                 }
                 else if(unit != null)
                 {
-                    unit._mouvement = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
+                    unit._movement = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
                 }
             }
 

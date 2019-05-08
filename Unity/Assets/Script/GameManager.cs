@@ -42,6 +42,12 @@ public class GameManager : MonoBehaviour
         Players[0].Add("Meduse");
         Players[1].Add("Nout");
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
+        
+        Players[0]._monsters[0].Move();
+
+        Unit monsterToMove = Players[1]._monsters[0];
+        monsterToMove._movement = new Vector2(0, 9);
+        monsterToMove.Move();
     }
 
     // Update is called once per frame
@@ -67,14 +73,14 @@ public class GameManager : MonoBehaviour
         {
             foreach (var m in p._monsters)
             {
-                if (movAlone.Contains(m._mouvement))
+                if (movAlone.Contains(m._movement))
                 {
-                    movAlone.Remove(m._mouvement);
-                    movMult.Add(m._mouvement);
+                    movAlone.Remove(m._movement);
+                    movMult.Add(m._movement);
                 }
                 else
                 {
-                    movAlone.Add(m._mouvement);
+                    movAlone.Add(m._movement);
                 }
             }
         }
@@ -83,9 +89,9 @@ public class GameManager : MonoBehaviour
         {
             foreach (var m in p._monsters)
             {
-                if (movAlone.Contains(m._mouvement))
+                if (movAlone.Contains(m._movement))
                 {
-                    m._position = m._mouvement;
+                    m._position = m._movement;
                     m.PrefabMonster.transform.position =
                         board.hexGrid[(int) (m._position.x), (int) m._position.y].transform.position;
                 }
