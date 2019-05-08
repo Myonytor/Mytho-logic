@@ -11,10 +11,10 @@ public class Unit : MonoBehaviour
 	private Player _player;
 	public Player Player => _player;
 
-	private int _power;
-	public int Power => _power;
+	private int power;
+	public int Power => power;
 	
-	public Enum _state;
+	public Enum state;
 	
 	public Vector2 _mouvement;
 	public Vector2 _attack;
@@ -26,12 +26,13 @@ public class Unit : MonoBehaviour
 
 	public GameObject PrefabMonster;
 
-	public void SetUp(string name, Player player) //int power)
+	public void SetUp(string name, Player player, GameObject monster) //int power)
 	{
+		PrefabMonster = monster;
 		_name = name;
 		_player = player;
-		_state = State.ALIVE;
-		_power = 2;
+		state = State.ALIVE;
+		power = 2;
 	}
 
 	/*public void Add(string name, string tagSpawn) // give in parameter the monster and player

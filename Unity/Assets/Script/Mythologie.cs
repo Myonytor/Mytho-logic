@@ -3,19 +3,27 @@ using UnityEngine;
 
 namespace Script
 {
-    public class Mythologie
+    public class Mythologie : MonoBehaviour
     {
-        private string _name;
-        public string Name => _name;
+        public string _name;
         
-        private List<GameObject> _monsters;
-        public List<GameObject> Monsters => _monsters;
+        public List<GameObject> _monsters;
 
-        public void Setup(string name, List<GameObject> monsters)
+        public void Setup(string name, List<string> monsters)
         {
             _name = name;
-            _monsters = monsters;
+            List<GameObject> prefabs = new List<GameObject>();
             
+            foreach (var monster in monsters)
+            {
+                List<GameObject> unit = _monsters.FindAll(x => x.CompareTag(monster));
+                foreach (var prefab in unit)
+                {
+                    prefabs.Add(prefab);
+                }
+            }
+
+            _monsters = prefabs;
             Debug.Log("mise en place de la mythologie : " + _name);
         }
     }

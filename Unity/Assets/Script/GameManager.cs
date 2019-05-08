@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,13 +20,15 @@ public class GameManager : MonoBehaviour
     private float decompte;
 
     public List<Player> Players;
+    private List<string> Japonaise = new List<string>(){"Monster"};
+    
     // Start is called before the first frame update
     void Start()
     {
         decompte = 90;
         
         board.Setup();
-        player.Setup("Zeus", "Spawn1");
+        player.Setup("Zeus", "Spawn1", Japonaise);
         player.Add("Sullivan");
         //board.hexGrid[1, 2].GetComponentInChildren<SpriteRenderer>().color = Color.red;
 
