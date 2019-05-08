@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MouseManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class MouseManager : MonoBehaviour
     void Start()
     {
         selectedObject = null;
+        unit = null;
     }
 
     // Update is called once per frame
@@ -31,10 +33,24 @@ public class MouseManager : MonoBehaviour
 
             SelectObject(hitObject);
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && hitObject != null)
             {
-                ClearSelection(selectedObject);
-                selectedObject = hitObject;
+                int i = IsBelonged(hitObject.GetComponent<Tile>().coordinate);
+                if (i != -1)
+                {
+                    selectedObject = hitObject;
+                    unit = player._monsters[i];
+                }
+                else if(unit != null)
+                {
+                    unit._mouvement = hitObject.GetComponent<Tile>().coordinate;
+                }
+            }
+
+            if (Input.GetMouseButton(2) && hitObject != null)
+            {
+                if (unit != null)
+                    unit._attack = hitObject.GetComponent<Tile>().coordinate;
             }
 
             if (selectedObject != null)
@@ -65,13 +81,16 @@ public class MouseManager : MonoBehaviour
         objectToClear = null;
     }
 
-    bool IsBelonged()
+    int IsBelonged(Vector2 vect)//return -1 if the tile does not belong to the player, and return the index of the monster otherwise
     {
-        throw new NotImplementedException();
+        int i = 0;
+        while (i < player._monsters.Count && (vect.x != player._monsters[i].x || vect.y != player._monsters[i].y))
+            i += 1;
+        return (i == player._monsters.Count ? -1 : i);
     }
 
     public void Clear()
     {
-        throw new NotImplementedException();
+        unit = null;
     }
 }
