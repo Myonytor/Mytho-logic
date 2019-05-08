@@ -7,13 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    /*
-    public List<GameObject> Prefabs = new List<GameObject>();
-    private List<GameObject> monsters = new List<GameObject>();
-
-    public GameObject ParentPanel;
-    */
-    
+    private const int timer = 10;
     public Board board;
     public int indexPlayer;
     public MouseManager mouse;
@@ -26,7 +20,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        decompte = 90;
+        decompte = timer;
         indexPlayer = 0;
         board.Setup();
         
@@ -48,20 +42,6 @@ public class GameManager : MonoBehaviour
         Players[0].Add("Meduse");
         Players[1].Add("Nout");
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
-
-        //board.hexGrid[1, 2].GetComponentInChildren<SpriteRenderer>().color = Color.red;
-
-        /*
-        int i = 0;
-        foreach (var currentPrefab in Prefabs)
-        {
-            GameObject newGameObject = Instantiate(currentPrefab, new Vector3(board.hexGrid[i, 0].transform.position.x, board.hexGrid[i, 0].transform.position.y + 1f, -1), Quaternion.identity) as GameObject;
-            newGameObject.GetComponent<Transform>().parent = ParentPanel.transform;
-            newGameObject.transform.localScale = new Vector3( 0.05f, 0.05f, 1f);
-            monsters.Add(newGameObject);
-            i += 1;
-        }
-        */
     }
 
     // Update is called once per frame
@@ -74,7 +54,7 @@ public class GameManager : MonoBehaviour
         if (decompte <= 0)
         {
             mouse.Clear();
-            decompte = 90;
+            decompte = timer;
             NextBoard();
         }
     }
