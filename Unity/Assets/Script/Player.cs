@@ -17,14 +17,13 @@ public class Player : MonoBehaviour
 
 	public List<Unit> _monsters;
 
-	public Player Setup(string name, string spawn, List<GameObject> monsters)
+	public Player(string name, string spawn, List<GameObject> monsters)
 	{
 		_name = name;
 		_spawn = spawn;
 		_monsters = new List<Unit>();
 		//_mythologie = gameObject.AddComponent<Mythologie>();
 		_mythologie = new Mythologie("nameMythologie", monsters);
-		return this;
 	}
 
 	public void Add(string name) // give in parameter the monster and player
