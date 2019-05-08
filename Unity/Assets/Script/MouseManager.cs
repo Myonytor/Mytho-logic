@@ -61,7 +61,7 @@ public class MouseManager : MonoBehaviour
     {
         if (objectToClear == null)
             return;
-        objectToClear.GetComponent<SpriteRenderer>().color = Color.white;
+        objectToClear.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.56f);
         objectToClear = null;
     }
 
