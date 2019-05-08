@@ -106,6 +106,8 @@ public class GameManager : MonoBehaviour
                 if (movAlone.Contains(m._mouvement))
                 {
                     m._position = m._mouvement;
+                    m.PrefabMonster.transform.position =
+                        board.hexGrid[(int) (m._position.x), (int) m._position.y].transform.position;
                 }
                 else
                 {

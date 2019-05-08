@@ -89,7 +89,7 @@ public class MouseManager : MonoBehaviour
     int IsBelonged(Vector2 vect)//return -1 if the tile does not belong to the player, and return the index of the monster otherwise
     {
         int i = 0;
-        while (i < player._monsters.Count && vect != player._monsters[i].position)
+        while (i < player._monsters.Count && vect != player._monsters[i]._position)
             i += 1;
         return (i == player._monsters.Count ? -1 : i);
     }
