@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
 		GameObject monster = Instantiate(unit.PrefabMonster, spawn[3].transform.position, Quaternion.identity, transform) as GameObject;
 		monster.tag = "Monster";
 		monster.name = name;
+		monster.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
 		Debug.Log("Add a monster in the map");
 	}
