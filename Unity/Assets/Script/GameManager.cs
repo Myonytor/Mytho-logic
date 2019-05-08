@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         Players = new List<Player>()
             {
                 new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2), player0),
-                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(1, 2), player1)
+                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(2, 2), player1)
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
             {
                 if (movAlone.Contains(m._mouvement))
                 {
-                    m.position = m._mouvement;
+                    m._position = m._mouvement;
                 }
                 else
                 {

@@ -21,15 +21,16 @@ public class Unit : MonoBehaviour
 	public GameObject prefabMove;
 	public GameObject prefabAttack;
 
-	public Vector2 position;
+	public Vector2 _position;
 
 	public GameObject PrefabMonster;
 
-	public Unit(string name, Player player, GameObject monster) //int power)
+	public Unit(string name, Player player, GameObject monster, Vector2 position) //int power)
 	{
 		PrefabMonster = monster;
 		_name = name;
 		_player = player;
+		_position = position;
 		state = State.ALIVE;
 		power = 2;
 	}

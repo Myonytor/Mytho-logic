@@ -51,6 +51,7 @@ public class Board : MonoBehaviour
                     float xPos = spawnX * xOffset + xOffset * spawnY;
                     float yPos = spawnY * yOffset - yOffset * spawnX;
                     GameObject hexSpawn = Instantiate(hexPrefab, new Vector2(xPos,yPos), Quaternion.identity, Spawn1.transform) as GameObject;
+                    hexSpawn.GetComponent<Tile>().coordinate = new Vector2(spawnX + 10, spawnY + 10);
                     hexSpawn.name = "Hex_x" + spawnX + "_y" + spawnY;
                     hexSpawn.tag = "Spawn1";
                 }
@@ -70,6 +71,7 @@ public class Board : MonoBehaviour
                     float xPos = spawnX * xOffset + xOffset * spawnY;
                     float yPos = spawnY * yOffset - yOffset * spawnX;
                     GameObject hexSpawn = Instantiate(hexPrefab, new Vector2(xPos, yPos), Quaternion.identity, Spawn2.transform) as GameObject;
+                    hexSpawn.GetComponent<Tile>().coordinate = new Vector2(spawnX + 13, spawnY + 13);
                     hexSpawn.name = "Hex_x" + spawnX + "_y" + spawnY;
                     hexSpawn.tag = "Spawn2";
                 }
