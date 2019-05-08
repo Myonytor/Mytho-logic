@@ -33,9 +33,9 @@ public class MouseManager : MonoBehaviour
 
             SelectObject(hitObject);
 
-            if (Input.GetMouseButtonDown(0) && hitObject != null)
+            if (Input.GetMouseButtonDown(0))
             {
-                int i = IsBelonged(hitObject.GetComponent<Tile>().coordinate);
+                int i = IsBelonged(hoveredObject.GetComponent<Tile>().coordinate);
                 if (i != -1)
                 {
                     selectedObject = hitObject;
@@ -47,7 +47,7 @@ public class MouseManager : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(1) && hitObject != null)
+            if (Input.GetMouseButtonDown(1))
             {
                 if (unit != null)
                     unit._attack = hitObject.GetComponent<Tile>().coordinate;
