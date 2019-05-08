@@ -28,13 +28,15 @@ public class MouseManager : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.gameObject.transform.parent.name);
+            //Debug.Log(hit.collider.gameObject.transform.parent.name);
             GameObject hitObject = hit.collider.gameObject;
 
             SelectObject(hitObject);
 
             if (Input.GetMouseButton(0) && hitObject != null)
             {
+                Debug.Log("0");
+                
                 int i = IsBelonged(hitObject.GetComponent<Tile>().coordinate);
                 if (i != -1)
                 {
@@ -47,8 +49,9 @@ public class MouseManager : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButton(2) && hitObject != null)
+            if (Input.GetMouseButton(1) && hitObject != null)
             {
+                Debug.Log("1");
                 if (unit != null)
                     unit._attack = hitObject.GetComponent<Tile>().coordinate;
             }
