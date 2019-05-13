@@ -9,8 +9,9 @@ public class Tile : MonoBehaviour
     public bool isEmpty;
     
     // Start is called before the first frame update
-    void Start()
+    public void SetUp(int x, int y)
     {
+        coordinate = new Vector2(x, y);
         isEmpty = true;
     }
 }

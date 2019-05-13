@@ -41,13 +41,11 @@ public class GameManager : MonoBehaviour
         
         Players[0].Add("Meduse");
         Players[1].Add("Nout");
+        
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
         
-        Players[0]._monsters[0].Move();
-
-        Unit monsterToMove = Players[1]._monsters[0];
-        monsterToMove._movement = new Vector2(0, 9);
-        monsterToMove.Move();
+        Players[1]._monsters[0]._movement = new Vector2(0, 9);
+        Players[0]._monsters[0]._movement = new Vector2(0, 0);
     }
 
     // Update is called once per frame
@@ -61,7 +59,9 @@ public class GameManager : MonoBehaviour
         {
             mouse.Clear();
             decompte = timer;
-            NextBoard();
+            NextBoardDico();
+            Players[0]._monsters[0]._movement = new Vector2(1, 0);
+            Players[1]._monsters[0]._movement = new Vector2(0, 7);
         }
     }
 
@@ -101,5 +101,46 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    void NextBoardDico()
+    {
+        Dictionary<Vector2, List<Unit>> move = new Dictionary<Vector2, List<Unit>>();
+
+        foreach (var player in Players)
+        {
+            foreach (var monster in player._monsters)
+            {
+                if (!Equals(monster._movement, Vector2.negativeInfinity))
+                {
+                    if (move.ContainsKey(monster._movement)) move[monster._movement].Add(monster);
+                    else move.Add(monster._movement, new List<Unit>() {monster});
+                }
+            }
+        }
+
+        foreach (var monsters in move)
+        {
+            if (monsters.Value.Count == 1)
+            {
+                board.hexGrid[(int) monsters.Value[0]._position.x, (int) monsters.Value[0]._position.y].GetComponent<Tile>().isEmpty = true;
+                
+                Unit monster = monsters.Value[0];
+                monster._position = monster._movement;
+                monster.PrefabMonster.transform.position = 
+                    board.hexGrid[(int) (monster._position.x), (int) monster._position.y].transform.position;
+                
+                monster._movement = Vector2.negativeInfinity;
+                board.hexGrid[(int) (monster._position.x), (int) monster._position.y].GetComponent<Tile>().isEmpty = false;
+                
+                Debug.Log(monster.Name + " c'est déplacé");
+            }
+            else
+            {
+                
+            }
+        }
+        
+        if (move.Count == 0) Debug.Log("Il n'y a pas de déplacement à faire");
     }
 }

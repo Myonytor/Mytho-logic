@@ -21,7 +21,7 @@ public class Board : MonoBehaviour
     public void Setup()
     {
         //Apparition du Plateau
-        hexGrid = new GameObject[width, height];
+        hexGrid = new GameObject[width + 6, height + 6];
         GameObject Hex = new GameObject("Hex");
         Hex.transform.parent = transform;
         for (int y = 0; y < width; y++)
@@ -31,7 +31,7 @@ public class Board : MonoBehaviour
                 float xPos = x * xOffset + xOffset * y;
                 float yPos = y * yOffset - yOffset * x;
                 GameObject hex = Instantiate(hexPrefab, new Vector2(xPos, yPos), Quaternion.identity, Hex.transform) as GameObject;
-                hex.GetComponent<Tile>().coordinate = new Vector2(x, y);
+                hex.GetComponent<Tile>().SetUp(x, y);
                 hex.name = "Hex_x" + x + "_y" + y;
                 hex.tag = "Tile";
                 hexGrid[x, y] = hex;
@@ -51,9 +51,10 @@ public class Board : MonoBehaviour
                     float xPos = spawnX * xOffset + xOffset * spawnY;
                     float yPos = spawnY * yOffset - yOffset * spawnX;
                     GameObject hexSpawn = Instantiate(hexPrefab, new Vector2(xPos,yPos), Quaternion.identity, Spawn1.transform) as GameObject;
-                    hexSpawn.GetComponent<Tile>().coordinate = new Vector2(spawnX + 10, spawnY + 10);
-                    hexSpawn.name = "Hex_x" + spawnX + "_y" + spawnY;
+                    hexSpawn.GetComponent<Tile>().SetUp(spawnX + 10, spawnY + 10);
+                    hexSpawn.name = "Hex_x" + (spawnX + 10) + "_y" + (spawnY + 10);
                     hexSpawn.tag = "Spawn1";
+                    hexGrid[spawnX + 10, spawnY + 10] = hexSpawn;
                 }
             }
         }
@@ -71,9 +72,10 @@ public class Board : MonoBehaviour
                     float xPos = spawnX * xOffset + xOffset * spawnY;
                     float yPos = spawnY * yOffset - yOffset * spawnX;
                     GameObject hexSpawn = Instantiate(hexPrefab, new Vector2(xPos, yPos), Quaternion.identity, Spawn2.transform) as GameObject;
-                    hexSpawn.GetComponent<Tile>().coordinate = new Vector2(spawnX + 13, spawnY + 13);
-                    hexSpawn.name = "Hex_x" + spawnX + "_y" + spawnY;
+                    hexSpawn.GetComponent<Tile>().SetUp(spawnX + 13, spawnY + 13);
+                    hexSpawn.name = "Hex_x" + (spawnX + 13) + "_y" + (spawnY + 13);
                     hexSpawn.tag = "Spawn2";
+                    hexGrid[spawnX + 13, spawnY + 13] = hexSpawn;
                 }
             }
         }

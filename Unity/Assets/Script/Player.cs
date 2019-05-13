@@ -36,10 +36,10 @@ public class Player : MonoBehaviour
 
 		while (i < l && !add)
 		{
-			if (!spawns[i].GetComponent<Tile>().isEmpty)
+			if (spawns[i].GetComponent<Tile>().isEmpty)
 			{
 				Vector3 spawn = spawns[i].transform.position;
-				spawns[i].GetComponent<Tile>().isEmpty = true;
+				spawns[i].GetComponent<Tile>().isEmpty = false;
 				spawn.z = -1;
 
 				GameObject prefab = _mythologie._monsters[0];
