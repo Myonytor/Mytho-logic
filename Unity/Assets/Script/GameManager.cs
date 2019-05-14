@@ -124,6 +124,10 @@ public class GameManager : MonoBehaviour
             if (monsters.Value.Count == 1)
             {
                 board.hexGrid[(int) monsters.Value[0]._position.x, (int) monsters.Value[0]._position.y].GetComponent<Tile>().isEmpty = true;
+                Vector2 hexPos = board.hexGrid[(int) monsters.Value[0]._position.x, (int) monsters.Value[0]._position.y].transform.position;
+                RaycastHit2D hit = Physics2D.Raycast(hexPos, Vector2.zero);
+                GameObject hitObject = hit.collider.gameObject;
+                hitObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.56f);
                 
                 Unit monster = monsters.Value[0];
                 monster._position = monster._movement;
