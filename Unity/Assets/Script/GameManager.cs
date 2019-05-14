@@ -96,9 +96,9 @@ public class GameManager : MonoBehaviour
         {
             if (monsters.Value.Count == 1)
             {
-                // Gestion du mouvement lorsqu'il n'y a qu'un monstre sur la case d'arrivée
                 board.hexGrid[(int) monsters.Value[0]._position.x, (int) monsters.Value[0]._position.y].GetComponent<Tile>().isEmpty = true;
                 
+                // Gestion du mouvement lorsqu'il n'y a qu'un monstre sur la case d'arrivée
                 Unit monster = monsters.Value[0];
                 monster._position = monster._movement;
                 monster.PrefabMonster.transform.position = 
@@ -119,6 +119,12 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                // Suppression de leur attaque
+                Unit monster0 = monsters.Value[0];
+                Unit monster1 = monsters.Value[1];
+                monster0._attack = Vector2.negativeInfinity;
+                monster1._attack = Vector2.negativeInfinity;
+                
                 
             }
         }

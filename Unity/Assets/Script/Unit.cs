@@ -14,7 +14,8 @@ public class Unit : MonoBehaviour
 	private int power;
 	public int Power => power;
 	
-	public Enum state;
+	// false correspond à vivant et true à bléssé
+	public bool state;
 	
 	public Vector2 _movement;
 	public Vector2 _attack;
@@ -33,14 +34,7 @@ public class Unit : MonoBehaviour
 		_position = position;
 		_movement = Vector2.negativeInfinity;
 		_attack = Vector2.negativeInfinity;
-		state = State.ALIVE;
+		state = false;
 		power = 2;
-	}
-
-	public enum State
-	{
-		DEAD,
-		HURT,
-		ALIVE
 	}
 }
