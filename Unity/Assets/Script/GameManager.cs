@@ -40,21 +40,21 @@ public class GameManager : MonoBehaviour
         mouse.ChangePlayer(Players[indexPlayer]);
         
         
-        Players[0].Add("Meduse0", 0);
-        Players[0].Add("Meduse1", 0);
-        Players[0].Add("Meduse2", 0);
-        Players[0].Add("Meduse3", 0);
-        Players[0].Add("Meduse4", 0);
-        Players[0].Add("Meduse5", 0);
-        Players[0].Add("Meduse6", 0);
+        Players[0].Add("Meduse0", 0, 2);
+        Players[0].Add("Meduse1", 0, 1);
+        Players[0].Add("Meduse2", 0, 3);
+        Players[0].Add("Meduse3", 0, 1);
+        Players[0].Add("Meduse4", 0, 2);
+        Players[0].Add("Meduse5", 0, 4);
+        Players[0].Add("Meduse6", 0, 2);
         
-        Players[1].Add("Nout0", 1);
-        Players[1].Add("Nout1", 1);
-        Players[1].Add("Nout2", 1);
-        Players[1].Add("Nout3", 1);
-        Players[1].Add("Nout4", 1);
-        Players[1].Add("Nout5", 1);
-        Players[1].Add("Nout6", 1);
+        Players[1].Add("Nout0", 1, 3);
+        Players[1].Add("Nout1", 1, 4);
+        Players[1].Add("Nout2", 1, 2);
+        Players[1].Add("Nout3", 1, 1);
+        Players[1].Add("Nout4", 1, 3);
+        Players[1].Add("Nout5", 1, 2);
+        Players[1].Add("Nout6", 1, 1);
         
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
     }
@@ -82,12 +82,14 @@ public class GameManager : MonoBehaviour
         Dictionary<Vector2, List<Unit>> attacks = new Dictionary<Vector2, List<Unit>>();
         Dictionary<Vector2, Unit> stays = new Dictionary<Vector2, Unit>();
 
+        // Répertorisation des mouvements et attaques des monstres des 2 joueurs
         foreach (var player in Players)
         {
             foreach (var monster in player._monsters)
             {
                 if (!Equals(monster._movement, Vector2.negativeInfinity))
                 {
+                    // Monstres qui vont bouger ainsi que leur attaque si il y a
                     if (moves.ContainsKey(monster._movement)) moves[monster._movement].Add(monster);
                     else moves.Add(monster._movement, new List<Unit>(){monster});
                     
@@ -99,6 +101,7 @@ public class GameManager : MonoBehaviour
                 }
                 else if (Equals(monster._movement, Vector2.negativeInfinity))
                 {
+                    // Monstres qui ne vont pas bouger ainsi que leur attaque si il y a
                     stays[monster._movement] = monster;
                     
                     if (!Equals(monster._attack, Vector2.negativeInfinity))
@@ -110,10 +113,12 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        // Gestion des mouvements et attaques si 2 monstres se retrouvent sur la même case
         foreach (var monsters in moves)
         {
             if (monsters.Value.Count == 1 && !stays.ContainsKey(monsters.Value[0]._position))
             {
+                // Mouvement sur une case vide
                 Unit monster = monsters.Value[0];
                 Move(monster);
                 
@@ -126,24 +131,29 @@ public class GameManager : MonoBehaviour
             }
             else if (monsters.Value.Count == 1)
             {
+                // Mouvement sur une case pleine qui avait déjà un monstre
                 Unit monster0 = monsters.Value[0].Player == 0 ? monsters.Value[0] : stays[monsters.Key];
-                Unit monster1 = monsters.Value[0].Player == 1 ? monsters.Value[0] : stays[monsters.Key];
+                Unit monster1 = monsters.Value[0].Player == 1 ? monsters.Value[0] : stays[monsters.Key]; 
                 
                 AttackSame(monster0, monster1, attacks, monsters.Key);
             }
             else
             {
-                // Suppression de leur attaque
+                // Mouvement sur une case pleine en même temps qu'un autre monstre
                 Unit monster0 = monsters.Value[0].Player == 0 ? monsters.Value[0] : monsters.Value[1];
                 Unit monster1 = monsters.Value[0].Player == 1 ? monsters.Value[0] : monsters.Value[1];
-                monster0._attack = Vector2.negativeInfinity;
-                monster1._attack = Vector2.negativeInfinity;
                 
                 AttackSame(monster0, monster1, attacks, monsters.Key);
             }
         }
         
         if (moves.Count == 0) Debug.Log("Il n'y a pas de déplacement à faire");
+
+        // Gestion des attaques seuls
+        foreach (var attack in attacks)
+        {
+            
+        }
     }
 
     private void Move(Unit monster)
@@ -164,6 +174,10 @@ public class GameManager : MonoBehaviour
 
     private void AttackSame(Unit monster0, Unit monster1, Dictionary<Vector2, List<Unit>> attacks, Vector2 position)
     {
+        // Suppression de leur attaque
+        monster0._attack = Vector2.negativeInfinity;
+        monster1._attack = Vector2.negativeInfinity;
+        
         // Vérification si il y a d'autres attaquants
         int power0 = monster0.Power;
         int power1 = monster1.Power;
@@ -173,7 +187,9 @@ public class GameManager : MonoBehaviour
             {
                 if (attack.Player == 0) power0 += attack.Power;
                 else power1 += attack.Power;
-            }                    
+            }
+
+            attacks.Remove(position);
         }
         
         // Gestion des gagnant et mise à jour des états de chacun
@@ -183,10 +199,10 @@ public class GameManager : MonoBehaviour
             monster1._movement = Vector2.negativeInfinity;
 
             if (!monster0.state) monster0.state = true;
-            else Debug.Log(monster0.Name + " doit être supprimé"); // Suppression du monstre
+            else Players[monster0.Player].Delete(monster0);
 
             if (!monster1.state) monster1.state = true;
-            else Debug.Log(monster1.Name + " doit être supprimé"); // Suppression du monstre
+            else Players[monster1.Player].Delete(monster1);
             
             Debug.Log(monster0.Name + " et " + monster1.Name + " sont à égalités");
         }
@@ -196,7 +212,7 @@ public class GameManager : MonoBehaviour
             monster1._movement = Vector2.negativeInfinity;
             
             if (!monster1.state) monster1.state = true;
-            else Debug.Log(monster1.Name + " doit être supprimé"); // Suppression du monstre
+            else Players[monster1.Player].Delete(monster1);
             
             Debug.Log(monster0.Name + " gagne");
         }
@@ -206,7 +222,7 @@ public class GameManager : MonoBehaviour
             Move(monster1);
             
             if (!monster0.state) monster0.state = true;
-            else Debug.Log(monster0.Name + " doit être supprimé"); // Suppression du monstre
+            else Players[monster0.Player].Delete(monster0);
             
             Debug.Log(monster1.Name + " gagne");
         }

@@ -11,8 +11,8 @@ public class Unit : MonoBehaviour
 	private int _player;
 	public int Player => _player;
 
-	private int power;
-	public int Power => power;
+	private int _power;
+	public int Power => _power;
 	
 	// false correspond à vivant et true à bléssé
 	public bool state;
@@ -26,7 +26,7 @@ public class Unit : MonoBehaviour
 
 	public GameObject PrefabMonster;
 
-	public Unit(string name, int player, GameObject monster, Vector2 position) //int power)
+	public Unit(string name, int player, GameObject monster, Vector2 position, int power)
 	{
 		PrefabMonster = monster;
 		_name = name;
@@ -35,6 +35,6 @@ public class Unit : MonoBehaviour
 		_movement = Vector2.negativeInfinity;
 		_attack = Vector2.negativeInfinity;
 		state = false;
-		power = 2;
+		_power = power;
 	}
 }
