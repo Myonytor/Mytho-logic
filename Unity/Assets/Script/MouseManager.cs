@@ -38,6 +38,7 @@ public class MouseManager : MonoBehaviour
                 int i = IsBelonged(hoveredObject.transform.parent.GetComponent<Tile>().coordinate);
                 if (i != -1)
                 {
+                    ClearSelection(selectedObject);
                     selectedObject = hitObject;
                     unit = player._monsters[i];
                     Debug.Log("Sélection d'un monstre");
