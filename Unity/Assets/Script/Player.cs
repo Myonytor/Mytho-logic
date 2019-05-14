@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 		_mythologie = new Mythologie("nameMythologie", monsters);
 	}
 
-	public void Add(string name) // give in parameter the monster and player
+	public void Add(string name, int id) // give in parameter the monster and player
 	{
 		GameObject[] spawns = GameObject.FindGameObjectsWithTag(_spawn);
 		int l = spawns.Length;
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
 					monster.name = name;
 					monster.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
-					Unit unit = new Unit(name, this, monster, spawns[i].GetComponent<Tile>().coordinate);
+					Unit unit = new Unit(name, id, monster, spawns[i].GetComponent<Tile>().coordinate);
 					_monsters.Add(unit);
 
 					add = true;

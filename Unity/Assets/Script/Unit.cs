@@ -8,8 +8,8 @@ public class Unit : MonoBehaviour
 	private string _name;
 	public string Name => _name;
 	
-	private Player _player;
-	public Player Player => _player;
+	private int _player;
+	public int Player => _player;
 
 	private int power;
 	public int Power => power;
@@ -26,7 +26,7 @@ public class Unit : MonoBehaviour
 
 	public GameObject PrefabMonster;
 
-	public Unit(string name, Player player, GameObject monster, Vector2 position) //int power)
+	public Unit(string name, int player, GameObject monster, Vector2 position) //int power)
 	{
 		PrefabMonster = monster;
 		_name = name;
