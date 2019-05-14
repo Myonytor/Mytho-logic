@@ -124,6 +124,7 @@ public class GameManager : MonoBehaviour
                 monster._position = monster._movement;
                 monster.PrefabMonster.transform.position = 
                     board.hexGrid[(int) (monster._position.x), (int) monster._position.y].transform.position;
+                monster.PrefabMonster.transform.position = new Vector3(monster.PrefabMonster.transform.position.x, monster.PrefabMonster.transform.position.y, -1);
                 
                 monster._movement = Vector2.negativeInfinity;
                 board.hexGrid[(int) (monster._position.x), (int) monster._position.y].GetComponent<Tile>().isEmpty = false;
