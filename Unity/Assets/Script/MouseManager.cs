@@ -101,8 +101,9 @@ public class MouseManager : MonoBehaviour
 
     public void Clear()
     {
-        unit = null;
         ClearSelection(hoveredObject);
         ClearSelection(selectedObject);
+        unit = null;
+        selectedObject = null;
     }
 }
