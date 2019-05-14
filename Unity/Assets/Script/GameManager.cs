@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     private const int timer = 10;
-    public static Board board;
+    public Board board;
     public int indexPlayer;
     public MouseManager mouse;
     
@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
         if (moves.Count == 0) Debug.Log("Il n'y a pas de déplacement à faire");
     }
 
-    private static void Move(Unit monster)
+    private void Move(Unit monster)
     {
         board.hexGrid[(int) monster._position.x, (int) monster._position.y].GetComponent<Tile>().isEmpty = true;
                 
