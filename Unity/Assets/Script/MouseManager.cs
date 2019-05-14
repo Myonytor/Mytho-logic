@@ -45,7 +45,23 @@ public class MouseManager : MonoBehaviour
                 }
                 if(!Equals(unit, null))
                 {
-                    unit._movement = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
+                    Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
+                    if (unit._position.y > 9)
+                    {
+                        if((unit._position.x < 3 && p.y < 1)
+                           || (unit._position.x >= 3 && p.y >= 9))
+                            unit._movement = p;
+                    }
+                    else
+                    {
+                        int x = (int) (unit._position.x - p.x), y = (int) (unit._position.y - p.y);
+                        if (x <= 1 && x >= -1 && y <= 1 && y >= -1)
+                        {
+                            if(x == 0 || y == 0 || x != y)
+                                unit._movement = p;
+                        }
+                    }
+
                     Debug.Log("Ajout d'un mouvement");
                 }
             }
