@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
     {
         Dictionary<Vector2, List<Unit>> moves = new Dictionary<Vector2, List<Unit>>();
         Dictionary<Vector2, List<Unit>> attacks = new Dictionary<Vector2, List<Unit>>();
+        Dictionary<Vector2, Unit> stays = new Dictionary<Vector2, Unit>();
 
         foreach (var player in Players)
         {
@@ -89,13 +90,29 @@ public class GameManager : MonoBehaviour
                 {
                     if (moves.ContainsKey(monster._movement)) moves[monster._movement].Add(monster);
                     else moves.Add(monster._movement, new List<Unit>(){monster});
+                    
+                    if (!Equals(monster._attack, Vector2.negativeInfinity))
+                    {
+                        if (attacks.ContainsKey(monster._attack)) attacks[monster._attack].Add(monster);
+                        else attacks.Add(monster._attack, new List<Unit>(){monster});
+                    }
+                }
+                else if (Equals(monster._movement, Vector2.negativeInfinity))
+                {
+                    stays[monster._movement] = monster;
+                    
+                    if (!Equals(monster._attack, Vector2.negativeInfinity))
+                    {
+                        if (attacks.ContainsKey(monster._attack)) attacks[monster._attack].Add(monster);
+                        else attacks.Add(monster._attack, new List<Unit>(){monster});
+                    }
                 }
             }
         }
 
         foreach (var monsters in moves)
         {
-            if (monsters.Value.Count == 1)
+            if (monsters.Value.Count == 1 && !stays.ContainsKey(monsters.Value[0]._position))
             {
                 Unit monster = monsters.Value[0];
                 Move(monster);
@@ -107,63 +124,22 @@ public class GameManager : MonoBehaviour
                     else attacks.Add(monster._attack, new List<Unit>(){monster});
                 }
             }
+            else if (monsters.Value.Count == 1)
+            {
+                Unit monster0 = monsters.Value[0].Player == 0 ? monsters.Value[0] : stays[monsters.Key];
+                Unit monster1 = monsters.Value[0].Player == 1 ? monsters.Value[0] : stays[monsters.Key];
+                
+                AttackSame(monster0, monster1, attacks, monsters.Key);
+            }
             else
             {
                 // Suppression de leur attaque
-                Unit monster0 = monsters.Value[0].Player == 0 ? monsters.Value[0]: monsters.Value[1];
-                Unit monster1 = monsters.Value[0].Player == 1 ? monsters.Value[0]: monsters.Value[1];
+                Unit monster0 = monsters.Value[0].Player == 0 ? monsters.Value[0] : monsters.Value[1];
+                Unit monster1 = monsters.Value[0].Player == 1 ? monsters.Value[0] : monsters.Value[1];
                 monster0._attack = Vector2.negativeInfinity;
                 monster1._attack = Vector2.negativeInfinity;
-
-                // Vérification si il y a d'autres attaquants
-                int power0 = monster0.Power;
-                int power1 = monster1.Power;
-                if (attacks.ContainsKey(monsters.Key))
-                {
-                    foreach (var attack in attacks[monsters.Key])
-                    {
-                        if (attack.Player == 0) power0 += attack.Power;
-                        else power1 += attack.Power;
-                    }                    
-                }
                 
-                // Gestion des gagnant et mise à jour des états de chacun
-                if (power0 == power1)
-                {
-                    monster0._movement = Vector2.negativeInfinity;
-                    monster1._movement = Vector2.negativeInfinity;
-
-                    if (!monster0.state) monster0.state = true;
-                    else ; // Suppression du monstre
-
-                    if (!monster1.state) monster1.state = true;
-                    else ; // Suppression du monstre
-                    
-                    Debug.Log(monster0.Name + " et " + monster1.Name + " sont à égalités");
-                }
-                else if (power0 > power1)
-                {
-                    Move(monster0);
-                    monster1._movement = Vector2.negativeInfinity;
-                    
-                    if (!monster1.state) monster1.state = true;
-                    else ; // Suppression du monstre
-                    
-                    Debug.Log(monster0.Name + " gagne");
-                }
-                else
-                {
-                    monster0._movement = Vector2.negativeInfinity;
-                    Move(monster1);
-                    
-                    if (!monster0.state) monster0.state = true;
-                    else ; // Suppression du monstre
-                    
-                    Debug.Log(monster1.Name + " gagne");
-                }
-                
-                monster0._attack = Vector2.negativeInfinity;
-                monster1._attack = Vector2.negativeInfinity;
+                AttackSame(monster0, monster1, attacks, monsters.Key);
             }
         }
         
@@ -184,5 +160,58 @@ public class GameManager : MonoBehaviour
         board.hexGrid[(int) (monster._position.x), (int) monster._position.y].GetComponent<Tile>().isEmpty = false;
                 
         Debug.Log(monster.Name + " c'est déplacé");
+    }
+
+    private void AttackSame(Unit monster0, Unit monster1, Dictionary<Vector2, List<Unit>> attacks, Vector2 position)
+    {
+        // Vérification si il y a d'autres attaquants
+        int power0 = monster0.Power;
+        int power1 = monster1.Power;
+        if (attacks.ContainsKey(position))
+        {
+            foreach (var attack in attacks[position])
+            {
+                if (attack.Player == 0) power0 += attack.Power;
+                else power1 += attack.Power;
+            }                    
+        }
+        
+        // Gestion des gagnant et mise à jour des états de chacun
+        if (power0 == power1)
+        {
+            monster0._movement = Vector2.negativeInfinity;
+            monster1._movement = Vector2.negativeInfinity;
+
+            if (!monster0.state) monster0.state = true;
+            else Debug.Log(monster0.Name + " doit être supprimé"); // Suppression du monstre
+
+            if (!monster1.state) monster1.state = true;
+            else Debug.Log(monster1.Name + " doit être supprimé"); // Suppression du monstre
+            
+            Debug.Log(monster0.Name + " et " + monster1.Name + " sont à égalités");
+        }
+        else if (power0 > power1)
+        {
+            Move(monster0);
+            monster1._movement = Vector2.negativeInfinity;
+            
+            if (!monster1.state) monster1.state = true;
+            else Debug.Log(monster1.Name + " doit être supprimé"); // Suppression du monstre
+            
+            Debug.Log(monster0.Name + " gagne");
+        }
+        else
+        {
+            monster0._movement = Vector2.negativeInfinity;
+            Move(monster1);
+            
+            if (!monster0.state) monster0.state = true;
+            else Debug.Log(monster0.Name + " doit être supprimé"); // Suppression du monstre
+            
+            Debug.Log(monster1.Name + " gagne");
+        }
+        
+        monster0._attack = Vector2.negativeInfinity;
+        monster1._attack = Vector2.negativeInfinity;
     }
 }
