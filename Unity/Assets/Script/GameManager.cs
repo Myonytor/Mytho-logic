@@ -39,7 +39,13 @@ public class GameManager : MonoBehaviour
         mouse.ChangePlayer(Players[indexPlayer]);
         
         
-        Players[0].Add("Meduse");
+        Players[0].Add("Meduse0");
+        Players[0].Add("Meduse1");
+        Players[0].Add("Meduse2");
+        Players[0].Add("Meduse3");
+        Players[0].Add("Meduse4");
+        Players[0].Add("Meduse5");
+        
         Players[1].Add("Nout");
         
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
