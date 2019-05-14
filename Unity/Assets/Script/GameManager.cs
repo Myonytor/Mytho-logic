@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
         Players[0].Add("Meduse3");
         Players[0].Add("Meduse4");
         Players[0].Add("Meduse5");
+        Players[0].Add("Meduse6");
         
         Players[1].Add("Nout");
         
@@ -63,50 +64,15 @@ public class GameManager : MonoBehaviour
             mouse.Clear();
             decompte = timer;
             NextBoardDico();
-        }
-    }
-
-    void NextBoard()
-    {
-        HashSet<Vector2> movAlone = new HashSet<Vector2>(), movMult = new HashSet<Vector2>();
-
-        foreach (var p in Players)
-        {
-            foreach (var m in p._monsters)
-            {
-                if (movAlone.Contains(m._movement))
-                {
-                    movAlone.Remove(m._movement);
-                    movMult.Add(m._movement);
-                }
-                else
-                {
-                    movAlone.Add(m._movement);
-                }
-            }
-        }
-
-        foreach (var p in Players)
-        {
-            foreach (var m in p._monsters)
-            {
-                if (movAlone.Contains(m._movement))
-                {
-                    m._position = m._movement;
-                    m.PrefabMonster.transform.position =
-                        board.hexGrid[(int) (m._position.x), (int) m._position.y].transform.position;
-                }
-                else
-                {
-                    
-                }
-            }
+            indexPlayer = indexPlayer == 0 ? 1 : 0;
+            mouse.player = Players[indexPlayer];
         }
     }
 
     void NextBoardDico()
     {
         Dictionary<Vector2, List<Unit>> move = new Dictionary<Vector2, List<Unit>>();
+        Dictionary<Vector2, List<Unit>> attack = new Dictionary<Vector2, List<Unit>>();
 
         foreach (var player in Players)
         {
@@ -124,6 +90,7 @@ public class GameManager : MonoBehaviour
         {
             if (monsters.Value.Count == 1)
             {
+                // Gestion du mouvement lorsqu'il n'y a qu'un monstre sur la case d'arrivée
                 board.hexGrid[(int) monsters.Value[0]._position.x, (int) monsters.Value[0]._position.y].GetComponent<Tile>().isEmpty = true;
                 
                 Unit monster = monsters.Value[0];
@@ -136,6 +103,12 @@ public class GameManager : MonoBehaviour
                 board.hexGrid[(int) (monster._position.x), (int) monster._position.y].GetComponent<Tile>().isEmpty = false;
                 
                 Debug.Log(monster.Name + " c'est déplacé");
+                
+                // Gestion de la mise en place de l'attaque après le déplacement du monstre
+                if (!Equals(monster._attack, Vector2.negativeInfinity))
+                {
+                    
+                }
             }
             else
             {
