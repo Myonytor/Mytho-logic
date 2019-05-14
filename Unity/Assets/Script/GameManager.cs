@@ -47,7 +47,13 @@ public class GameManager : MonoBehaviour
         Players[0].Add("Meduse5");
         Players[0].Add("Meduse6");
         
-        Players[1].Add("Nout");
+        Players[1].Add("Nout0");
+        Players[1].Add("Nout1");
+        Players[1].Add("Nout2");
+        Players[1].Add("Nout3");
+        Players[1].Add("Nout4");
+        Players[1].Add("Nout5");
+        Players[1].Add("Nout6");
         
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
     }
@@ -81,7 +87,7 @@ public class GameManager : MonoBehaviour
                 if (!Equals(monster._movement, Vector2.negativeInfinity))
                 {
                     if (move.ContainsKey(monster._movement)) move[monster._movement].Add(monster);
-                    else move.Add(monster._movement, new List<Unit>() {monster});
+                    else move.Add(monster._movement, new List<Unit>(){monster});
                 }
             }
         }
@@ -107,7 +113,8 @@ public class GameManager : MonoBehaviour
                 // Gestion de la mise en place de l'attaque après le déplacement du monstre
                 if (!Equals(monster._attack, Vector2.negativeInfinity))
                 {
-                    
+                    if (attack.ContainsKey(monster._attack)) attack[monster._attack].Add(monster);
+                    else attack.Add(monster._attack, new List<Unit>(){monster});
                 }
             }
             else
