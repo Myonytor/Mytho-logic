@@ -57,8 +57,10 @@ public class MouseManager : MonoBehaviour
                         int x = (int) (unit._position.x - p.x), y = (int) (unit._position.y - p.y);
                         if (x <= 1 && x >= -1 && y <= 1 && y >= -1)
                         {
-                            if(x == 0 || y == 0 || x != y)
+                            if (x == 0 || y == 0 || x != y)
+                            {
                                 unit._movement = p;
+                            }
                         }
                     }
 
