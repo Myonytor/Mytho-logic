@@ -43,9 +43,6 @@ public class GameManager : MonoBehaviour
         Players[1].Add("Nout");
         
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
-        
-        Players[1]._monsters[0]._movement = new Vector2(0, 9);
-        Players[0]._monsters[0]._movement = new Vector2(0, 0);
     }
 
     // Update is called once per frame
@@ -60,8 +57,6 @@ public class GameManager : MonoBehaviour
             mouse.Clear();
             decompte = timer;
             NextBoardDico();
-            Players[0]._monsters[0]._movement = new Vector2(1, 0);
-            Players[1]._monsters[0]._movement = new Vector2(0, 7);
         }
     }
 

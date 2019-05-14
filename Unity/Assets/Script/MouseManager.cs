@@ -40,17 +40,22 @@ public class MouseManager : MonoBehaviour
                 {
                     selectedObject = hitObject;
                     unit = player._monsters[i];
+                    Debug.Log("Sélection d'un monstre");
                 }
-                else if(unit != null)
+                if(!Equals(unit, null))
                 {
                     unit._movement = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
+                    Debug.Log("Ajout d'un mouvement");
                 }
             }
 
             if (Input.GetMouseButtonDown(1))
             {
-                if (unit != null)
+                if (!Equals(unit, null))
+                {
                     unit._attack = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
+                    Debug.Log("Ajout d'une attaque");
+                }
             }
 
             if (selectedObject != null)

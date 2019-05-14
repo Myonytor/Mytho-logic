@@ -21,7 +21,7 @@ public class Board : MonoBehaviour
     public void Setup()
     {
         //Apparition du Plateau
-        hexGrid = new GameObject[width + 6, height + 6];
+        hexGrid = new GameObject[width, height + 3];
         GameObject Hex = new GameObject("Hex");
         Hex.transform.parent = transform;
         for (int y = 0; y < width; y++)
@@ -51,10 +51,10 @@ public class Board : MonoBehaviour
                     float xPos = spawnX * xOffset + xOffset * spawnY;
                     float yPos = spawnY * yOffset - yOffset * spawnX;
                     GameObject hexSpawn = Instantiate(hexPrefab, new Vector2(xPos,yPos), Quaternion.identity, Spawn1.transform) as GameObject;
-                    hexSpawn.GetComponent<Tile>().SetUp(spawnX + 10, spawnY + 10);
-                    hexSpawn.name = "Hex_x" + (spawnX + 10) + "_y" + (spawnY + 10);
+                    hexSpawn.GetComponent<Tile>().SetUp(spawnX, spawnY + 10);
+                    hexSpawn.name = "Hex_x" + spawnX + "_y" + (spawnY + 10);
                     hexSpawn.tag = "Spawn1";
-                    hexGrid[spawnX + 10, spawnY + 10] = hexSpawn;
+                    hexGrid[spawnX, spawnY + 10] = hexSpawn;
                 }
             }
         }
@@ -72,10 +72,10 @@ public class Board : MonoBehaviour
                     float xPos = spawnX * xOffset + xOffset * spawnY;
                     float yPos = spawnY * yOffset - yOffset * spawnX;
                     GameObject hexSpawn = Instantiate(hexPrefab, new Vector2(xPos, yPos), Quaternion.identity, Spawn2.transform) as GameObject;
-                    hexSpawn.GetComponent<Tile>().SetUp(spawnX + 13, spawnY + 13);
-                    hexSpawn.name = "Hex_x" + (spawnX + 13) + "_y" + (spawnY + 13);
+                    hexSpawn.GetComponent<Tile>().SetUp(spawnX + 3, spawnY + 10);
+                    hexSpawn.name = "Hex_x" + (spawnX + 3) + "_y" + (spawnY + 10);
                     hexSpawn.tag = "Spawn2";
-                    hexGrid[spawnX + 13, spawnY + 13] = hexSpawn;
+                    hexGrid[spawnX + 3, spawnY + 10] = hexSpawn;
                 }
             }
         }
