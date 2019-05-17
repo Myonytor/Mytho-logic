@@ -132,10 +132,10 @@ public class GameManager : MonoBehaviour
             else if (monsters.Value.Count == 1)
             {
                 // Mouvement sur une case pleine qui avait déjà un monstre
-                Unit monster0 = monsters.Value[0].Player == 0 ? monsters.Value[0] : stays[monsters.Key];
-                Unit monster1 = monsters.Value[0].Player == 1 ? monsters.Value[0] : stays[monsters.Key]; 
+                Unit monsterInMotion = monsters.Value[0];
+                Unit monsterMotionless = stays[monsters.Key]; 
                 
-                AttackSame(monster0, monster1, attacks, monsters.Key);
+                AttackAlong(monsterInMotion, monsterMotionless, attacks, monsters.Key);
             }
             else
             {
@@ -229,5 +229,89 @@ public class GameManager : MonoBehaviour
         
         monster0._attack = Vector2.negativeInfinity;
         monster1._attack = Vector2.negativeInfinity;
+    }
+
+    private void AttackAlong(Unit monsterInMotion, Unit monsterMotionless, Dictionary<Vector2, List<Unit>> attacks, Vector2 position)
+    {
+        // Suppression de leur attaque
+        monsterInMotion._attack = Vector2.negativeInfinity;
+        monsterMotionless._attack = Vector2.negativeInfinity;
+        
+        // Vérification si il y a d'autres attaquants
+        int powerInMotion = monsterInMotion.Power;
+        int powerMotionless = monsterMotionless.Power;
+        if (attacks.ContainsKey(position))
+        {
+            foreach (var attack in attacks[position])
+            {
+                if (attack.Player == 0) powerInMotion += attack.Power;
+                else powerMotionless += attack.Power;
+            }
+
+            attacks.Remove(position);
+        }
+        
+        // Gestion des gagnant et mise à jour des états de chacun
+        if (powerInMotion == powerMotionless)
+        {
+            monsterInMotion._movement = Vector2.negativeInfinity;
+            
+            // Calcul de la nouvelle position du monstre immobile
+            Vector2 posAttacker = monsterInMotion._position;
+            Vector2 posVictim = monsterMotionless._position;
+            
+            if (Equals(posAttacker.x, posVictim.x)) monsterMotionless._movement = new Vector2(posVictim.x, 2 * posVictim.y - posAttacker.y);
+            else if (Equals(posAttacker.y, posVictim.y)) monsterMotionless._movement = new Vector2(2 * posVictim.x - posAttacker.x, posVictim.y);
+            else monsterMotionless._movement = new Vector2(2 * posVictim.x - posAttacker.x, 2 * posVictim.y - posAttacker.y);
+            
+            Move(monsterMotionless);
+
+            // Changement des états de chacun
+            if (!monsterInMotion.state) monsterInMotion.state = true;
+            else Players[monsterInMotion.Player].Delete(monsterInMotion);
+
+            if (!monsterMotionless.state) monsterMotionless.state = true;
+            else Players[monsterMotionless.Player].Delete(monsterMotionless);
+            
+            Debug.Log(monsterInMotion.Name + " et " + monsterMotionless.Name + " sont à égalités");
+        }
+        else if (powerInMotion > powerMotionless)
+        {
+            Move(monsterInMotion);
+            
+            // Calcul de la nouvelle position du monstre immobile
+            Vector2 posAttacker = monsterInMotion._position;
+            Vector2 posVictim = monsterMotionless._position;
+            
+            if (Equals(posAttacker.x, posVictim.x)) monsterMotionless._movement = new Vector2(posVictim.x, 2 * posVictim.y - posAttacker.y);
+            else if (Equals(posAttacker.y, posVictim.y)) monsterMotionless._movement = new Vector2(2 * posVictim.x - posAttacker.x, posVictim.y);
+            else monsterMotionless._movement = new Vector2(2 * posVictim.x - posAttacker.x, 2 * posVictim.y - posAttacker.y);
+            
+            Move(monsterMotionless);
+            
+            // Changement de l'état du monstre qui était immobile
+            if (!monsterMotionless.state) monsterMotionless.state = true;
+            else Players[monsterMotionless.Player].Delete(monsterMotionless);
+            
+            Debug.Log(monsterInMotion.Name + " gagne");
+        }
+        else
+        {
+            monsterInMotion._movement = Vector2.negativeInfinity;
+            Move(monsterMotionless);
+            
+            if (!monsterInMotion.state) monsterInMotion.state = true;
+            else Players[monsterInMotion.Player].Delete(monsterInMotion);
+            
+            Debug.Log(monsterMotionless.Name + " gagne");
+        }
+        
+        monsterInMotion._attack = Vector2.negativeInfinity;
+        monsterMotionless._attack = Vector2.negativeInfinity;
+    }
+
+    private void Attack()
+    {
+        
     }
 }
