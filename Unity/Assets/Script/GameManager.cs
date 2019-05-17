@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> PrefabsMonsters;
     public List<Player> Players;
+
+    public GameObject prefabParticle;
     
     // Start is called before the first frame update
     void Start()
@@ -34,8 +36,8 @@ public class GameManager : MonoBehaviour
         
         Players = new List<Player>()
             {
-                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2), player0),
-                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(2, 2), player1)
+                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2), player0, prefabParticle),
+                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(2, 2), player1, prefabParticle)
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         

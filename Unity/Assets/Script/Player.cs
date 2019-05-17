@@ -18,13 +18,16 @@ public class Player : MonoBehaviour
 	public List<Unit> _monsters;
 	private GameObject _transform;
 
-	public Player(string name, string spawn, List<GameObject> monsters, GameObject transform)
+	private GameObject prefabParticle;
+
+	public Player(string name, string spawn, List<GameObject> monsters, GameObject transform, GameObject Particle)
 	{
 		_name = name;
 		_spawn = spawn;
 		_monsters = new List<Unit>();
 		_transform = transform;
 		_mythologie = new Mythologie("nameMythologie", monsters);
+		prefabParticle = Particle;
 	}
 
 	public void Add(string name, int id, int power) // give in parameter the monster and player
