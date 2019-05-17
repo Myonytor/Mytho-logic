@@ -43,7 +43,7 @@ public class MouseManager : MonoBehaviour
                     unit = player._monsters[i];
                     Debug.Log("Sélection d'un monstre");
                 }
-                if(!Equals(unit, null))
+                else if(!Equals(unit, null))
                 {
                     Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
                     if (unit._position.y > 9)
@@ -60,6 +60,10 @@ public class MouseManager : MonoBehaviour
                             if (x == 0 || y == 0 || x != y)
                             {
                                 unit._movement = p;
+                                unit.prefabMove.GetComponent<ParticleSystem>().enableEmission = true;
+                                unit.prefabMove.transform.position = unit.PrefabMonster.transform.position;
+                                Debug.Log(x);
+                                Debug.Log(y);
                             }
                         }
                     }

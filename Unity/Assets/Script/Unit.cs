@@ -26,7 +26,7 @@ public class Unit : MonoBehaviour
 
 	public GameObject PrefabMonster;
 
-	public Unit(string name, int player, GameObject monster, Vector2 position, int power)
+	public Unit(string name, int player, GameObject monster, Vector2 position, int power, GameObject prefabParticle)
 	{
 		PrefabMonster = monster;
 		_name = name;
@@ -36,5 +36,8 @@ public class Unit : MonoBehaviour
 		_attack = Vector2.negativeInfinity;
 		state = false;
 		_power = power;
+		prefabMove = Instantiate(prefabParticle);
+		prefabMove.GetComponent<ParticleSystem>().enableEmission = false;
+		prefabMove.transform.parent = PrefabMonster.transform.parent;
 	}
 }

@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
 					monster.name = name;
 					monster.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
-					Unit unit = new Unit(name, id, monster, spawns[i].GetComponent<Tile>().coordinate, power);
+					Unit unit = new Unit(name, id, monster, spawns[i].GetComponent<Tile>().coordinate, power, prefabParticle);
 					_monsters.Add(unit);
 
 					add = true;
