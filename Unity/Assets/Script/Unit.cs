@@ -19,8 +19,8 @@ public class Unit : MonoBehaviour
 	
 	public Vector2 _movement;
 	public Vector2 _attack;
-	public GameObject prefabMove;
-	public GameObject prefabAttack;
+	public GameObject particleMove;
+	public GameObject particleAttack;
 
 	public Vector2 _position;
 
@@ -36,8 +36,9 @@ public class Unit : MonoBehaviour
 		_attack = Vector2.negativeInfinity;
 		state = false;
 		_power = power;
-		prefabMove = Instantiate(prefabParticle);
-		prefabMove.GetComponent<ParticleSystem>().enableEmission = false;
-		prefabMove.transform.parent = PrefabMonster.transform.parent;
+		particleMove = Instantiate(prefabParticle);
+		particleMove.GetComponent<ParticleSystem>().enableEmission = false;
+		particleMove.GetComponent<ParticleSystem>().startColor = Color.blue;
+		particleMove.transform.parent = PrefabMonster.transform.parent;
 	}
 }

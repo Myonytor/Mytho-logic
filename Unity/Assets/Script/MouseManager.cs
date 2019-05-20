@@ -48,9 +48,13 @@ public class MouseManager : MonoBehaviour
                     Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
                     if (unit._position.y > 9)
                     {
-                        if((unit._position.x < 3 && p.y < 1)
-                           || (unit._position.x >= 3 && p.y >= 9))
+                        if ((unit._position.x < 3 && p.y < 1)
+                            || (unit._position.x >= 3 && p.y >= 9))
+                        {
                             unit._movement = p;
+                            unit.particleMove.transform.position = unit.PrefabMonster.transform.position;
+                            DefineParticle(unit.particleMove.GetComponent<ParticleSystem>(), hoveredObject.transform.position);
+                        }
                     }
                     else
                     {
@@ -60,10 +64,8 @@ public class MouseManager : MonoBehaviour
                             if (x == 0 || y == 0 || x != y)
                             {
                                 unit._movement = p;
-                                unit.prefabMove.GetComponent<ParticleSystem>().enableEmission = true;
-                                unit.prefabMove.transform.position = unit.PrefabMonster.transform.position;
-                                Debug.Log(x);
-                                Debug.Log(y);
+                                unit.particleMove.transform.position = unit.PrefabMonster.transform.position;
+                                DefineParticle(unit.particleMove.GetComponent<ParticleSystem>(), hoveredObject.transform.position);
                             }
                         }
                     }
@@ -128,5 +130,25 @@ public class MouseManager : MonoBehaviour
         ClearSelection(selectedObject);
         unit = null;
         selectedObject = null;
+        foreach (var m in player._monsters)
+        {
+            var p = m.particleMove.GetComponent<ParticleSystem>();
+            p.enableEmission = false;
+            p.Clear();
+            p.transform.eulerAngles = new Vector3(0, 90, 90);
+        }
+    }
+
+    private void DefineParticle(ParticleSystem particleSystem, Vector3 direction)
+    {
+        particleSystem.enableEmission = true;
+        var origin = particleSystem.transform.position;
+        float x = direction.x - origin.x, y = direction.y - origin.y;
+       
+        double teta = Math.Atan2(y, x) * 180 / Math.PI;
+        particleSystem.transform.Rotate(0, (float)(teta), 0);
+
+        double distance = Math.Sqrt(x * x + y * y);
+        particleSystem.startLifetime = (float)distance / 3;
     }
 }
