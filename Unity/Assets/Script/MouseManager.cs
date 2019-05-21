@@ -36,14 +36,14 @@ public class MouseManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 int i = IsBelonged(hoveredObject.transform.parent.GetComponent<Tile>().coordinate);
-                if (i != -1)
+                if (i != -1)//selectionne une unite
                 {
                     ClearSelection(selectedObject);
                     selectedObject = hitObject;
                     unit = player._monsters[i];
                     Debug.Log("Sélection d'un monstre");
                 }
-                else if(!Equals(unit, null))
+                else if(!Equals(unit, null))//definie un mouvement
                 {
                     Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
                     if (unit._position.y > 9)
@@ -52,8 +52,7 @@ public class MouseManager : MonoBehaviour
                             || (unit._position.x >= 3 && p.y >= 9))
                         {
                             unit._movement = p;
-                            unit.particleMove.transform.position = unit.PrefabMonster.transform.position;
-                            DefineParticle(unit.particleMove.GetComponent<ParticleSystem>(), hoveredObject.transform.position);
+                            unit.DefineParticleMovement(hoveredObject.transform.position);
                         }
                     }
                     else
@@ -64,8 +63,7 @@ public class MouseManager : MonoBehaviour
                             if (x == 0 || y == 0 || x != y)
                             {
                                 unit._movement = p;
-                                unit.particleMove.transform.position = unit.PrefabMonster.transform.position;
-                                DefineParticle(unit.particleMove.GetComponent<ParticleSystem>(), hoveredObject.transform.position);
+                                unit.DefineParticleMovement(hoveredObject.transform.position);
                             }
                         }
                     }
@@ -74,11 +72,12 @@ public class MouseManager : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1))//definie l'attaque
             {
                 if (!Equals(unit, null))
                 {
                     unit._attack = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
+                    unit.DefineParticleAttack(hoveredObject.transform.position);
                     Debug.Log("Ajout d'une attaque");
                 }
             }
@@ -132,23 +131,8 @@ public class MouseManager : MonoBehaviour
         selectedObject = null;
         foreach (var m in player._monsters)
         {
-            var p = m.particleMove.GetComponent<ParticleSystem>();
-            p.enableEmission = false;
-            p.Clear();
-            p.transform.eulerAngles = new Vector3(0, 90, 90);
+            m.ClearParticleMovement();
+            m.ClearParticleAttack();
         }
-    }
-
-    private void DefineParticle(ParticleSystem particleSystem, Vector3 direction)
-    {
-        particleSystem.enableEmission = true;
-        var origin = particleSystem.transform.position;
-        float x = direction.x - origin.x, y = direction.y - origin.y;
-       
-        double teta = Math.Atan2(y, x) * 180 / Math.PI;
-        particleSystem.transform.Rotate(0, (float)(teta), 0);
-
-        double distance = Math.Sqrt(x * x + y * y);
-        particleSystem.startLifetime = (float)distance / 3;
     }
 }

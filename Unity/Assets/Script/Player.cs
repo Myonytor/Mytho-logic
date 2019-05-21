@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
 	{
 		string name = monster.Name;
 		_monsters.Remove(monster);
-		Destroy(monster.PrefabMonster);
+		Destroy(monster.prefabMonster);
 		
 		Debug.Log(name + " à été tué");
 	}
