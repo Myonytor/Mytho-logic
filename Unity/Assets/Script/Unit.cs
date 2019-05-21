@@ -53,7 +53,10 @@ public class Unit : MonoBehaviour
 		var origin = prefabMonster.transform.position;
 		var particleSystem = particleMove.GetComponent<ParticleSystem>();
         float x = direction.x - origin.x, y = direction.y - origin.y;
-       
+
+		particleAttack.transform.position = direction;
+		ClearParticleAttack();
+		
 		particleMove.transform.position = origin;
         particleSystem.enableEmission = true;
 		
@@ -66,11 +69,10 @@ public class Unit : MonoBehaviour
 
 	public void DefineParticleAttack(Vector3 direction)
 	{
-		var origin = prefabMonster.transform.position;
+		var origin = particleAttack.transform.position;
 		var particleSystem = particleAttack.GetComponent<ParticleSystem>();
         float x = direction.x - origin.x, y = direction.y - origin.y;
        
-		particleAttack.transform.position = origin;
         particleSystem.enableEmission = true;
 		
         double teta = Math.Atan2(y, x) * 180 / Math.PI;
