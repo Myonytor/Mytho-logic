@@ -41,11 +41,13 @@ public class Unit : MonoBehaviour
 		particleMove.GetComponent<ParticleSystem>().enableEmission = false;
 		particleMove.GetComponent<ParticleSystem>().startColor = Color.blue;
 		particleMove.transform.parent = prefabMonster.transform.parent;
+		particleMove.transform.position = monster.transform.position;
 		
 		particleAttack = Instantiate(prefabParticle);
 		particleAttack.GetComponent<ParticleSystem>().enableEmission = false;
 		particleAttack.GetComponent<ParticleSystem>().startColor = Color.red;
 		particleAttack.transform.parent = prefabMonster.transform.parent;
+		particleAttack.transform.position = monster.transform.position;
 	}
 	
 	public void DefineParticleMovement(Vector3 direction)
@@ -54,14 +56,14 @@ public class Unit : MonoBehaviour
 		var particleSystem = particleMove.GetComponent<ParticleSystem>();
         float x = direction.x - origin.x, y = direction.y - origin.y;
 
-		particleAttack.transform.position = direction;
 		ClearParticleAttack();
+		particleAttack.transform.position = new Vector3(direction.x, direction.y, -1);
 		
-		particleMove.transform.position = origin;
+		particleMove.transform.position = origin;//TODO bientot inutile si tout avance comme prevu
         particleSystem.enableEmission = true;
 		
         double teta = Math.Atan2(y, x) * 180 / Math.PI;
-        particleSystem.transform.Rotate(0, (float)(teta), 0);
+		particleSystem.transform.eulerAngles = new Vector3((float)(-teta), 90, 90);
 
         double distance = Math.Sqrt(x * x + y * y);
         particleSystem.startLifetime = (float)distance / 3;
@@ -76,7 +78,7 @@ public class Unit : MonoBehaviour
         particleSystem.enableEmission = true;
 		
         double teta = Math.Atan2(y, x) * 180 / Math.PI;
-        particleSystem.transform.Rotate(0, (float)(teta), 0);
+		particleSystem.transform.eulerAngles = new Vector3((float)(-teta), 90, 90);
 
         double distance = Math.Sqrt(x * x + y * y);
         particleSystem.startLifetime = (float)distance;
@@ -88,6 +90,7 @@ public class Unit : MonoBehaviour
 		p.enableEmission = false;
 		p.Clear();
 		p.transform.eulerAngles = new Vector3(0, 90, 90);
+		particleMove.transform.position = prefabMonster.transform.position;
 	}
 	
 	public void ClearParticleAttack()
@@ -96,5 +99,13 @@ public class Unit : MonoBehaviour
 		p.enableEmission = false;
 		p.Clear();
 		p.transform.eulerAngles = new Vector3(0, 90, 90);
+		particleAttack.transform.position = prefabMonster.transform.position;
+	}
+
+	public void Delete()
+	{
+		Destroy(prefabMonster);
+		Destroy(particleAttack);
+		Destroy(particleMove);
 	}
 }
