@@ -81,4 +81,15 @@ public class Player : MonoBehaviour
 		
 		Debug.Log(name + " à été tué");
 	}
+
+	public bool IsCaseEmpty(Vector2 destination)
+	{
+		bool output = true;
+		for (int i = 0; i < _monsters.Count && output; i++)
+		{
+			output = _monsters[i]._movement != destination;
+		}
+
+		return output;
+	}
 }

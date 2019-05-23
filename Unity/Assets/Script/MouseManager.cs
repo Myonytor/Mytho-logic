@@ -38,17 +38,28 @@ public class MouseManager : MonoBehaviour
                 int i = IsBelonged(hoveredObject.transform.parent.GetComponent<Tile>().coordinate);
                 if (i != -1)//selectionne une unite
                 {
-                    ClearSelection(selectedObject);
-                    selectedObject = hitObject;
-                    unit = player._monsters[i];
-                    Debug.Log("Sélection d'un monstre");
+                    if (!Equals(null, unit) && unit._position == player._monsters[i]._position)
+                    {
+                        unit._movement = Vector2.negativeInfinity;
+                        unit._attack = Vector2.negativeInfinity;
+                        unit.ClearParticleAttack();
+                        unit.ClearParticleMovement();
+                    }
+                    else
+                    {
+                        ClearSelection(selectedObject);
+                        selectedObject = hitObject;
+                        unit = player._monsters[i];
+                        Debug.Log("Sélection d'un monstre");
+                    }
                 }
                 else if(!Equals(unit, null))//definie un mouvement
                 {
                     Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
                     int x = (int) (unit._position.x - p.x), y = (int) (unit._position.y - p.y);
-                    if ((unit._position.y > 9 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 9))) 
-                        || (unit._position.y <= 9 && IsClickable(x, y)))
+                    if (player.IsCaseEmpty(p) &&//TODO corriger cette condition, ca fonctionne mais c'est moche
+                        ((unit._position.y > 9 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 9))) //personnage dans le spawn et case d'arrivee sur le bord du plateau
+                        || (unit._position.y <= 9 && IsClickable(x, y))))//ou la case de depart n'est pas dans le spawn et la case d'arrivee est accessible 
                     {
                         unit.DefineMovement(p, hoveredObject.transform.position);
                     }
@@ -101,7 +112,7 @@ public class MouseManager : MonoBehaviour
         if (objectToClear == null)
             return;
         objectToClear.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.56f);
-        objectToClear = null;
+        //objectToClear = null; //semble inutile
     }
 
     int IsBelonged(Vector2 vect)//return -1 if the tile does not belong to the player, and return the index of the monster otherwise
