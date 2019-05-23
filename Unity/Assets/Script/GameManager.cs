@@ -59,6 +59,13 @@ public class GameManager : MonoBehaviour
         Players[1].Add("Nout6", 1, 1);
         
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
+        foreach (var p in Players)
+        {
+            foreach (var m in p._monsters)
+            {
+                Debug.Log(m);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -164,9 +171,7 @@ public class GameManager : MonoBehaviour
                 
         // Gestion du mouvement lorsqu'il n'y a qu'un monstre sur la case d'arrivée
         monster._position = monster._movement;
-        monster.prefabMonster.transform.position = 
-            board.hexGrid[(int) (monster._position.x), (int) monster._position.y].transform.position;
-        monster.prefabMonster.transform.position = new Vector3(monster.prefabMonster.transform.position.x, monster.prefabMonster.transform.position.y, -1);
+        monster.MovePrefab(board.hexGrid[(int) (monster._position.x), (int) monster._position.y].transform.position);
                 
         monster._movement = Vector2.negativeInfinity;
         board.hexGrid[(int) (monster._position.x), (int) monster._position.y].GetComponent<Tile>().isEmpty = false;

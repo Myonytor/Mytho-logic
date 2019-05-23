@@ -24,7 +24,7 @@ public class Unit : MonoBehaviour
 
 	public Vector2 _position;
 
-	public GameObject prefabMonster;
+	private GameObject prefabMonster;
 
 	public Unit(string name, int player, GameObject monster, Vector2 position, int power, GameObject prefabParticle)
 	{
@@ -50,7 +50,7 @@ public class Unit : MonoBehaviour
 		particleAttack.transform.position = monster.transform.position;
 	}
 	
-	public void DefineParticleMovement(Vector3 direction)
+	public void DefineMovement(Vector2 coordinates, Vector3 direction)
 	{
 		var origin = prefabMonster.transform.position;
 		var particleSystem = particleMove.GetComponent<ParticleSystem>();
@@ -58,8 +58,10 @@ public class Unit : MonoBehaviour
 
 		ClearParticleAttack();
 		particleAttack.transform.position = new Vector3(direction.x, direction.y, -1);
+		_movement = coordinates;
+		_attack = Vector2.negativeInfinity;
 		
-		particleMove.transform.position = origin;//TODO bientot inutile si tout avance comme prevu
+		//particleMove.transform.position = origin;
         particleSystem.enableEmission = true;
 		
         double teta = Math.Atan2(y, x) * 180 / Math.PI;
@@ -69,12 +71,14 @@ public class Unit : MonoBehaviour
         particleSystem.startLifetime = (float)distance / 3;
     }
 
-	public void DefineParticleAttack(Vector3 direction)
+	public void DefineAttack(Vector2 coordinates, Vector3 direction)
 	{
 		var origin = particleAttack.transform.position;
 		var particleSystem = particleAttack.GetComponent<ParticleSystem>();
         float x = direction.x - origin.x, y = direction.y - origin.y;
-       
+
+		_attack = coordinates;
+		
         particleSystem.enableEmission = true;
 		
         double teta = Math.Atan2(y, x) * 180 / Math.PI;
@@ -82,6 +86,14 @@ public class Unit : MonoBehaviour
 
         double distance = Math.Sqrt(x * x + y * y);
         particleSystem.startLifetime = (float)distance;
+	}
+
+	public void MovePrefab(Vector3 direction)
+	{
+		var vec = new Vector3(direction.x, direction.y, -1);
+		prefabMonster.transform.position = vec;
+		particleAttack.transform.position = vec;
+		particleMove.transform.position = vec;
 	}
 
 	public void ClearParticleMovement()

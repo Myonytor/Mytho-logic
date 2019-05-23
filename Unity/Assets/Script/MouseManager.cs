@@ -47,22 +47,10 @@ public class MouseManager : MonoBehaviour
                 {
                     Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
                     int x = (int) (unit._position.x - p.x), y = (int) (unit._position.y - p.y);
-                    if (unit._position.y > 9)
+                    if ((unit._position.y > 9 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 9))) 
+                        || (unit._position.y <= 9 && IsClickable(x, y)))
                     {
-                        if ((unit._position.x < 3 && (int)p.y == 0)
-                            || (unit._position.x >= 3 && (int)p.y == 9))
-                        {
-                            unit._movement = p;
-                            unit.DefineParticleMovement(hoveredObject.transform.position);
-                        }
-                    }
-                    else
-                    {
-                        if (IsClickable(x, y))
-                        {
-                            unit._movement = p;
-                            unit.DefineParticleMovement(hoveredObject.transform.position);
-                        }
+                        unit.DefineMovement(p, hoveredObject.transform.position);
                     }
 
                     Debug.Log("Ajout d'un mouvement");
@@ -73,9 +61,13 @@ public class MouseManager : MonoBehaviour
             {
                 if (!Equals(unit, null))
                 {
-                    unit._attack = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
-                    unit.DefineParticleAttack(hoveredObject.transform.position);
-                    Debug.Log("Ajout d'une attaque");
+                    Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
+                    int x = (int)(unit._movement.x - p.x), y = (int)(unit._movement.y - p.y);
+                    if (IsClickable(x, y))
+                    {
+                        unit.DefineAttack(p, hoveredObject.transform.position);
+                        Debug.Log("Ajout d'une attaque");
+                    }
                 }
             }
 

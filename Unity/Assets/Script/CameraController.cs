@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         //Movment
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(2))
         {
             Diference = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - Camera.main.transform.position;
             if (Drag == false)
