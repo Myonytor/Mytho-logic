@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -165,6 +166,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Déplace le monstre donné en paramètre
     private void Move(Unit monster)
     {
         board.hexGrid[(int) monster._position.x, (int) monster._position.y].GetComponent<Tile>().isEmpty = true;
@@ -179,25 +181,16 @@ public class GameManager : MonoBehaviour
         Debug.Log(monster.Name + " c'est déplacé");
     }
 
+    // Gestion de l'attaque de deux monstres qui se sont déplacés sur une même case
     private void AttackSame(Unit monster0, Unit monster1, Dictionary<Vector2, List<Unit>> attacks, Vector2 position)
     {
-        // Suppression de leur attaque
+        // Suppression de leur attaque et prise en compte de l'aide d'autres monstres de chaque joueur
         monster0._attack = Vector2.negativeInfinity;
         monster1._attack = Vector2.negativeInfinity;
+        int power0;
+        int power1;
         
-        // Vérification si il y a d'autres attaquants
-        int power0 = monster0.Power;
-        int power1 = monster1.Power;
-        if (attacks.ContainsKey(position))
-        {
-            foreach (var attack in attacks[position])
-            {
-                if (attack.Player == 0) power0 += attack.Power;
-                else power1 += attack.Power;
-            }
-
-            attacks.Remove(position);
-        }
+        Assistance(monster0, monster1, attacks, out power0, out power1);
         
         // Gestion des gagnant et mise à jour des états de chacun
         if (power0 == power1)
@@ -238,31 +231,20 @@ public class GameManager : MonoBehaviour
         monster1._attack = Vector2.negativeInfinity;
     }
 
+    // Gestion de l'attaque d'un monstre qui se déplace sur une case déjà pleine
     private void AttackAlong(Unit monsterInMotion, Unit monsterMotionless, Dictionary<Vector2, List<Unit>> attacks, Vector2 position)
     {
-        // Suppression de leur attaque
+        // Suppression de leur attaque et prise en compte de l'aide d'autres monstres pour chaque joueurs
         monsterInMotion._attack = Vector2.negativeInfinity;
         monsterMotionless._attack = Vector2.negativeInfinity;
+        int powerInMotion;
+        int powerMotionless;
         
-        // Vérification si il y a d'autres attaquants
-        int powerInMotion = monsterInMotion.Power;
-        int powerMotionless = monsterMotionless.Power;
-        if (attacks.ContainsKey(position))
-        {
-            foreach (var attack in attacks[position])
-            {
-                if (attack.Player == 0) powerInMotion += attack.Power;
-                else powerMotionless += attack.Power;
-            }
-
-            attacks.Remove(position);
-        }
+        Assistance(monsterInMotion, monsterMotionless, attacks, out powerInMotion, out powerMotionless);
         
         // Gestion des gagnant et mise à jour des états de chacun
-        if (powerInMotion == powerMotionless)
+        if (powerInMotion >= powerMotionless)
         {
-            monsterInMotion._movement = Vector2.negativeInfinity;
-            
             // Calcul de la nouvelle position du monstre immobile
             Vector2 posAttacker = monsterInMotion._position;
             Vector2 posVictim = monsterMotionless._position;
@@ -273,34 +255,26 @@ public class GameManager : MonoBehaviour
             
             Move(monsterMotionless);
 
-            // Changement des états de chacun
-            if (!monsterInMotion.state) monsterInMotion.state = true;
-            else Players[monsterInMotion.Player].Delete(monsterInMotion);
+            // Changement d'état du monstre qui était immobile
+            if (!monsterMotionless.state) monsterMotionless.state = true;
+            else Players[monsterMotionless.Player].Delete(monsterMotionless);
+            
+            if (powerInMotion == powerMotionless)
+            {
+                // Changement du monstre qui voulait bouger
+                if (!monsterInMotion.state) monsterInMotion.state = true;
+                else Players[monsterInMotion.Player].Delete(monsterInMotion);
 
-            if (!monsterMotionless.state) monsterMotionless.state = true;
-            else Players[monsterMotionless.Player].Delete(monsterMotionless);
+                monsterInMotion._movement = Vector2.negativeInfinity;
+                
+                Debug.Log(monsterInMotion.Name + " et " + monsterMotionless.Name + " sont à égalités");
+            }
+            else
+            {
+                Move(monsterInMotion);
             
-            Debug.Log(monsterInMotion.Name + " et " + monsterMotionless.Name + " sont à égalités");
-        }
-        else if (powerInMotion > powerMotionless)
-        {
-            Move(monsterInMotion);
-            
-            // Calcul de la nouvelle position du monstre immobile
-            Vector2 posAttacker = monsterInMotion._position;
-            Vector2 posVictim = monsterMotionless._position;
-            
-            if (Equals(posAttacker.x, posVictim.x)) monsterMotionless._movement = new Vector2(posVictim.x, 2 * posVictim.y - posAttacker.y);
-            else if (Equals(posAttacker.y, posVictim.y)) monsterMotionless._movement = new Vector2(2 * posVictim.x - posAttacker.x, posVictim.y);
-            else monsterMotionless._movement = new Vector2(2 * posVictim.x - posAttacker.x, 2 * posVictim.y - posAttacker.y);
-            
-            Move(monsterMotionless);
-            
-            // Changement de l'état du monstre qui était immobile
-            if (!monsterMotionless.state) monsterMotionless.state = true;
-            else Players[monsterMotionless.Player].Delete(monsterMotionless);
-            
-            Debug.Log(monsterInMotion.Name + " gagne");
+                Debug.Log(monsterInMotion.Name + " gagne");
+            }
         }
         else
         {
@@ -317,8 +291,28 @@ public class GameManager : MonoBehaviour
         monsterMotionless._attack = Vector2.negativeInfinity;
     }
 
+    // Gestion des attaques sans déplacements des monstres
     private void Attack()
     {
         
+    }
+
+    // Vérification si il y a d'autres attaquants
+    private void Assistance(Unit monster0, Unit monster1, Dictionary<Vector2, List<Unit>> attacks, out int power0, out int power1)
+    {
+        power0 = monster0.Power;
+        power1 = monster1.Power;
+        Vector2 position = monster0._movement;
+        
+        if (attacks.ContainsKey(position))
+        {
+            foreach (var attack in attacks[position])
+            {
+                if (attack.Player == 0) power0 += attack.Power;
+                else power1 += attack.Power;
+            }
+
+            attacks.Remove(position);
+        }
     }
 }
