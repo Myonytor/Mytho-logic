@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour
 	private int _power;
 	public int Power => _power;
 	
-	// false correspond à vivant et true à bléssé
+	// false correspond à vivant et true à blessé
 	public bool state;
 	
 	public Vector2 _movement;

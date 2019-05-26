@@ -17,7 +17,7 @@ public partial class xmlReader : MonoBehaviour
     public int currentLanguage;
     
     string Play;
-    string Load;
+    string Lan;
     string Options;
     string Quit;
     string Volume;
@@ -27,7 +27,7 @@ public partial class xmlReader : MonoBehaviour
     
 
     public Text textPlay;
-    public Text textLoad;
+    public Text textLan;
     public Text textOptions;
     public Text textQuit;
     public Text textVolume;
@@ -50,7 +50,7 @@ public partial class xmlReader : MonoBehaviour
 
         languages[currentLanguage].TryGetValue("Name", out languageName);
         languages[currentLanguage].TryGetValue("Play", out Play);
-        languages[currentLanguage].TryGetValue("Load", out Load);
+        languages[currentLanguage].TryGetValue("Lan", out Lan);
         languages[currentLanguage].TryGetValue("Options", out Options);
         languages[currentLanguage].TryGetValue("Quit", out Quit);
         languages[currentLanguage].TryGetValue("Volume", out Volume);
@@ -60,7 +60,7 @@ public partial class xmlReader : MonoBehaviour
 
 
         textPlay.text = Play;
-        textLoad.text = Load;
+        textLan.text = Lan;
         textOptions.text = Options;
         textQuit.text = Quit;
         textVolume.text = Volume;
@@ -90,7 +90,7 @@ public partial class xmlReader : MonoBehaviour
                 if (value.Name == "Play")
                     obj.Add(value.Name, value.InnerText);
 
-                if (value.Name == "Load")
+                if (value.Name == "Lan")
                     obj.Add(value.Name, value.InnerText);
 
                 if (value.Name == "Options")
