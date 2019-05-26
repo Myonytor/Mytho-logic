@@ -80,13 +80,13 @@ public class GameManager : MonoBehaviour
         {
             mouse.Clear();
             decompte = timer;
-            if (indexPlayer == 1) NextBoardDico();
+            if (indexPlayer == 1) NextBoard();
             indexPlayer = indexPlayer == 0 ? 1 : 0;
             mouse.player = Players[indexPlayer];
         }
     }
 
-    void NextBoardDico()
+    void NextBoard()
     {
         Dictionary<Vector2, List<Unit>> moves = new Dictionary<Vector2, List<Unit>>();
         Dictionary<Vector2, List<Unit>> attacks = new Dictionary<Vector2, List<Unit>>();
@@ -181,6 +181,31 @@ public class GameManager : MonoBehaviour
         Debug.Log(monster.Name + " c'est déplacé");
     }
 
+    // Gestion des attaques sans déplacements des monstres
+    private void Attack()
+    {
+        
+    }
+
+    // Vérification si il y a d'autres attaquants
+    private void Assistance(Unit monster0, Unit monster1, Dictionary<Vector2, List<Unit>> attacks, out int power0, out int power1)
+    {
+        power0 = monster0.Power;
+        power1 = monster1.Power;
+        Vector2 position = monster0._movement;
+        
+        if (attacks.ContainsKey(position))
+        {
+            foreach (var attack in attacks[position])
+            {
+                if (attack.Player == 0) power0 += attack.Power;
+                else power1 += attack.Power;
+            }
+
+            attacks.Remove(position);
+        }
+    }
+
     // Gestion de l'attaque de deux monstres qui se sont déplacés sur une même case
     private void AttackSame(Unit monster0, Unit monster1, Dictionary<Vector2, List<Unit>> attacks, Vector2 position)
     {
@@ -249,6 +274,10 @@ public class GameManager : MonoBehaviour
             Vector2 posAttacker = monsterInMotion._position;
             Vector2 posVictim = monsterMotionless._position;
             
+            Debug.Log("posVictim = (" + posVictim.x + ", " + posVictim.y + ")");
+            Debug.Log("posAttacker = (" + posAttacker.x + ", " + posAttacker.y + ")");
+            Debug.Log("pos = (" + (2 * posVictim.x - posAttacker.x) + ", " + (2 * posVictim.y - posAttacker.y) + ")");
+            
             if (Equals(posAttacker.x, posVictim.x)) monsterMotionless._movement = new Vector2(posVictim.x, 2 * posVictim.y - posAttacker.y);
             else if (Equals(posAttacker.y, posVictim.y)) monsterMotionless._movement = new Vector2(2 * posVictim.x - posAttacker.x, posVictim.y);
             else monsterMotionless._movement = new Vector2(2 * posVictim.x - posAttacker.x, 2 * posVictim.y - posAttacker.y);
@@ -289,30 +318,5 @@ public class GameManager : MonoBehaviour
         
         monsterInMotion._attack = Vector2.negativeInfinity;
         monsterMotionless._attack = Vector2.negativeInfinity;
-    }
-
-    // Gestion des attaques sans déplacements des monstres
-    private void Attack()
-    {
-        
-    }
-
-    // Vérification si il y a d'autres attaquants
-    private void Assistance(Unit monster0, Unit monster1, Dictionary<Vector2, List<Unit>> attacks, out int power0, out int power1)
-    {
-        power0 = monster0.Power;
-        power1 = monster1.Power;
-        Vector2 position = monster0._movement;
-        
-        if (attacks.ContainsKey(position))
-        {
-            foreach (var attack in attacks[position])
-            {
-                if (attack.Player == 0) power0 += attack.Power;
-                else power1 += attack.Power;
-            }
-
-            attacks.Remove(position);
-        }
     }
 }
