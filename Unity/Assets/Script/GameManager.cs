@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
                     else attacks.Add(monster._attack, new List<Unit>(){monster});
                 }
             }
-            else if (monsters.Value.Count == 1)
+            else if (monsters.Value.Count == 1 && stays.ContainsKey(monsters.Value[0]._position))
             {
                 // Mouvement sur une case pleine qui avait déjà un monstre
                 Unit monsterInMotion = monsters.Value[0];
