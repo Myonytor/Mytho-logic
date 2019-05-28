@@ -57,12 +57,17 @@ public class MouseManager : MonoBehaviour
                 {
                     Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
                     int x = (int) (unit._position.x - p.x), y = (int) (unit._position.y - p.y);
-                    if (player.IsCaseEmpty(p) &&//TODO corriger cette condition, ca fonctionne mais c'est moche
-                        ((unit._position.y > 9 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 9))) //personnage dans le spawn et case d'arrivee sur le bord du plateau
-                        || (unit._position.y <= 9 && IsClickable(x, y))))//ou la case de depart n'est pas dans le spawn et la case d'arrivee est accessible 
+                    if (player.IsCaseEmpty(p))
                     {
-                        unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
-                        Debug.Log("Ajout d'un mouvement");
+                        if ((unit._position.y > 9 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 9)))) //personnage dans le spawn et case d'arrivee sur le bord du plateau
+                        {
+                            unit.DefineMovement(p, hoveredObject.transform.position);
+                        }
+                        else if (unit._position.y <= 9 && IsClickable(x, y)) //ou la case de depart n'est pas dans le spawn et la case d'arrivee est accessible 
+                        {
+                            unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
+                            Debug.Log("Ajout d'un mouvement");
+                        }
                     }
                 }
             }
