@@ -73,7 +73,17 @@ public class MouseManager : MonoBehaviour
                 if (!Equals(unit, null))
                 {
                     Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
-                    int x = (int)(unit._position.x + unit._movement.x - p.x), y = (int)(unit._position.y + unit._movement.y - p.y);
+                    int x, y;
+                    if (unit._movement != Vector2.negativeInfinity)
+                    {
+                        x = (int) (unit._position.x + unit._movement.x - p.x); 
+                        y = (int) (unit._position.y + unit._movement.y - p.y);
+                    }
+                    else
+                    {
+                        x = (int) (unit._position.x + p.x);
+                        y = (int) (unit._position.y + p.y);
+                    }
                     if (IsClickable(x, y))
                     {
                         unit.DefineAttack(new Vector2(x, y), hoveredObject.transform.position);
