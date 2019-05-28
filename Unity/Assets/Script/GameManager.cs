@@ -125,13 +125,15 @@ public class GameManager : MonoBehaviour
                 Debug.Log(monsters.Value[0].Name + " bouge sur une case vide");
                 
                 // Mouvement sur une case vide
-                Move(monster);
+                Move(monster, attacks);
                 
                 // Gestion de la mise en place de l'attaque après le déplacement du monstre
                 if (!Equals(monster._attack, Vector2.zero))
                 {
-                    if (attacks.ContainsKey(monster._attack)) attacks[monster._attack].Add(monster);
-                    else attacks.Add(monster._attack, new List<Unit>(){monster});
+                    Vector2 attack = movement + monster._attack;
+                    
+                    if (attacks.ContainsKey(attack)) attacks[attack].Add(monster);
+                    else attacks.Add(attack, new List<Unit>(){monster});
                 }
             } 
             else if (Equals(monsters.Value[0]._movement, Vector2.zero) || Equals(monsters.Value[1], Vector2.zero))
@@ -161,7 +163,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Move(Unit monster)
+    private void Move(Unit monster, Dictionary<Vector2, List<Unit>> attacks)
     {
         board.hexGrid[(int) monster._position.x, (int) monster._position.y].GetComponent<Tile>().isEmpty = true;
         
@@ -173,6 +175,8 @@ public class GameManager : MonoBehaviour
         monster.MovePrefab(board.hexGrid[(int) (monster._position.x), (int) monster._position.y].transform.position);        
         monster._movement = Vector2.zero;
         board.hexGrid[(int) (monster._position.x), (int) monster._position.y].GetComponent<Tile>().isEmpty = false;
+
+        if (attacks.ContainsKey(monster._position)) attacks.Remove(monster._position);
                 
         Debug.Log(monster.Name + " c'est déplacé");
     }
@@ -222,6 +226,8 @@ public class GameManager : MonoBehaviour
             monster0._movement = Vector2.zero;
             monster1._movement = Vector2.zero;
             
+            Move(monster0, attacks);
+            Move(monster1, attacks);
             State(monster0);
             State(monster1);
             
@@ -231,7 +237,8 @@ public class GameManager : MonoBehaviour
         {
             monster1._movement = Vector2.zero;
             
-            Move(monster0);
+            Move(monster0, attacks);
+            Move(monster1, attacks);
             State(monster1);
             
             Debug.Log(monster0.Name + " gagne lorsqu'ils se déplacent sur la même case");
@@ -240,7 +247,8 @@ public class GameManager : MonoBehaviour
         {
             monster0._movement = Vector2.zero;
             
-            Move(monster1);
+            Move(monster0, attacks);
+            Move(monster1, attacks);
             State(monster0);
             
             Debug.Log(monster1.Name + " gagne lorsqu'ils se déplacent sur la même case");
@@ -270,7 +278,8 @@ public class GameManager : MonoBehaviour
             monsterMotionless._movement = monsterInMotion._movement;
             monsterInMotion._movement = Vector2.zero;
             
-            Move(monsterMotionless);
+            Move(monsterMotionless, attacks);
+            Move(monsterInMotion, attacks);
             State(monsterMotionless);
             State(monsterInMotion);
             
@@ -280,8 +289,8 @@ public class GameManager : MonoBehaviour
         {
             monsterMotionless._movement = monsterInMotion._movement;
             
-            Move(monsterInMotion);
-            Move(monsterMotionless);
+            Move(monsterInMotion, attacks);
+            Move(monsterMotionless, attacks);
             State(monsterMotionless);
             
             Debug.Log(monsterInMotion.Name + " gagne");
@@ -290,7 +299,8 @@ public class GameManager : MonoBehaviour
         {
             monsterInMotion._movement = Vector2.zero;
             
-            Move(monsterMotionless);
+            Move(monsterMotionless, attacks);
+            Move(monsterInMotion, attacks);
             State(monsterInMotion);
             
             Debug.Log(monsterMotionless.Name + " gagne");
