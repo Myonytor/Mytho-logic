@@ -82,13 +82,13 @@ public class GameManager : MonoBehaviour
         {
             mouse.Clear();
             decompte = timer;
-            if (indexPlayer == 1) NextBoardDico();
+            if (indexPlayer == 1) NextBoard();
             indexPlayer = indexPlayer == 0 ? 1 : 0;
             mouse.player = Players[indexPlayer];
         }
     }
 
-    void NextBoardDico()
+    void NextBoard()
     {
         Dictionary<Vector2, List<Unit>> moves = new Dictionary<Vector2, List<Unit>>();
         Dictionary<Vector2, List<Unit>> attacks = new Dictionary<Vector2, List<Unit>>();
@@ -109,8 +109,10 @@ public class GameManager : MonoBehaviour
                     
                     if (!Equals(monster._attack, Vector2.negativeInfinity))
                     {
-                        if (attacks.ContainsKey(monster._attack)) attacks[monster._attack].Add(monster);
-                        else attacks.Add(monster._attack, new List<Unit>(){monster});
+                        Vector2 attack = new Vector2(movement.x - monster._attack.x, movement.y - monster._attack.y);
+                        
+                        if (attacks.ContainsKey(attack)) attacks[attack].Add(monster);
+                        else attacks.Add(attack, new List<Unit>(){monster});
                     }
                 }
                 else
@@ -120,8 +122,10 @@ public class GameManager : MonoBehaviour
                     
                     if (!Equals(monster._attack, Vector2.negativeInfinity))
                     {
-                        if (attacks.ContainsKey(monster._attack)) attacks[monster._attack].Add(monster);
-                        else attacks.Add(monster._attack, new List<Unit>(){monster});
+                        Vector2 attack = new Vector2(monster._position.x - monster._attack.x, monster._position.y - monster._attack.y);
+                        
+                        if (attacks.ContainsKey(attack)) attacks[attack].Add(monster);
+                        else attacks.Add(attack, new List<Unit>(){monster});
                     }
                 }
             }
@@ -130,12 +134,14 @@ public class GameManager : MonoBehaviour
         // Gestion des mouvements et attaques si 2 monstres se retrouvent sur la même case
         foreach (var monsters in moves)
         {
-            if (monsters.Value.Count == 1 && !stays.Exists(monster => Equals(monster._position, monsters.Value[0]._movement)))
+            Unit monster = monsters.Value[0];
+            Vector2 movement = new Vector2(monster._position.x - monster._movement.x, monster._position.y - monster._movement.y);
+
+            if (monsters.Value.Count == 1 && !stays.Exists(m => Equals(m._position, movement)))
             {
-                Debug.Log(monsters.Value[0].Name + " move on an empty tile");
+                Debug.Log(monsters.Value[0].Name + " bouge sur une case vide");
                 
                 // Mouvement sur une case vide
-                Unit monster = monsters.Value[0];
                 Move(monster);
                 
                 // Gestion de la mise en place de l'attaque après le déplacement du monstre
@@ -149,7 +155,7 @@ public class GameManager : MonoBehaviour
             {
                 // Mouvement sur une case pleine qui avait déjà un monstre
                 Unit monsterInMotion = monsters.Value[0];
-                Unit monsterMotionless = stays.Find(monster => Equals(monster._position, monsters.Key)); 
+                Unit monsterMotionless = stays.Find(m => Equals(m._position, monsters.Key)); 
                 
                 AttackAlong(monsterInMotion, monsterMotionless, attacks, monsters.Key);
             }
