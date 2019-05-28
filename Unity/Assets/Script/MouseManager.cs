@@ -61,7 +61,7 @@ public class MouseManager : MonoBehaviour
                         ((unit._position.y > 9 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 9))) //personnage dans le spawn et case d'arrivee sur le bord du plateau
                         || (unit._position.y <= 9 && IsClickable(x, y))))//ou la case de depart n'est pas dans le spawn et la case d'arrivee est accessible 
                     {
-                        unit.DefineMovement(p, hoveredObject.transform.position);
+                        unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
                     }
 
                     Debug.Log("Ajout d'un mouvement");
@@ -73,10 +73,10 @@ public class MouseManager : MonoBehaviour
                 if (!Equals(unit, null))
                 {
                     Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
-                    int x = (int)(unit._movement.x - p.x), y = (int)(unit._movement.y - p.y);
+                    int x = (int)(unit._position.x + unit._movement.x - p.x), y = (int)(unit._position.y + unit._movement.y - p.y);
                     if (IsClickable(x, y))
                     {
-                        unit.DefineAttack(p, hoveredObject.transform.position);
+                        unit.DefineAttack(new Vector2(x, y), hoveredObject.transform.position);
                         Debug.Log("Ajout d'une attaque");
                     }
                 }
