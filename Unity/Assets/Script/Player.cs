@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
 		for (int i = 0; i < _monsters.Count && output; i++)
 		{
 			if(_monsters[i]._position.y > 9)
-				output = _monsters[i]._movement != destination;
+				output = _monsters[i]._movement != destination || _monsters[i]._movement == Vector2.zero;
 			else
 				output = _monsters[i]._movement + _monsters[i]._position != destination;
 		}

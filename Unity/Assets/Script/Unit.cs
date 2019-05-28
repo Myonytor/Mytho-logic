@@ -61,7 +61,6 @@ public class Unit : MonoBehaviour
 		_movement = coordinates;
 		_attack = Vector2.zero;
 		
-		//particleMove.transform.position = origin;
         particleSystem.enableEmission = true;
 		
         double teta = Math.Atan2(y, x) * 180 / Math.PI;

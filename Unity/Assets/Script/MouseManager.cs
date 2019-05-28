@@ -36,7 +36,7 @@ public class MouseManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 int i = IsBelonged(hoveredObject.transform.parent.GetComponent<Tile>().coordinate);
-                if (i != -1)//selectionne une unite
+                if (i != -1)//selectionne une unite ou reinitialise le mouvement de l'unite selectionnee
                 {
                     if (!Equals(null, unit) && unit._position == player._monsters[i]._position)
                     {
@@ -59,6 +59,7 @@ public class MouseManager : MonoBehaviour
                     int x = (int) (p.x - unit._position.x), y = (int) (p.y - unit._position.y);
                     if (player.IsCaseEmpty(p))
                     {
+                        Debug.Log("test");
                         if ((unit._position.y > 9 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 9)))) //personnage dans le spawn et case d'arrivee sur le bord du plateau
                         {
                             unit.DefineMovement(p, hoveredObject.transform.position);
