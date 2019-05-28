@@ -30,6 +30,23 @@ public class Player : MonoBehaviour
 		prefabParticle = Particle;
 	}
 
+	public void AddTest(string name, int id, int power, int x, int y)
+	{
+		Vector2 position = new Vector2(x * 0.8f + 0.8f * y, y * 0.24f - 0.24f * x);
+			
+		GameObject prefab = _mythologie._monsters[0];
+		GameObject monster =
+			Instantiate(prefab, position, Quaternion.identity, _transform.transform) as GameObject;
+		monster.tag = "Monster";
+		monster.name = name;
+		monster.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+
+		Unit unit = new Unit(name, id, monster, new Vector2(x, y), power, prefabParticle);
+		_monsters.Add(unit);
+
+		Debug.Log("Add a monster test in the map");
+	}
+
 	public void Add(string name, int id, int power) // give in parameter the monster and player
 	{
 		GameObject[] spawns = GameObject.FindGameObjectsWithTag(_spawn);
