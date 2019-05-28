@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
 	public void AddTest(string name, int id, int power, int x, int y)
 	{
-		Vector2 position = new Vector2(x * 0.8f + 0.8f * y, y * 0.24f - 0.24f * x);
+		Vector3 position = new Vector3(x * 0.8f + 0.8f * y, y * 0.24f - 0.24f * x, -1);
 			
 		GameObject prefab = _mythologie._monsters[0];
 		GameObject monster =
