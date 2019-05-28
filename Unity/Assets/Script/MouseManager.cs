@@ -40,8 +40,8 @@ public class MouseManager : MonoBehaviour
                 {
                     if (!Equals(null, unit) && unit._position == player._monsters[i]._position)
                     {
-                        unit._movement = Vector2.negativeInfinity;
-                        unit._attack = Vector2.negativeInfinity;
+                        unit._movement = Vector2.zero;
+                        unit._attack = Vector2.zero;
                         unit.ClearParticleAttack();
                         unit.ClearParticleMovement();
                     }
@@ -76,17 +76,7 @@ public class MouseManager : MonoBehaviour
                 if (!Equals(unit, null))
                 {
                     Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
-                    int x, y;
-                    if (unit._movement != Vector2.negativeInfinity)
-                    {
-                        x = (int) (p.x - unit._position.x - unit._movement.x); 
-                        y = (int) (p.y - unit._position.y - unit._movement.y);
-                    }
-                    else
-                    {
-                        x = (int) (p.x - unit._position.x);
-                        y = (int) (p.y - unit._position.y);
-                    }
+                    int x = (int) (p.x - unit._position.x - unit._movement.x), y = (int) (p.y - unit._position.y - unit._movement.y);
                     if (IsClickable(x, y))
                     {
                         unit.DefineAttack(new Vector2(x, y), hoveredObject.transform.position);
