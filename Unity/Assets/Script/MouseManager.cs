@@ -62,7 +62,7 @@ public class MouseManager : MonoBehaviour
                         Debug.Log("test");
                         if ((unit._position.y > 9 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 9)))) //personnage dans le spawn et case d'arrivee sur le bord du plateau
                         {
-                            unit.DefineMovement(p, hoveredObject.transform.position);
+                            unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
                         }
                         else if (unit._position.y <= 9 && IsClickable(x, y)) //ou la case de depart n'est pas dans le spawn et la case d'arrivee est accessible 
                         {
