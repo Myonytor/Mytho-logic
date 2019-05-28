@@ -56,7 +56,7 @@ public class MouseManager : MonoBehaviour
                 else if(!Equals(unit, null))//definie un mouvement
                 {
                     Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
-                    int x = (int) (unit._position.x - p.x), y = (int) (unit._position.y - p.y);
+                    int x = (int) (p.x - unit._position.x), y = (int) (p.y - unit._position.y);
                     if (player.IsCaseEmpty(p))
                     {
                         if ((unit._position.y > 9 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 9)))) //personnage dans le spawn et case d'arrivee sur le bord du plateau
@@ -66,7 +66,6 @@ public class MouseManager : MonoBehaviour
                         else if (unit._position.y <= 9 && IsClickable(x, y)) //ou la case de depart n'est pas dans le spawn et la case d'arrivee est accessible 
                         {
                             unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
-                            Debug.Log("Ajout d'un mouvement");
                         }
                     }
                 }
@@ -80,13 +79,13 @@ public class MouseManager : MonoBehaviour
                     int x, y;
                     if (unit._movement != Vector2.negativeInfinity)
                     {
-                        x = (int) (unit._position.x + unit._movement.x - p.x); 
-                        y = (int) (unit._position.y + unit._movement.y - p.y);
+                        x = (int) (p.x - unit._position.x - unit._movement.x); 
+                        y = (int) (p.y - unit._position.y - unit._movement.y);
                     }
                     else
                     {
-                        x = (int) (unit._position.x + p.x);
-                        y = (int) (unit._position.y + p.y);
+                        x = (int) (p.x - unit._position.x);
+                        y = (int) (p.y - unit._position.y);
                     }
                     if (IsClickable(x, y))
                     {
