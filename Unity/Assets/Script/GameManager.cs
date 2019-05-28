@@ -182,8 +182,10 @@ public class GameManager : MonoBehaviour
     {
         board.hexGrid[(int) monster._position.x, (int) monster._position.y].GetComponent<Tile>().isEmpty = true;
         
+        Debug.Log(board.hexGrid[(int) monster._position.x, (int) monster._position.y].tag);
+        
         // Gestion du mouvement lorsqu'il n'y a qu'un monstre sur la case d'arrivée
-        if (board.hexGrid[(int) monster._position.x, (int) monster._position.y].tag.Substring(0, 5) == "Spawn") monster._position = monster._movement;
+        if ((int) monster._position.y > 9) monster._position = monster._movement;
         else monster._position += monster._movement;
         
         monster.MovePrefab(board.hexGrid[(int) (monster._position.x), (int) monster._position.y].transform.position);        
