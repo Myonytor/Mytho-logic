@@ -104,7 +104,10 @@ public class Player : MonoBehaviour
 		bool output = true;
 		for (int i = 0; i < _monsters.Count && output; i++)
 		{
-			output = _monsters[i]._movement != destination;
+			if(_monsters[i]._position.y > 9)
+				output = _monsters[i]._movement != destination;
+			else
+				output = _monsters[i]._movement + _monsters[i]._position != destination;
 		}
 
 		return output;
