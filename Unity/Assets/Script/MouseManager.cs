@@ -62,9 +62,8 @@ public class MouseManager : MonoBehaviour
                         || (unit._position.y <= 9 && IsClickable(x, y))))//ou la case de depart n'est pas dans le spawn et la case d'arrivee est accessible 
                     {
                         unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
+                        Debug.Log("Ajout d'un mouvement");
                     }
-
-                    Debug.Log("Ajout d'un mouvement");
                 }
             }
 
