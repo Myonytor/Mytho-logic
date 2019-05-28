@@ -32,8 +32,8 @@ public class Unit : MonoBehaviour
 		_name = name;
 		_player = player;
 		_position = position;
-		_movement = Vector2.negativeInfinity;
-		_attack = Vector2.negativeInfinity;
+		_movement = Vector2.zero;
+		_attack = Vector2.zero;
 		state = false;
 		_power = power;
 		
@@ -59,7 +59,7 @@ public class Unit : MonoBehaviour
 		ClearParticleAttack();
 		particleAttack.transform.position = new Vector3(direction.x, direction.y, -1);
 		_movement = coordinates;
-		_attack = Vector2.negativeInfinity;
+		_attack = Vector2.zero;
 		
 		//particleMove.transform.position = origin;
         particleSystem.enableEmission = true;
