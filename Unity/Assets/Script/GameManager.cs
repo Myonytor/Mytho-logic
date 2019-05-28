@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
             {
                 if (!Equals(monster._movement, Vector2.negativeInfinity))
                 {
-                    Vector2 movement = new Vector2(monster._position.x + monster._movement.x, monster._position.y + monster._movement.y);
+                    Vector2 movement = monster._position + monster._movement;
                     
                     // Monstres qui vont bouger ainsi que leur attaque si il y a
                     if (moves.ContainsKey(movement)) moves[movement].Add(monster);
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
                     
                     if (!Equals(monster._attack, Vector2.negativeInfinity))
                     {
-                        Vector2 attack = new Vector2(movement.x + monster._attack.x, movement.y + monster._attack.y);
+                        Vector2 attack = movement + monster._attack;
                         
                         if (attacks.ContainsKey(attack)) attacks[attack].Add(monster);
                         else attacks.Add(attack, new List<Unit>(){monster});
@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
                     
                     if (!Equals(monster._attack, Vector2.negativeInfinity))
                     {
-                        Vector2 attack = new Vector2(monster._position.x + monster._attack.x, monster._position.y + monster._attack.y);
+                        Vector2 attack = monster._position + monster._attack;
                         
                         if (attacks.ContainsKey(attack)) attacks[attack].Add(monster);
                         else attacks.Add(attack, new List<Unit>(){monster});
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
         foreach (var monsters in moves)
         {
             Unit monster = monsters.Value[0];
-            Vector2 movement = new Vector2(monster._position.x + monster._movement.x, monster._position.y + monster._movement.y);
+            Vector2 movement = monster._position + monster._movement;
 
             if (monsters.Value.Count == 1 && !stays.Exists(m => Equals(m._position, movement)))
             {
@@ -183,9 +183,10 @@ public class GameManager : MonoBehaviour
         board.hexGrid[(int) monster._position.x, (int) monster._position.y].GetComponent<Tile>().isEmpty = true;
         
         // Gestion du mouvement lorsqu'il n'y a qu'un monstre sur la case d'arrivée
-        monster._position = new Vector2(monster._position.x + monster._movement.x, monster._position.y + monster._movement.y);
-        monster.MovePrefab(board.hexGrid[(int) (monster._position.x), (int) monster._position.y].transform.position);
-                
+        if (board.hexGrid[(int) monster._position.x, (int) monster._position.y].tag.Substring(0, 5) == "Spawn") monster._position = monster._movement;
+        else monster._position += monster._movement;
+        
+        monster.MovePrefab(board.hexGrid[(int) (monster._position.x), (int) monster._position.y].transform.position);        
         monster._movement = Vector2.negativeInfinity;
         board.hexGrid[(int) (monster._position.x), (int) monster._position.y].GetComponent<Tile>().isEmpty = false;
                 
