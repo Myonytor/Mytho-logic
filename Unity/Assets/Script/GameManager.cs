@@ -111,16 +111,16 @@ public class GameManager : MonoBehaviour
             }
         }
         
-        foreach (var player in Players)
+        foreach (var player in Players)//Repertorie la position des differentes attaques
         {
             foreach (var monster in player._monsters)
             {
                 if (monster._attack != Vector2.zero)
                 {
                     Vector2 attack = monster._position + monster._movement + monster._attack;
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < 3; i++)//un monstre peut attaquer jusqu'a 3 cases de distance
                     {
-                        if (moves.ContainsKey(attack))
+                        if (moves.ContainsKey(attack))//teste si au moins un monstre est present sur la case
                         {
                             if (attacks.ContainsKey(attack)) attacks[attack].Add(monster);
                             else attacks.Add(attack, new List<Unit>() {monster});
