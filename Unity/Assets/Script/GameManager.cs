@@ -139,8 +139,14 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        
+        MoveMonsters(moves, attacks);
+        MovePrefabs();
+    }
 
-        // Gestion des mouvements et attaques si 2 monstres se retrouvent sur la même case
+    // Gestion des mouvements et attaques si 2 monstres se retrouvent sur la même case
+    private void MoveMonsters(Dictionary<Vector2, List<Unit>> moves, Dictionary<Vector2, List<Unit>> attacks)
+    {
         foreach (var monsters in moves)
         {
             if (monsters.Value.Count == 2)
@@ -187,7 +193,10 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
 
+    private void MovePrefabs()
+    {
         foreach (var player in Players)
         {
             foreach (var monster in player._monsters)
@@ -202,35 +211,35 @@ public class GameManager : MonoBehaviour
         foreach (var player in Players)
         {
             int i = 0;
+            
             while (i < player._monsters.Count)
             {
                 var monster = player._monsters[i];
+                
                 if (monster._movement != Vector2.zero && 
-                   (monster._position.x < 0 || monster._position.y < 0 || 
-                    monster._position.x > 9 || monster._position.y > 12))
+                    (monster._position.x < 0 || monster._position.y < 0 || 
+                     monster._position.x > 9 || monster._position.y > 12))
                 {
                     player.Delete(monster);
                 }
                 else
+                {
+                    Move(monster);
                     i++;
+                }
             }
         }
     }
     
-    private void Move(Unit monster, Dictionary<Vector2, List<Unit>> attacks)
+    private void Move(Unit monster)
     {
         board.hexGrid[(int) monster._position.x, (int) monster._position.y].GetComponent<Tile>().isEmpty = true;
         
-        Debug.Log(board.hexGrid[(int) monster._position.x, (int) monster._position.y].tag);
-        
         // Gestion du mouvement lorsqu'il n'y a qu'un monstre sur la case d'arrivée
-        if (!Equals(monster._movement, Vector2.zero)) monster._position += monster._movement;
-        
         monster.MovePrefab(board.hexGrid[(int) (monster._position.x), (int) monster._position.y].transform.position);        
         monster._movement = Vector2.zero;
+        monster._attack = Vector2.zero;
         board.hexGrid[(int) (monster._position.x), (int) monster._position.y].GetComponent<Tile>().isEmpty = false;
-
-        if (attacks.ContainsKey(monster._position)) attacks.Remove(monster._position);
                 
         Debug.Log(monster.Name + " c'est déplacé");
     }
