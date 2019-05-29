@@ -59,7 +59,6 @@ public class MouseManager : MonoBehaviour
                     int x = (int) (p.x - unit._position.x), y = (int) (p.y - unit._position.y);
                     if (player.IsCaseEmpty(p))
                     {
-                        Debug.Log("test");
                         if ((unit._position.y > 9 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 9)))) //personnage dans le spawn et case d'arrivee sur le bord du plateau
                         {
                             unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
