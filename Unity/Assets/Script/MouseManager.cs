@@ -138,6 +138,7 @@ public class MouseManager : MonoBehaviour
         ClearSelection(selectedObject);
         unit = null;
         selectedObject = null;
+        player = null;
         foreach (var m in player._monsters)
         {
             m.ClearParticleMovement();
