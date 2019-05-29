@@ -101,15 +101,34 @@ public class GameManager : MonoBehaviour
                 Vector2 movement = monster._position + monster._movement;
                 
                 // Monstres qui vont bouger ainsi que leur attaque si il y a
-                if (moves.ContainsKey(movement)) moves[movement].Add(monster);
-                else moves.Add(movement, new List<Unit>(){monster});
-
-                if (!Equals(monster._attack, Vector2.zero))
+                if (moves.ContainsKey(movement))
                 {
-                    Vector2 attack = monster._position + monster._attack;
-                        
-                    if (attacks.ContainsKey(attack)) attacks[attack].Add(monster);
-                    else attacks.Add(attack, new List<Unit>(){monster});
+                    moves[movement].Add(monster);
+                    foreach (var m in moves[movement])
+                        m._attack = Vector2.zero;
+                }
+                else moves.Add(movement, new List<Unit>(){monster});
+            }
+        }
+        
+        foreach (var player in Players)
+        {
+            foreach (var monster in player._monsters)
+            {
+                if (monster._attack != Vector2.zero)
+                {
+                    Vector2 attack = monster._position + monster._movement + monster._attack;
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (moves.ContainsKey(attack))
+                        {
+                            if (attacks.ContainsKey(attack)) attacks[attack].Add(monster);
+                            else attacks.Add(attack, new List<Unit>() {monster});
+                            i = 3;
+                        }
+                        else
+                            attack += monster._attack;
+                    }
                 }
             }
         }
