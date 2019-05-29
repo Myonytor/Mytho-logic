@@ -160,14 +160,12 @@ public class GameManager : MonoBehaviour
                 if (attack >= 0)
                 {
                     m[1]._movement = (m[1]._movement == Vector2.zero ? -m[0]._movement : Vector2.zero);
-                    m[1].wounded = !m[1].wounded;
-                    if (!m[1].wounded) Players[m[1].Player].Delete(m[1]);
+                    State(m[1]);
                 }
                 if (attack <= 0)
                 {
                     m[0]._movement = (m[0]._movement == Vector2.zero ? -movement : Vector2.zero);
-                    m[0].wounded = !m[0].wounded;
-                    if (!m[0].wounded) Players[m[0].Player].Delete(m[0]);
+                    State(m[0]);
                 }
             }
             else
@@ -184,8 +182,7 @@ public class GameManager : MonoBehaviour
 
                     if (attack <= 0)
                     {
-                        m.wounded = !m.wounded;
-                        if (!m.wounded) Players[m.Player].Delete(m);
+                        State(m);
                     }
                 }
             }
@@ -208,13 +205,11 @@ public class GameManager : MonoBehaviour
             while (i < player._monsters.Count)
             {
                 var monster = player._monsters[i];
-                if (monster._movement != Vector2.zero)
+                if (monster._movement != Vector2.zero && 
+                   (monster._position.x < 0 || monster._position.y < 0 || 
+                    monster._position.x > 9 || monster._position.y > 12))
                 {
-                    if (monster._position.x < 0 || monster._position.y < 0 || monster._position.x > 9 ||
-                        monster._position.y > 12)
-                        player.Delete(monster);
-                    else
-                        i++;
+                    player.Delete(monster);
                 }
                 else
                     i++;
@@ -240,132 +235,9 @@ public class GameManager : MonoBehaviour
         Debug.Log(monster.Name + " c'est déplacé");
     }
 
-    private void Attack()
-    {
-        
-    }
-
-    private void Assistance(Vector2 position, int player, ref int power0, ref int power1, Dictionary<Vector2, List<Unit>> attacks)
-    {
-        if (attacks.ContainsKey(position))
-        {
-            foreach (var attack in attacks[position])
-            {
-                if (attack.Player == 0) power0 += attack.Power;
-                else power1 += attack.Power;
-            }
-
-            attacks.Remove(position);
-        }
-    }
-
     private void State(Unit monster)
     {
         if (!monster.wounded) monster.wounded = true;
         else Players[monster.Player].Delete(monster);
-    }
-
-    private void AttackSame(Unit monster0, Unit monster1, Dictionary<Vector2, List<Unit>> attacks, Vector2 position)
-    {
-        Debug.Log(monster0.Name + " fight with " + monster1.Name);
-        
-        // Suppression de leur attaque
-        monster0._attack = Vector2.zero;
-        monster1._attack = Vector2.zero;
-        
-        // Vérification si il y a d'autres attaquants
-        int power0 = monster0.Power;
-        int power1 = monster1.Power;
-        
-        Assistance(monster0._movement, 0, ref power0, ref power1, attacks);
-        
-        // Gestion des gagnant et mise à jour des états de chacun
-        if (power0 == power1)
-        {
-            monster0._movement = Vector2.zero;
-            monster1._movement = Vector2.zero;
-            
-            Move(monster0, attacks);
-            Move(monster1, attacks);
-            State(monster0);
-            State(monster1);
-            
-            Debug.Log(monster0.Name + " et " + monster1.Name + " sont à égalités lorsqu'ils se déplacent sur la même case");
-        }
-        else if (power0 > power1)
-        {
-            monster1._movement = Vector2.zero;
-            
-            Move(monster0, attacks);
-            Move(monster1, attacks);
-            State(monster1);
-            
-            Debug.Log(monster0.Name + " gagne lorsqu'ils se déplacent sur la même case");
-        }
-        else
-        {
-            monster0._movement = Vector2.zero;
-            
-            Move(monster0, attacks);
-            Move(monster1, attacks);
-            State(monster0);
-            
-            Debug.Log(monster1.Name + " gagne lorsqu'ils se déplacent sur la même case");
-        }
-        
-        monster0._attack = Vector2.zero;
-        monster1._attack = Vector2.zero;
-    }
-
-    private void AttackAlong(Unit monsterInMotion, Unit monsterMotionless, Dictionary<Vector2, List<Unit>> attacks, Vector2 position)
-    {
-        Debug.Log(monsterInMotion.Name + "attack along " + monsterMotionless.Name);
-        
-        // Suppression de leur attaque
-        monsterInMotion._attack = Vector2.zero;
-        monsterMotionless._attack = Vector2.zero;
-        
-        // Vérification si il y a d'autres attaquants
-        int powerInMotion = monsterInMotion.Power;
-        int powerMotionless = monsterMotionless.Power;
-        
-        Assistance(monsterMotionless._position, monsterMotionless.Player, ref powerMotionless, ref powerInMotion, attacks);
-        
-        // Gestion des gagnant et mise à jour des états de chacun
-        if (powerInMotion == powerMotionless)
-        {
-            monsterMotionless._movement = monsterInMotion._movement;
-            monsterInMotion._movement = Vector2.zero;
-            
-            Move(monsterMotionless, attacks);
-            Move(monsterInMotion, attacks);
-            State(monsterMotionless);
-            State(monsterInMotion);
-            
-            Debug.Log(monsterInMotion.Name + " et " + monsterMotionless.Name + " sont à égalités");
-        }
-        else if (powerInMotion > powerMotionless)
-        {
-            monsterMotionless._movement = monsterInMotion._movement;
-            
-            Move(monsterInMotion, attacks);
-            Move(monsterMotionless, attacks);
-            State(monsterMotionless);
-            
-            Debug.Log(monsterInMotion.Name + " gagne");
-        }
-        else
-        {
-            monsterInMotion._movement = Vector2.zero;
-            
-            Move(monsterMotionless, attacks);
-            Move(monsterInMotion, attacks);
-            State(monsterInMotion);
-            
-            Debug.Log(monsterMotionless.Name + " gagne");
-        }
-        
-        monsterInMotion._attack = Vector2.zero;
-        monsterMotionless._attack = Vector2.zero;
     }
 }
