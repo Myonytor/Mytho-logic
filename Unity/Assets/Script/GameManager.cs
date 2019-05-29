@@ -217,8 +217,8 @@ public class GameManager : MonoBehaviour
                 var monster = player._monsters[i];
                 
                 if (monster._movement != Vector2.zero && 
-                    (monster._position.x < 0 || monster._position.y < 0 || 
-                     monster._position.x > 9 || monster._position.y > 12))
+                   (monster._position.x < 0 || monster._position.y < 0 || 
+                    monster._position.x > 9 || monster._position.y > 12))
                 {
                     player.Delete(monster);
                 }
