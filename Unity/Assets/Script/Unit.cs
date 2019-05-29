@@ -15,7 +15,7 @@ public class Unit : MonoBehaviour
 	public int Power => _power;
 	
 	// false correspond à vivant et true à blessé
-	public bool state;
+	public bool wounded;
 	
 	public Vector2 _movement;
 	public Vector2 _attack;
@@ -34,7 +34,7 @@ public class Unit : MonoBehaviour
 		_position = position;
 		_movement = Vector2.zero;
 		_attack = Vector2.zero;
-		state = false;
+		wounded = false;
 		_power = power;
 		
 		particleMove = Instantiate(prefabParticle);
