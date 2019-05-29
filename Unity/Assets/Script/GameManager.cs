@@ -165,12 +165,12 @@ public class GameManager : MonoBehaviour
                 var movement = m[1]._movement;
                 if (attack >= 0)
                 {
-                    m[1]._movement = (m[1]._movement == Vector2.zero ? -m[0]._movement : Vector2.zero);
+                    m[1]._movement = (m[1]._movement == Vector2.zero ? m[0]._movement : Vector2.zero);
                     State(m[1]);
                 }
                 if (attack <= 0)
                 {
-                    m[0]._movement = (m[0]._movement == Vector2.zero ? -movement : Vector2.zero);
+                    m[0]._movement = (m[0]._movement == Vector2.zero ? movement : Vector2.zero);
                     State(m[0]);
                 }
             }
