@@ -20,21 +20,21 @@ public class Player : MonoBehaviour
 
 	private GameObject prefabParticle;
 
-	public Player(string name, string spawn, List<GameObject> monsters, GameObject transform, GameObject Particle)
+	public Player(string name, string spawn, List<GameObject> monsters, GameObject transform, GameObject particle)
 	{
 		_name = name;
 		_spawn = spawn;
 		_monsters = new List<Unit>();
 		_transform = transform;
 		_mythologie = new Mythologie("nameMythologie", monsters);
-		prefabParticle = Particle;
+		prefabParticle = particle;
 	}
 
 	public void AddTest(string name, int id, int power, int x, int y)
 	{
 		Vector3 position = new Vector3(x * 0.8f + 0.8f * y, y * 0.24f - 0.24f * x, -1);
 			
-		GameObject prefab = _mythologie._monsters[0];
+		GameObject prefab = _mythologie.Monsters[0];
 		GameObject monster =
 			Instantiate(prefab, position, Quaternion.identity, _transform.transform) as GameObject;
 		monster.tag = "Monster";
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
 					spawns[i].GetComponent<Tile>().isEmpty = false;
 					spawn.z = -1;
 
-					GameObject prefab = _mythologie._monsters[0];
+					GameObject prefab = _mythologie.Monsters[0];
 					GameObject monster =
 						Instantiate(prefab, spawn, Quaternion.identity, _transform.transform) as GameObject;
 					monster.tag = "Monster";
