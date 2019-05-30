@@ -147,6 +147,7 @@ public class GameManager : MonoBehaviour
     // Gestion des mouvements et attaques si 2 monstres se retrouvent sur la même case
     private void MoveMonsters(Dictionary<Vector2, List<Unit>> moves, Dictionary<Vector2, List<Unit>> attacks)
     {
+        Dictionary<Vector2, List<Unit>> repelledMonster = new Dictionary<Vector2, List<Unit>>();
         foreach (var monsters in moves)
         {
             if (monsters.Value.Count == 2)
@@ -167,11 +168,25 @@ public class GameManager : MonoBehaviour
                 {
                     m[1]._movement = (m[1]._movement == Vector2.zero ? m[0]._movement : Vector2.zero);
                     State(m[1]);
+                    if (!m[1].wounded)
+                    {
+                        var v = m[1]._position + m[1]._movement;
+                        if (repelledMonster.ContainsKey(v)) repelledMonster[v].Add(m[1]);
+                        else repelledMonster.Add(v, new List<Unit>() {m[1]});
+                        m.RemoveAt(1);
+                    }
                 }
                 if (attack <= 0)
                 {
                     m[0]._movement = (m[0]._movement == Vector2.zero ? movement : Vector2.zero);
                     State(m[0]);
+                    if (!m[0].wounded)
+                    {
+                        var v = m[0]._position + m[0]._movement;
+                        if (repelledMonster.ContainsKey(v)) repelledMonster[v].Add(m[0]);
+                        else repelledMonster.Add(v, new List<Unit>() {m[0]});
+                        m.RemoveAt(0);
+                    }
                 }
             }
             else
@@ -190,6 +205,19 @@ public class GameManager : MonoBehaviour
                     {
                         State(m);
                     }
+                }
+            }
+        }
+
+        foreach (var kvp in repelledMonster)
+        {
+            if ((moves.ContainsKey(kvp.Key) && moves[kvp.Key].Count > 0) 
+                || kvp.Value.Count > 1
+                || kvp.Key.x < 0 || kvp.Key.x > 9 || kvp.Key.y < 0 || kvp.Key.y > 12)
+            {
+                foreach (var monster in kvp.Value)
+                {
+                    State(monster);
                 }
             }
         }
