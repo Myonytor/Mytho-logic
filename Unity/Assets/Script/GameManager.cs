@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
         Players[0].Add("Meduse5", 0, 4);
         Players[0].Add("Meduse6", 0, 2);
         Players[0].AddTest("MeduseTest4", 0, 4, 1, 1);
+        Players[0].AddTest("MeduseTest5", 0, 4, 1, 2);
+        Players[0].AddTest("MeduseTest6", 0, 4, 2, 1);
         
         Players[1].Add("Nout0", 1, 3);
         Players[1].Add("Nout1", 1, 4);
@@ -59,7 +61,9 @@ public class GameManager : MonoBehaviour
         Players[1].Add("Nout4", 1, 3);
         Players[1].Add("Nout5", 1, 2);
         Players[1].Add("Nout6", 1, 1);
-        Players[1].AddTest("NoutTest2", 1, 2, 0, 2);
+        Players[1].AddTest("NoutTest2", 1, 4, 0, 2);
+        Players[1].AddTest("NoutTest3", 1, 4, 0, 3);
+        Players[1].AddTest("NoutTest4", 1, 4, 2, 2);
         
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
         foreach (var p in Players)
