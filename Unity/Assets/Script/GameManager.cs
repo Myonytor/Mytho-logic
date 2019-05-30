@@ -174,25 +174,25 @@ public class GameManager : MonoBehaviour
                 if (attack >= 0)
                 {
                     m[1]._movement = (m[1]._movement == Vector2.zero ? m[0]._movement : Vector2.zero);
-                    State(m[1]);
-                    if (m[1].wounded)
+                    if (!m[1].wounded)
                     {
                         var v = m[1]._position + m[1]._movement;
                         if (repelledMonster.ContainsKey(v)) repelledMonster[v].Add(m[1]);
                         else repelledMonster.Add(v, new List<Unit>() {m[1]});
                     }
+                    State(m[1]);
                     m.RemoveAt(1);
                 }
                 if (attack <= 0)
                 {
                     m[0]._movement = (m[0]._movement == Vector2.zero ? movement : Vector2.zero);
-                    State(m[0]);
-                    if (m[0].wounded)
+                    if (!m[0].wounded)
                     {
                         var v = m[0]._position + m[0]._movement;
                         if (repelledMonster.ContainsKey(v)) repelledMonster[v].Add(m[0]);
                         else repelledMonster.Add(v, new List<Unit>() {m[0]});
                     }
+                    State(m[0]);
                     m.RemoveAt(0);
                 }
 
