@@ -221,7 +221,7 @@ public class GameManager : MonoBehaviour
 
                     if (attack <= 0)
                     {
-                        if (m.wounded) Debug.Log(m.Name + " va mourir d'attaque extèrieur");
+                        if (m.wounded) Debug.Log(m.Name + " va mourir d'attaque extérieur");
                         State(m);
                     }
                 }
