@@ -38,33 +38,36 @@ public class GameManager : MonoBehaviour
         
         Players = new List<Player>()
             {
-                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2), player0, prefabParticle, "nameMythologie"),
-                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(2, 2), player1, prefabParticle, "Egyptienne")
+                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2), player0, prefabParticle, "Japonaise", 0),
+                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(2, 2), player1, prefabParticle, "Egyptienne", 1)
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         
         
-        Players[0].Add("Meduse0", 0, 2);
-        Players[0].Add("Meduse1", 0, 1);
-        Players[0].Add("Meduse2", 0, 3);
-        Players[0].Add("Meduse3", 0, 1);
-        Players[0].Add("Meduse4", 0, 2);
-        Players[0].Add("Meduse5", 0, 4);
-        Players[0].Add("Meduse6", 0, 2);
-        Players[0].AddTest("MeduseTest4", 0, 4, 1, 1);
-        Players[0].AddTest("MeduseTest5", 0, 4, 1, 2);
-        Players[0].AddTest("MeduseTest6", 0, 4, 2, 1);
+        Players[0].Add("Meduse0", 2);
+        Players[0].Add("Meduse1", 1);
+        Players[0].Add("Meduse2", 3);
+        Players[0].Add("Meduse3", 1);
+        Players[0].Add("Meduse4", 2);
+        Players[0].Add("Meduse5", 4);
+        Players[0].Add("Meduse6", 2);
+        Players[0].AddTest("MeduseTest4", 4, 1, 1);
+        Players[0].AddTest("MeduseTest5", 4, 1, 2);
+        Players[0].AddTest("MeduseTest6", 4, 2, 1);
         
-        Players[1].Add("Nout0", 1, 3);
-        Players[1].Add("Nout1", 1, 4);
-        Players[1].Add("Nout2", 1, 2);
-        Players[1].Add("Nout3", 1, 1);
-        Players[1].Add("Nout4", 1, 3);
-        Players[1].Add("Nout5", 1, 2);
-        Players[1].Add("Nout6", 1, 1);
-        Players[1].AddTest("NoutTest2", 1, 4, 0, 2);
-        Players[1].AddTest("NoutTest3", 1, 4, 0, 3);
-        Players[1].AddTest("NoutTest4", 1, 4, 2, 2);
+        Players[1].Add("Nout0", 3);
+        Players[1].Add("Nout1", 4);
+        Players[1].Add("Nout2", 2);
+        Players[1].Add("Nout3", 1);
+        Players[1].Add("Nout4", 3);
+        Players[1].Add("Nout5", 2);
+        Players[1].Add("Nout6", 1);
+        Players[1].AddTest("NoutTest2", 4, 0, 2);
+        Players[1].AddTest("NoutTest3", 4, 0, 3);
+        Players[1].AddTest("NoutTest4", 4, 2, 2);
+
+        Players[0].Mythologie.activated = true;
+        Players[1].Mythologie.activated = true;
         
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
         foreach (var p in Players)
@@ -107,6 +110,8 @@ public class GameManager : MonoBehaviour
                 UsePowerSpecial(monster, "Egyptienne", ref power);
                 Vector2 movement = monster._position + monster._movement;
                 
+                Debug.Log(monster.Name + " bouge dans la direction : (" + monster._movement.x + ", " + monster._movement.y + ")");
+                
                 // Monstres qui vont bouger ainsi que leur attaque si il y en a
                 if (moves.ContainsKey(movement))
                 {
@@ -124,6 +129,8 @@ public class GameManager : MonoBehaviour
             {
                 int power = 0;
                 UsePowerSpecial(monster, "Japonaise", ref power);
+
+                Debug.Log(monster.Name + " attaque dans la direction : (" + monster._attack.x + ", " + monster._attack.y + ")");
                 
                 if (monster._attack != Vector2.zero)
                 {
@@ -233,7 +240,7 @@ public class GameManager : MonoBehaviour
 
                     if (attack <= 0)// Si le monstre perd
                     {
-                        if (m.wounded) Debug.Log(m.Name + " va mourir d'attaque extérieur");
+                        if (m.wounded) Debug.Log(m.Name + " est mort d'attaque extérieur");
                         State(m);
                     }
                 }
@@ -285,6 +292,6 @@ public class GameManager : MonoBehaviour
     private void UsePowerSpecial(Unit monster, string mythologie, ref int power)
     {
         if (Players[0].Mythologie.activated && Players[0].Mythologie.Name == mythologie) Players[0].Mythologie.PowerSpecial(monster, ref power);
-        else if (Players[1].Mythologie.activated && Players[0].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
+        if (Players[1].Mythologie.activated && Players[0].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
     }
 }

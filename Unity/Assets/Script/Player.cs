@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
 	private string _name;
 	public string Name => _name;
 
+	private int _index;
+	public int Index => _index;
+
 	private string _spawn;
 	public string Spawn => _spawn;
 
@@ -20,17 +23,18 @@ public class Player : MonoBehaviour
 
 	private GameObject prefabParticle;
 
-	public Player(string name, string spawn, List<GameObject> monsters, GameObject transform, GameObject particle, string mythologie)
+	public Player(string name, string spawn, List<GameObject> monsters, GameObject transform, GameObject particle, string mythologie, int id)
 	{
 		_name = name;
+		_index = id;
 		_spawn = spawn;
 		_monsters = new List<Unit>();
 		_transform = transform;
-		_mythologie = new Mythologie(mythologie, monsters);
+		_mythologie = new Mythologie(mythologie, monsters, id);
 		prefabParticle = particle;
 	}
 
-	public void AddTest(string name, int id, int power, int x, int y)
+	public void AddTest(string name, int power, int x, int y)
 	{
 		Vector3 position = new Vector3(x * 0.8f + 0.8f * y, y * 0.24f - 0.24f * x, -1);
 			
@@ -41,14 +45,14 @@ public class Player : MonoBehaviour
 		monster.name = name;
 		monster.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
-		Unit unit = new Unit(name, id, monster, new Vector2(x, y), power, prefabParticle);
+		Unit unit = new Unit(name, _index, monster, new Vector2(x, y), power, prefabParticle);
 		_monsters.Add(unit);
 
 		Debug.Log("Add a monster test in the map");
 	}
 
 	// Ajoute un monstre dans une case libre du spawn du joueur
-	public void Add(string name, int id, int power) // give in parameter the monster and player
+	public void Add(string name, int power) // give in parameter the monster and player
 	{
 		GameObject[] spawns = GameObject.FindGameObjectsWithTag(_spawn);
 		int l = spawns.Length;
@@ -72,7 +76,7 @@ public class Player : MonoBehaviour
 					monster.name = name;
 					monster.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
-					Unit unit = new Unit(name, id, monster, spawns[i].GetComponent<Tile>().coordinate, power, prefabParticle);
+					Unit unit = new Unit(name, _index, monster, spawns[i].GetComponent<Tile>().coordinate, power, prefabParticle);
 					_monsters.Add(unit);
 
 					add = true;

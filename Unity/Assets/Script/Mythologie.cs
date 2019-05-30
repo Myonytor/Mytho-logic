@@ -15,10 +15,12 @@ namespace Script
 
         public bool activated;
 
-        public Mythologie(string name, List<GameObject> monsters)
+        public Mythologie(string name, List<GameObject> monsters, int id)
         {
             _name = name;
             _monsters = monsters;
+            activated = false;
+            indexPlayer = id;
             
             Debug.Log("mise en place de la mythologie : " + _name);
         }
