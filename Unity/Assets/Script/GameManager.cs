@@ -151,6 +151,8 @@ public class GameManager : MonoBehaviour
         {
             if (monsters.Value.Count == 2)
             {
+                Debug.Log("Deux monstres se retrouvent sur la même case");
+                
                 var m = monsters.Value;
                 int attack = m[0].Power - m[1].Power;
 
@@ -160,6 +162,8 @@ public class GameManager : MonoBehaviour
                     {
                         attack += (monster.Player == m[0].Player ? monster.Power : -monster.Power);
                     }
+                    
+                    Debug.Log("Il y a des attaques extérieur");
                 }
 
                 var movement = m[1]._movement;
@@ -192,7 +196,9 @@ public class GameManager : MonoBehaviour
                 {
                     m[0]._position = monsters.Key;
                     Move(m[0]);
+                    Debug.Log("Il ne reste plus que le monstre " + m[0].Name);
                 }
+                else Debug.Log("Il y a toujours deux monstres");
             }
             else
             {
@@ -211,6 +217,7 @@ public class GameManager : MonoBehaviour
 
                     if (attack <= 0)
                     {
+                        if (m.wounded) Debug.Log(m.Name + " va mourir d'attaque extèrieur");
                         State(m);
                     }
                 }
