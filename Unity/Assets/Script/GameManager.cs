@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
             Debug.Log((int)(decompte - Time.deltaTime));
         decompte -= Time.deltaTime;
         
-        if (decompte <= 0)
+        if (decompte <= 0)//fin du timer
         {
             mouse.Clear();
             decompte = timer;
@@ -131,13 +131,13 @@ public class GameManager : MonoBehaviour
                                 isAttackable = isAttackable || m.Player != monster.Player;
                         }
 
-                        if(isAttackable)
+                        if(isAttackable)//s'il y a un monstre qui peut etre attaque, on l'ajoute au dictionnaire
                         {
                             if (attacks.ContainsKey(attack)) attacks[attack].Add(monster);
                             else attacks.Add(attack, new List<Unit>() {monster});
                             i = 3;
                         }
-                        else
+                        else //sinon on regarde sur la case suivante
                             attack += monster._attack;
                     }
                 }
@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
         Dictionary<Vector2, List<Unit>> repelledMonster = new Dictionary<Vector2, List<Unit>>();
         foreach (var monsters in moves)
         {
-            if (monsters.Value.Count == 2)
+            if (monsters.Value.Count == 2)//s'il y a deux monstres qui veulent aller sur cette case
             {
                 Debug.Log("Deux monstres se retrouvent sur la même case");
                 
@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 var movement = m[1]._movement;
-                if (attack >= 0)
+                if (attack >= 0)//si le premier monstre gagne
                 {
                     m[1]._movement = (m[1]._movement == Vector2.zero ? m[0]._movement : Vector2.zero);
                     if (!m[1].wounded)
@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
                     State(m[1]);
                     m.RemoveAt(1);
                 }
-                if (attack <= 0)
+                if (attack <= 0)//si le deuxieme monstre gagne
                 {
                     m[0]._movement = (m[0]._movement == Vector2.zero ? movement : Vector2.zero);
                     if (!m[0].wounded)
@@ -196,7 +196,7 @@ public class GameManager : MonoBehaviour
                     m.RemoveAt(0);
                 }
 
-                if (m.Count == 1)
+                if (m.Count == 1)//si un monstre se deplace sur la case ciblee
                 {
                     m[0]._position = monsters.Key;
                     Move(m[0]);
@@ -204,13 +204,13 @@ public class GameManager : MonoBehaviour
                 }
                 else Debug.Log("Il y a toujours deux monstres");
             }
-            else
+            else//sinon, il n'y a qu'un monstre qui veut atteindre cette case
             {
                 var m = monsters.Value[0];
                 m._position = monsters.Key;
                 Move(m);
                 
-                if (attacks.ContainsKey(monsters.Key))
+                if (attacks.ContainsKey(monsters.Key))//si la case est attaquee
                 {
                     int attack = m.Power;
                     
@@ -219,7 +219,7 @@ public class GameManager : MonoBehaviour
                         attack += (monster.Player == m.Player ? monster.Power : -monster.Power);
                     }
 
-                    if (attack <= 0)
+                    if (attack <= 0)//si le monstre perd
                     {
                         if (m.wounded) Debug.Log(m.Name + " va mourir d'attaque extérieur");
                         State(m);
@@ -228,18 +228,18 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        foreach (var kvp in repelledMonster)
+        foreach (var kvp in repelledMonster)//pour tout les monstres qui ont ete repousses
         {
-            if ((moves.ContainsKey(kvp.Key) && moves[kvp.Key].Count > 0) 
+            if ((moves.ContainsKey(kvp.Key) && moves[kvp.Key].Count > 0)
                 || kvp.Value.Count > 1
-                || kvp.Key.x < 0 || kvp.Key.x > 9 || kvp.Key.y < 0 || kvp.Key.y > 12)
+                || kvp.Key.x < 0 || kvp.Key.x > 9 || kvp.Key.y < 0 || kvp.Key.y > 12)//les cas ou le monstres meurt
             {
                 foreach (var monster in kvp.Value)
                 {
                     State(monster);
                 }
             }
-            else
+            else//les cas ou le monstre est juste repousse
             {
                 var m = kvp.Value[0];
                 m._position = kvp.Key;
@@ -248,7 +248,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Move(Unit monster)
+    private void Move(Unit monster)//deplace la prefab du monstre en fonction de ca position
     {
         board.hexGrid[(int) monster._position.x, (int) monster._position.y].GetComponent<Tile>().isEmpty = true;
         
@@ -261,7 +261,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(monster.Name + " c'est déplacé");
     }
 
-    private void State(Unit monster)
+    private void State(Unit monster)//fait perdre une vie au monstre
     {
         if (!monster.wounded) monster.wounded = true;
         else Players[monster.Player].Delete(monster);
