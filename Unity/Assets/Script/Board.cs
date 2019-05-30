@@ -20,7 +20,7 @@ public class Board : MonoBehaviour
     // Start is called before the first frame update
     public void Setup()
     {
-        //Apparition du Plateau
+        // Apparition du Plateau
         hexGrid = new GameObject[width, height + 3];
         GameObject Hex = new GameObject("Hex");
         Hex.transform.parent = transform;
@@ -39,7 +39,7 @@ public class Board : MonoBehaviour
         }
         Hex.transform.position = new Vector3(0, 0, 0);
 
-        //Apparition du Spawn 1
+        // Apparition du Spawn 1
         GameObject Spawn1 = new GameObject("Spawn1");
         Spawn1.transform.parent = transform;
         for (int spawnY = 0; spawnY < 3; spawnY++)
@@ -60,7 +60,7 @@ public class Board : MonoBehaviour
         }
         Spawn1.transform.position = positionSpawn1;
 
-        //Apparition du Spawn 2
+        // Apparition du Spawn 2
         GameObject Spawn2 = new GameObject("Spawn2");
         Spawn2.transform.parent = transform;
         for (int spawnY = 0; spawnY < 3; spawnY++)

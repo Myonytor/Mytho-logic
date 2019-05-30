@@ -36,7 +36,7 @@ public class MouseManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 int i = IsBelonged(hoveredObject.transform.parent.GetComponent<Tile>().coordinate);
-                if (i != -1)//selectionne une unite ou reinitialise le mouvement de l'unite selectionnee
+                if (i != -1)// Sélectionne une unité ou réinitialise le mouvement de l'unité sélectionnée
                 {
                     if (!Equals(null, unit) && unit._position == player._monsters[i]._position)
                     {
@@ -53,17 +53,18 @@ public class MouseManager : MonoBehaviour
                         Debug.Log("Sélection d'un monstre");
                     }
                 }
-                else if(!Equals(unit, null))//definie un mouvement
+                else if(!Equals(unit, null))// Définie un mouvement
                 {
                     Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
                     int x = (int) (p.x - unit._position.x), y = (int) (p.y - unit._position.y);
                     if (player.IsCaseEmpty(p))
                     {
-                        if ((unit._position.y > 9 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 9)))) //personnage dans le spawn et case d'arrivee sur le bord du plateau
+                        if ((unit._position.y > 9 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 9))))
+                            // Si le personnage est dans le spawn et la case d'arrivée sur le bord du plateau
                         {
                             unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
                         }
-                        else if (unit._position.y <= 9 && IsClickable(x, y)) //ou la case de depart n'est pas dans le spawn et la case d'arrivee est accessible 
+                        else if (unit._position.y <= 9 && IsClickable(x, y))// Sinon, ou la case de départ n'est pas dans le spawn et la case d'arrivée est accessible
                         {
                             unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
                         }
@@ -71,7 +72,7 @@ public class MouseManager : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(1))//definie l'attaque
+            if (Input.GetMouseButtonDown(1))// Définie l'attaque
             {
                 if (!Equals(unit, null))
                 {
@@ -118,7 +119,8 @@ public class MouseManager : MonoBehaviour
         //objectToClear = null; //semble inutile
     }
 
-    int IsBelonged(Vector2 vect)//return -1 if the tile does not belong to the player, and return the index of the monster otherwise
+    // Retourne -1 si la case n'appartient pas au joueur, sinon, retourne l'index du monstre
+    int IsBelonged(Vector2 vect)
     {
         int i = 0;
         while (i < player._monsters.Count && vect != player._monsters[i]._position)
@@ -126,8 +128,10 @@ public class MouseManager : MonoBehaviour
         return (i == player._monsters.Count ? -1 : i);
     }
 
-    bool IsClickable(int x, int y)//x et y sont les differences des coordonnees de depart par celles d'arrivees
-    {//cette fonction teste si la case de depart et celle d'arrivee sont adjacentes
+    // Teste si la case de départ et celle d'arrivée sont adjacentes
+    bool IsClickable(int x, int y)
+    {
+        // x et y sont les différences des coordonnées de départ par celles d'arrivées
         return x <= 1 && x >= -1 && y <= 1 && y >= -1 && x + y <= 1 && x + y >= -1;
     }
 

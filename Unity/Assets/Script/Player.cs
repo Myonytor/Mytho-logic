@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
 		Debug.Log("Add a monster test in the map");
 	}
 
+	// Ajoute un monstre dans une case libre du spawn du joueur
 	public void Add(string name, int id, int power) // give in parameter the monster and player
 	{
 		GameObject[] spawns = GameObject.FindGameObjectsWithTag(_spawn);
@@ -90,6 +91,7 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	// Supprime un monstre
 	public void Delete(Unit monster)
 	{
 		string name = monster.Name;
@@ -98,7 +100,8 @@ public class Player : MonoBehaviour
 		
 		Debug.Log(name + " à été tué");
 	}
-
+	
+	// Vérifie si la case est vide
 	public bool IsCaseEmpty(Vector2 destination)
 	{
 		bool output = true;
