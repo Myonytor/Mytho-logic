@@ -58,9 +58,13 @@ namespace Script
         // Egyptienne : empêche les déplacements des ennemies pendant un tour
         private void Egyptienne(Unit monster)
         {
-            if (monster.Player != indexPlayer) monster._movement = Vector2.zero;
-            
-            Debug.Log("Pouvoir de la mythologie Egyptienne appliqué sur " + monster.Name);
+            if (activated && monster.Player != indexPlayer)
+            {
+                monster._movement = Vector2.zero;
+
+                Debug.Log("Pouvoir de la mythologie Egyptienne appliqué sur " + monster.Name + ", réinitialisation du mouvement");
+            }
+            else Debug.Log(monster.Name + " n'est pas un ennemi, l'index de son joueur est : " + monster.Player);
         }
 
         // Grecque : ?
@@ -72,17 +76,25 @@ namespace Script
         // Japonaise : empêche les attaques des ennemies pendant un tour
         private void Japonaise(Unit monster)
         {
-            if (monster.Player != indexPlayer) monster._attack = Vector2.zero;
-            
-            Debug.Log("Pouvoir de la mythologie Japonaise appliqué sur " + monster.Name);
+            if (activated && monster.Player != indexPlayer)
+            {
+                monster._attack = Vector2.zero;
+                
+                Debug.Log("Pouvoir de la mythologie Japonaise appliqué sur " + monster.Name + ", réinitialisation de l'attaque");
+            }
+            else Debug.Log(monster.Name + " n'est pas un ennemi, l'index de son joueur est : " + monster.Player);
         }
 
         // Nordique : double la puissance de toute les unités blessés
         private void Nordique(Unit monster, ref int power)
         {
-            if (monster.Player == indexPlayer && monster.wounded) power += monster.Power; 
-            
-            Debug.Log("Pouvoir de la mythologie Nordique appliqué sur " + monster.Name);
+            if (activated && monster.Player == indexPlayer && monster.wounded)
+            {
+                power += monster.Power;
+
+                Debug.Log("Pouvoir de la mythologie Nordique appliqué sur " + monster.Name + ", augmentation de la puissance d'attaque");
+            }
+            else Debug.Log(monster.Name + " n'est pas blessé, où est un ennemi");
         }
     }
 }

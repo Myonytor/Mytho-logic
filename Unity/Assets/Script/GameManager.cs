@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         
         Players = new List<Player>()
             {
-                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2), player0, prefabParticle, "Japonaise", 0),
+                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2), player0, prefabParticle, "Nordique", 0),
                 new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(2, 2), player1, prefabParticle, "Egyptienne", 1)
             };
         mouse.ChangePlayer(Players[indexPlayer]);
@@ -110,8 +110,6 @@ public class GameManager : MonoBehaviour
                 UsePowerSpecial(monster, "Egyptienne", ref power);
                 Vector2 movement = monster._position + monster._movement;
                 
-                Debug.Log(monster.Name + " bouge dans la direction : (" + monster._movement.x + ", " + monster._movement.y + ")");
-                
                 // Monstres qui vont bouger ainsi que leur attaque si il y en a
                 if (moves.ContainsKey(movement))
                 {
@@ -129,8 +127,6 @@ public class GameManager : MonoBehaviour
             {
                 int power = 0;
                 UsePowerSpecial(monster, "Japonaise", ref power);
-
-                Debug.Log(monster.Name + " attaque dans la direction : (" + monster._attack.x + ", " + monster._attack.y + ")");
                 
                 if (monster._attack != Vector2.zero)
                 {
@@ -175,7 +171,7 @@ public class GameManager : MonoBehaviour
                 int attack = m[0].Power - m[1].Power;
                 
                 UsePowerSpecial(m[0], "Nordique", ref attack);
-                UsePowerSpecial(m[0], "Nordique", ref power);
+                UsePowerSpecial(m[1], "Nordique", ref power);
                 attack -= power;
 
                 if (attacks.ContainsKey(monsters.Key))// S'il y a des monstres qui attaquent cette case
@@ -291,7 +287,7 @@ public class GameManager : MonoBehaviour
     // Utilise le pouvoir de la mythologie de chaque joueurs si elle est activée
     private void UsePowerSpecial(Unit monster, string mythologie, ref int power)
     {
-        if (Players[0].Mythologie.activated && Players[0].Mythologie.Name == mythologie) Players[0].Mythologie.PowerSpecial(monster, ref power);
-        if (Players[1].Mythologie.activated && Players[0].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
+        if (Players[0].Mythologie.Name == mythologie) Players[0].Mythologie.PowerSpecial(monster, ref power);
+        if (Players[0].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
     }
 }
