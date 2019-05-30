@@ -141,7 +141,6 @@ public class GameManager : MonoBehaviour
         }
         
         MoveMonsters(moves, attacks);
-        MovePrefabs();
     }
 
     // Gestion des mouvements et attaques si 2 monstres se retrouvent sur la même case
@@ -168,32 +167,38 @@ public class GameManager : MonoBehaviour
                 {
                     m[1]._movement = (m[1]._movement == Vector2.zero ? m[0]._movement : Vector2.zero);
                     State(m[1]);
-                    if (!m[1].wounded)
+                    if (m[1].wounded)
                     {
                         var v = m[1]._position + m[1]._movement;
                         if (repelledMonster.ContainsKey(v)) repelledMonster[v].Add(m[1]);
                         else repelledMonster.Add(v, new List<Unit>() {m[1]});
-                        m.RemoveAt(1);
                     }
+                    m.RemoveAt(1);
                 }
                 if (attack <= 0)
                 {
                     m[0]._movement = (m[0]._movement == Vector2.zero ? movement : Vector2.zero);
                     State(m[0]);
-                    if (!m[0].wounded)
+                    if (m[0].wounded)
                     {
                         var v = m[0]._position + m[0]._movement;
                         if (repelledMonster.ContainsKey(v)) repelledMonster[v].Add(m[0]);
                         else repelledMonster.Add(v, new List<Unit>() {m[0]});
-                        m.RemoveAt(0);
                     }
+                    m.RemoveAt(0);
+                }
+
+                if (m.Count == 1)
+                {
+                    m[0]._position = monsters.Key;
+                    Move(m[0]);
                 }
             }
             else
             {
+                var m = monsters.Value[0];
                 if (attacks.ContainsKey(monsters.Key))
                 {
-                    var m = monsters.Value[0];
                     int attack = m.Power;
                     
                     foreach (var monster in attacks[monsters.Key])
@@ -205,6 +210,12 @@ public class GameManager : MonoBehaviour
                     {
                         State(m);
                     }
+                }
+
+                if (m.wounded)
+                {
+                    m._position = monsters.Key;
+                    Move(m);
                 }
             }
         }
@@ -219,6 +230,12 @@ public class GameManager : MonoBehaviour
                 {
                     State(monster);
                 }
+            }
+            else
+            {
+                var m = kvp.Value[0];
+                m._movement = kvp.Key;
+                Move(m);
             }
         }
     }
