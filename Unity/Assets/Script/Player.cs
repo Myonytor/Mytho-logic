@@ -20,13 +20,13 @@ public class Player : MonoBehaviour
 
 	private GameObject prefabParticle;
 
-	public Player(string name, string spawn, List<GameObject> monsters, GameObject transform, GameObject particle)
+	public Player(string name, string spawn, List<GameObject> monsters, GameObject transform, GameObject particle, string mythologie)
 	{
 		_name = name;
 		_spawn = spawn;
 		_monsters = new List<Unit>();
 		_transform = transform;
-		_mythologie = new Mythologie("nameMythologie", monsters);
+		_mythologie = new Mythologie(mythologie, monsters);
 		prefabParticle = particle;
 	}
 

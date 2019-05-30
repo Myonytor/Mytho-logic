@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -37,8 +38,8 @@ public class GameManager : MonoBehaviour
         
         Players = new List<Player>()
             {
-                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2), player0, prefabParticle),
-                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(2, 2), player1, prefabParticle)
+                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2), player0, prefabParticle, "nameMythologie"),
+                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(2, 2), player1, prefabParticle, "Egyptienne")
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         
@@ -102,6 +103,8 @@ public class GameManager : MonoBehaviour
         {
             foreach (var monster in player._monsters)
             {
+                int power = 0;
+                UsePowerSpecial(monster, "Egyptienne", ref power);
                 Vector2 movement = monster._position + monster._movement;
                 
                 // Monstres qui vont bouger ainsi que leur attaque si il y en a
@@ -119,6 +122,9 @@ public class GameManager : MonoBehaviour
         {
             foreach (var monster in player._monsters)
             {
+                int power = 0;
+                UsePowerSpecial(monster, "Japonaise", ref power);
+                
                 if (monster._attack != Vector2.zero)
                 {
                     Vector2 attack = monster._position + monster._movement + monster._attack;
@@ -156,9 +162,14 @@ public class GameManager : MonoBehaviour
             if (monsters.Value.Count == 2)// S'il y a deux monstres qui veulent aller sur cette case
             {
                 Debug.Log("Deux monstres se retrouvent sur la même case");
-                
+
+                int power = 0;
                 var m = monsters.Value;
                 int attack = m[0].Power - m[1].Power;
+                
+                UsePowerSpecial(m[0], "Nordique", ref attack);
+                UsePowerSpecial(m[0], "Nordique", ref power);
+                attack -= power;
 
                 if (attacks.ContainsKey(monsters.Key))// S'il y a des monstres qui attaquent cette case
                 {
@@ -213,6 +224,7 @@ public class GameManager : MonoBehaviour
                 if (attacks.ContainsKey(monsters.Key))// Si la case est attaquée
                 {
                     int attack = m.Power;
+                    UsePowerSpecial(m, "Nordique", ref attack);
                     
                     foreach (var monster in attacks[monsters.Key])
                     {
@@ -262,9 +274,17 @@ public class GameManager : MonoBehaviour
         Debug.Log(monster.Name + " c'est déplacé");
     }
 
-    private void State(Unit monster)// Fait perdre une vie au monstre
+    // Fait perdre une vie au monstre
+    private void State(Unit monster)
     {
         if (!monster.wounded) monster.wounded = true;
         else Players[monster.Player].Delete(monster);
+    }
+
+    // Utilise le pouvoir de la mythologie de chaque joueurs si elle est activée
+    private void UsePowerSpecial(Unit monster, string mythologie, ref int power)
+    {
+        if (Players[0].Mythologie.activated && Players[0].Mythologie.Name == mythologie) Players[0].Mythologie.PowerSpecial(monster, ref power);
+        else if (Players[1].Mythologie.activated && Players[0].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
     }
 }
