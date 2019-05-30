@@ -197,6 +197,9 @@ public class GameManager : MonoBehaviour
             else
             {
                 var m = monsters.Value[0];
+                m._position = monsters.Key;
+                Move(m);
+                
                 if (attacks.ContainsKey(monsters.Key))
                 {
                     int attack = m.Power;
@@ -210,12 +213,6 @@ public class GameManager : MonoBehaviour
                     {
                         State(m);
                     }
-                }
-
-                if (m.wounded)
-                {
-                    m._position = monsters.Key;
-                    Move(m);
                 }
             }
         }
