@@ -242,48 +242,12 @@ public class GameManager : MonoBehaviour
             else
             {
                 var m = kvp.Value[0];
-                m._movement = kvp.Key;
+                m._position = kvp.Key;
                 Move(m);
             }
         }
     }
 
-    private void MovePrefabs()
-    {
-        foreach (var player in Players)
-        {
-            foreach (var monster in player._monsters)
-            {
-                if (monster._movement != Vector2.zero)
-                {
-                    monster._position += monster._movement;
-                }
-            }
-        }
-        
-        foreach (var player in Players)
-        {
-            int i = 0;
-            
-            while (i < player._monsters.Count)
-            {
-                var monster = player._monsters[i];
-                
-                if (monster._movement != Vector2.zero && 
-                   (monster._position.x < 0 || monster._position.y < 0 || 
-                    monster._position.x > 9 || monster._position.y > 12))
-                {
-                    player.Delete(monster);
-                }
-                else
-                {
-                    Move(monster);
-                    i++;
-                }
-            }
-        }
-    }
-    
     private void Move(Unit monster)
     {
         board.hexGrid[(int) monster._position.x, (int) monster._position.y].GetComponent<Tile>().isEmpty = true;
