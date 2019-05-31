@@ -117,7 +117,10 @@ public class MouseManager : MonoBehaviour
     {
         if (objectToClear == null)
             return;
-        objectToClear.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.56f);
+        if (IsAGoal(objectToClear.transform.parent.GetComponent<Tile>().coordinate))
+            objectToClear.GetComponent<SpriteRenderer>().color = new Color(0.94f, 0.44f, 0.06f, 0.56f);
+        else
+            objectToClear.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.56f);
         //objectToClear = null; //semble inutile
     }
 
@@ -135,6 +138,17 @@ public class MouseManager : MonoBehaviour
     {
         // x et y sont les différences des coordonnées de départ par celles d'arrivées
         return x <= 1 && x >= -1 && y <= 1 && y >= -1 && x + y <= 1 && x + y >= -1;
+    }
+
+    bool IsAGoal(Vector2 v)
+    {
+        bool output = false;
+        for (int i = 0; i < goal.Length && !output; i ++)
+        {
+            output = v == goal[i];
+        }
+
+        return output;
     }
 
     public void Clear()
