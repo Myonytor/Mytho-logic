@@ -90,7 +90,10 @@ public class MouseManager : MonoBehaviour
 
             if (selectedObject != null)
             {
-                selectedObject.GetComponent<SpriteRenderer>().color = Color.red;
+                if (IsAGoal(hoveredObject.transform.parent.GetComponent<Tile>().coordinate))
+                    hoveredObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0.38f, 0f);
+                else
+                    selectedObject.GetComponent<SpriteRenderer>().color = Color.red;
             }
         }
     }
@@ -110,7 +113,10 @@ public class MouseManager : MonoBehaviour
         }
 
         hoveredObject = hitObject;
-        hoveredObject.GetComponent<SpriteRenderer>().color = Color.grey;
+        if (IsAGoal(hoveredObject.transform.parent.GetComponent<Tile>().coordinate))
+            hoveredObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0.66f, 0f);
+        else
+            hoveredObject.GetComponent<SpriteRenderer>().color = Color.grey;
     }
 
     void ClearSelection(GameObject objectToClear)
@@ -118,7 +124,7 @@ public class MouseManager : MonoBehaviour
         if (objectToClear == null)
             return;
         if (IsAGoal(objectToClear.transform.parent.GetComponent<Tile>().coordinate))
-            objectToClear.GetComponent<SpriteRenderer>().color = new Color(0.94f, 0.44f, 0.06f, 0.56f);
+            objectToClear.GetComponent<SpriteRenderer>().color = new Color(1f, 0.66f, 0f, 0.56f);
         else
             objectToClear.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.56f);
         //objectToClear = null; //semble inutile

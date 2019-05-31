@@ -54,7 +54,7 @@ public class Board : MonoBehaviour
                     if ((int) goal[k].x == x && (int) goal[k].y == y)
                     {
                         k = 3;
-                        hex.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(0.94f, 0.44f, 0.06f, 0.56f);
+                        hex.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1f, 0.66f, 0f, 0.56f);
                     }
                 }
             }
