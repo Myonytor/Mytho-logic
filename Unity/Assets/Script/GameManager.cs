@@ -247,7 +247,7 @@ public class GameManager : MonoBehaviour
         {
             if ((moves.ContainsKey(kvp.Key) && moves[kvp.Key].Count > 0)
                 || kvp.Value.Count > 1
-                || kvp.Key.x < 0 || kvp.Key.x > 9 || kvp.Key.y < 0 || kvp.Key.y > 12)// Les cas ou le monstres meurt
+                || kvp.Key.x < 0 || kvp.Key.x > 9 || kvp.Key.y < 0 || kvp.Key.y > 9)// Les cas ou le monstres meurt
             {
                 foreach (var monster in kvp.Value)
                 {

@@ -17,6 +17,8 @@ public class Board : MonoBehaviour
     Vector2 positionSpawn1 = new Vector2(0.75f, -2f);
     Vector2 positionSpawn2 = new Vector2(10.5f, 2f);
 
+    private Vector2[] goal= new Vector2[3];
+
     // Start is called before the first frame update
     public void Setup()
     {
@@ -80,5 +82,17 @@ public class Board : MonoBehaviour
             }
         }
         Spawn2.transform.position = positionSpawn2;
+
+
+        goal[0] = new Vector2((int)(width/2), (int)(height/2));
+        System.Random rnd = new System.Random();
+        int i, j;
+        do
+        {
+            i = rnd.Next(width);
+            j = rnd.Next(height);
+        } while (i == (int)goal[0].x && j == (int)goal[0].y);
+        goal[1] = new Vector2(i, j);
+        goal[2] = 2 * goal[0] - goal[1];
     }
 }
