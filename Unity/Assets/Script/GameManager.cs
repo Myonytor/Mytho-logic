@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private const int timer = 10;
+    private const int timer = 25;
     public Board board;
     public int indexPlayer;
     public MouseManager mouse;
@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public List<Player> Players;
 
     public GameObject prefabParticle;
+
+    public Text timeText;
+    public bool skipTurn;
     
     // Start is called before the first frame update
     void Start()
@@ -28,7 +31,7 @@ public class GameManager : MonoBehaviour
         decompte = timer;
         indexPlayer = 0;
         board.Setup();
-        
+
         // Entré des noms des joueurs à la place de Zeus et Poseidon"
         GameObject player = new GameObject("Player");
         GameObject player0 = new GameObject("Zeus");
@@ -83,16 +86,20 @@ public class GameManager : MonoBehaviour
     void Update()
     {        
         if((int)(decompte - Time.deltaTime) != (int)(decompte))
+        {
             Debug.Log((int)(decompte - Time.deltaTime));
+            timeText.text = "Temps restant : " + (int)(decompte - Time.deltaTime);
+        }
         decompte -= Time.deltaTime;
-        
-        if (decompte <= 0)// Fin du timer
+
+        if (decompte <= 0 || skipTurn)// Fin du timer
         {
             mouse.Clear();
             decompte = timer;
             if (indexPlayer == 1) NextBoard();
             indexPlayer = indexPlayer == 0 ? 1 : 0;
             mouse.player = Players[indexPlayer];
+            skipTurn = false;
         }
     }
 
@@ -289,5 +296,10 @@ public class GameManager : MonoBehaviour
     {
         if (Players[0].Mythologie.Name == mythologie) Players[0].Mythologie.PowerSpecial(monster, ref power);
         if (Players[0].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
+    }
+
+    public void skipTurnFunc()
+    {
+        skipTurn = true;
     }
 }
