@@ -15,7 +15,7 @@ public class Board : MonoBehaviour
     float yOffset = 0.24f;
 
     Vector2 positionSpawn1 = new Vector2(0.75f, -2f);
-    Vector2 positionSpawn2 = new Vector2(10.5f, 2f);
+    Vector2 positionSpawn2 = new Vector2(10.5f, 2.5f);
 
     public Vector2[] goal= new Vector2[3];
 
@@ -76,7 +76,7 @@ public class Board : MonoBehaviour
                     hexSpawn.GetComponent<Tile>().SetUp(spawnX, spawnY + 10);
                     hexSpawn.name = "Hex_x" + spawnX + "_y" + (spawnY + 10);
                     hexSpawn.tag = "Spawn1";
-                    hexGrid[spawnX, spawnY + 10] = hexSpawn;
+                    hexGrid[spawnX, spawnY + height] = hexSpawn;
                 }
             }
         }
@@ -97,7 +97,7 @@ public class Board : MonoBehaviour
                     hexSpawn.GetComponent<Tile>().SetUp(spawnX + 3, spawnY + 10);
                     hexSpawn.name = "Hex_x" + (spawnX + 3) + "_y" + (spawnY + 10);
                     hexSpawn.tag = "Spawn2";
-                    hexGrid[spawnX + 3, spawnY + 10] = hexSpawn;
+                    hexGrid[spawnX + 3, spawnY + height] = hexSpawn;
                 }
             }
         }

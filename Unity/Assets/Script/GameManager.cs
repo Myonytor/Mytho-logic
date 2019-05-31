@@ -55,9 +55,11 @@ public class GameManager : MonoBehaviour
         Players[0].Add("Meduse4", 2);
         Players[0].Add("Meduse5", 4);
         Players[0].Add("Meduse6", 2);
+        /*
         Players[0].AddTest("MeduseTest4", 4, 1, 1);
         Players[0].AddTest("MeduseTest5", 4, 1, 2);
         Players[0].AddTest("MeduseTest6", 4, 2, 1);
+        */
         
         Players[1].Add("Nout0", 3);
         Players[1].Add("Nout1", 4);
@@ -66,9 +68,11 @@ public class GameManager : MonoBehaviour
         Players[1].Add("Nout4", 3);
         Players[1].Add("Nout5", 2);
         Players[1].Add("Nout6", 1);
+        /*
         Players[1].AddTest("NoutTest2", 4, 0, 2);
         Players[1].AddTest("NoutTest3", 4, 0, 3);
         Players[1].AddTest("NoutTest4", 4, 2, 2);
+        */
 
         Players[0].Mythologie.activated = true;
         Players[1].Mythologie.activated = true;
@@ -220,7 +224,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 var movement = m[1]._movement;
-                if (attack >= 0)// Si le premier monstre gagne
+                if (attack >= 0)// Si le deuxieme monstre perd
                 {
                     m[1]._movement = (m[1]._movement == Vector2.zero ? m[0]._movement : Vector2.zero);
                     if (!m[1].wounded)
@@ -232,7 +236,7 @@ public class GameManager : MonoBehaviour
                     State(m[1]);
                     m.RemoveAt(1);
                 }
-                if (attack <= 0)// Si le deuxième monstre gagne
+                if (attack <= 0)// Si le premier monstre perd
                 {
                     m[0]._movement = (m[0]._movement == Vector2.zero ? movement : Vector2.zero);
                     if (!m[0].wounded)
