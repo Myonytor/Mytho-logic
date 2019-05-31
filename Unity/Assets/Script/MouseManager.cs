@@ -61,7 +61,7 @@ public class MouseManager : MonoBehaviour
                     int x = (int) (p.x - unit._position.x), y = (int) (p.y - unit._position.y);
                     if (player.IsCaseEmpty(p))
                     {
-                        if ((unit._position.y > 9 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 9))))
+                        if ((unit._position.y > 9 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 10))))
                             // Si le personnage est dans le spawn et la case d'arrivée sur le bord du plateau
                         {
                             unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
@@ -90,8 +90,8 @@ public class MouseManager : MonoBehaviour
 
             if (selectedObject != null)
             {
-                if (IsAGoal(hoveredObject.transform.parent.GetComponent<Tile>().coordinate))
-                    hoveredObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0.38f, 0f);
+                if (IsAGoal(selectedObject.transform.parent.GetComponent<Tile>().coordinate))
+                    selectedObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0.38f, 0f);
                 else
                     selectedObject.GetComponent<SpriteRenderer>().color = Color.red;
             }

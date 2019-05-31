@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private const int timer = 25;
+    private const int timer = 5;
     public Board board;
     public int indexPlayer;
     public MouseManager mouse;
@@ -97,7 +97,34 @@ public class GameManager : MonoBehaviour
         {
             mouse.Clear();
             decompte = timer;
-            if (indexPlayer == 1) NextBoard();
+            if (indexPlayer == 1)
+            {
+                NextBoard();
+                int w = 0;
+                for(int i = 0; i < Players.Count; i++)
+                {
+                    foreach (var m in Players[i]._monsters)
+                    {
+                        for (int j = 0; j < board.goal.Length; j++)
+                        {
+                            if (board.goal[j] == m._position)
+                                w += (i == 0 ? 1 : -1);
+                        }
+                    }
+                }
+
+                if (Math.Abs(w) == 3)
+                {
+                    if (w > 0)
+                    {
+                        Debug.Log(Players[0].Name + " a gagné");
+                    }
+                    else
+                    {
+                        Debug.Log(Players[1].Name + " a gagné");
+                    }
+                }
+            }
             indexPlayer = indexPlayer == 0 ? 1 : 0;
             mouse.player = Players[indexPlayer];
             skipTurn = false;
@@ -255,7 +282,7 @@ public class GameManager : MonoBehaviour
         {
             if ((moves.ContainsKey(kvp.Key) && moves[kvp.Key].Count > 0)
                 || kvp.Value.Count > 1
-                || kvp.Key.x < 0 || kvp.Key.x > 9 || kvp.Key.y < 0 || kvp.Key.y > 9)// Les cas ou le monstres meurt
+                || kvp.Key.x < 0 || kvp.Key.x > 10 || kvp.Key.y < 0 || kvp.Key.y > 10)// Les cas ou le monstres meurt
             {
                 foreach (var monster in kvp.Value)
                 {
