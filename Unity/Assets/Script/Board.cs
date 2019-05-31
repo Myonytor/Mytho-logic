@@ -8,8 +8,8 @@ public class Board : MonoBehaviour
     public GameObject hexPrefab;
     public GameObject[,] hexGrid;
 
-    int width = 10;
-    int height = 10;
+    int width = 11;
+    int height = 11;
 
     float xOffset = 0.8f;
     float yOffset = 0.24f;
@@ -17,11 +17,23 @@ public class Board : MonoBehaviour
     Vector2 positionSpawn1 = new Vector2(0.75f, -2f);
     Vector2 positionSpawn2 = new Vector2(10.5f, 2f);
 
-    private Vector2[] goal= new Vector2[3];
+    public Vector2[] goal= new Vector2[3];
 
     // Start is called before the first frame update
     public void Setup()
     {
+        goal[0] = new Vector2((int)(width/2), (int)(height/2));
+        System.Random rnd = new System.Random();
+        int i, j;
+        do
+        {
+            i = rnd.Next(width);
+            j = rnd.Next(height);
+        } while (i == (int)goal[0].x && j == (int)goal[0].y);
+        goal[1] = new Vector2(i, j);
+        goal[2] = 2 * goal[0] - goal[1];
+        
+        
         // Apparition du Plateau
         hexGrid = new GameObject[width, height + 3];
         GameObject Hex = new GameObject("Hex");
@@ -37,6 +49,14 @@ public class Board : MonoBehaviour
                 hex.name = "Hex_x" + x + "_y" + y;
                 hex.tag = "Tile";
                 hexGrid[x, y] = hex;
+                for(int k = 0; k < 3; k ++)
+                {
+                    if ((int) goal[k].x == x && (int) goal[k].y == y)
+                    {
+                        k = 3;
+                        hex.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(0.94f, 0.44f, 0.06f, 0.56f);
+                    }
+                }
             }
         }
         Hex.transform.position = new Vector3(0, 0, 0);
@@ -82,17 +102,5 @@ public class Board : MonoBehaviour
             }
         }
         Spawn2.transform.position = positionSpawn2;
-
-
-        goal[0] = new Vector2((int)(width/2), (int)(height/2));
-        System.Random rnd = new System.Random();
-        int i, j;
-        do
-        {
-            i = rnd.Next(width);
-            j = rnd.Next(height);
-        } while (i == (int)goal[0].x && j == (int)goal[0].y);
-        goal[1] = new Vector2(i, j);
-        goal[2] = 2 * goal[0] - goal[1];
     }
 }

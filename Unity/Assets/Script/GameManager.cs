@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
         decompte = timer;
         indexPlayer = 0;
         board.Setup();
+        mouse.goal = board.goal;
 
         // Entré des noms des joueurs à la place de Zeus et Poseidon"
         GameObject player = new GameObject("Player");
