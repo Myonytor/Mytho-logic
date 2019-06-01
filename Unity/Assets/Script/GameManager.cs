@@ -55,11 +55,11 @@ public class GameManager : MonoBehaviour
         Players[0].Add("Meduse4", 2);
         Players[0].Add("Meduse5", 4);
         Players[0].Add("Meduse6", 2);
-        /*
+        
         Players[0].AddTest("MeduseTest4", 4, 1, 1);
         Players[0].AddTest("MeduseTest5", 4, 1, 2);
         Players[0].AddTest("MeduseTest6", 4, 2, 1);
-        */
+        
         
         Players[1].Add("Nout0", 3);
         Players[1].Add("Nout1", 4);
@@ -68,11 +68,11 @@ public class GameManager : MonoBehaviour
         Players[1].Add("Nout4", 3);
         Players[1].Add("Nout5", 2);
         Players[1].Add("Nout6", 1);
-        /*
+        
         Players[1].AddTest("NoutTest2", 4, 0, 2);
         Players[1].AddTest("NoutTest3", 4, 0, 3);
         Players[1].AddTest("NoutTest4", 4, 2, 2);
-        */
+        
 
         Players[0].Mythologie.activated = true;
         Players[1].Mythologie.activated = true;
