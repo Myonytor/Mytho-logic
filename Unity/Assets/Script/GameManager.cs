@@ -118,6 +118,11 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (!onMenu && Input.GetKeyDown(KeyCode.Space))
+        {
+            skipTurnFunc();
+        }
+
         if((int)(decompte - Time.deltaTime) != (int)(decompte))
         {
             timeText.text = "Temps restant : " + (int)(decompte - Time.deltaTime);
