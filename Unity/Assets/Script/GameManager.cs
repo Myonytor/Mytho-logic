@@ -82,7 +82,8 @@ public class GameManager : MonoBehaviour
         {
             foreach (var m in p._monsters)
             {
-                Debug.Log(m);
+                //Debug.Log(m.name);
+                Debug.Log(m._position.x + "; " + m._position.y);
             }
         }
     }
@@ -93,7 +94,7 @@ public class GameManager : MonoBehaviour
         if((int)(decompte - Time.deltaTime) != (int)(decompte))
         {
             Debug.Log((int)(decompte - Time.deltaTime));
-            timeText.text = "Temps restant : " + (int)(decompte - Time.deltaTime);
+            //timeText.text = "Temps restant : " + (int)(decompte - Time.deltaTime);
         }
         decompte -= Time.deltaTime;
 
