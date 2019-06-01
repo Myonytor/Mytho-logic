@@ -1412,7 +1412,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Temp restant
+  m_Text: 'Temps restant : ?'
 --- !u!222 &1731887735
 CanvasRenderer:
   m_ObjectHideFlags: 0
