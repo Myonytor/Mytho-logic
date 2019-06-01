@@ -19,14 +19,17 @@ public class GameManager : MonoBehaviour
     
     private float decompte;
     private bool onMenu;
+    private bool onNewTurn;
 
     public List<GameObject> PrefabsMonsters;
     public List<Player> Players;
 
     public GameObject prefabParticle;
     public GameObject pauseMenu;
+    public GameObject newTurnPanel;
 
     public Text timeText;
+    public Text newTurnText;
     public bool skipTurn;
     
     // Start is called before the first frame update
@@ -55,7 +58,7 @@ public class GameManager : MonoBehaviour
          */
         Players = new List<Player>()
             {
-                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2), player0, prefabParticle, 3, 0),
+                player1.AddComponent<Player>(),
                 new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(2, 2), player1, prefabParticle, 0, 1)
             };
         mouse.ChangePlayer(Players[indexPlayer]);
@@ -89,6 +92,8 @@ public class GameManager : MonoBehaviour
 
         Players[0].Mythologie.activated = true;
         Players[1].Mythologie.activated = true;
+        
+        NewTurn();
         
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
         /*
@@ -384,8 +389,25 @@ public class GameManager : MonoBehaviour
     public void Resume()
     {
         onMenu = false;
-        mouse.onMenu = onMenu;       
+        mouse.onMenu = onMenu || onNewTurn;       
         Time.timeScale = 1f; 
         pauseMenu.SetActive(false); 
+    }
+
+    public void NewTurn()
+    {
+        onNewTurn = true;
+        mouse.onMenu = true;
+        Time.timeScale = 0;
+        newTurnText.text = "C'est à " + Players[indexPlayer].name + " de jouer";
+        newTurnPanel.SetActive(true);
+    }
+    
+    public void StartNewTurn()
+    {
+        onNewTurn = false;
+        mouse.onMenu = onMenu || onNewTurn;
+        Time.timeScale = 1f; 
+        newTurnPanel.SetActive(false); 
     }
 }
