@@ -12,7 +12,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private const int timer = 5;
+    private const int timer = 60;
     public Board board;
     public int indexPlayer;
     public MouseManager mouse;
@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public List<Player> Players;
 
     public GameObject prefabParticle;
+    public GameObject pauseMenu;
 
     public Text timeText;
     public bool skipTurn;
@@ -107,8 +108,18 @@ public class GameManager : MonoBehaviour
         {
             onMenu = !onMenu;
             mouse.onMenu = onMenu;
-            if (onMenu) Debug.Log("Your on the (invisible) Menu");
-            else Debug.Log("You can play");
+            if (onMenu)
+            {
+                Time.timeScale = 0f;
+                pauseMenu.SetActive(true);
+                Debug.Log("Your on the Menu");
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                pauseMenu.SetActive(false);
+                Debug.Log("You can play");
+            }
         }
 
         if((int)(decompte - Time.deltaTime) != (int)(decompte))
