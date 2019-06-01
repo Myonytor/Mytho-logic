@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (!onMenu && Input.GetKeyDown(KeyCode.Space))
+        if (! onNewTurn && !onMenu && Input.GetKeyDown(KeyCode.Space))
         {
             skipTurnFunc();
         }
@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour
             indexPlayer = indexPlayer == 0 ? 1 : 0;
             mouse.player = Players[indexPlayer];
             skipTurn = false;
+            NewTurn();
         }
     }
 
