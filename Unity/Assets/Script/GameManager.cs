@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))//detecter bouton echap
+        if (Input.GetKeyDown(KeyCode.Escape)) // Détecter le bouton echap
         {
             if (onMenu)
             {
@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
         if(!onMenu)
             decompte -= Time.deltaTime;
 
-        if (decompte <= 0 || skipTurn)// Fin du timer
+        if (decompte <= 0 || skipTurn) // Fin du timer
         {
             mouse.Clear();
             decompte = timer;
@@ -361,7 +361,7 @@ public class GameManager : MonoBehaviour
     private void UsePowerSpecial(Unit monster, Mythologie.Mytho mythologie, ref int power)
     {
         if (Players[0].Mythologie.Name == mythologie) Players[0].Mythologie.PowerSpecial(monster, ref power);
-        if (Players[0].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
+        if (Players[1].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
     }
 
     public void skipTurnFunc()

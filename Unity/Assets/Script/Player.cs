@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 	}
 
 	// Ajoute un monstre dans une case libre du spawn du joueur
-	public void Add(string name, int power) // give in parameter the monster and player
+	public void Add(string name, int power)
 	{
 		GameObject[] spawns = GameObject.FindGameObjectsWithTag(_spawn);
 		int l = spawns.Length;
@@ -80,7 +80,6 @@ public class Player : MonoBehaviour
 					_monsters.Add(unit);
 
 					add = true;
-					Debug.Log("Add a monster in the map " + i);
 				}
 
 				i += 1;
