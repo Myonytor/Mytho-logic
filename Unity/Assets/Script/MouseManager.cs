@@ -10,6 +10,7 @@ public class MouseManager : MonoBehaviour
     public GameObject selectedObject;
 
     public Vector2[] goal= new Vector2[3];
+    public bool onMenu;
     
     public Player player;
     private Unit unit; //unité sélectionné
@@ -28,7 +29,7 @@ public class MouseManager : MonoBehaviour
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-        if (hit.collider != null)
+        if (hit.collider != null && !onMenu)
         {
             //Debug.Log(hit.collider.gameObject.transform.parent.name);
             GameObject hitObject = hit.collider.gameObject;
@@ -61,12 +62,12 @@ public class MouseManager : MonoBehaviour
                     int x = (int) (p.x - unit._position.x), y = (int) (p.y - unit._position.y);
                     if (player.IsCaseEmpty(p))
                     {
-                        if ((unit._position.y > 9 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 9))))
+                        if ((unit._position.y > 10 && ((unit._position.x < 3 && (int) p.y == 0) || (unit._position.x >= 3 && (int) p.y == 10))))
                             // Si le personnage est dans le spawn et la case d'arrivée sur le bord du plateau
                         {
                             unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
                         }
-                        else if (unit._position.y <= 9 && IsClickable(x, y))// Sinon, ou la case de départ n'est pas dans le spawn et la case d'arrivée est accessible
+                        else if (unit._position.y <= 10 && IsClickable(x, y))// Sinon, ou la case de départ n'est pas dans le spawn et la case d'arrivée est accessible
                         {
                             unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
                         }
@@ -90,7 +91,10 @@ public class MouseManager : MonoBehaviour
 
             if (selectedObject != null)
             {
-                selectedObject.GetComponent<SpriteRenderer>().color = Color.red;
+                if (IsAGoal(selectedObject.transform.parent.GetComponent<Tile>().coordinate))
+                    selectedObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0.38f, 0f);
+                else
+                    selectedObject.GetComponent<SpriteRenderer>().color = Color.red;
             }
         }
     }
@@ -110,14 +114,20 @@ public class MouseManager : MonoBehaviour
         }
 
         hoveredObject = hitObject;
-        hoveredObject.GetComponent<SpriteRenderer>().color = Color.grey;
+        if (IsAGoal(hoveredObject.transform.parent.GetComponent<Tile>().coordinate))
+            hoveredObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0.66f, 0f);
+        else
+            hoveredObject.GetComponent<SpriteRenderer>().color = Color.grey;
     }
 
     void ClearSelection(GameObject objectToClear)
     {
         if (objectToClear == null)
             return;
-        objectToClear.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.56f);
+        if (IsAGoal(objectToClear.transform.parent.GetComponent<Tile>().coordinate))
+            objectToClear.GetComponent<SpriteRenderer>().color = new Color(1f, 0.66f, 0f, 0.56f);
+        else
+            objectToClear.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.56f);
         //objectToClear = null; //semble inutile
     }
 
@@ -135,6 +145,17 @@ public class MouseManager : MonoBehaviour
     {
         // x et y sont les différences des coordonnées de départ par celles d'arrivées
         return x <= 1 && x >= -1 && y <= 1 && y >= -1 && x + y <= 1 && x + y >= -1;
+    }
+
+    bool IsAGoal(Vector2 v)
+    {
+        bool output = false;
+        for (int i = 0; i < goal.Length && !output; i ++)
+        {
+            output = v == goal[i];
+        }
+
+        return output;
     }
 
     public void Clear()

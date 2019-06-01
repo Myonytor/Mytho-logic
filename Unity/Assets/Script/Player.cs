@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
 	private GameObject prefabParticle;
 
-	public Player(string name, string spawn, List<GameObject> monsters, GameObject transform, GameObject particle, string mythologie, int id)
+	public Player(string name, string spawn, List<GameObject> monsters, GameObject transform, GameObject particle, int mythologie, int id)
 	{
 		_name = name;
 		_index = id;
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 	}
 
 	// Ajoute un monstre dans une case libre du spawn du joueur
-	public void Add(string name, int power) // give in parameter the monster and player
+	public void Add(string name, int power)
 	{
 		GameObject[] spawns = GameObject.FindGameObjectsWithTag(_spawn);
 		int l = spawns.Length;
@@ -80,7 +80,6 @@ public class Player : MonoBehaviour
 					_monsters.Add(unit);
 
 					add = true;
-					Debug.Log("Add a monster in the map " + i);
 				}
 
 				i += 1;

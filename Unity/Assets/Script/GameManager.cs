@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Script;
 using UnityEditor;
+using UnityEditor.Experimental.UIElements.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Serialization;
@@ -10,17 +12,19 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private const int timer = 25;
+    private const int timer = 60;
     public Board board;
     public int indexPlayer;
     public MouseManager mouse;
     
     private float decompte;
+    private bool onMenu;
 
     public List<GameObject> PrefabsMonsters;
     public List<Player> Players;
 
     public GameObject prefabParticle;
+    public GameObject pauseMenu;
 
     public Text timeText;
     public bool skipTurn;
@@ -32,6 +36,8 @@ public class GameManager : MonoBehaviour
         indexPlayer = 0;
         board.Setup();
         mouse.goal = board.goal;
+        onMenu = false;
+        mouse.onMenu = onMenu;
 
         // Entré des noms des joueurs à la place de Zeus et Poseidon"
         GameObject player = new GameObject("Player");
@@ -40,10 +46,17 @@ public class GameManager : MonoBehaviour
         GameObject player1 = new GameObject("Poseidon");
         player1.transform.parent = player.transform;
         
+        /*
+         * Correspondance pour les mythologies :
+         * 0 = Egyptienne
+         * 1 = Grecque
+         * 2 = Japonaise
+         * 3 = Nordique
+         */
         Players = new List<Player>()
             {
-                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2), player0, prefabParticle, "Nordique", 0),
-                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(2, 2), player1, prefabParticle, "Egyptienne", 1)
+                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2), player0, prefabParticle, 3, 0),
+                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(2, 2), player1, prefabParticle, 0, 1)
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         
@@ -55,9 +68,11 @@ public class GameManager : MonoBehaviour
         Players[0].Add("Meduse4", 2);
         Players[0].Add("Meduse5", 4);
         Players[0].Add("Meduse6", 2);
+        
         Players[0].AddTest("MeduseTest4", 4, 1, 1);
         Players[0].AddTest("MeduseTest5", 4, 1, 2);
         Players[0].AddTest("MeduseTest6", 4, 2, 1);
+        
         
         Players[1].Add("Nout0", 3);
         Players[1].Add("Nout1", 4);
@@ -66,38 +81,85 @@ public class GameManager : MonoBehaviour
         Players[1].Add("Nout4", 3);
         Players[1].Add("Nout5", 2);
         Players[1].Add("Nout6", 1);
+        
         Players[1].AddTest("NoutTest2", 4, 0, 2);
         Players[1].AddTest("NoutTest3", 4, 0, 3);
         Players[1].AddTest("NoutTest4", 4, 2, 2);
+        
 
         Players[0].Mythologie.activated = true;
         Players[1].Mythologie.activated = true;
         
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
+        /*
         foreach (var p in Players)
         {
             foreach (var m in p._monsters)
             {
-                Debug.Log(m);
+                //Debug.Log(m.name);
+                Debug.Log(m._position.x + "; " + m._position.y);
             }
         }
+        */
     }
 
     // Update is called once per frame
     void Update()
-    {        
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) // Détecter le bouton echap
+        {
+            if (onMenu)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
+
         if((int)(decompte - Time.deltaTime) != (int)(decompte))
         {
-            Debug.Log((int)(decompte - Time.deltaTime));
             timeText.text = "Temps restant : " + (int)(decompte - Time.deltaTime);
         }
-        decompte -= Time.deltaTime;
+        if(!onMenu)
+            decompte -= Time.deltaTime;
 
-        if (decompte <= 0 || skipTurn)// Fin du timer
+        if (decompte <= 0 || skipTurn) // Fin du timer
         {
             mouse.Clear();
             decompte = timer;
-            if (indexPlayer == 1) NextBoard();
+            if (indexPlayer == 1)
+            {
+                NextBoard();
+                int w = 0;
+                for(int i = 0; i < Players.Count; i++)
+                {
+                    foreach (var m in Players[i]._monsters)
+                    {
+                        for (int j = 0; j < board.goal.Length; j++)
+                        {
+                            if (board.goal[j] == m._position)
+                                w += (i == 0 ? 1 : -1);
+                        }
+                    }
+
+                    if (w != 0)
+                        i = Players.Count;
+                }
+
+                if (Math.Abs(w) == 3)
+                {
+                    if (w > 0)
+                    {
+                        Debug.Log(Players[0].Name + " a gagné");
+                    }
+                    else
+                    {
+                        Debug.Log(Players[1].Name + " a gagné");
+                    }
+                }
+            }
             indexPlayer = indexPlayer == 0 ? 1 : 0;
             mouse.player = Players[indexPlayer];
             skipTurn = false;
@@ -115,9 +177,9 @@ public class GameManager : MonoBehaviour
             foreach (var monster in player._monsters)
             {
                 int power = 0;
-                UsePowerSpecial(monster, "Egyptienne", ref power);
+                UsePowerSpecial(monster, Mythologie.Mytho.Egyptienne, ref power);
                 Vector2 movement = monster._position + monster._movement;
-                
+
                 // Monstres qui vont bouger ainsi que leur attaque si il y en a
                 if (moves.ContainsKey(movement))
                 {
@@ -125,42 +187,42 @@ public class GameManager : MonoBehaviour
                     foreach (var m in moves[movement])
                         m._attack = Vector2.zero;
                 }
-                else moves.Add(movement, new List<Unit>(){monster});
+                else moves.Add(movement, new List<Unit>() {monster});
             }
         }
-        
-        foreach (var player in Players)// Répertorie la position des différentes attaques
+
+        foreach (var player in Players) // Répertorie la position des différentes attaques
         {
             foreach (var monster in player._monsters)
             {
                 int power = 0;
-                UsePowerSpecial(monster, "Japonaise", ref power);
-                
+                UsePowerSpecial(monster, Mythologie.Mytho.Japonaise, ref power);
+
                 if (monster._attack != Vector2.zero)
                 {
                     Vector2 attack = monster._position + monster._movement + monster._attack;
-                    for (int i = 0; i < 3; i++)// Un monstre peut attaquer jusqu'à 3 cases de distance
+                    for (int i = 0; i < 3; i++) // Un monstre peut attaquer jusqu'à 3 cases de distance
                     {
                         bool isAttackable = false;
-                        if (moves.ContainsKey(attack))// Teste si un monstre adverse est présent sur la case
+                        if (moves.ContainsKey(attack)) // Teste si un monstre adverse est présent sur la case
                         {
                             foreach (var m in moves[attack])
                                 isAttackable = isAttackable || m.Player != monster.Player;
                         }
 
-                        if(isAttackable)// S'il y a un monstre qui peut être attaqué, on l'ajoute au dictionnaire
+                        if (isAttackable) // S'il y a un monstre qui peut être attaqué, on l'ajoute au dictionnaire
                         {
                             if (attacks.ContainsKey(attack)) attacks[attack].Add(monster);
                             else attacks.Add(attack, new List<Unit>() {monster});
                             i = 3;
                         }
-                        else// Sinon on regarde sur la case suivante
+                        else // Sinon on regarde sur la case suivante
                             attack += monster._attack;
                     }
                 }
             }
         }
-        
+
         MoveMonsters(moves, attacks);
     }
 
@@ -170,30 +232,30 @@ public class GameManager : MonoBehaviour
         Dictionary<Vector2, List<Unit>> repelledMonster = new Dictionary<Vector2, List<Unit>>();
         foreach (var monsters in moves)
         {
-            if (monsters.Value.Count == 2)// S'il y a deux monstres qui veulent aller sur cette case
+            if (monsters.Value.Count == 2) // S'il y a deux monstres qui veulent aller sur cette case
             {
                 Debug.Log("Deux monstres se retrouvent sur la même case");
 
                 int power = 0;
                 var m = monsters.Value;
                 int attack = m[0].Power - m[1].Power;
-                
-                UsePowerSpecial(m[0], "Nordique", ref attack);
-                UsePowerSpecial(m[1], "Nordique", ref power);
+
+                UsePowerSpecial(m[0], Mythologie.Mytho.Nordique, ref attack);
+                UsePowerSpecial(m[1], Mythologie.Mytho.Nordique, ref power);
                 attack -= power;
 
-                if (attacks.ContainsKey(monsters.Key))// S'il y a des monstres qui attaquent cette case
+                if (attacks.ContainsKey(monsters.Key)) // S'il y a des monstres qui attaquent cette case
                 {
                     foreach (var monster in attacks[monsters.Key])
                     {
                         attack += (monster.Player == m[0].Player ? monster.Power : -monster.Power);
                     }
-                    
+
                     Debug.Log("Il y a des attaques extérieur");
                 }
 
                 var movement = m[1]._movement;
-                if (attack >= 0)// Si le premier monstre gagne
+                if (attack >= 0) // Si le deuxieme monstre perd
                 {
                     m[1]._movement = (m[1]._movement == Vector2.zero ? m[0]._movement : Vector2.zero);
                     if (!m[1].wounded)
@@ -202,10 +264,12 @@ public class GameManager : MonoBehaviour
                         if (repelledMonster.ContainsKey(v)) repelledMonster[v].Add(m[1]);
                         else repelledMonster.Add(v, new List<Unit>() {m[1]});
                     }
+
                     State(m[1]);
                     m.RemoveAt(1);
                 }
-                if (attack <= 0)// Si le deuxième monstre gagne
+
+                if (attack <= 0) // Si le premier monstre perd
                 {
                     m[0]._movement = (m[0]._movement == Vector2.zero ? movement : Vector2.zero);
                     if (!m[0].wounded)
@@ -214,11 +278,12 @@ public class GameManager : MonoBehaviour
                         if (repelledMonster.ContainsKey(v)) repelledMonster[v].Add(m[0]);
                         else repelledMonster.Add(v, new List<Unit>() {m[0]});
                     }
+
                     State(m[0]);
                     m.RemoveAt(0);
                 }
 
-                if (m.Count == 1)// Si un monstre se déplace sur la case ciblée
+                if (m.Count == 1) // Si un monstre se déplace sur la case ciblée
                 {
                     m[0]._position = monsters.Key;
                     Move(m[0]);
@@ -226,23 +291,23 @@ public class GameManager : MonoBehaviour
                 }
                 else Debug.Log("Il y a toujours deux monstres");
             }
-            else// Sinon, il n'y a qu'un monstre qui veut atteindre cette case
+            else // Sinon, il n'y a qu'un monstre qui veut atteindre cette case
             {
                 var m = monsters.Value[0];
                 m._position = monsters.Key;
                 Move(m);
-                
-                if (attacks.ContainsKey(monsters.Key))// Si la case est attaquée
+
+                if (attacks.ContainsKey(monsters.Key)) // Si la case est attaquée
                 {
                     int attack = m.Power;
-                    UsePowerSpecial(m, "Nordique", ref attack);
-                    
+                    UsePowerSpecial(m, Mythologie.Mytho.Nordique, ref attack);
+
                     foreach (var monster in attacks[monsters.Key])
                     {
                         attack += (monster.Player == m.Player ? monster.Power : -monster.Power);
                     }
 
-                    if (attack <= 0)// Si le monstre perd
+                    if (attack <= 0) // Si le monstre perd
                     {
                         if (m.wounded) Debug.Log(m.Name + " est mort d'attaque extérieur");
                         State(m);
@@ -251,18 +316,18 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        foreach (var kvp in repelledMonster)// Pour tout les monstres qui ont été repoussés
+        foreach (var kvp in repelledMonster) // Pour tout les monstres qui ont été repoussés
         {
             if ((moves.ContainsKey(kvp.Key) && moves[kvp.Key].Count > 0)
                 || kvp.Value.Count > 1
-                || kvp.Key.x < 0 || kvp.Key.x > 9 || kvp.Key.y < 0 || kvp.Key.y > 9)// Les cas ou le monstres meurt
+                || kvp.Key.x < 0 || kvp.Key.x > 10 || kvp.Key.y < 0 || kvp.Key.y > 10) // Les cas ou le monstres meurt
             {
                 foreach (var monster in kvp.Value)
                 {
                     State(monster);
                 }
             }
-            else// Les cas ou le monstre est juste repoussé
+            else // Les cas ou le monstre est juste repoussé
             {
                 var m = kvp.Value[0];
                 m._position = kvp.Key;
@@ -274,6 +339,8 @@ public class GameManager : MonoBehaviour
     // Déplace la prefab du monstre en fonction de sa position
     private void Move(Unit monster)
     {
+        if (monster._movement != Vector2.zero) Debug.Log(monster.Name + " c'est déplacé");
+        
         board.hexGrid[(int) monster._position.x, (int) monster._position.y].GetComponent<Tile>().isEmpty = true;
         
         // Gestion du mouvement lorsqu'il n'y a qu'un monstre sur la case d'arrivée
@@ -281,8 +348,6 @@ public class GameManager : MonoBehaviour
         monster._movement = Vector2.zero;
         monster._attack = Vector2.zero;
         board.hexGrid[(int) (monster._position.x), (int) monster._position.y].GetComponent<Tile>().isEmpty = false;
-                
-        Debug.Log(monster.Name + " c'est déplacé");
     }
 
     // Fait perdre une vie au monstre
@@ -293,14 +358,32 @@ public class GameManager : MonoBehaviour
     }
 
     // Utilise le pouvoir de la mythologie de chaque joueurs si elle est activée
-    private void UsePowerSpecial(Unit monster, string mythologie, ref int power)
+    private void UsePowerSpecial(Unit monster, Mythologie.Mytho mythologie, ref int power)
     {
         if (Players[0].Mythologie.Name == mythologie) Players[0].Mythologie.PowerSpecial(monster, ref power);
-        if (Players[0].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
+        if (Players[1].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
     }
 
     public void skipTurnFunc()
     {
         skipTurn = true;
+    }
+
+    public void Pause()
+    {
+        onMenu = true;
+        mouse.onMenu = onMenu;       
+        Time.timeScale = 0f; 
+        pauseMenu.SetActive(true); 
+        Debug.Log("You are on the Menu");
+    }
+
+    public void Resume()
+    {
+        onMenu = false;
+        mouse.onMenu = onMenu;       
+        Time.timeScale = 1f; 
+        pauseMenu.SetActive(false); 
+        Debug.Log("You can play");
     }
 }

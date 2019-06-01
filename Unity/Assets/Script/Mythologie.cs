@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,8 +6,8 @@ namespace Script
 {
     public class Mythologie : MonoBehaviour
     {
-        private string _name;
-        public string Name => _name;
+        private Mytho _name;
+        public Mytho Name => _name;
         
         private List<GameObject> _monsters;
         public List<GameObject> Monsters => _monsters;
@@ -15,9 +16,9 @@ namespace Script
 
         public bool activated;
 
-        public Mythologie(string name, List<GameObject> monsters, int id)
+        public Mythologie(int mythologie, List<GameObject> monsters, int id)
         {
-            _name = name;
+            _name = (Mytho) mythologie;
             _monsters = monsters;
             activated = false;
             indexPlayer = id;
@@ -37,16 +38,16 @@ namespace Script
         {
             switch (_name)
             {
-                case "Egyptienne":
+                case Mytho.Egyptienne:
                     Egyptienne(monster);
                     break;
-                case "Grecque":
+                case Mytho.Grecque:
                     Grecque(monster);
                     break;
-                case "Japonaise":
+                case Mytho.Japonaise:
                     Japonaise(monster);
                     break;
-                case "Nordique":
+                case Mytho.Nordique:
                     Nordique(monster, ref power);
                     break;
                 default:
@@ -60,9 +61,11 @@ namespace Script
         {
             if (activated && monster.Player != indexPlayer)
             {
+                Debug.Log("Pouvoir de la mythologie Egyptienne appliqué sur " + monster.Name + ", (" + monster._movement.x + ", " + monster._movement.y + ")");
+                
                 monster._movement = Vector2.zero;
-
-                Debug.Log("Pouvoir de la mythologie Egyptienne appliqué sur " + monster.Name + ", réinitialisation du mouvement");
+                
+                if (monster._movement == Vector2.zero) Debug.Log("Réinitialisation du mouvement");
             }
             else Debug.Log(monster.Name + " n'est pas un ennemi, l'index de son joueur est : " + monster.Player);
         }
@@ -78,9 +81,11 @@ namespace Script
         {
             if (activated && monster.Player != indexPlayer)
             {
+                Debug.Log("Pouvoir de la mythologie Japonaise appliqué sur " + monster.Name + ", (" + monster._attack.x + ", " + monster._attack.y + ")");
+                
                 monster._attack = Vector2.zero;
                 
-                Debug.Log("Pouvoir de la mythologie Japonaise appliqué sur " + monster.Name + ", réinitialisation de l'attaque");
+                if (monster._attack == Vector2.zero) Debug.Log("Réinitialisation de l'attaque");
             }
             else Debug.Log(monster.Name + " n'est pas un ennemi, l'index de son joueur est : " + monster.Player);
         }
@@ -95,6 +100,14 @@ namespace Script
                 Debug.Log("Pouvoir de la mythologie Nordique appliqué sur " + monster.Name + ", augmentation de la puissance d'attaque");
             }
             else Debug.Log(monster.Name + " n'est pas blessé, où est un ennemi");
+        }
+
+        public enum Mytho
+        {
+            Egyptienne,
+            Grecque,
+            Japonaise,
+            Nordique
         }
     }
 }
