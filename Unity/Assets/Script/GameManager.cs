@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
         Players[1].Mythologie.activated = true;
         
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
+        /*
         foreach (var p in Players)
         {
             foreach (var m in p._monsters)
@@ -99,6 +100,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log(m._position.x + "; " + m._position.y);
             }
         }
+        */
     }
 
     // Update is called once per frame
@@ -106,19 +108,13 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))//detecter bouton echap
         {
-            onMenu = !onMenu;
-            mouse.onMenu = onMenu;
             if (onMenu)
             {
-                Time.timeScale = 0f;
-                pauseMenu.SetActive(true);
-                Debug.Log("Your on the Menu");
+                Resume();
             }
             else
             {
-                Time.timeScale = 1f;
-                pauseMenu.SetActive(false);
-                Debug.Log("You can play");
+                Pause();
             }
         }
 
@@ -372,5 +368,23 @@ public class GameManager : MonoBehaviour
     public void skipTurnFunc()
     {
         skipTurn = true;
+    }
+
+    public void Pause()
+    {
+        onMenu = true;
+        mouse.onMenu = onMenu;       
+        Time.timeScale = 0f; 
+        pauseMenu.SetActive(true); 
+        Debug.Log("Your on the Menu");
+    }
+
+    public void Resume()
+    {
+        onMenu = false;
+        mouse.onMenu = onMenu;       
+        Time.timeScale = 1f; 
+        pauseMenu.SetActive(false); 
+        Debug.Log("You can play");
     }
 }
