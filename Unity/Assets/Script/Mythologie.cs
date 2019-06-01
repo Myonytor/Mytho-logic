@@ -61,9 +61,11 @@ namespace Script
         {
             if (activated && monster.Player != indexPlayer)
             {
+                Debug.Log("Pouvoir de la mythologie Egyptienne appliqué sur " + monster.Name + ", (" + monster._movement.x + ", " + monster._movement.y + ")");
+                
                 monster._movement = Vector2.zero;
-
-                Debug.Log("Pouvoir de la mythologie Egyptienne appliqué sur " + monster.Name + ", réinitialisation du mouvement");
+                
+                if (monster._movement == Vector2.zero) Debug.Log("Réinitialisation du mouvement");
             }
             else Debug.Log(monster.Name + " n'est pas un ennemi, l'index de son joueur est : " + monster.Player);
         }
@@ -79,9 +81,11 @@ namespace Script
         {
             if (activated && monster.Player != indexPlayer)
             {
+                Debug.Log("Pouvoir de la mythologie Japonaise appliqué sur " + monster.Name + ", (" + monster._attack.x + ", " + monster._attack.y + ")");
+                
                 monster._attack = Vector2.zero;
                 
-                Debug.Log("Pouvoir de la mythologie Japonaise appliqué sur " + monster.Name + ", réinitialisation de l'attaque");
+                if (monster._attack == Vector2.zero) Debug.Log("Réinitialisation de l'attaque");
             }
             else Debug.Log(monster.Name + " n'est pas un ennemi, l'index de son joueur est : " + monster.Player);
         }
