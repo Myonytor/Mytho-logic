@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
         if((int)(decompte - Time.deltaTime) != (int)(decompte))
         {
             Debug.Log((int)(decompte - Time.deltaTime));
-            //timeText.text = "Temps restant : " + (int)(decompte - Time.deltaTime);
+            timeText.text = "Temps restant : " + (int)(decompte - Time.deltaTime);
         }
         decompte -= Time.deltaTime;
 
