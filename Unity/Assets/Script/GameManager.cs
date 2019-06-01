@@ -120,7 +120,6 @@ public class GameManager : MonoBehaviour
 
         if((int)(decompte - Time.deltaTime) != (int)(decompte))
         {
-            Debug.Log((int)(decompte - Time.deltaTime));
             timeText.text = "Temps restant : " + (int)(decompte - Time.deltaTime);
         }
         if(!onMenu)
@@ -340,6 +339,8 @@ public class GameManager : MonoBehaviour
     // Déplace la prefab du monstre en fonction de sa position
     private void Move(Unit monster)
     {
+        if (monster._movement != Vector2.zero) Debug.Log(monster.Name + " c'est déplacé");
+        
         board.hexGrid[(int) monster._position.x, (int) monster._position.y].GetComponent<Tile>().isEmpty = true;
         
         // Gestion du mouvement lorsqu'il n'y a qu'un monstre sur la case d'arrivée
@@ -347,8 +348,6 @@ public class GameManager : MonoBehaviour
         monster._movement = Vector2.zero;
         monster._attack = Vector2.zero;
         board.hexGrid[(int) (monster._position.x), (int) monster._position.y].GetComponent<Tile>().isEmpty = false;
-                
-        Debug.Log(monster.Name + " c'est déplacé");
     }
 
     // Fait perdre une vie au monstre
@@ -376,7 +375,7 @@ public class GameManager : MonoBehaviour
         mouse.onMenu = onMenu;       
         Time.timeScale = 0f; 
         pauseMenu.SetActive(true); 
-        Debug.Log("Your on the Menu");
+        Debug.Log("You are on the Menu");
     }
 
     public void Resume()
