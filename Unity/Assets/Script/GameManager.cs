@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Experimental.UIElements.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Serialization;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     public MouseManager mouse;
     
     private float decompte;
+    private bool onMenu;
 
     public List<GameObject> PrefabsMonsters;
     public List<Player> Players;
@@ -32,6 +34,8 @@ public class GameManager : MonoBehaviour
         indexPlayer = 0;
         board.Setup();
         mouse.goal = board.goal;
+        onMenu = false;
+        mouse.onMenu = onMenu;
 
         // Entré des noms des joueurs à la place de Zeus et Poseidon"
         GameObject player = new GameObject("Player");
@@ -90,13 +94,22 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))//detecter bouton echap
+        {
+            onMenu = !onMenu;
+            mouse.onMenu = onMenu;
+            if (onMenu) Debug.Log("Your on the (invisible) Menu");
+            else Debug.Log("You can play");
+        }
+
         if((int)(decompte - Time.deltaTime) != (int)(decompte))
         {
             Debug.Log((int)(decompte - Time.deltaTime));
             //timeText.text = "Temps restant : " + (int)(decompte - Time.deltaTime);
         }
-        decompte -= Time.deltaTime;
+        if(!onMenu)
+            decompte -= Time.deltaTime;
 
         if (decompte <= 0 || skipTurn)// Fin du timer
         {

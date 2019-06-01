@@ -10,6 +10,7 @@ public class MouseManager : MonoBehaviour
     public GameObject selectedObject;
 
     public Vector2[] goal= new Vector2[3];
+    public bool onMenu;
     
     public Player player;
     private Unit unit; //unité sélectionné
@@ -28,12 +29,7 @@ public class MouseManager : MonoBehaviour
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-        if (Input.GetKeyDown(KeyCode.Escape))//detecter bouton echap
-        {
-            Debug.Log("test");
-        }
-
-        if (hit.collider != null)
+        if (hit.collider != null && !onMenu)
         {
             //Debug.Log(hit.collider.gameObject.transform.parent.name);
             GameObject hitObject = hit.collider.gameObject;
