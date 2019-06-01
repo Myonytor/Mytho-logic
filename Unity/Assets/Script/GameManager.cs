@@ -379,7 +379,6 @@ public class GameManager : MonoBehaviour
         mouse.onMenu = onMenu;       
         Time.timeScale = 0f; 
         pauseMenu.SetActive(true); 
-        Debug.Log("You are on the Menu");
     }
 
     public void Resume()
@@ -388,6 +387,5 @@ public class GameManager : MonoBehaviour
         mouse.onMenu = onMenu;       
         Time.timeScale = 1f; 
         pauseMenu.SetActive(false); 
-        Debug.Log("You can play");
     }
 }
