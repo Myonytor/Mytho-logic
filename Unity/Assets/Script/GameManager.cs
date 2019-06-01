@@ -399,7 +399,7 @@ public class GameManager : MonoBehaviour
         onNewTurn = true;
         mouse.onMenu = true;
         Time.timeScale = 0;
-        newTurnText.text = "C'est à " + Players[indexPlayer].name + " de jouer";
+        newTurnText.text = "C'est à " + Players[indexPlayer].Name + " de jouer";
         newTurnPanel.SetActive(true);
     }
     
