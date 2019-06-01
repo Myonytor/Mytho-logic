@@ -73,8 +73,8 @@ public class Board : MonoBehaviour
                     float xPos = spawnX * xOffset + xOffset * spawnY;
                     float yPos = spawnY * yOffset - yOffset * spawnX;
                     GameObject hexSpawn = Instantiate(hexPrefab, new Vector2(xPos,yPos), Quaternion.identity, Spawn1.transform) as GameObject;
-                    hexSpawn.GetComponent<Tile>().SetUp(spawnX, spawnY + 10);
-                    hexSpawn.name = "Hex_x" + spawnX + "_y" + (spawnY + 10);
+                    hexSpawn.GetComponent<Tile>().SetUp(spawnX, spawnY + 11);
+                    hexSpawn.name = "Hex_x" + spawnX + "_y" + (spawnY + 11);
                     hexSpawn.tag = "Spawn1";
                     hexGrid[spawnX, spawnY + height] = hexSpawn;
                 }
@@ -94,8 +94,8 @@ public class Board : MonoBehaviour
                     float xPos = spawnX * xOffset + xOffset * spawnY;
                     float yPos = spawnY * yOffset - yOffset * spawnX;
                     GameObject hexSpawn = Instantiate(hexPrefab, new Vector2(xPos, yPos), Quaternion.identity, Spawn2.transform) as GameObject;
-                    hexSpawn.GetComponent<Tile>().SetUp(spawnX + 3, spawnY + 10);
-                    hexSpawn.name = "Hex_x" + (spawnX + 3) + "_y" + (spawnY + 10);
+                    hexSpawn.GetComponent<Tile>().SetUp(spawnX + 3, spawnY + 11);
+                    hexSpawn.name = "Hex_x" + (spawnX + 3) + "_y" + (spawnY + 11);
                     hexSpawn.tag = "Spawn2";
                     hexGrid[spawnX + 3, spawnY + height] = hexSpawn;
                 }
