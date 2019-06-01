@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private const int timer = 10;
+    private const int timer = 25;
     public Board board;
     public int indexPlayer;
     public MouseManager mouse;
@@ -20,6 +21,9 @@ public class GameManager : MonoBehaviour
     public List<Player> Players;
 
     public GameObject prefabParticle;
+
+    public Text timeText;
+    public bool skipTurn;
     
     // Start is called before the first frame update
     void Start()
@@ -27,7 +31,8 @@ public class GameManager : MonoBehaviour
         decompte = timer;
         indexPlayer = 0;
         board.Setup();
-        
+        mouse.goal = board.goal;
+
         // Entré des noms des joueurs à la place de Zeus et Poseidon"
         GameObject player = new GameObject("Player");
         GameObject player0 = new GameObject("Zeus");
@@ -37,33 +42,36 @@ public class GameManager : MonoBehaviour
         
         Players = new List<Player>()
             {
-                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2), player0, prefabParticle),
-                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(2, 2), player1, prefabParticle)
+                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(0, 2), player0, prefabParticle, "Nordique", 0),
+                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(2, 2), player1, prefabParticle, "Egyptienne", 1)
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         
         
-        Players[0].Add("Meduse0", 0, 2);
-        Players[0].Add("Meduse1", 0, 1);
-        Players[0].Add("Meduse2", 0, 3);
-        Players[0].Add("Meduse3", 0, 1);
-        Players[0].Add("Meduse4", 0, 2);
-        Players[0].Add("Meduse5", 0, 4);
-        Players[0].Add("Meduse6", 0, 2);
-        Players[0].AddTest("MeduseTest4", 0, 4, 1, 1);
-        Players[0].AddTest("MeduseTest5", 0, 4, 1, 2);
-        Players[0].AddTest("MeduseTest6", 0, 4, 2, 1);
+        Players[0].Add("Meduse0", 2);
+        Players[0].Add("Meduse1", 1);
+        Players[0].Add("Meduse2", 3);
+        Players[0].Add("Meduse3", 1);
+        Players[0].Add("Meduse4", 2);
+        Players[0].Add("Meduse5", 4);
+        Players[0].Add("Meduse6", 2);
+        Players[0].AddTest("MeduseTest4", 4, 1, 1);
+        Players[0].AddTest("MeduseTest5", 4, 1, 2);
+        Players[0].AddTest("MeduseTest6", 4, 2, 1);
         
-        Players[1].Add("Nout0", 1, 3);
-        Players[1].Add("Nout1", 1, 4);
-        Players[1].Add("Nout2", 1, 2);
-        Players[1].Add("Nout3", 1, 1);
-        Players[1].Add("Nout4", 1, 3);
-        Players[1].Add("Nout5", 1, 2);
-        Players[1].Add("Nout6", 1, 1);
-        Players[1].AddTest("NoutTest2", 1, 4, 0, 2);
-        Players[1].AddTest("NoutTest3", 1, 4, 0, 3);
-        Players[1].AddTest("NoutTest4", 1, 4, 2, 2);
+        Players[1].Add("Nout0", 3);
+        Players[1].Add("Nout1", 4);
+        Players[1].Add("Nout2", 2);
+        Players[1].Add("Nout3", 1);
+        Players[1].Add("Nout4", 3);
+        Players[1].Add("Nout5", 2);
+        Players[1].Add("Nout6", 1);
+        Players[1].AddTest("NoutTest2", 4, 0, 2);
+        Players[1].AddTest("NoutTest3", 4, 0, 3);
+        Players[1].AddTest("NoutTest4", 4, 2, 2);
+
+        Players[0].Mythologie.activated = true;
+        Players[1].Mythologie.activated = true;
         
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
         foreach (var p in Players)
@@ -79,16 +87,20 @@ public class GameManager : MonoBehaviour
     void Update()
     {        
         if((int)(decompte - Time.deltaTime) != (int)(decompte))
+        {
             Debug.Log((int)(decompte - Time.deltaTime));
+            timeText.text = "Temps restant : " + (int)(decompte - Time.deltaTime);
+        }
         decompte -= Time.deltaTime;
-        
-        if (decompte <= 0)// Fin du timer
+
+        if (decompte <= 0 || skipTurn)// Fin du timer
         {
             mouse.Clear();
             decompte = timer;
             if (indexPlayer == 1) NextBoard();
             indexPlayer = indexPlayer == 0 ? 1 : 0;
             mouse.player = Players[indexPlayer];
+            skipTurn = false;
         }
     }
 
@@ -102,6 +114,8 @@ public class GameManager : MonoBehaviour
         {
             foreach (var monster in player._monsters)
             {
+                int power = 0;
+                UsePowerSpecial(monster, "Egyptienne", ref power);
                 Vector2 movement = monster._position + monster._movement;
                 
                 // Monstres qui vont bouger ainsi que leur attaque si il y en a
@@ -119,6 +133,9 @@ public class GameManager : MonoBehaviour
         {
             foreach (var monster in player._monsters)
             {
+                int power = 0;
+                UsePowerSpecial(monster, "Japonaise", ref power);
+                
                 if (monster._attack != Vector2.zero)
                 {
                     Vector2 attack = monster._position + monster._movement + monster._attack;
@@ -156,9 +173,14 @@ public class GameManager : MonoBehaviour
             if (monsters.Value.Count == 2)// S'il y a deux monstres qui veulent aller sur cette case
             {
                 Debug.Log("Deux monstres se retrouvent sur la même case");
-                
+
+                int power = 0;
                 var m = monsters.Value;
                 int attack = m[0].Power - m[1].Power;
+                
+                UsePowerSpecial(m[0], "Nordique", ref attack);
+                UsePowerSpecial(m[1], "Nordique", ref power);
+                attack -= power;
 
                 if (attacks.ContainsKey(monsters.Key))// S'il y a des monstres qui attaquent cette case
                 {
@@ -213,6 +235,7 @@ public class GameManager : MonoBehaviour
                 if (attacks.ContainsKey(monsters.Key))// Si la case est attaquée
                 {
                     int attack = m.Power;
+                    UsePowerSpecial(m, "Nordique", ref attack);
                     
                     foreach (var monster in attacks[monsters.Key])
                     {
@@ -221,7 +244,7 @@ public class GameManager : MonoBehaviour
 
                     if (attack <= 0)// Si le monstre perd
                     {
-                        if (m.wounded) Debug.Log(m.Name + " va mourir d'attaque extérieur");
+                        if (m.wounded) Debug.Log(m.Name + " est mort d'attaque extérieur");
                         State(m);
                     }
                 }
@@ -232,7 +255,7 @@ public class GameManager : MonoBehaviour
         {
             if ((moves.ContainsKey(kvp.Key) && moves[kvp.Key].Count > 0)
                 || kvp.Value.Count > 1
-                || kvp.Key.x < 0 || kvp.Key.x > 9 || kvp.Key.y < 0 || kvp.Key.y > 12)// Les cas ou le monstres meurt
+                || kvp.Key.x < 0 || kvp.Key.x > 9 || kvp.Key.y < 0 || kvp.Key.y > 9)// Les cas ou le monstres meurt
             {
                 foreach (var monster in kvp.Value)
                 {
@@ -262,9 +285,22 @@ public class GameManager : MonoBehaviour
         Debug.Log(monster.Name + " c'est déplacé");
     }
 
-    private void State(Unit monster)// Fait perdre une vie au monstre
+    // Fait perdre une vie au monstre
+    private void State(Unit monster)
     {
         if (!monster.wounded) monster.wounded = true;
         else Players[monster.Player].Delete(monster);
+    }
+
+    // Utilise le pouvoir de la mythologie de chaque joueurs si elle est activée
+    private void UsePowerSpecial(Unit monster, string mythologie, ref int power)
+    {
+        if (Players[0].Mythologie.Name == mythologie) Players[0].Mythologie.PowerSpecial(monster, ref power);
+        if (Players[0].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
+    }
+
+    public void skipTurnFunc()
+    {
+        skipTurn = true;
     }
 }

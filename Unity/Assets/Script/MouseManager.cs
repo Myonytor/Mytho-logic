@@ -9,6 +9,8 @@ public class MouseManager : MonoBehaviour
     public GameObject hoveredObject;
     public GameObject selectedObject;
 
+    public Vector2[] goal= new Vector2[3];
+    
     public Player player;
     private Unit unit; //unité sélectionné
 
