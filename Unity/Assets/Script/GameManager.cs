@@ -116,6 +116,9 @@ public class GameManager : MonoBehaviour
                                 w += (i == 0 ? 1 : -1);
                         }
                     }
+
+                    if (w != 0)
+                        i = Players.Count;
                 }
 
                 if (Math.Abs(w) == 3)

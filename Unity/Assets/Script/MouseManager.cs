@@ -28,6 +28,11 @@ public class MouseManager : MonoBehaviour
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
+        if (Input.GetKeyDown(KeyCode.Escape))//detecter bouton echap
+        {
+            Debug.Log("test");
+        }
+
         if (hit.collider != null)
         {
             //Debug.Log(hit.collider.gameObject.transform.parent.name);
