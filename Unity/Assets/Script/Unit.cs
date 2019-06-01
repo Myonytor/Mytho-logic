@@ -38,15 +38,19 @@ public class Unit : MonoBehaviour
 		_power = power;
 		
 		particleMove = Instantiate(prefabParticle);
-		particleMove.GetComponent<ParticleSystem>().enableEmission = false;
-		particleMove.GetComponent<ParticleSystem>().startColor = Color.blue;
-		particleMove.transform.parent = prefabMonster.transform.parent;
+		var e = particleMove.GetComponent<ParticleSystem>().emission;
+		e.enabled = false;
+		var m = particleMove.GetComponent<ParticleSystem>().main;
+		m.startColor = Color.blue;
+		particleMove.transform.parent = prefabMonster.transform;
 		particleMove.transform.position = monster.transform.position;
 		
 		particleAttack = Instantiate(prefabParticle);
-		particleAttack.GetComponent<ParticleSystem>().enableEmission = false;
-		particleAttack.GetComponent<ParticleSystem>().startColor = Color.red;
-		particleAttack.transform.parent = prefabMonster.transform.parent;
+		e = particleAttack.GetComponent<ParticleSystem>().emission;
+		e.enabled = false;
+		m = particleAttack.GetComponent<ParticleSystem>().main;
+		m.startColor = Color.red;
+		particleAttack.transform.parent = prefabMonster.transform;
 		particleAttack.transform.position = monster.transform.position;
 	}
 	
@@ -61,13 +65,15 @@ public class Unit : MonoBehaviour
 		_movement = coordinates;
 		_attack = Vector2.zero;
 		
-        particleSystem.enableEmission = true;
+        var e = particleSystem.emission;
+		e.enabled = true;
 		
         double teta = Math.Atan2(y, x) * 180 / Math.PI;
 		particleSystem.transform.eulerAngles = new Vector3((float)(-teta), 90, 90);
 
         double distance = Math.Sqrt(x * x + y * y);
-        particleSystem.startLifetime = (float)distance / 3;
+        var m = particleSystem.main;
+		m.startLifetime = (float)distance / 3;
     }
 
 	public void DefineAttack(Vector2 coordinates, Vector3 direction)
@@ -78,13 +84,15 @@ public class Unit : MonoBehaviour
 
 		_attack = coordinates;
 		
-        particleSystem.enableEmission = true;
+        var e = particleSystem.emission;
+		e.enabled = true;
 		
         double teta = Math.Atan2(y, x) * 180 / Math.PI;
 		particleSystem.transform.eulerAngles = new Vector3((float)(-teta), 90, 90);
 
         double distance = Math.Sqrt(x * x + y * y);
-        particleSystem.startLifetime = (float)distance;
+        var m = particleSystem.main;
+		m.startLifetime = (float)distance;
 	}
 
 	public void MovePrefab(Vector3 direction)
@@ -98,7 +106,8 @@ public class Unit : MonoBehaviour
 	public void ClearParticleMovement()
 	{
 		var p = particleMove.GetComponent<ParticleSystem>();
-		p.enableEmission = false;
+		var e = p.emission;
+		e.enabled = false;
 		p.Clear();
 		p.transform.eulerAngles = new Vector3(0, 90, 90);
 		particleMove.transform.position = prefabMonster.transform.position;
@@ -107,7 +116,8 @@ public class Unit : MonoBehaviour
 	public void ClearParticleAttack()
 	{
 		var p = particleAttack.GetComponent<ParticleSystem>();
-		p.enableEmission = false;
+		var m = p.emission;
+		m.enabled = false;
 		p.Clear();
 		p.transform.eulerAngles = new Vector3(0, 90, 90);
 		particleAttack.transform.position = prefabMonster.transform.position;

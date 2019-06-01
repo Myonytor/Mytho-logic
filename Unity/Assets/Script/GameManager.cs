@@ -19,14 +19,17 @@ public class GameManager : MonoBehaviour
     
     private float decompte;
     private bool onMenu;
+    private bool onNewTurn;
 
     public List<GameObject> PrefabsMonsters;
     public List<Player> Players;
 
     public GameObject prefabParticle;
     public GameObject pauseMenu;
+    public GameObject newTurnPanel;
 
     public Text timeText;
+    public Text newTurnText;
     public bool skipTurn;
     
     // Start is called before the first frame update
@@ -90,6 +93,8 @@ public class GameManager : MonoBehaviour
         Players[0].Mythologie.activated = true;
         Players[1].Mythologie.activated = true;
         
+        NewTurn();
+        
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
         /*
         foreach (var p in Players)
@@ -109,16 +114,12 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) // Détecter le bouton echap
         {
             if (onMenu)
-            {
                 Resume();
-            }
             else
-            {
                 Pause();
-            }
         }
 
-        if (!onMenu && Input.GetKeyDown(KeyCode.Space))
+        if (! onNewTurn && !onMenu && Input.GetKeyDown(KeyCode.Space))
         {
             skipTurnFunc();
         }
@@ -167,6 +168,7 @@ public class GameManager : MonoBehaviour
             indexPlayer = indexPlayer == 0 ? 1 : 0;
             mouse.player = Players[indexPlayer];
             skipTurn = false;
+            NewTurn();
         }
     }
 
@@ -379,15 +381,30 @@ public class GameManager : MonoBehaviour
         mouse.onMenu = onMenu;       
         Time.timeScale = 0f; 
         pauseMenu.SetActive(true); 
-        Debug.Log("You are on the Menu");
     }
 
     public void Resume()
     {
         onMenu = false;
-        mouse.onMenu = onMenu;       
+        mouse.onMenu = onMenu || onNewTurn;       
         Time.timeScale = 1f; 
         pauseMenu.SetActive(false); 
-        Debug.Log("You can play");
+    }
+
+    public void NewTurn()
+    {
+        onNewTurn = true;
+        mouse.onMenu = true;
+        Time.timeScale = 0;
+        newTurnText.text = "C'est à " + Players[indexPlayer].Name + " de jouer";
+        newTurnPanel.SetActive(true);
+    }
+    
+    public void StartNewTurn()
+    {
+        onNewTurn = false;
+        mouse.onMenu = onMenu || onNewTurn;
+        Time.timeScale = 1f; 
+        newTurnPanel.SetActive(false); 
     }
 }
