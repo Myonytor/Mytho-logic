@@ -127,8 +127,7 @@ public class GameManager : MonoBehaviour
         {
             timeText.text = "Temps restant : " + (int)(decompte - Time.deltaTime);
         }
-        if(!onMenu)
-            decompte -= Time.deltaTime;
+        decompte -= Time.deltaTime;
 
         if (decompte <= 0 || skipTurn) // Fin du timer
         {
