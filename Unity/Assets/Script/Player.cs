@@ -97,9 +97,11 @@ public class Player : MonoBehaviour
 	// Supprime un monstre
 	public void Delete(Unit monster)
 	{
+		Debug.Log(_monsters.Count);
 		string name = monster.Name;
 		_monsters.Remove(monster);
 		monster.Delete();
+		Debug.Log(_monsters.Count);
 		
 		Debug.Log(name + " à été tué");
 	}
