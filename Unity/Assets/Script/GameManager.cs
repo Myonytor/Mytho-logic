@@ -90,7 +90,8 @@ public class GameManager : MonoBehaviour
         {
             foreach (var m in p._monsters)
             {
-                Debug.Log(m);
+                //Debug.Log(m.name);
+                Debug.Log(m._position.x + "; " + m._position.y);
             }
         }
     }
@@ -123,6 +124,9 @@ public class GameManager : MonoBehaviour
                                 w += (i == 0 ? 1 : -1);
                         }
                     }
+
+                    if (w != 0)
+                        i = Players.Count;
                 }
 
                 if (Math.Abs(w) == 3)

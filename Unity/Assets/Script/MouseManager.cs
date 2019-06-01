@@ -28,6 +28,11 @@ public class MouseManager : MonoBehaviour
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
+        if (Input.GetKeyDown(KeyCode.Escape))//detecter bouton echap
+        {
+            Debug.Log("test");
+        }
+
         if (hit.collider != null)
         {
             //Debug.Log(hit.collider.gameObject.transform.parent.name);
@@ -66,7 +71,7 @@ public class MouseManager : MonoBehaviour
                         {
                             unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
                         }
-                        else if (unit._position.y <= 9 && IsClickable(x, y))// Sinon, ou la case de départ n'est pas dans le spawn et la case d'arrivée est accessible
+                        else if (unit._position.y <= 10 && IsClickable(x, y))// Sinon, ou la case de départ n'est pas dans le spawn et la case d'arrivée est accessible
                         {
                             unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
                         }
