@@ -114,13 +114,9 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) // Détecter le bouton echap
         {
             if (onMenu)
-            {
                 Resume();
-            }
             else
-            {
                 Pause();
-            }
         }
 
         if (! onNewTurn && !onMenu && Input.GetKeyDown(KeyCode.Space))

@@ -40,13 +40,13 @@ public class Unit : MonoBehaviour
 		particleMove = Instantiate(prefabParticle);
 		particleMove.GetComponent<ParticleSystem>().enableEmission = false;
 		particleMove.GetComponent<ParticleSystem>().startColor = Color.blue;
-		particleMove.transform.parent = prefabMonster.transform.parent;
+		particleMove.transform.parent = prefabMonster.transform;
 		particleMove.transform.position = monster.transform.position;
 		
 		particleAttack = Instantiate(prefabParticle);
 		particleAttack.GetComponent<ParticleSystem>().enableEmission = false;
 		particleAttack.GetComponent<ParticleSystem>().startColor = Color.red;
-		particleAttack.transform.parent = prefabMonster.transform.parent;
+		particleAttack.transform.parent = prefabMonster.transform;
 		particleAttack.transform.position = monster.transform.position;
 	}
 	
@@ -116,7 +116,7 @@ public class Unit : MonoBehaviour
 	public void Delete()
 	{
 		Destroy(prefabMonster);
-		Destroy(particleAttack);
-		Destroy(particleMove);
+		//Destroy(particleAttack);
+		//Destroy(particleMove);
 	}
 }
