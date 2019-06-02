@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class PlayerRegistrationMenu : MonoBehaviour
 {
     public GameObject usernameGameobject;
+    public GameObject UsernameChoice;
+    public GameObject MythoChoice;
+
     private string username;
     // Start is called before the first frame update
     void Start()
@@ -16,18 +19,20 @@ public class PlayerRegistrationMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        username = usernameGameobject.GetComponent<InputField>().text;
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if(username != "")
-            {
-                RegisterButton();
-            }
+            RegisterButton();
         }
     }
 
     public void RegisterButton()
     {
-        Debug.Log("Success Username");
+        username = usernameGameobject.GetComponent<InputField>().text;
+        if (username != "")
+        {
+            Debug.Log("Success Username");
+            UsernameChoice.SetActive(false);
+            MythoChoice.SetActive(true);
+        }
     }
 }
