@@ -63,22 +63,22 @@ public class GameManager : MonoBehaviour
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         
-        Players[0].Add("Meduse0", 2);
-        Players[0].Add("Meduse1", 1);
-        Players[0].Add("Meduse2", 3);
-        Players[0].Add("Meduse3", 1);
-        Players[0].Add("Meduse4", 2);
-        Players[0].Add("Meduse5", 4);
-        Players[0].Add("Meduse6", 2);
+        Players[0].Add("Meduse0", 2, 0);
+        Players[0].Add("Meduse1", 1, 0);
+        Players[0].Add("Meduse2", 3, 0);
+        Players[0].Add("Meduse3", 1, 0);
+        Players[0].Add("Meduse4", 2, 0);
+        Players[0].Add("Meduse5", 4, 0);
+        Players[0].Add("Meduse6", 2, 0);
         
         
-        Players[1].Add("Nout0", 3);
-        Players[1].Add("Nout1", 4);
-        Players[1].Add("Nout2", 2);
-        Players[1].Add("Nout3", 1);
-        Players[1].Add("Nout4", 3);
-        Players[1].Add("Nout5", 2);
-        Players[1].Add("Nout6", 1);
+        Players[1].Add("Nout0", 3, 0);
+        Players[1].Add("Nout1", 4, 0);
+        Players[1].Add("Nout2", 2, 0);
+        Players[1].Add("Nout3", 1, 0);
+        Players[1].Add("Nout4", 3, 0);
+        Players[1].Add("Nout5", 2, 0);
+        Players[1].Add("Nout6", 1, 0);
         
         NewTurn();
         
