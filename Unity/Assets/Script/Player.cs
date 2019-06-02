@@ -34,23 +34,6 @@ public class Player : MonoBehaviour
 		prefabParticle = particle;
 	}
 
-	public void AddTest(string name, int power, int x, int y)
-	{
-		Vector3 position = new Vector3(x * 0.8f + 0.8f * y, y * 0.24f - 0.24f * x, -1);
-			
-		GameObject prefab = _mythologie.Monsters[0];
-		GameObject monster =
-			Instantiate(prefab, position, Quaternion.identity, _transform.transform) as GameObject;
-		monster.tag = "Monster";
-		monster.name = name;
-		monster.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-
-		Unit unit = new Unit(name, _index, monster, new Vector2(x, y), power, prefabParticle);
-		_monsters.Add(unit);
-
-		Debug.Log("Add a monster test in the map");
-	}
-
 	// Ajoute un monstre dans une case libre du spawn du joueur
 	public void Add(string name, int power)
 	{
@@ -59,11 +42,11 @@ public class Player : MonoBehaviour
 		int i = 0;
 		bool add = false;
 
-		if (_monsters.Count < 6)
+		if (_monsters.Count < 6) // Empêche d'ajouter plus de 6 monstres
 		{
-			while (i < l && !add)
+			while (i < l && !add) // Tant qu'il y a des cases de spawn
 			{
-				if (spawns[i].GetComponent<Tile>().isEmpty)
+				if (spawns[i].GetComponent<Tile>().isEmpty) // Vérifie si la case de spwan sélectionnée est vide
 				{
 					Vector3 spawn = spawns[i].transform.position;
 					spawns[i].GetComponent<Tile>().isEmpty = false;
