@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
         board.Setup();
         mouse.goal = board.goal;
         onMenu = false;
+        onNewTurn = true;
         mouse.onMenu = onMenu;
 
         // Entré des noms des joueurs à la place de Zeus et Poseidon"
@@ -107,9 +108,12 @@ public class GameManager : MonoBehaviour
                 Pause();
         }
 
-        if (! onNewTurn && !onMenu && Input.GetKeyDown(KeyCode.Space))
+        if (!onMenu && Input.GetKeyDown(KeyCode.Space))
         {
-            skipTurnFunc();
+            if(onNewTurn)
+                StartNewTurn();
+            else
+                skipTurnFunc();
         }
 
         if((int)(decompte - Time.deltaTime) != (int)(decompte))
