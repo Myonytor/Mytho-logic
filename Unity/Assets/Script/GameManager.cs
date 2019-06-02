@@ -35,7 +35,9 @@ public class GameManager : MonoBehaviour
     public Text newTurnText;
     public Text endGame;
     public bool skipTurn;
-    
+
+    public GameObject AudioManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -150,6 +152,7 @@ public class GameManager : MonoBehaviour
 
                 if (Math.Abs(w) == 3)
                 {
+                    AudioManager.GetComponent<AudioManager>().Play("Fireworks");
                     endGame.text = (w > 0 ? Players[0].Name : Players[1].Name) + " WIN !";
                     endGamePanel.SetActive(true);
                     Time.timeScale = 0;

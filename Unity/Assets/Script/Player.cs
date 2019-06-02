@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 
 	private GameObject prefabParticle;
 
-	public Player(string name, string spawn, List<GameObject> monsters, GameObject transform, GameObject particle, int mythologie, int id)
+    public Player(string name, string spawn, List<GameObject> monsters, GameObject transform, GameObject particle, int mythologie, int id)
 	{
 		_name = name;
 		_index = id;
@@ -94,8 +94,8 @@ public class Player : MonoBehaviour
 			}
 		}
 		monster.Delete();
-		
-		Debug.Log(name + " à été tué");
+        FindObjectOfType<AudioManager>().Play("Die1Sound");
+        Debug.Log(name + " à été tué");
 	}
 	
 	// Vérifie si la case est vide

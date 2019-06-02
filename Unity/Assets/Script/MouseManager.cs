@@ -56,7 +56,7 @@ public class MouseManager : MonoBehaviour
                         selectedObject = hitObject;
                         unit = player._monsters[i];
                         Debug.Log("Sélection d'un monstre");
-                        AudioManager.GetComponent<AudioManager>().Play("SoundTest");
+                        AudioManager.GetComponent<AudioManager>().Play("TicSound");
                     }
                 }
                 else if(!Equals(unit, null)) // Définie un mouvement

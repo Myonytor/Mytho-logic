@@ -1272,10 +1272,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: SoundTest
+  - name: TicSound
     clip: {fileID: 8300000, guid: 5f040ed78fb09f84dbf6e10513ff3cd2, type: 3}
-    volume: 0.73
-    pitch: 1.88
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Die1Sound
+    clip: {fileID: 8300000, guid: 53a855435c18bb74fae52f6bfed0fecf, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Fireworks
+    clip: {fileID: 8300000, guid: 0c9f17e267eced74dbf925b780269f1f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!1 &407045925
 GameObject:
@@ -2569,6 +2582,7 @@ MonoBehaviour:
   newTurnText: {fileID: 513940476}
   endGame: {fileID: 649109426}
   skipTurn: 0
+  AudioManager: {fileID: 338636363}
 --- !u!4 &722744976
 Transform:
   m_ObjectHideFlags: 0
