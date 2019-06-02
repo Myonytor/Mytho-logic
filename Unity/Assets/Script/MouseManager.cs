@@ -16,6 +16,8 @@ public class MouseManager : MonoBehaviour
     public Player player;
     private Unit unit; //unité sélectionné
 
+    public GameObject AudioManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +56,7 @@ public class MouseManager : MonoBehaviour
                         selectedObject = hitObject;
                         unit = player._monsters[i];
                         Debug.Log("Sélection d'un monstre");
+                        AudioManager.GetComponent<AudioManager>().Play("SoundTest");
                     }
                 }
                 else if(!Equals(unit, null)) // Définie un mouvement
