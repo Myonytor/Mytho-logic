@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
 		string name = monster.Name;
 		for (int i = 0; i < _monsters.Count; i++)
 		{
-			if (_monsters[i].Name == name)
+			if (_monsters[i]._position == monster._position)
 			{
 				_monsters.RemoveAt(i);
 				i = _monsters.Count;

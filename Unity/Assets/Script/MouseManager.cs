@@ -171,6 +171,11 @@ public class MouseManager : MonoBehaviour
         }
         player = null;
     }
+
+    public void AddMonsterOnSpawn(int index)
+    {
+        player.Add("test" + index, 3, index);
+    }
     
     private bool IsPointerOverUIObject()
     {
