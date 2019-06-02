@@ -10,6 +10,7 @@ using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Image = UnityEngine.Experimental.UIElements.Image;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,7 +23,9 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> PrefabsMonsters;
     public List<Player> Players;
-
+    
+    public List<GameObject> Buttons;
+        
     public GameObject prefabParticle;
     public GameObject pauseMenu;
     public GameObject newTurnPanel;
@@ -36,6 +39,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //PrefabsMonsters[0].GetComponent<SpriteRenderer>().sprite;
         decompte = timer;
         indexPlayer = 0;
         board.Setup();
@@ -80,6 +84,7 @@ public class GameManager : MonoBehaviour
         Players[1].Add("Nout5", 2, 0);
         Players[1].Add("Nout6", 1, 0);
         
+        changeSpriteButton();
         NewTurn();
         
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
@@ -153,6 +158,7 @@ public class GameManager : MonoBehaviour
             indexPlayer = indexPlayer == 0 ? 1 : 0;
             mouse.player = Players[indexPlayer];
             skipTurn = false;
+            changeSpriteButton();
             if(!endGamePanel.activeSelf)
                 NewTurn();
         }
@@ -354,6 +360,17 @@ public class GameManager : MonoBehaviour
     {
         if (Players[0].Mythologie.Name == mythologie) Players[0].Mythologie.PowerSpecial(monster, ref power);
         if (Players[1].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
+    }
+
+    public void changeSpriteButton()
+    {
+        Debug.Log(Buttons.Count);
+        for(int i = 0; i < Buttons.Count; i ++)
+        {
+            Buttons[i].GetComponent<UnityEngine.UI.Image>().sprite = Players[indexPlayer].Mythologie
+                .Monsters[i % Players[indexPlayer].Mythologie.Monsters.Count].GetComponent<SpriteRenderer>().sprite;
+            Debug.Log(Buttons[i].name);
+        }
     }
 
     // Passe directement au joueur suivant
