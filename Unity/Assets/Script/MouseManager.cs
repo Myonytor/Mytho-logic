@@ -174,7 +174,7 @@ public class MouseManager : MonoBehaviour
 
     public void AddMonsterOnSpawn(int index)
     {
-        player.Add("test" + index, 3, index);
+        player.Add(index);
     }
     
     private bool IsPointerOverUIObject()

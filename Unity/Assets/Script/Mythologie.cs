@@ -109,5 +109,51 @@ namespace Script
             Japonaise,
             Nordique
         }
+        
+        private Dictionary<Mytho, List<Tuple<string, int>>> listMonster = new Dictionary<Mytho, List<Tuple<string, int>>>()
+	    {
+	        { Mytho.Egyptienne, new List<Tuple<string, int>>()
+	            {
+	                new Tuple<string, int>("Nout", 3),
+	                new Tuple<string, int>("Atoum", 3),
+	                new Tuple<string, int>("Osiris", 3),
+	                new Tuple<string, int>("Nephtys", 3),
+	                new Tuple<string, int>("Anubis", 3),
+	                new Tuple<string, int>("Isis", 3)
+	            } },
+		    { Mytho.Grecque, new List<Tuple<string, int>>()
+	            {
+	                new Tuple<string, int>("Minautore", 3),
+	                new Tuple<string, int>("Sirene", 3),
+	                new Tuple<string, int>("Harpie", 3),
+	                new Tuple<string, int>("Cerbere", 3),
+	                new Tuple<string, int>("Hydre", 3),
+	                new Tuple<string, int>("Meduse", 3)
+	            } },
+		    { Mytho.Japonaise, new List<Tuple<string, int>>()
+	            {
+	                new Tuple<string, int>("Tatsu", 3),
+	                new Tuple<string, int>("Kirin", 3),
+	                new Tuple<string, int>("Kitsune", 3),
+	                new Tuple<string, int>("Yuki-Onna", 3),
+	                new Tuple<string, int>("Jorogumo", 3),
+	                new Tuple<string, int>("Furi", 3)
+	            } },
+		    { Mytho.Nordique, new List<Tuple<string, int>>()
+	            {
+	                new Tuple<string, int>("Draugr", 3),
+	                new Tuple<string, int>("Berserk", 3),
+	                new Tuple<string, int>("Fenrir", 3),
+	                new Tuple<string, int>("Troll", 3),
+	                new Tuple<string, int>("Valkyrie", 3),
+	                new Tuple<string, int>("Sorcier", 3)
+	            }
+	        }
+	    };
+
+	    public Tuple<string, int> getArg(int index)
+	    {
+		    return listMonster[_name][index];
+	    }
     }
 }

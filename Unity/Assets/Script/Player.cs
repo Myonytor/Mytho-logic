@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Script;
 using UnityEditor;
@@ -35,8 +36,11 @@ public class Player : MonoBehaviour
 	}
 
 	// Ajoute un monstre dans une case libre du spawn du joueur
-	public void Add(string name, int power, int index)
+	public void Add(int index)
 	{
+		var t = _mythologie.getArg(index);
+		var name = t.Item1;
+		var power = t.Item2;
 		GameObject[] spawns = GameObject.FindGameObjectsWithTag(_spawn);
 		int l = spawns.Length;
 		int i = 0;
@@ -108,4 +112,6 @@ public class Player : MonoBehaviour
 
 		return output;
 	}
+	
+	
 }
