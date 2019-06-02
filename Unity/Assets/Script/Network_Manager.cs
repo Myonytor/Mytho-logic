@@ -29,7 +29,7 @@ public class Network_Manager : NetworkManager
         NetworkManager.singleton.networkAddress = ipAdress;
     }
 
-    void OnLevelWasLoaded(int level)
+    /*void OnLevelWasLoaded(int level)
     {
         if (level==0)
         {
@@ -54,5 +54,5 @@ public class Network_Manager : NetworkManager
             GameObject.Find("ButtonJoinGame").GetComponent<Button>().onClick.AddListener(JoinGame);
 
         }
-    }
+    }*/
 }
