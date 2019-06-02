@@ -98,7 +98,14 @@ public class Player : MonoBehaviour
 	public void Delete(Unit monster)
 	{
 		string name = monster.Name;
-		_monsters.Remove(monster);
+		for (int i = 0; i < _monsters.Count; i++)
+		{
+			if (_monsters[i].Name == name)
+			{
+				_monsters.RemoveAt(i);
+				i = _monsters.Count;
+			}
+		}
 		monster.Delete();
 		
 		Debug.Log(name + " à été tué");

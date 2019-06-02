@@ -126,7 +126,5 @@ public class Unit : MonoBehaviour
 	public void Delete()
 	{
 		Destroy(prefabMonster);
-		Destroy(particleAttack);
-		Destroy(particleMove);
 	}
 }
