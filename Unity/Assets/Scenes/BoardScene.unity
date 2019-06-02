@@ -3384,12 +3384,16 @@ MonoBehaviour:
   indexPlayer: 0
   mouse: {fileID: 1184362323}
   PrefabsMonsters:
-  - {fileID: 5947031829018882340, guid: c9ada477d2d2a454a9e2fdb640bb138e, type: 3}
-  - {fileID: 6747695711974851882, guid: d7ddf2af49ec4d54ba25bcc0ebd6bb05, type: 3}
+  - {fileID: 4040123846935963415, guid: b12e05c77e353f34fb3e8780f9197af7, type: 3}
+  - {fileID: 502458130616307688, guid: 576fad808f2f463479e075896568a06b, type: 3}
   - {fileID: 5329818881676410387, guid: a86260f7df5dc9a41a262e3e5d0a283b, type: 3}
   - {fileID: 1682219331253793825, guid: 858b6c03cbb3b9846845defd07a18762, type: 3}
+  - {fileID: 5947031829018882340, guid: c9ada477d2d2a454a9e2fdb640bb138e, type: 3}
+  - {fileID: 6747695711974851882, guid: d7ddf2af49ec4d54ba25bcc0ebd6bb05, type: 3}
+  - {fileID: 8220940956478247355, guid: a9709515318e8c44e99e06e1a55d2972, type: 3}
+  - {fileID: 4165111668104905270, guid: e18d648f17458bd41912b7f4743c9526, type: 3}
   - {fileID: 5517919258350300836, guid: 000531ce208f645499baf2d96a7eec01, type: 3}
-  - {fileID: 1849267265347580249, guid: e7af40cc09971ab4683206f534862f79, type: 3}
+  - {fileID: 999939228915784103, guid: 9867c1440503a3e47bb4706cf4915c69, type: 3}
   Players: []
   prefabParticle: {fileID: 656166367190478373, guid: 7429679ce5453654eb96bd5b307d8eb8,
     type: 3}
