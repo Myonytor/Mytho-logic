@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEditor.Experimental.UIElements.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -398,5 +399,15 @@ public class GameManager : MonoBehaviour
         mouse.onMenu = onMenu || onNewTurn;
         Time.timeScale = 1f; 
         newTurnPanel.SetActive(false); 
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("Mytho-Lobby", LoadSceneMode.Single);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
