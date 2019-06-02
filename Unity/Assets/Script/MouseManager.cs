@@ -31,7 +31,6 @@ public class MouseManager : MonoBehaviour
 
         if (hit.collider != null && !onMenu)
         {
-            //Debug.Log(hit.collider.gameObject.transform.parent.name);
             GameObject hitObject = hit.collider.gameObject;
 
             SelectObject(hitObject);
@@ -39,7 +38,7 @@ public class MouseManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 int i = IsBelonged(hoveredObject.transform.parent.GetComponent<Tile>().coordinate);
-                if (i != -1)// Sélectionne une unité ou réinitialise le mouvement de l'unité sélectionnée
+                if (i != -1) // Sélectionne une unité ou réinitialise le mouvement de l'unité sélectionnée
                 {
                     if (!Equals(null, unit) && unit._position == player._monsters[i]._position)
                     {
@@ -56,7 +55,7 @@ public class MouseManager : MonoBehaviour
                         Debug.Log("Sélection d'un monstre");
                     }
                 }
-                else if(!Equals(unit, null))// Définie un mouvement
+                else if(!Equals(unit, null)) // Définie un mouvement
                 {
                     Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
                     int x = (int) (p.x - unit._position.x), y = (int) (p.y - unit._position.y);
@@ -67,7 +66,7 @@ public class MouseManager : MonoBehaviour
                         {
                             unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
                         }
-                        else if (unit._position.y <= 10 && IsClickable(x, y))// Sinon, ou la case de départ n'est pas dans le spawn et la case d'arrivée est accessible
+                        else if (unit._position.y <= 10 && IsClickable(x, y)) // Sinon, ou la case de départ n'est pas dans le spawn et la case d'arrivée est accessible
                         {
                             unit.DefineMovement(new Vector2(x, y), hoveredObject.transform.position);
                         }
@@ -75,7 +74,7 @@ public class MouseManager : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(1))// Définie l'attaque
+            if (Input.GetMouseButtonDown(1)) // Définie l'attaque
             {
                 if (!Equals(unit, null))
                 {

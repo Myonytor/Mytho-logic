@@ -63,7 +63,6 @@ public class GameManager : MonoBehaviour
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         
-        
         Players[0].Add("Meduse0", 2);
         Players[0].Add("Meduse1", 1);
         Players[0].Add("Meduse2", 3);
@@ -71,10 +70,6 @@ public class GameManager : MonoBehaviour
         Players[0].Add("Meduse4", 2);
         Players[0].Add("Meduse5", 4);
         Players[0].Add("Meduse6", 2);
-        
-        Players[0].AddTest("MeduseTest4", 4, 1, 1);
-        Players[0].AddTest("MeduseTest5", 4, 1, 2);
-        Players[0].AddTest("MeduseTest6", 4, 2, 1);
         
         
         Players[1].Add("Nout0", 3);
@@ -84,14 +79,6 @@ public class GameManager : MonoBehaviour
         Players[1].Add("Nout4", 3);
         Players[1].Add("Nout5", 2);
         Players[1].Add("Nout6", 1);
-        
-        Players[1].AddTest("NoutTest2", 4, 0, 2);
-        Players[1].AddTest("NoutTest3", 4, 0, 3);
-        Players[1].AddTest("NoutTest4", 4, 2, 2);
-        
-
-        Players[0].Mythologie.activated = true;
-        Players[1].Mythologie.activated = true;
         
         NewTurn();
         
@@ -370,11 +357,13 @@ public class GameManager : MonoBehaviour
         if (Players[1].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
     }
 
+    // Passe directement au joueur suivant
     public void skipTurnFunc()
     {
         skipTurn = true;
     }
 
+    // Met en pause le jeu et affiche un menu
     public void Pause()
     {
         onMenu = true;
@@ -383,6 +372,7 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(true); 
     }
 
+    // Reprend le jeu
     public void Resume()
     {
         onMenu = false;
@@ -391,6 +381,7 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false); 
     }
 
+    // Indique quel joueur va jouer
     public void NewTurn()
     {
         onNewTurn = true;
@@ -400,6 +391,7 @@ public class GameManager : MonoBehaviour
         newTurnPanel.SetActive(true);
     }
     
+    // Indique que l'on commence un nouveau tour
     public void StartNewTurn()
     {
         onNewTurn = false;
