@@ -19,8 +19,6 @@ public class GameManager : MonoBehaviour
     public MouseManager mouse;
     
     private float decompte;
-    private bool onMenu;
-    private bool onNewTurn;
 
     public List<GameObject> PrefabsMonsters;
     public List<Player> Players;
@@ -28,9 +26,11 @@ public class GameManager : MonoBehaviour
     public GameObject prefabParticle;
     public GameObject pauseMenu;
     public GameObject newTurnPanel;
+    public GameObject endGamePanel;
 
     public Text timeText;
     public Text newTurnText;
+    public Text endGame;
     public bool skipTurn;
     
     // Start is called before the first frame update
@@ -40,9 +40,7 @@ public class GameManager : MonoBehaviour
         indexPlayer = 0;
         board.Setup();
         mouse.goal = board.goal;
-        onMenu = false;
-        onNewTurn = true;
-        mouse.onMenu = onMenu;
+        mouse.onMenu = pauseMenu.activeSelf;
 
         // Entré des noms des joueurs à la place de Zeus et Poseidon"
         GameObject player = new GameObject("Player");
@@ -102,15 +100,15 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape)) // Détecter le bouton echap
         {
-            if (onMenu)
+            if (pauseMenu.activeSelf)
                 Resume();
             else
                 Pause();
         }
 
-        if (!onMenu && Input.GetKeyDown(KeyCode.Space))
+        if (!pauseMenu.activeSelf && Input.GetKeyDown(KeyCode.Space))
         {
-            if(onNewTurn)
+            if(newTurnPanel.activeSelf)
                 StartNewTurn();
             else
                 skipTurnFunc();
@@ -147,20 +145,15 @@ public class GameManager : MonoBehaviour
 
                 if (Math.Abs(w) == 3)
                 {
-                    if (w > 0)
-                    {
-                        Debug.Log(Players[0].Name + " a gagné");
-                    }
-                    else
-                    {
-                        Debug.Log(Players[1].Name + " a gagné");
-                    }
+                    endGame.text = (w > 0 ? Players[0].Name : Players[1].Name) + " WIN !";
+                    endGamePanel.SetActive(true);
                 }
             }
             indexPlayer = indexPlayer == 0 ? 1 : 0;
             mouse.player = Players[indexPlayer];
             skipTurn = false;
-            NewTurn();
+            if(!endGamePanel.activeSelf)
+                NewTurn();
         }
     }
 
@@ -371,25 +364,22 @@ public class GameManager : MonoBehaviour
     // Met en pause le jeu et affiche un menu
     public void Pause()
     {
-        onMenu = true;
-        mouse.onMenu = onMenu;       
         Time.timeScale = 0f; 
         pauseMenu.SetActive(true); 
+        mouse.onMenu = true;       
     }
 
     // Reprend le jeu
     public void Resume()
     {
-        onMenu = false;
-        mouse.onMenu = onMenu || onNewTurn;       
         Time.timeScale = 1f; 
         pauseMenu.SetActive(false); 
+        mouse.onMenu = newTurnPanel.activeSelf;       
     }
 
     // Indique quel joueur va jouer
     public void NewTurn()
     {
-        onNewTurn = true;
         mouse.onMenu = true;
         Time.timeScale = 0;
         newTurnText.text = "C'est à " + Players[indexPlayer].Name + " de jouer";
@@ -399,8 +389,7 @@ public class GameManager : MonoBehaviour
     // Indique que l'on commence un nouveau tour
     public void StartNewTurn()
     {
-        onNewTurn = false;
-        mouse.onMenu = onMenu || onNewTurn;
+        mouse.onMenu = pauseMenu.activeSelf;
         Time.timeScale = 1f; 
         newTurnPanel.SetActive(false); 
     }
