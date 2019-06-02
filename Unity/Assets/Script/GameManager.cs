@@ -147,6 +147,7 @@ public class GameManager : MonoBehaviour
                 {
                     endGame.text = (w > 0 ? Players[0].Name : Players[1].Name) + " WIN !";
                     endGamePanel.SetActive(true);
+                    Time.timeScale = 0;
                 }
             }
             indexPlayer = indexPlayer == 0 ? 1 : 0;
