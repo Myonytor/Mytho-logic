@@ -58,8 +58,8 @@ public class GameManager : MonoBehaviour
          */
         Players = new List<Player>()
             {
-                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(6, 2), player0, prefabParticle, 2, 0),
-                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(2, 2), player1, prefabParticle, 0, 1)
+                new Player("Zeus", "Spawn1", PrefabsMonsters.GetRange(8, 2), player0, prefabParticle, 2, 0),
+                new Player("Poseidon", "Spawn2", PrefabsMonsters.GetRange(4, 2), player1, prefabParticle, 0, 1)
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         
