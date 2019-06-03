@@ -8,12 +8,31 @@
 		<Name>Français</Name>
 		
 		<Play>Jouer</Play>
-		<Reseau>Réseau</Reseau>
+		<ReseauC>Créer une partie</ReseauC>
+		<ReseauR>Rejoindre une partie</ReseauR>
 		<Quit>Quitter</Quit>
 		<Volume>Volume</Volume>
 		<Languages>Langue</Languages>
 		<Graphism>Graphisme</Graphism>
 		<Back>Retour</Back>
+		<Choix>Choisissez votre mythologie</Choix>
+		<Choix1>Choisissez votre pseudo</Choix1>
+		<Username>Pseudo</Username>
+		<Valider>Valider</Valider>
+		<Nord>Nordique</Nord>
+		<Jap>Japonaise</Jap>
+		<Egy>Egyptienne</Egy>
+		<Gre>Grecque</Gre>
+		<CapaN>L'appel du Valhalla</CapaN>
+		<CapaJ>Invasion des susuwataris</CapaJ>
+		<CapaE>Tempête de sable</CapaE>
+		<CapaG>Rage d'Athéna</CapaG>
+		<DescriJ>Empêche les ennemis d'attaquer au prochain tour</DescriJ>
+		<DescriN>Toutes vos unités blessés auront plus de puissance</DescriN>
+		<DescriE>Empêche les ennemis de se déplacer au prochain tour</DescriE>
+		<DescriG>Toutes vos unités feront plus de dégats</DescriG>
+		<Passer>Passer</Passer>
+		<Temps>Temps restant</Temps>
 		
 	</language>
 
@@ -22,12 +41,31 @@
 		<Name>English</Name>
 		
 		<Play>Play</Play>
-		<Reseau>Network</Reseau>
+		<ReseauC>Create game</ReseauC>
+		<ReseauR>Join game</ReseauR>
 		<Quit>Quit</Quit>
 		<Volume>Volume</Volume>
 		<Languages>Language</Languages>
 		<Graphism>Graphics</Graphism>
 		<Back>Back</Back>
+		<Choix>Choose your mythology</Choix>
+		<Choix1>Choose your username</Choix1>
+		<Username>Username</Username>
+		<Valider>Confirm</Valider>
+		<Nord>Nordic</Nord>
+		<Jap>Japanese</Jap>
+		<Egy>Egyptian</Egy>
+		<Gre>Greek</Gre>
+		<CapaN>The call of Valhalla</CapaN>
+		<CapaJ>Invasion of susuwataris</CapaJ>
+		<CapaE>Sandstorm</CapaE>
+		<CapaG>Athena's rage</CapaG>
+		<DescriJ>Prevents enemies from attacking the next round</DescriJ>
+		<DescriN>All your wounded units will have more power</DescriN>
+		<DescriE>Prevents enemies from moving to the next round</DescriE>
+		<DescriG>All your units will do more damage</DescriG>
+		<Passer>Pass</Passer>
+		<Temps>Time left</Temps>
 
 	</language>
 	

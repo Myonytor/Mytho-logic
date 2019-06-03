@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 3969592}
   - component: {fileID: 3969591}
   m_Layer: 5
-  m_Name: Lancer
+  m_Name: Lancer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0000076293945, y: -0.0000076293945}
+  m_AnchoredPosition: {x: -0.000015258789, y: -0.0000076293945}
   m_SizeDelta: {x: -0.000015259, y: -0.000015259}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3969591
@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a952707fefdb814b8e31852a7b191ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choix: 0
 --- !u!114 &98055326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1009,8 +1010,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -304}
-  m_SizeDelta: {x: 218.7, y: -29.399994}
+  m_AnchoredPosition: {x: 0.000049591, y: -310}
+  m_SizeDelta: {x: 317.4, y: -29.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &274161226
 MonoBehaviour:
@@ -1217,8 +1218,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -62, y: -82}
-  m_SizeDelta: {x: -403.30005, y: -443.8}
+  m_AnchoredPosition: {x: 160, y: -81}
+  m_SizeDelta: {x: -348.9, y: -443.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &337927795
 MonoBehaviour:
@@ -1775,6 +1776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a952707fefdb814b8e31852a7b191ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choix: 0
 --- !u!114 &704772317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3292,13 +3294,29 @@ MonoBehaviour:
   languageName: 
   currentLanguage: 0
   textPlay: {fileID: 976861379}
-  textLan: {fileID: 0}
-  textOptions: {fileID: 0}
+  textReseauC: {fileID: 1479261884}
+  textReseauR: {fileID: 1099648074}
   textQuit: {fileID: 2071030779}
   textVolume: {fileID: 1576471680}
   textLanguages: {fileID: 1051990295}
   textGraphism: {fileID: 174285910}
   textBack: {fileID: 760878253}
+  textChoix: {fileID: 1619606358}
+  textNord: {fileID: 2092317497}
+  textJap: {fileID: 1191427323}
+  textEgy: {fileID: 1076951626}
+  textGre: {fileID: 1246109870}
+  textCapaN: {fileID: 1556349398}
+  textCapaJ: {fileID: 1439292314}
+  textCapaG: {fileID: 1554095019}
+  textCapaE: {fileID: 1885400278}
+  textDescriN: {fileID: 267882822}
+  textDescriJ: {fileID: 1615617181}
+  textDescriG: {fileID: 893681685}
+  textDescriE: {fileID: 1260226837}
+  textChoix1: {fileID: 375451874}
+  textUsername: {fileID: 827102015}
+  textValider: {fileID: 3969591}
   selectDropdown: {fileID: 212738093}
 --- !u!1 &1099648072
 GameObject:
@@ -3714,6 +3732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a952707fefdb814b8e31852a7b191ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choix: 0
 --- !u!114 &1192648871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4466,6 +4485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a952707fefdb814b8e31852a7b191ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choix: 0
 --- !u!114 &1320902434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6767,8 +6787,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -232, y: -81}
-  m_SizeDelta: {x: -403.30005, y: -443.8}
+  m_AnchoredPosition: {x: -90.457, y: -81.7}
+  m_SizeDelta: {x: -379.89, y: -438.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1958426082
 MonoBehaviour:
