@@ -1290,6 +1290,12 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: MainMusic
+    clip: {fileID: 8300000, guid: 6a0585430f6ee20458056614b3cdae82, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
 --- !u!1 &407045925
 GameObject:
   m_ObjectHideFlags: 0
@@ -2620,7 +2626,7 @@ MonoBehaviour:
   newTurnText: {fileID: 513940476}
   endGame: {fileID: 649109426}
   skipTurn: 0
-  AudioManager: {fileID: 0}
+  AudioManager: {fileID: 338636363}
 --- !u!4 &722744976
 Transform:
   m_ObjectHideFlags: 0
