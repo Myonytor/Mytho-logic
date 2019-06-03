@@ -8,7 +8,21 @@
         
         <Quit>Quitter</Quit>
         <Back>Retour</Back>
-
+        <Choix>Choisissez votre mythologie</Choix>
+        <Nord>Nordique</Nord>
+        <Jap>Japonaise</Jap>
+        <Egy>Egyptienne</Egy>
+        <Gre>Grecque</Gre>
+        <CapaN>L'appel du Valhalla</CapaN>
+        <CapaJ>Invasion des susuwataris</CapaJ>
+        <CapaE>Tempête de sable</CapaE>
+        <CapaG>Capacité spéciale</CapaG>
+        <DescriJ>Empêche les ennemis d'attaquer au prochain tour</DescriJ>
+        <DescriN>Toutes vos unités blessés feront plus de dégats</DescriN>
+        <DescriE>Empêche les ennemis de se déplacer au prochain tour</DescriE>
+        <DescriG>En cours de réflexion</DescriG>
+        <Passer>Passer</Passer>
+        <Temps>Temps restant</Temps>
     </language>
 
     <language>
@@ -17,6 +31,21 @@
         
         <Quit>Quit</Quit>
         <Back>Back</Back>
+        <Choix>Choose your mythology</Choix>
+        <Nord>Nordic</Nord>
+        <Jap>Japanese</Jap>
+        <Egy>Egyptian</Egy>
+        <Gre>Greek</Gre>
+        <CapaN>The call of Valhalla</CapaN>
+        <CapaJ>Invasion of susuwataris</CapaJ>
+        <CapaE>Sandstorm</CapaE>
+        <CapaG>Capacité spéciale</CapaG>
+        <DescriJ>Prevents enemies from attacking the next round</DescriJ>
+        <DescriN>All your wounded units will do more damage</DescriN>
+        <DescriE>Prevents enemies from moving to the next round</DescriE>
+        <DescriG>HDK</DescriG>
+        <Passer>Pass</Passer>
+        <Temps>Time left</Temps>
 
     </language>
 

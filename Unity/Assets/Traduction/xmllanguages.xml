@@ -8,8 +8,7 @@
 		<Name>Français</Name>
 		
 		<Play>Jouer</Play>
-		<Load>Charger</Load>
-		<Options>Options</Options>
+		<Reseau>Réseau</Reseau>
 		<Quit>Quitter</Quit>
 		<Volume>Volume</Volume>
 		<Languages>Langue</Languages>
@@ -23,8 +22,7 @@
 		<Name>English</Name>
 		
 		<Play>Play</Play>
-		<Load>Load</Load>
-		<Options>Options</Options>
+		<Reseau>Network</Reseau>
 		<Quit>Quit</Quit>
 		<Volume>Volume</Volume>
 		<Languages>Language</Languages>
