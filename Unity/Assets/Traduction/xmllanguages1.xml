@@ -7,7 +7,11 @@
         <Name>Français</Name>
         
         <Quit>Quitter</Quit>
+        <Quit1>Quitter</Quit1>
         <Back>Retour</Back>
+        <Temps>Temps restant :</Temps>
+        <Passer>Passer son tour</Passer>
+        <ReturnM>Retourner au menu</ReturnM>
         
     </language>
 
@@ -17,6 +21,10 @@
         
         <Quit>Quit</Quit>
         <Back>Back</Back>
+        <Passer>Skip your turn</Passer>
+        <Temps>Time left :</Temps>
+        <Quit1>Quit</Quit1>
+        <ReturnM>Return to menu</ReturnM>
         
 
     </language>
