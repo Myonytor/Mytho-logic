@@ -33,7 +33,8 @@ namespace Script
          * - Grecque : ?
          * - Egyptienne : empêche les déplacements des ennemies pendant un tour
          */
-
+		
+        // Sélectionne la fonction qu'il faut appliquer selon la mythologie
         public void PowerSpecial(Unit monster, ref int power)
         {
             switch (_name)
