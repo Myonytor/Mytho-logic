@@ -31,13 +31,13 @@ public class NomPerso2 : MonoBehaviour
 
                 case 0:
 
-                    nom = "Valkyrie";
+                    nom = "Fenrir";
                     break;
                 case 1:
-                    nom = "Jorugumo";
+                    nom = "Kitsune";
                     break;
                 case 2:
-                    nom = "Anubis";
+                    nom = "Osiris";
                     break;
                 case 3:
                     nom = "Harpie";
@@ -55,13 +55,13 @@ public class NomPerso2 : MonoBehaviour
 
                 case 0:
 
-                    nom = "Valkyrie";
+                    nom = "Fenrir";
                     break;
                 case 1:
-                    nom = "Jorugumo";
+                    nom = "Kitsune";
                     break;
                 case 2:
-                    nom = "Anubis";
+                    nom = "Osiris";
                     break;
                 case 3:
                     nom = "Harpy";
