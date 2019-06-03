@@ -67,10 +67,6 @@ public partial class xmlReader : MonoBehaviour
         textLanguages.text = Languages;
         textGraphism.text = Graphism;
         textBack.text = Back;
-
-
-
-
     }
 
     void Reader()
