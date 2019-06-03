@@ -1286,6 +1286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 335699997}
   - component: {fileID: 335699998}
+  - component: {fileID: 335699999}
   m_Layer: 0
   m_Name: Traduction
   m_TagString: Untagged
@@ -1319,26 +1320,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a373d5b9037c5c4196834c7d0df37a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dictionary: {fileID: 4900000, guid: 198f34f89beb2ed4ea4988c189c2dace, type: 3}
+--- !u!114 &335699999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335699996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072a629cd9f78584eaa8f8ba48528f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dictionary: {fileID: 4900000, guid: 47abc44d133bda4419c756ee68b3dccf, type: 3}
   languageName: 
-  currentLanguage: 0
+  currentLanguage: 1
+  textPasser: {fileID: 52682511}
+  textTemps: {fileID: 1575762923}
   textQuit: {fileID: 2030219776}
   textBack: {fileID: 1699664123}
-  textChoix: {fileID: 0}
-  textNord: {fileID: 0}
-  textJap: {fileID: 0}
-  textEgy: {fileID: 0}
-  textGre: {fileID: 0}
-  textCapaN: {fileID: 0}
-  textCapaJ: {fileID: 0}
-  textCapaG: {fileID: 0}
-  textCapaE: {fileID: 0}
-  textDescriN: {fileID: 0}
-  textDescriJ: {fileID: 0}
-  textDescriG: {fileID: 0}
-  textDescriE: {fileID: 0}
-  textPasser: {fileID: 0}
-  textTemps: {fileID: 0}
+  textQuit1: {fileID: 966850668}
+  textReturnM: {fileID: 1834508970}
 --- !u!1 &338636363
 GameObject:
   m_ObjectHideFlags: 0
@@ -2035,11 +2037,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28a670c6daa8924785716812272e271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Nordique: {fileID: 0}
-  Japonaise: {fileID: 0}
-  Egyptienne: {fileID: 0}
-  Greque: {fileID: 0}
-  imgNumberCount: 0
 --- !u!1 &564102448
 GameObject:
   m_ObjectHideFlags: 0
@@ -3659,7 +3656,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 141.1, y: 34.2}
+  m_SizeDelta: {x: 156.01, y: 34.2}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1575762923
 MonoBehaviour:
@@ -4024,7 +4021,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 142.70001, y: 0}
+  m_AnchoredPosition: {x: 166.4, y: -0.000061035156}
   m_SizeDelta: {x: 93.3, y: 34.2}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1731887734
