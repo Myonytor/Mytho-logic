@@ -3160,7 +3160,7 @@ MonoBehaviour:
   m_OfflineScene: Mytho-Lobby
   m_OnlineScene: BoardScene
   m_SpawnPrefabs: []
-  m_CustomConfig: 0
+  m_CustomConfig: 1
   m_MaxConnections: 2
   m_ConnectionConfig:
     m_PacketSize: 1440
