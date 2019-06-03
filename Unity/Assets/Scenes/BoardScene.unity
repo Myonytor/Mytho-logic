@@ -2616,7 +2616,8 @@ MonoBehaviour:
   - {fileID: 3661999151934075981, guid: 000531ce208f645499baf2d96a7eec01, type: 3}
   - {fileID: 3661999151934075981, guid: 000531ce208f645499baf2d96a7eec01, type: 3}
   Players: []
-  Buttons: []
+  Buttons:
+  - {fileID: 1226398103}
   prefabParticle: {fileID: 656166367190478373, guid: 7429679ce5453654eb96bd5b307d8eb8,
     type: 3}
   pauseMenu: {fileID: 57633659}
