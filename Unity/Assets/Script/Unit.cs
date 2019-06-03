@@ -26,7 +26,7 @@ public class Unit : MonoBehaviour
 
 	private GameObject prefabMonster;
 
-	public Unit(string name, int player, GameObject monster, Vector2 position, int power, GameObject prefabParticle)
+	public Unit(string name, int player, GameObject monster, Vector3 position, int power, GameObject prefabParticle)
 	{
 		prefabMonster = monster;
 		_name = name;
@@ -97,7 +97,7 @@ public class Unit : MonoBehaviour
 
 	public void MovePrefab(Vector3 direction)
 	{
-		var vec = new Vector3(direction.x, direction.y, -1);
+		var vec = new Vector3(direction.x, direction.y + 0.125f, -5 + direction.y);
 		prefabMonster.transform.position = vec;
 		particleAttack.transform.position = vec;
 		particleMove.transform.position = vec;

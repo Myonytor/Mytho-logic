@@ -54,13 +54,14 @@ public class Player : MonoBehaviour
 				{
 					Vector3 spawn = spawns[i].transform.position;
 					spawns[i].GetComponent<Tile>().isEmpty = false;
-					spawn.z = -1;
+					spawn.z = -5 + spawn.y;
+					spawn.y += 0.125f;
 
 					GameObject prefab = _mythologie.Monsters[index * 2 % _mythologie.Monsters.Count];
 					GameObject monster =
 						Instantiate(prefab, spawn, Quaternion.identity, _transform.transform) as GameObject;
 					monster.name = name;
-					monster.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+					monster.transform.localScale = new Vector3(0.015f, 0.015f, 0.015f);
 
 					Unit unit = new Unit(name, _index, monster, spawns[i].GetComponent<Tile>().coordinate, power, prefabParticle);
 					_monsters.Add(unit);
