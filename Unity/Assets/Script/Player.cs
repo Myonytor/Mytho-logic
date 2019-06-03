@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
 					spawns[i].GetComponent<Tile>().isEmpty = false;
 					spawn.z = -1;
 
-					GameObject prefab = _mythologie.Monsters[index % _mythologie.Monsters.Count];
+					GameObject prefab = _mythologie.Monsters[index * 2 % _mythologie.Monsters.Count];
 					GameObject monster =
 						Instantiate(prefab, spawn, Quaternion.identity, _transform.transform) as GameObject;
 					monster.name = name;

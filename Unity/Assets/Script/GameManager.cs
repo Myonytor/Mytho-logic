@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
         Players[1].Add(5);
         Players[1].Add(1);
         
-        changeSpriteButton();
+        ChangeSpriteButton();
         NewTurn();
         
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
             indexPlayer = indexPlayer == 0 ? 1 : 0;
             mouse.player = Players[indexPlayer];
             skipTurn = false;
-            changeSpriteButton();
+            ChangeSpriteButton();
             if(!endGamePanel.activeSelf)
                 NewTurn();
         }
@@ -377,13 +377,13 @@ public class GameManager : MonoBehaviour
         if (Players[1].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
     }
 
-    public void changeSpriteButton()
+    public void ChangeSpriteButton()
     {
         Debug.Log(Buttons.Count);
         for(int i = 0; i < Buttons.Count; i ++)
         {
             Buttons[i].GetComponent<UnityEngine.UI.Image>().sprite = Players[indexPlayer].Mythologie
-                .Monsters[i % Players[indexPlayer].Mythologie.Monsters.Count].GetComponent<SpriteRenderer>().sprite;
+                .Monsters[i * 2 % Players[indexPlayer].Mythologie.Monsters.Count].GetComponent<SpriteRenderer>().sprite;
             Debug.Log(Buttons[i].name);
         }
     }
