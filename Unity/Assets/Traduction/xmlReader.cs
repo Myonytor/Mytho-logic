@@ -124,7 +124,6 @@ public partial class xmlReader : MonoBehaviour
         textLanguages.text = Languages;
         textGraphism.text = Graphism;
         textBack.text = Back;
-<<<<<<< HEAD
 
 
         textChoix.text = Choix;
@@ -147,9 +146,6 @@ public partial class xmlReader : MonoBehaviour
         textUsername.text = Username;
         textValider.text = Valider;
 
-
-=======
->>>>>>> 1bd6aefc62298c71ba404bb2da5ccba8459668ec
     }
 
     void Reader()

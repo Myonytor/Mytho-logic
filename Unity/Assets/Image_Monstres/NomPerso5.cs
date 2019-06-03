@@ -65,7 +65,7 @@ public class NomPerso5 : MonoBehaviour
                     nom = "Nout";
                     break;
                 case 3:
-                    nom = "Médusa";
+                    nom = "Medusa";
                     break;
                 default:
                     Debug.Log("Error");
