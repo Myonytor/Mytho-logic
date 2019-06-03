@@ -31,13 +31,13 @@ public class NomPerso1 : MonoBehaviour
 
                 case 0:
 
-                    nom = "Sorcier";
+                    nom = "Berserker";
                     break;
                 case 1:
                     nom = "Kirin";
                     break;
                 case 2:
-                    nom = "Nephtys";
+                    nom = "Atoum";
                     break;
                 case 3:
                     nom = "Sirène";
@@ -54,16 +54,16 @@ public class NomPerso1 : MonoBehaviour
             {
 
                 case 0:
-                    nom = "Wizard";
+                    nom = "Berserker";
                     break;
                 case 1:
                     nom = "Kirin";
                     break;
                 case 2:
-                    nom = "Nephtys";
+                    nom = "Atoum";
                     break;
                 case 3:
-                    nom = "Sirene";
+                    nom = "Siren";
                     break;
                 default:
                     Debug.Log("Error");
