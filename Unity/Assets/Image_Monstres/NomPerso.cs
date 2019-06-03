@@ -33,13 +33,13 @@ public class NomPerso : MonoBehaviour
 
                 case 0:
 
-                    nom = "Troll";
+                    nom = "Draugr";
                     break;
                 case 1:
                     nom = "Tatsu";
                     break;
                 case 2:
-                    nom = "Isis";
+                    nom = "Nout";
                     break;
                 case 3:
                     nom = "Minotaure";
@@ -56,13 +56,13 @@ public class NomPerso : MonoBehaviour
             {
 
                 case 0:
-                    nom = "Troll";
+                    nom = "Draugr";
                     break;
                 case 1:
                     nom = "Tatsu";
                     break;
                 case 2:
-                    nom = "Isis";
+                    nom = "Nout";
                     break;
                 case 3:
                     nom = "Minotaur";
