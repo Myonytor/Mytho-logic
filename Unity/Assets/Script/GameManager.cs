@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.GetComponent<AudioManager>().Play("MainMusic");
         //PrefabsMonsters[0].GetComponent<SpriteRenderer>().sprite;
         decompte = timer;
         indexPlayer = 0;
