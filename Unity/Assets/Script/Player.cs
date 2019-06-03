@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 	// Ajoute un monstre dans une case libre du spawn du joueur
 	public void Add(int index)
 	{
-		var t = _mythologie.getArg(index);
+		var t = _mythologie.GetArg(index);
 		var name = t.Item1;
 		var power = t.Item2;
 		GameObject[] spawns = GameObject.FindGameObjectsWithTag(_spawn);

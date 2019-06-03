@@ -23,7 +23,7 @@ namespace Script
             activated = false;
             indexPlayer = id;
             
-            Debug.Log("mise en place de la mythologie : " + _name);
+            Debug.Log("mise en place de la mythologie : " + _name + ", elle contient " + _monsters.Count + " monstres");
         }
         
         /*
@@ -152,7 +152,7 @@ namespace Script
 	        }
 	    };
 
-	    public Tuple<string, int> getArg(int index)
+	    public Tuple<string, int> GetArg(int index)
 	    {
 		    return listMonster[_name][index];
 	    }

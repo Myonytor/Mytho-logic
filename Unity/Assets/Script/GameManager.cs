@@ -64,27 +64,27 @@ public class GameManager : MonoBehaviour
          */
         Players = new List<Player>()
             {
-                new Player("Zeus", "Spawn1", CreateList(1), player0, prefabParticle, 1, 0),
-                new Player("Poseidon", "Spawn2", CreateList(0), player1, prefabParticle, 0, 1)
+                new Player("Zeus", "Spawn1", CreateList(0), player0, prefabParticle, 0, 0),
+                new Player("Poseidon", "Spawn2", CreateList(2), player1, prefabParticle, 2, 1)
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         
+        Players[0].Add(1);
+        Players[0].Add(3);
+        Players[0].Add(5);
         Players[0].Add(0);
         Players[0].Add(2);
         Players[0].Add(4);
-        Players[0].Add(6);
-        Players[0].Add(8);
-        Players[0].Add(10);
-        Players[0].Add(12);
+        Players[0].Add(1);
         
         
         Players[1].Add(0);
-        Players[1].Add(1);
         Players[1].Add(2);
-        Players[1].Add(3);
         Players[1].Add(4);
+        Players[1].Add(1);
+        Players[1].Add(3);
         Players[1].Add(5);
-        Players[1].Add(6);
+        Players[1].Add(1);
         
         changeSpriteButton();
         NewTurn();
@@ -108,6 +108,8 @@ public class GameManager : MonoBehaviour
         int start = mythologie * 12 + 6;
         List<GameObject> prefabsMythology = PrefabsMonsters.GetRange(start, 12);
         prefabsMythology.AddRange(prefabsSmall);
+        
+        Debug.Log(prefabsMythology.Count);
 
         return prefabsMythology;
     }
