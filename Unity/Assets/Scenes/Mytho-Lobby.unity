@@ -747,7 +747,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1097383023}
+      - m_Target: {fileID: 1097383024}
         m_MethodName: ValueChangeCheck
         m_Mode: 1
         m_Arguments:
@@ -3240,6 +3240,7 @@ GameObject:
   - component: {fileID: 1097383021}
   - component: {fileID: 1097383022}
   - component: {fileID: 1097383023}
+  - component: {fileID: 1097383024}
   m_Layer: 5
   m_Name: Translate
   m_TagString: Untagged
@@ -3290,7 +3291,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1068ed22480836c4dbdd738c1fdbe61c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dictionary: {fileID: 4900000, guid: 4a2a284a190ebf04c845cb401e871c6d, type: 3}
+--- !u!114 &1097383024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097383020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b06b6ae0d50d5488de8602a7cf4946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dictionary: {fileID: 4900000, guid: 092fa8b642509f94098a0d7b13db80c3, type: 3}
   languageName: 
   currentLanguage: 0
   textPlay: {fileID: 976861379}
