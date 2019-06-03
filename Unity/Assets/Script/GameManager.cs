@@ -64,29 +64,29 @@ public class GameManager : MonoBehaviour
          */
         Players = new List<Player>()
             {
-                new Player("Zeus", "Spawn1", CreateList(1), player0, prefabParticle, 1, 0),
-                new Player("Poseidon", "Spawn2", CreateList(0), player1, prefabParticle, 0, 1)
+                new Player("Zeus", "Spawn1", CreateList(0), player0, prefabParticle, 0, 0),
+                new Player("Poseidon", "Spawn2", CreateList(2), player1, prefabParticle, 2, 1)
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         
+        Players[0].Add(1);
+        Players[0].Add(3);
+        Players[0].Add(5);
         Players[0].Add(0);
         Players[0].Add(2);
         Players[0].Add(4);
-        Players[0].Add(6);
-        Players[0].Add(8);
-        Players[0].Add(10);
-        Players[0].Add(12);
+        Players[0].Add(1);
         
         
         Players[1].Add(0);
-        Players[1].Add(1);
         Players[1].Add(2);
-        Players[1].Add(3);
         Players[1].Add(4);
+        Players[1].Add(1);
+        Players[1].Add(3);
         Players[1].Add(5);
-        Players[1].Add(6);
+        Players[1].Add(1);
         
-        changeSpriteButton();
+        ChangeSpriteButton();
         NewTurn();
         
         // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
@@ -108,6 +108,8 @@ public class GameManager : MonoBehaviour
         int start = mythologie * 12 + 6;
         List<GameObject> prefabsMythology = PrefabsMonsters.GetRange(start, 12);
         prefabsMythology.AddRange(prefabsSmall);
+        
+        Debug.Log(prefabsMythology.Count);
 
         return prefabsMythology;
     }
@@ -171,7 +173,7 @@ public class GameManager : MonoBehaviour
             indexPlayer = indexPlayer == 0 ? 1 : 0;
             mouse.player = Players[indexPlayer];
             skipTurn = false;
-            changeSpriteButton();
+            ChangeSpriteButton();
             if(!endGamePanel.activeSelf)
                 NewTurn();
         }
@@ -375,13 +377,13 @@ public class GameManager : MonoBehaviour
         if (Players[1].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
     }
 
-    public void changeSpriteButton()
+    public void ChangeSpriteButton()
     {
         Debug.Log(Buttons.Count);
         for(int i = 0; i < Buttons.Count; i ++)
         {
             Buttons[i].GetComponent<UnityEngine.UI.Image>().sprite = Players[indexPlayer].Mythologie
-                .Monsters[i % Players[indexPlayer].Mythologie.Monsters.Count].GetComponent<SpriteRenderer>().sprite;
+                .Monsters[i * 2 % Players[indexPlayer].Mythologie.Monsters.Count].GetComponent<SpriteRenderer>().sprite;
             Debug.Log(Buttons[i].name);
         }
     }

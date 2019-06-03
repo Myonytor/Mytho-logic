@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 	// Ajoute un monstre dans une case libre du spawn du joueur
 	public void Add(int index)
 	{
-		var t = _mythologie.getArg(index);
+		var t = _mythologie.GetArg(index);
 		var name = t.Item1;
 		var power = t.Item2;
 		GameObject[] spawns = GameObject.FindGameObjectsWithTag(_spawn);
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
 					spawns[i].GetComponent<Tile>().isEmpty = false;
 					spawn.z = -1;
 
-					GameObject prefab = _mythologie.Monsters[index % _mythologie.Monsters.Count];
+					GameObject prefab = _mythologie.Monsters[index * 2 % _mythologie.Monsters.Count];
 					GameObject monster =
 						Instantiate(prefab, spawn, Quaternion.identity, _transform.transform) as GameObject;
 					monster.name = name;
