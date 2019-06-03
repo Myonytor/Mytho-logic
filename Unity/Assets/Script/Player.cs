@@ -59,7 +59,6 @@ public class Player : MonoBehaviour
 					GameObject prefab = _mythologie.Monsters[index % _mythologie.Monsters.Count];
 					GameObject monster =
 						Instantiate(prefab, spawn, Quaternion.identity, _transform.transform) as GameObject;
-					monster.tag = "Monster";
 					monster.name = name;
 					monster.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
