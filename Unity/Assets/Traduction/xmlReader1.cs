@@ -17,21 +17,17 @@ public class xmlReader1 : MonoBehaviour
 
     string Quit;
     string Back;
-    
     string Passer;
     string Temps;
+    string Quit1;
+    string ReturnM;
     
     public Text textPasser;
     public Text textTemps;
-   
-    
-    
-    
-    
-
-
     public Text textQuit;
     public Text textBack;
+    public Text textQuit1;
+    public Text textReturnM;
     
 
     List<Dictionary<string, string>> languages = new List<Dictionary<string, string>>();
@@ -54,17 +50,22 @@ public class xmlReader1 : MonoBehaviour
         languages[currentLanguage].TryGetValue("Name", out languageName);
 
         languages[currentLanguage].TryGetValue("Quit", out Quit);
+        languages[currentLanguage].TryGetValue("Quit1", out Quit1);
         languages[currentLanguage].TryGetValue("Back", out Back);
         
         languages[currentLanguage].TryGetValue("Passer", out Passer);
         languages[currentLanguage].TryGetValue("Temps", out Temps);
+        
+        languages[currentLanguage].TryGetValue("ReturnM", out ReturnM);
 
         textQuit.text = Quit;
+        textQuit1.text = Quit1;
         textBack.text = Back;
         
         
         textPasser.text = Passer;
         textTemps.text = Temps;
+        textReturnM.text = ReturnM;
 
 
 
@@ -91,11 +92,16 @@ public class xmlReader1 : MonoBehaviour
                 if (value.Name == "Back")
                     obj.Add(value.Name, value.InnerText);
                 
+                if (value.Name == "Quit1")
+                    obj.Add(value.Name, value.InnerText);
                 
                 if (value.Name == "Temps")
                     obj.Add(value.Name, value.InnerText);
                 
                 if (value.Name == "Passer")
+                    obj.Add(value.Name, value.InnerText);
+                
+                if (value.Name == "ReturnM")
                     obj.Add(value.Name, value.InnerText);
                 
             }
