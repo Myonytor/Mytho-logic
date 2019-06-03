@@ -31,13 +31,13 @@ public class NomPerso4 : MonoBehaviour
 
                 case 0:
 
-                    nom = "Berserk";
+                    nom = "Valkyrie";
                     break;
                 case 1:
-                    nom = "Yuki-Onna";
+                    nom = "Jorogumo";
                     break;
                 case 2:
-                    nom = "Atoum";
+                    nom = "Anubis";
                     break;
                 case 3:
                     nom = "Hydre";
@@ -55,13 +55,13 @@ public class NomPerso4 : MonoBehaviour
 
                 case 0:
 
-                    nom = "Berserk";
+                    nom = "Valkyrie";
                     break;
                 case 1:
-                    nom = "Yuki-Onna";
+                    nom = "Jorogumo";
                     break;
                 case 2:
-                    nom = "Atoum";
+                    nom = "Anubis";
                     break;
                 case 3:
                     nom = "Hydra";
