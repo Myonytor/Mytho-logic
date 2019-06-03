@@ -49,8 +49,8 @@ public class GameManager : MonoBehaviour
         mouse.onMenu = pauseMenu.activeSelf;
 
         // Entré des noms des joueurs à la place de Zeus et Poseidon"
-        GameObject player = new GameObject("Player");
-        GameObject player0 = new GameObject("Zeus");
+        GameObject player = new GameObject("Player 1");
+        GameObject player0 = new GameObject("Player 2");
         player0.transform.parent = player.transform;
         GameObject player1 = new GameObject("Poseidon");
         player1.transform.parent = player.transform;
@@ -64,8 +64,8 @@ public class GameManager : MonoBehaviour
          */
         Players = new List<Player>()
             {
-                new Player("Zeus", "Spawn1", CreateList(0), player0, prefabParticle, 0, 0),
-                new Player("Poseidon", "Spawn2", CreateList(2), player1, prefabParticle, 2, 1)
+                new Player("Player 1", "Spawn1", CreateList(0), player0, prefabParticle, 0, 0),
+                new Player("Player 2", "Spawn2", CreateList(2), player1, prefabParticle, 2, 1)
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         

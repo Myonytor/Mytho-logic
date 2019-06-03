@@ -30,7 +30,7 @@ namespace Script
          * Pouvoir spéciaux des mythologies :
          * - Japonaise : empêche les attaques des ennemies pendant un tour
          * - Nordique : double la puissance de toute les unités blessés
-         * - Grecque : ?
+         * - Grecque : si l'unité gagne un combat, elle tue son ennemie
          * - Egyptienne : empêche les déplacements des ennemies pendant un tour
          */
 		
@@ -71,7 +71,7 @@ namespace Script
             else Debug.Log(monster.Name + " n'est pas un ennemi, l'index de son joueur est : " + monster.Player);
         }
 
-        // Grecque : ?
+        // Grecque : si l'unité gagne un combat, elle tue son ennemie
         private void Grecque(Unit monster)
         {
             Debug.Log("Pouvoir de la mythologie Grecque appliqué sur " + monster.Name);
