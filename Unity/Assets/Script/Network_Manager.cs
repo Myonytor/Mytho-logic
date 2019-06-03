@@ -19,6 +19,7 @@ public class Network_Manager : NetworkManager
 
     public void JoinGame()
     {
+        SetPort();
         SetIPAdress();
         NetworkManager.singleton.StartClient();
     }
