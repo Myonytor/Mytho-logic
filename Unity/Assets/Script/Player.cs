@@ -111,6 +111,4 @@ public class Player : MonoBehaviour
 
 		return output;
 	}
-	
-	
 }

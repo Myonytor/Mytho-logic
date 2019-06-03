@@ -15,7 +15,7 @@ public class Board : MonoBehaviour
     float yOffset = 0.24f;
 
     Vector2 positionSpawn1 = new Vector2(0.75f, -2f);
-    Vector2 positionSpawn2 = new Vector2(10.5f, 2.5f);
+    Vector2 positionSpawn2 = new Vector2(12f, 2f);
 
     public Vector2[] goal= new Vector2[3];
 
