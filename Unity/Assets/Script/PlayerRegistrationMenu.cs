@@ -48,4 +48,9 @@ public class PlayerRegistrationMenu : MonoBehaviour
         
         Debug.Log(choice);
     }
+    
+    public void Online(int choice)
+    {
+        PlayerPrefs.SetInt("online", choice);
+    }
 }
