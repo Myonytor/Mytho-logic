@@ -80,47 +80,16 @@ public class GameManager : MonoBehaviour
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         
-        Players[0].Add(1);
-        Players[0].Add(3);
-        Players[0].Add(5);
-        Players[0].Add(0);
-        Players[0].Add(2);
-        Players[0].Add(4);
-        Players[0].Add(1);
-        
-        
-        Players[1].Add(0);
-        Players[1].Add(2);
-        Players[1].Add(4);
-        Players[1].Add(1);
-        Players[1].Add(3);
-        Players[1].Add(5);
-        Players[1].Add(1);
-        
         ChangeSpriteButton();
         NewTurn();
-        
-        // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
-        /*
-        foreach (var p in Players)
-        {
-            foreach (var m in p._monsters)
-            {
-                //Debug.Log(m.name);
-                Debug.Log(m._position.x + "; " + m._position.y);
-            }
-        }
-        */
     }
 
-    private List<GameObject> CreateList(int mythologie)
+    // Crée la liste de monstres correspondant à la mythologie donnée
+    private List<GameObject> CreateList(int mythology)
     {
-        List<GameObject> prefabsSmall = PrefabsMonsters.GetRange(0, 6);
-        int start = mythologie * 12 + 6;
+        int start = mythology * 12 + 6;
         List<GameObject> prefabsMythology = PrefabsMonsters.GetRange(start, 12);
-        prefabsMythology.AddRange(prefabsSmall);
-        
-        Debug.Log(prefabsMythology.Count);
+        prefabsMythology.AddRange(PrefabsMonsters.GetRange(0, 6));
 
         return prefabsMythology;
     }
@@ -128,7 +97,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) // Détecter le bouton echap
+        if (Input.GetKeyDown(KeyCode.Escape)) // Détecter le bouton échap
         {
             if (pauseMenu.activeSelf)
                 Resume();
@@ -186,11 +155,6 @@ public class GameManager : MonoBehaviour
             {
                 indexPlayer = indexPlayer == 0 ? 1 : 0;
                 mouse.player = Players[indexPlayer];
-                
-                foreach (var button in Buttons)
-                {
-                    button.GetComponent<NomPerso>().player = indexPlayer;
-                }
             }
 
             skipTurn = false;
@@ -394,8 +358,8 @@ public class GameManager : MonoBehaviour
     // Utilise le pouvoir de la mythologie de chaque joueurs si elle est activée
     private void UsePowerSpecial(Unit monster, Mythologie.Mytho mythologie, ref int power)
     {
-        if (Players[0].Mythologie.Name == mythologie) Players[0].Mythologie.PowerSpecial(monster, ref power);
-        if (Players[1].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
+        if (Players[0].Mythologie.activated && Players[0].Mythologie.Name == mythologie) Players[0].Mythologie.PowerSpecial(monster, ref power);
+        if (Players[1].Mythologie.activated && Players[1].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
     }
 
     // Met en place les images des monstres sur les boutons d'ajout des monstres
@@ -406,7 +370,9 @@ public class GameManager : MonoBehaviour
         {
             Buttons[i].GetComponent<UnityEngine.UI.Image>().sprite = Players[indexPlayer].Mythologie
                 .Monsters[i * 2 % Players[indexPlayer].Mythologie.Monsters.Count].GetComponent<SpriteRenderer>().sprite;
-            Debug.Log(Buttons[i].name);
+            Buttons[i].GetComponent<NomPerso>().ChangePlayer(indexPlayer, (int) Players[indexPlayer].Mythologie.Name);
+            
+            Debug.Log(Buttons[i].GetComponent<NomPerso>().player + ", " + Buttons[i].GetComponent<NomPerso>().CurrentMythology);
         }
     }
 

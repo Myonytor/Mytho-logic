@@ -30,35 +30,4 @@ public class Network_Manager : NetworkManager
     {
         NetworkManager.singleton.networkPort = 7777;
     }
-
-    void OnLevelWasLoaded(int level)
-    {
-        if (level == 0)
-        {
-            //SetupMenuSceneButtons();
-            StartCoroutine(SetupMenuSceneButtons());
-        }
-
-        else
-        {
-            SetupOtherSceneButtons();
-        }
-    }
-
-    IEnumerator SetupMenuSceneButtons()
-    {
-        yield return new WaitForSeconds(0.3f);
-        GameObject.Find("ButtonStartHost").GetComponent<Button>().onClick.RemoveAllListeners();
-        GameObject.Find("ButtonStartHost").GetComponent<Button>().onClick.AddListener(StartupHost);
-
-        GameObject.Find("ButtonJoinGame").GetComponent<Button>().onClick.RemoveAllListeners();
-        GameObject.Find("ButtonJoinGame").GetComponent<Button>().onClick.AddListener(JoinGame);
-    }
-
-    void SetupOtherSceneButtons()
-    {
-        GameObject.Find("ButtonDisconnect").GetComponent<Button>().onClick.RemoveAllListeners();
-        GameObject.Find("ButtonDisconnect").GetComponent<Button>().onClick
-            .AddListener(NetworkManager.singleton.StopHost);
-    }
 }

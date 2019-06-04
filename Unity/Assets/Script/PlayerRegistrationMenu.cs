@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerRegistrationMenu : MonoBehaviour
 {
+    private string SceneToLoad = "BoardScene";
+    
     public GameObject usernameGameobject;
     public GameObject UsernameChoice;
     public GameObject MythoChoice;
@@ -12,12 +15,6 @@ public class PlayerRegistrationMenu : MonoBehaviour
     private string username;
     public int indexPlayer;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -38,6 +35,7 @@ public class PlayerRegistrationMenu : MonoBehaviour
             Debug.Log(username);
             UsernameChoice.SetActive(false);
             MythoChoice.SetActive(true);
+            usernameGameobject.GetComponent<InputField>().text = "";
         }
     }
 
@@ -52,5 +50,33 @@ public class PlayerRegistrationMenu : MonoBehaviour
     public void Online(int choice)
     {
         PlayerPrefs.SetInt("online", choice);
+    }
+    
+    public void ChangeScene()
+    {
+        if (indexPlayer == 0 && PlayerPrefs.GetInt("online") == 0)
+        {
+            indexPlayer = 1;
+            MythoChoice.SetActive(false);
+            UsernameChoice.SetActive(true);
+        }
+        else
+            StartCoroutine(LoadAsync());
+    }
+
+    public void ChangeIndexPlayer()
+    {
+        indexPlayer = 1;
+    }
+
+    IEnumerator LoadAsync()
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneToLoad);
+
+        while (!operation.isDone)
+        {
+            Debug.Log(operation.progress);
+            yield return null;
+        }
     }
 }
