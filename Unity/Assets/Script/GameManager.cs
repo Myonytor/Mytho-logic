@@ -139,10 +139,7 @@ public class GameManager : MonoBehaviour
 
         if (!pauseMenu.activeSelf && Input.GetKeyDown(KeyCode.Space))
         {
-            if(newTurnPanel.activeSelf)
-                StartNewTurn();
-            else
-                skipTurnFunc();
+            skipTurnFunc();
         }
 
         if((int)(decompte - Time.deltaTime) != (int)(decompte))
@@ -408,7 +405,10 @@ public class GameManager : MonoBehaviour
     // Passe directement au joueur suivant
     public void skipTurnFunc()
     {
-        skipTurn = true;
+        if(newTurnPanel.activeSelf)
+            StartNewTurn();
+        else
+            skipTurn = true;
     }
 
     // Met en pause le jeu et affiche un menu
