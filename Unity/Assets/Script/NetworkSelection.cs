@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class NetworkSelection : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private string username;
+    public int indexPlayer;
+
     void Start()
     {
-        
+        indexPlayer = (PlayerPrefs.GetInt("online") == 2 ? 1 : 0);
     }
-
+    
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            RegisterButton();
+        }
+    }
+    
+    public void ButtonChoice(int mythology)
+    {
+        string playpref = "mythology" + indexPlayer;
+        PlayerPrefs.SetInt(playpref, mythology);
     }
 }
