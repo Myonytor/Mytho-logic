@@ -43,7 +43,7 @@ namespace Script
                     Egyptienne(monster);
                     break;
                 case Mytho.Grecque:
-                    Grecque(monster);
+                    Grecque(monster, ref power);
                     break;
                 case Mytho.Japonaise:
                     Japonaise(monster);
@@ -72,8 +72,10 @@ namespace Script
         }
 
         // Grecque : si l'unité gagne un combat, elle tue son ennemie
-        private void Grecque(Unit monster)
+        private void Grecque(Unit monster, ref int win)
         {
+	        if (activated && monster.Player != indexPlayer) win = 1;
+	        
             Debug.Log("Pouvoir de la mythologie Grecque appliqué sur " + monster.Name);
         }
 
