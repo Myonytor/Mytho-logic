@@ -139,4 +139,10 @@ public class PlayerRegistrationMenu : MonoBehaviour
             }
         }
     }
+    
+    // Quitte l'application
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
