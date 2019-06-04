@@ -54,10 +54,16 @@ public class PlayerRegistrationMenu : MonoBehaviour
     {
         if (indexPlayer == 0 && PlayerPrefs.GetInt("online") == 0)
         {
+            indexPlayer = 1;
             MythoChoice.SetActive(false);
             UsernameChoice.SetActive(true);
         }
         else
             UnityEngine.SceneManagement.SceneManager.LoadScene(SceneToLoad);
+    }
+
+    public void ChangeIndexPlayer()
+    {
+        indexPlayer = 1;
     }
 }
