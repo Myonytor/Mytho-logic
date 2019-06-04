@@ -11,6 +11,9 @@ public class PlayerRegistrationMenu : MonoBehaviour
     public GameObject usernameGameobject;
     public GameObject UsernameChoice;
     public GameObject MythoChoice;
+    public GameObject loadingScreen;
+    public Slider slider;
+    public Text LoadText;
 
     private string username;
     public int indexPlayer;
@@ -73,10 +76,16 @@ public class PlayerRegistrationMenu : MonoBehaviour
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(SceneToLoad);
 
+        MythoChoice.SetActive(false);
+        loadingScreen.SetActive(true);
+
         while (!operation.isDone)
         {
             float progress = Mathf.Clamp01(operation.progress / .9f);
-            Debug.Log("Chargement : " + progress);
+
+            slider.value = progress;
+            LoadText.text = (progress * 100).ToString("F0") + "%";
+
             yield return null;
         }
     }
