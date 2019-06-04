@@ -263,7 +263,11 @@ public class GameManager : MonoBehaviour
                         else repelledMonster.Add(v, new List<Unit>() {m[1]});
                     }
 
-                    State(m[1]);
+                    int win = 0;
+                    UsePowerSpecial(m[1], Mythologie.Mytho.Grecque, ref win);
+                    
+                    if (win == 1) Players[m[1].Player].Delete(m[1]);
+                    else State(m[1]);
                     m.RemoveAt(1);
                 }
 
@@ -277,7 +281,11 @@ public class GameManager : MonoBehaviour
                         else repelledMonster.Add(v, new List<Unit>() {m[0]});
                     }
 
-                    State(m[0]);
+                    int win = 0;
+                    UsePowerSpecial(m[0], Mythologie.Mytho.Grecque, ref win);
+                    
+                    if (win == 1) Players[m[0].Player].Delete(m[0]);
+                    else State(m[0]);
                     m.RemoveAt(0);
                 }
 
