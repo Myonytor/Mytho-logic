@@ -36,16 +36,16 @@ public class NomPerso : MonoBehaviour
                 {
                     switch (currentMythologie)
                     {
-                        case 0:
+                        case 3:
                             name = "Draugr";
                             break;
-                        case 1:
+                        case 2:
                             name = "Tatsu";
                             break;
-                        case 2:
+                        case 0:
                             name = "Nout";
                             break;
-                        case 3:
+                        case 1:
                             name = "Minotaure";
                             break;
                         default:
@@ -57,16 +57,16 @@ public class NomPerso : MonoBehaviour
                 {
                     switch (currentMythologie)
                     {
-                        case 0:
+                        case 3:
                             name = "Draugr";
                             break;
-                        case 1:
+                        case 2:
                             name = "Tatsu";
                             break;
-                        case 2:
+                        case 0:
                             name = "Nout";
                             break;
-                        case 3:
+                        case 1:
                             name = "Minotaur";
                             break;
                         default:
@@ -83,16 +83,16 @@ public class NomPerso : MonoBehaviour
                 {
                     switch (currentMythologie)
                     {
-                        case 0:
+                        case 3:
                             name = "Berserker";
                             break;
-                        case 1:
+                        case 2:
                             name = "Kirin";
                             break;
-                        case 2:
+                        case 0:
                             name = "Atoum";
                             break;
-                        case 3:
+                        case 1:
                             name = "Sirène";
                             break;
                         default:
@@ -104,16 +104,16 @@ public class NomPerso : MonoBehaviour
                 {
                     switch (currentMythologie)
                     {
-                        case 0:
+                        case 3:
                             name = "Berserker";
                             break;
-                        case 1:
+                        case 2:
                             name = "Kirin";
                             break;
-                        case 2:
+                        case 0:
                             name = "Atoum";
                             break;
-                        case 3:
+                        case 1:
                             name = "Siren";
                             break;
                         default:
@@ -130,16 +130,16 @@ public class NomPerso : MonoBehaviour
                 {
                     switch (currentMythologie)
                     {
-                        case 0:
+                        case 3:
                             name = "Fenrir";
                             break;
-                        case 1:
+                        case 2:
                             name = "Kitsune";
                             break;
-                        case 2:
+                        case 0:
                             name = "Osiris";
                             break;
-                        case 3:
+                        case 1:
                             name = "Harpie";
                             break;
                         default:
@@ -151,16 +151,16 @@ public class NomPerso : MonoBehaviour
                 {
                     switch (currentMythologie)
                     {
-                        case 0:
+                        case 3:
                             name = "Fenrir";
                             break;
-                        case 1:
+                        case 2:
                             name = "Kitsune";
                             break;
-                        case 2:
+                        case 0:
                             name = "Osiris";
                             break;
-                        case 3:
+                        case 1:
                             name = "Harpy";
                             break;
                         default:
@@ -177,16 +177,16 @@ public class NomPerso : MonoBehaviour
                 {
                     switch (currentMythologie)
                     {
-                        case 0:
+                        case 3:
                             name = "Troll";
                             break;
-                        case 1:
+                        case 2:
                             name = "Yuki-Onna";
                             break;
-                        case 2:
+                        case 0:
                             name = "Nephtys";
                             break;
-                        case 3:
+                        case 1:
                             name = "Cerbère";
                             break;
                         default:
@@ -198,16 +198,16 @@ public class NomPerso : MonoBehaviour
                 {
                     switch (currentMythologie)
                     {
-                        case 0:
+                        case 3:
                             name = "Troll";
                             break;
-                        case 1:
+                        case 2:
                             name = "Yuki-Onna";
                             break;
-                        case 2:
+                        case 0:
                             name = "Nephtys";
                             break;
-                        case 3:
+                        case 1:
                             name = "Cerberus";
                             break;
                         default:
@@ -224,16 +224,16 @@ public class NomPerso : MonoBehaviour
                 {
                     switch (currentMythologie)
                     {
-                        case 0:
+                        case 3:
                             name = "Valkyrie";
                             break;
-                        case 1:
+                        case 2:
                             name = "Jorogumo";
                             break;
-                        case 2:
+                        case 0:
                             name = "Anubis";
                             break;
-                        case 3:
+                        case 1:
                             name = "Hydre";
                             break;
                         default:
@@ -245,16 +245,16 @@ public class NomPerso : MonoBehaviour
                 {
                     switch (currentMythologie)
                     {
-                        case 0:
+                        case 3:
                             name = "Valkyrie";
                             break;
-                        case 1:
+                        case 2:
                             name = "Jorogumo";
                             break;
-                        case 2:
+                        case 0:
                             name = "Anubis";
                             break;
-                        case 3:
+                        case 1:
                             name = "Hydra";
                             break;
                         default:
@@ -271,16 +271,16 @@ public class NomPerso : MonoBehaviour
                 {
                     switch (currentMythologie)
                     {
-                        case 0:
+                        case 3:
                             name = "Sorcier";
                             break;
-                        case 1:
+                        case 2:
                             name = "Furi";
                             break;
-                        case 2:
+                        case 0:
                             name = "Isis";
                             break;
-                        case 3:
+                        case 1:
                             name = "Méduse";
                             break;
                         default:
@@ -292,16 +292,16 @@ public class NomPerso : MonoBehaviour
                 {
                     switch (currentMythologie)
                     {
-                        case 0:
+                        case 3:
                             name = "Wizard";
                             break;
-                        case 1:
+                        case 2:
                             name = "Furi";
                             break;
-                        case 2:
+                        case 0:
                             name = "Isis";
                             break;
-                        case 3:
+                        case 1:
                             name = "Medusa";
                             break;
                         default:
