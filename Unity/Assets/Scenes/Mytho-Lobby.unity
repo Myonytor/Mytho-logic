@@ -3409,7 +3409,7 @@ MonoBehaviour:
   m_AutoCreatePlayer: 0
   m_PlayerSpawnMethod: 1
   m_OfflineScene: Mytho-Lobby
-  m_OnlineScene: BoardScene
+  m_OnlineScene: Selection_Online
   m_SpawnPrefabs: []
   m_CustomConfig: 1
   m_MaxConnections: 2
