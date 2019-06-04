@@ -18,7 +18,7 @@ public class PlayerRegistrationMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && UsernameChoice.activeSelf)
         {
             RegisterButton();
         }
@@ -75,7 +75,8 @@ public class PlayerRegistrationMenu : MonoBehaviour
 
         while (!operation.isDone)
         {
-            Debug.Log(operation.progress);
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+            Debug.Log("Chargement : " + progress);
             yield return null;
         }
     }

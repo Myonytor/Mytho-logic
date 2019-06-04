@@ -30,10 +30,14 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject newTurnPanel;
     public GameObject endGamePanel;
+    public GameObject BMenu;
+    public GameObject BRun;
 
     public Text timeText;
     public Text newTurnText;
     public Text endGame;
+    public Text B1;
+    public Text B2;
     public bool skipTurn;
 
     public GameObject AudioManager;
@@ -382,7 +386,10 @@ public class GameManager : MonoBehaviour
     public void Pause()
     {
         Time.timeScale = 0f; 
-        pauseMenu.SetActive(true); 
+        pauseMenu.SetActive(true);
+        BMenu.SetActive(false);
+        BRun.SetActive(true);
+        B2.text = ">";
         mouse.onMenu = true;       
     }
 
@@ -391,6 +398,9 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f; 
         pauseMenu.SetActive(false); 
+        BMenu.SetActive(true);
+        BRun.SetActive(false);
+        B2.text = "||";
         mouse.onMenu = newTurnPanel.activeSelf;       
     }
 
