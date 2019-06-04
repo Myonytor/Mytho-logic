@@ -29,8 +29,18 @@ public class NetworkSelection : NetworkBehaviour
         }
     }
 
-    public void ChangeScene(string scene)
+    public void ChangeScene(string scene)// Permet de changer la scène une fois que le player est prêt
     {
+        username = usernameGameobject.GetComponent<InputField>().text;
+        if (username != "")
+        {
+            string playprefs = "player" + indexPlayer;
+            PlayerPrefs.SetString(playprefs, username);
+            isReady = !isReady;
+            IsReadyText.SetActive(isReady);
+            
+            Debug.Log(username);
+        }
         NetworkManager.singleton.ServerChangeScene(scene);
     }
 
