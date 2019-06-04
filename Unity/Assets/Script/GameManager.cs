@@ -47,7 +47,6 @@ public class GameManager : MonoBehaviour
     public Text Display1;
     public Text Display2;
     public int currentLangage;
-    private string a;
 
     public GameObject AudioManager;
 
@@ -189,22 +188,23 @@ public class GameManager : MonoBehaviour
             {
                 for (int i = 0; i < 2; i++)
                 {
+                    string mythology = "";
                     switch ((int) Players[i].Mythologie.Name)
                     {
                         case 0:
-                            a = "Egyptian";
+                            mythology = "Egyptian";
                             break;
                         
                         case 1:
-                            a = "Greek";
+                            mythology = "Greek";
                             break;
                         
                         case 2:
-                            a = "Japanese";
+                            mythology = "Japanese";
                             break;
                         
                         case 3:
-                            a = "Nordic";
+                            mythology = "Nordic";
                             break;
                         
                         default:
@@ -212,14 +212,8 @@ public class GameManager : MonoBehaviour
                             break;
                     }
 
-                    if (i == 0)
-                    {
-                        Display1.text = Players[0].Name + " choose the " + a + " mythology";;
-                    }
-                    else
-                    {
-                        Display2.text = Players[1].Name + " choose the " + a + " mythology";
-                    }
+                    if (i == 0) Display1.text = Players[0].Name + " choose the " + mythology + " mythology";
+                    else Display2.text = Players[1].Name + " choose the " + mythology + " mythology";
                 }
             }
         }
