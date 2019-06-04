@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class Network_Manager : NetworkManager
 {
+    // NetworkManager.ServerChangeScene()
 
     public void StartupHost()
     {
         SetPort();
         NetworkManager.singleton.StartHost();
+        //NetworkManager.ServerChangeScene();
     }
 
     public void JoinGame()
