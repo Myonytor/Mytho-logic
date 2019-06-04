@@ -40,7 +40,6 @@ public class NetworkSelection : NetworkBehaviour
             IsReadyText.SetActive(isReady);
             
             Debug.Log(username);
-            usernameGameobject.GetComponent<InputField>().text = "";
         }
     }
     
