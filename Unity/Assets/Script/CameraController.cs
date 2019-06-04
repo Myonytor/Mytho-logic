@@ -20,9 +20,10 @@ public class CameraController : MonoBehaviour
     {
         ResetCamera = Camera.main.transform.position;
     }
+    
     void LateUpdate()
     {
-        //Movment
+        // Gestion du mouvement de la camera
         if (Input.GetMouseButton(2))
         {
             Diference = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - Camera.main.transform.position;
@@ -42,7 +43,7 @@ public class CameraController : MonoBehaviour
             if (PosFinal.x < maxXCameraPosition && PosFinal.y < maxYCameraPosition && PosFinal.x > minXCameraPosition && PosFinal.y > minYCameraPosition)
             Camera.main.transform.position = PosFinal;
         }
-        //zoom
+        // Gestion du zoom de la camera
         if(Input.GetAxis("Mouse ScrollWheel") > 0 && GetComponent<Camera>().orthographicSize > minCameraDistance)
         {
             GetComponent<Camera>().orthographicSize -= scrollSpeed;

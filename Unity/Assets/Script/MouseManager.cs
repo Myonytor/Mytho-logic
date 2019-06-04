@@ -98,6 +98,7 @@ public class MouseManager : MonoBehaviour
         }
     }
 
+    // Change de joueur
     public void ChangePlayer(Player p)
     {
         player = p;
@@ -146,6 +147,7 @@ public class MouseManager : MonoBehaviour
         return x <= 1 && x >= -1 && y <= 1 && y >= -1 && x + y <= 1 && x + y >= -1;
     }
 
+    // Indique si la case voulu est une case objectif ou non
     bool IsAGoal(Vector2 v)
     {
         bool output = false;
@@ -171,11 +173,13 @@ public class MouseManager : MonoBehaviour
         player = null;
     }
 
+    // Ajoute un monstre dans le spawn
     public void AddMonsterOnSpawn(int index)
     {
         player.Add(index);
     }
 
+    // Active la mythologie du joueur
     public void ActivatedMythology()
     {
         player.Mythologie.activated = true;
