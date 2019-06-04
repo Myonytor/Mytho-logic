@@ -124,11 +124,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (var button in Buttons)
-        {
-            button.GetComponent<NomPerso>().indexPlayer = indexPlayer;
-        }
-        
         if (Input.GetKeyDown(KeyCode.Escape)) // Détecter le bouton echap
         {
             if (pauseMenu.activeSelf)
@@ -139,7 +134,10 @@ public class GameManager : MonoBehaviour
 
         if (!pauseMenu.activeSelf && Input.GetKeyDown(KeyCode.Space))
         {
-            skipTurnFunc();
+            if(newTurnPanel.activeSelf)
+                StartNewTurn();
+            else
+                skipTurnFunc();
         }
 
         if((int)(decompte - Time.deltaTime) != (int)(decompte))
@@ -184,6 +182,11 @@ public class GameManager : MonoBehaviour
             {
                 indexPlayer = indexPlayer == 0 ? 1 : 0;
                 mouse.player = Players[indexPlayer];
+                
+                foreach (var button in Buttons)
+                {
+                    button.GetComponent<NomPerso>().player = indexPlayer;
+                }
             }
 
             skipTurn = false;
@@ -391,6 +394,7 @@ public class GameManager : MonoBehaviour
         if (Players[1].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
     }
 
+    // Met en place les images des monstres sur les boutons d'ajout des monstres
     public void ChangeSpriteButton()
     {
         Debug.Log(Buttons.Count);
@@ -405,10 +409,7 @@ public class GameManager : MonoBehaviour
     // Passe directement au joueur suivant
     public void skipTurnFunc()
     {
-        if(newTurnPanel.activeSelf)
-            StartNewTurn();
-        else
-            skipTurn = true;
+        skipTurn = true;
     }
 
     // Met en pause le jeu et affiche un menu
@@ -444,13 +445,16 @@ public class GameManager : MonoBehaviour
         newTurnPanel.SetActive(false); 
     }
 
+    // Quitte la partie en cours et retourne au menu principale
     public void ReturnToMenu()
     {
         SceneManager.LoadScene("Mytho-Lobby", LoadSceneMode.Single);
     }
 
+    // Quitte l'application
     public void Quit()
     {
+        PlayerPrefs.DeleteAll();
         Application.Quit();
     }
 }

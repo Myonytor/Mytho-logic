@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Mime;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class NomPerso : MonoBehaviour
@@ -14,14 +15,14 @@ public class NomPerso : MonoBehaviour
 
     private string name;
 
-    public int indexPlayer;
+    public int player;
     public int button;
 
     void Start()
     {
         currentLanguage = PlayerPrefs.GetInt("lang",0);
 
-        string playerpref = "mythology" + indexPlayer;
+        string playerpref = "mythology" + player;
         currentMythologie = PlayerPrefs.GetInt(playerpref, 0);
         name = "test";
         NomP.text = name;
