@@ -1444,7 +1444,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: MainMusic
     clip: {fileID: 8300000, guid: 6a0585430f6ee20458056614b3cdae82, type: 3}
-    volume: 1
+    volume: 0.7
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -1516,6 +1516,30 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Meduse
     clip: {fileID: 8300000, guid: 13dcbf973d86ef045ba99bc630a57972, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Yuki-Onna
+    clip: {fileID: 8300000, guid: 2ba378eb0fd8797428034c7884ea690e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Tatsu
+    clip: {fileID: 8300000, guid: 61aad8edd72d1584580829b2525da408, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Kirin
+    clip: {fileID: 8300000, guid: c135ef0445a4adb4887cd8b76ff4f030, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Furi
+    clip: {fileID: 8300000, guid: 01e7aad119b35ec48a8a60798c99990b, type: 3}
     volume: 1
     pitch: 1
     loop: 0

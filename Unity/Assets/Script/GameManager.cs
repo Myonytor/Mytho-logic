@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         AudioManager.GetComponent<AudioManager>().Play("MainMusic");
         //PrefabsMonsters[0].GetComponent<SpriteRenderer>().sprite;
         decompte = timer;
-        indexPlayer = 0;
+        indexPlayer = (PlayerPrefs.GetInt("online") == 2 ? 1 : 0);
         board.Setup();
         mouse.goal = board.goal;
         mouse.onMenu = pauseMenu.activeSelf;
@@ -139,10 +139,7 @@ public class GameManager : MonoBehaviour
 
         if (!pauseMenu.activeSelf && Input.GetKeyDown(KeyCode.Space))
         {
-            if(newTurnPanel.activeSelf)
-                StartNewTurn();
-            else
-                skipTurnFunc();
+            skipTurnFunc();
         }
 
         if((int)(decompte - Time.deltaTime) != (int)(decompte))
@@ -155,7 +152,7 @@ public class GameManager : MonoBehaviour
         {
             mouse.Clear();
             decompte = timer;
-            if (indexPlayer == 1)
+            if (indexPlayer == 1 || PlayerPrefs.GetInt("online") != 0)
             {
                 NextBoard();
                 int w = 0;
@@ -182,8 +179,13 @@ public class GameManager : MonoBehaviour
                     Time.timeScale = 0;
                 }
             }
-            indexPlayer = indexPlayer == 0 ? 1 : 0;
-            mouse.player = Players[indexPlayer];
+
+            if (PlayerPrefs.GetInt("online") == 0)
+            {
+                indexPlayer = indexPlayer == 0 ? 1 : 0;
+                mouse.player = Players[indexPlayer];
+            }
+
             skipTurn = false;
             ChangeSpriteButton();
             if(!endGamePanel.activeSelf)
@@ -403,7 +405,10 @@ public class GameManager : MonoBehaviour
     // Passe directement au joueur suivant
     public void skipTurnFunc()
     {
-        skipTurn = true;
+        if(newTurnPanel.activeSelf)
+            StartNewTurn();
+        else
+            skipTurn = true;
     }
 
     // Met en pause le jeu et affiche un menu
