@@ -60,51 +60,28 @@ namespace Script
         // Egyptienne : empêche les déplacements des ennemies pendant un tour
         private void Egyptienne(Unit monster)
         {
-            if (activated && monster.Player != indexPlayer)
-            {
-                Debug.Log("Pouvoir de la mythologie Egyptienne appliqué sur " + monster.Name + ", (" + monster._movement.x + ", " + monster._movement.y + ")");
-                
-                monster._movement = Vector2.zero;
-                
-                if (monster._movement == Vector2.zero) Debug.Log("Réinitialisation du mouvement");
-            }
-            else Debug.Log(monster.Name + " n'est pas un ennemi, l'index de son joueur est : " + monster.Player);
+            if (activated && monster.Player != indexPlayer) monster._movement = Vector2.zero;
         }
 
         // Grecque : si l'unité gagne un combat, elle tue son ennemie
         private void Grecque(Unit monster, ref int win)
         {
 	        if (activated && monster.Player != indexPlayer) win = 1;
-	        
-            Debug.Log("Pouvoir de la mythologie Grecque appliqué sur " + monster.Name);
         }
 
         // Japonaise : empêche les attaques des ennemies pendant un tour
         private void Japonaise(Unit monster)
         {
-            if (activated && monster.Player != indexPlayer)
-            {
-                Debug.Log("Pouvoir de la mythologie Japonaise appliqué sur " + monster.Name + ", (" + monster._attack.x + ", " + monster._attack.y + ")");
-                
-                monster._attack = Vector2.zero;
-                
-                if (monster._attack == Vector2.zero) Debug.Log("Réinitialisation de l'attaque");
-            }
-            else Debug.Log(monster.Name + " n'est pas un ennemi, l'index de son joueur est : " + monster.Player);
+            if (activated && monster.Player != indexPlayer) monster._attack = Vector2.zero;
         }
 
         // Nordique : double la puissance de toute les unités blessés
         private void Nordique(Unit monster, ref int power)
         {
-            if (activated && monster.Player == indexPlayer && monster.wounded)
-            {
-                power += monster.Power;
-
-                Debug.Log("Pouvoir de la mythologie Nordique appliqué sur " + monster.Name + ", augmentation de la puissance d'attaque");
-            }
-            else Debug.Log(monster.Name + " n'est pas blessé, où est un ennemi");
+            if (activated && monster.Player == indexPlayer && monster.wounded) power += monster.Power;
         }
 
+        // Enumération des mythologies
         public enum Mytho
         {
             Egyptienne,
@@ -113,6 +90,7 @@ namespace Script
             Nordique
         }
         
+        // Dictionnaire contenant les noms et puissances de chaques monstres rangés par mythologies
         private Dictionary<Mytho, List<Tuple<string, int>>> listMonster = new Dictionary<Mytho, List<Tuple<string, int>>>()
 	    {
 	        { Mytho.Egyptienne, new List<Tuple<string, int>>()
@@ -154,6 +132,7 @@ namespace Script
 	        }
 	    };
 
+        // Renvoie le couple correspondant à l'index
 	    public Tuple<string, int> GetArg(int index)
 	    {
 		    List<Tuple<string, int>> small = new List<Tuple<string, int>>()

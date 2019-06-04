@@ -27,6 +27,7 @@ public class PlayerRegistrationMenu : MonoBehaviour
         }
     }
 
+    // Sauvegarde ce que le joueur tape pour son pseudo
     public void RegisterButton()
     {
         username = usernameGameobject.GetComponent<InputField>().text;
@@ -42,6 +43,7 @@ public class PlayerRegistrationMenu : MonoBehaviour
         }
     }
 
+    // Enregistre le choix de la mythology du joueur
     public void ButtonChoice(int mythology)
     {
         string playpref = "mythology" + indexPlayer;
@@ -50,11 +52,13 @@ public class PlayerRegistrationMenu : MonoBehaviour
         Debug.Log(mythology);
     }
     
+    // Enregistre si le jeu se passe en ligne où sur le même ordinateur
     public void Online(int choice)
     {
         PlayerPrefs.SetInt("online", choice);
     }
     
+    // Rejoue les scènes de sélection de la mythology et du surnom du joueur si besoin sinon passe à la scène suivante
     public void ChangeScene()
     {
         if (indexPlayer == 0 && PlayerPrefs.GetInt("online") == 0)
@@ -67,6 +71,7 @@ public class PlayerRegistrationMenu : MonoBehaviour
             StartCoroutine(LoadAsync());
     }
 
+    // Change l'index du joueur
     public void ChangeIndexPlayer()
     {
         indexPlayer = 1;

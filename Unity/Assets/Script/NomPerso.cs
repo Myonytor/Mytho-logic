@@ -30,6 +30,7 @@ public class NomPerso : MonoBehaviour
         NomP.text = name;
     }
 
+    // Changement des noms des monstres lors du passage de la souris dessus en fonction du boutons, de la mythologie et de la langue
     void Update()
     {
         switch (button)
@@ -185,6 +186,7 @@ public class NomPerso : MonoBehaviour
         }
     }
 
+    // Changement de joueur
     public void ChangePlayer(int index, int mythology)
     {
         player = index;
