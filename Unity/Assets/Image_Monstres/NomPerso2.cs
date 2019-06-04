@@ -28,7 +28,6 @@ public class NomPerso2 : MonoBehaviour
         {
             switch (currentMythologie)
             {
-
                 case 0:
 
                     nom = "Fenrir";

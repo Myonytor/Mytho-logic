@@ -10,6 +10,8 @@ public class PlayerRegistrationMenu : MonoBehaviour
     public GameObject MythoChoice;
 
     private string username;
+    public int indexPlayer;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -30,9 +32,25 @@ public class PlayerRegistrationMenu : MonoBehaviour
         username = usernameGameobject.GetComponent<InputField>().text;
         if (username != "")
         {
-            Debug.Log("Success Username");
+            string playprefs = "player" + indexPlayer;
+            PlayerPrefs.SetString(playprefs, username);
+            
+            Debug.Log(username);
             UsernameChoice.SetActive(false);
             MythoChoice.SetActive(true);
         }
+    }
+
+    public void ButtonChoice(int choice)
+    {
+        string playpref = "mythology" + indexPlayer;
+        PlayerPrefs.SetInt(playpref, choice);
+        
+        Debug.Log(choice);
+    }
+    
+    public void Online(int choice)
+    {
+        PlayerPrefs.SetInt("online", choice);
     }
 }
