@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerRegistrationMenu : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class PlayerRegistrationMenu : MonoBehaviour
             Debug.Log(username);
             UsernameChoice.SetActive(false);
             MythoChoice.SetActive(true);
+            usernameGameobject.GetComponent<InputField>().text = "";
         }
     }
 
@@ -59,11 +61,22 @@ public class PlayerRegistrationMenu : MonoBehaviour
             UsernameChoice.SetActive(true);
         }
         else
-            UnityEngine.SceneManagement.SceneManager.LoadScene(SceneToLoad);
+            StartCoroutine(LoadAsync());
     }
 
     public void ChangeIndexPlayer()
     {
         indexPlayer = 1;
+    }
+
+    IEnumerator LoadAsync()
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneToLoad);
+
+        while (!operation.isDone)
+        {
+            Debug.Log(operation.progress);
+            yield return null;
+        }
     }
 }
