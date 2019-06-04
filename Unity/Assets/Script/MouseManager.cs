@@ -179,6 +179,11 @@ public class MouseManager : MonoBehaviour
     {
         player.Add(index);
     }
+
+    public void ActivatedMythology()
+    {
+        player.Mythologie.activated = true;
+    }
     
     private bool IsPointerOverUIObject()
     {
