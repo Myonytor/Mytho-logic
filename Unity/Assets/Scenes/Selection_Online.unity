@@ -223,7 +223,7 @@ RectTransform:
   m_Children:
   - {fileID: 1963925743}
   m_Father: {fileID: 1498428765}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1498428766}
+      - m_Target: {fileID: 0}
         m_MethodName: RegisterButton
         m_Mode: 1
         m_Arguments:
@@ -353,7 +353,7 @@ RectTransform:
   m_Children:
   - {fileID: 2100157632}
   m_Father: {fileID: 1498428765}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1498428766}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
@@ -459,7 +459,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1498428766}
+      - m_Target: {fileID: 0}
         m_MethodName: ButtonChoice
         m_Mode: 3
         m_Arguments:
@@ -625,6 +625,7 @@ RectTransform:
   m_Children:
   - {fileID: 309399711}
   - {fileID: 1498428765}
+  - {fileID: 1939908008}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1172,7 +1173,7 @@ RectTransform:
   - {fileID: 1580265182}
   - {fileID: 1349094308}
   m_Father: {fileID: 1498428765}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1446,7 +1447,7 @@ RectTransform:
   m_LocalScale: {x: 0.425, y: 0.475, z: 1}
   m_Children: []
   m_Father: {fileID: 1498428765}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1607,7 +1608,7 @@ RectTransform:
   m_Children:
   - {fileID: 912793021}
   m_Father: {fileID: 1498428765}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1702,7 +1703,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1498428766}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
@@ -1713,7 +1714,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1498428766}
+      - m_Target: {fileID: 0}
         m_MethodName: ButtonChoice
         m_Mode: 3
         m_Arguments:
@@ -1774,6 +1775,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236384944}
   m_CullTransparentMesh: 0
+--- !u!1 &1312859710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1312859713}
+  - component: {fileID: 1312859712}
+  - component: {fileID: 1312859711}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1312859711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312859710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1312859712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312859710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1312859713
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312859710}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1349094307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,7 +2029,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1498428765}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2044,7 +2111,7 @@ RectTransform:
   m_Children:
   - {fileID: 1438343430}
   m_Father: {fileID: 1498428765}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2139,7 +2206,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1498428766}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
@@ -2150,7 +2217,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1498428766}
+      - m_Target: {fileID: 0}
         m_MethodName: ButtonChoice
         m_Mode: 3
         m_Arguments:
@@ -2330,7 +2397,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 19
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 10
@@ -2399,7 +2466,7 @@ RectTransform:
   - {fileID: 1621253247}
   - {fileID: 831619408}
   m_Father: {fileID: 1498428765}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2434,7 +2501,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1939908008}
   - {fileID: 1363357182}
   - {fileID: 1587922599}
   - {fileID: 194074669}
@@ -2464,16 +2530,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1498428764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6479b8da01b79c644bcd1cc6b3ac554e, type: 3}
+  m_Script: {fileID: 11500000, guid: a1aebe8ebd5048f4eb2557ff44694415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usernameGameobject: {fileID: 1587922595}
-  UsernameChoice: {fileID: 0}
-  MythoChoice: {fileID: 0}
-  loadingScreen: {fileID: 0}
-  slider: {fileID: 0}
-  LoadText: {fileID: 0}
-  indexPlayer: 0
 --- !u!1 &1571575590
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,7 +2648,7 @@ RectTransform:
   m_Children:
   - {fileID: 429721514}
   m_Father: {fileID: 1498428765}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2684,7 +2743,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1498428766}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
@@ -2695,7 +2754,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1498428766}
+      - m_Target: {fileID: 0}
         m_MethodName: ButtonChoice
         m_Mode: 3
         m_Arguments:
@@ -2969,7 +3028,7 @@ RectTransform:
   - {fileID: 1473903924}
   - {fileID: 976081536}
   m_Father: {fileID: 1498428765}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3085,7 +3144,7 @@ RectTransform:
   - {fileID: 644846490}
   - {fileID: 1136353242}
   m_Father: {fileID: 1498428765}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3122,7 +3181,7 @@ RectTransform:
   - {fileID: 1360228684}
   - {fileID: 150268483}
   m_Father: {fileID: 1498428765}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3153,18 +3212,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939908007}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 312585799}
-  m_Father: {fileID: 1498428765}
-  m_RootOrder: 0
+  m_Father: {fileID: 270227780}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 11, y: -252.3}
-  m_SizeDelta: {x: 1846.1, y: 636.2}
+  m_AnchoredPosition: {x: 1207.4736, y: 557.20416}
+  m_SizeDelta: {x: 26.099854, y: -120.27063}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1939908009
 CanvasRenderer:
@@ -3244,7 +3303,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Valider
+  m_Text: READY
 --- !u!222 &1963925745
 CanvasRenderer:
   m_ObjectHideFlags: 0
