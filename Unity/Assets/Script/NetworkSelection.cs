@@ -28,7 +28,12 @@ public class NetworkSelection : NetworkBehaviour
             RegisterButton();
         }
     }
-    
+
+    public void ChangeScene(string scene)
+    {
+        NetworkManager.singleton.ServerChangeScene(scene);
+    }
+
     public void RegisterButton()
     {
         username = usernameGameobject.GetComponent<InputField>().text;
