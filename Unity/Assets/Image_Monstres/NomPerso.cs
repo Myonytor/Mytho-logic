@@ -12,7 +12,7 @@ public class NomPerso : MonoBehaviour
 
     public Text NomP; 
 
-    private string nom;
+    private string name;
 
     public int indexPlayer;
     public int button;
@@ -21,11 +21,10 @@ public class NomPerso : MonoBehaviour
     {
         currentLanguage = PlayerPrefs.GetInt("lang",0);
 
-        string playerpref = "choice" + indexPlayer;
+        string playerpref = "mythology" + indexPlayer;
         currentMythologie = PlayerPrefs.GetInt(playerpref, 0);
-        nom = "";
-
-        button = 0;
+        name = "test";
+        NomP.text = name;
     }
 
     void Update()
@@ -38,16 +37,16 @@ public class NomPerso : MonoBehaviour
                     switch (currentMythologie)
                     {
                         case 0:
-                            nom = "Draugr";
+                            name = "Draugr";
                             break;
                         case 1:
-                            nom = "Tatsu";
+                            name = "Tatsu";
                             break;
                         case 2:
-                            nom = "Nout";
+                            name = "Nout";
                             break;
                         case 3:
-                            nom = "Minotaure";
+                            name = "Minotaure";
                             break;
                         default:
                             Debug.Log("Error");
@@ -59,24 +58,24 @@ public class NomPerso : MonoBehaviour
                     switch (currentMythologie)
                     {
                         case 0:
-                            nom = "Draugr";
+                            name = "Draugr";
                             break;
                         case 1:
-                            nom = "Tatsu";
+                            name = "Tatsu";
                             break;
                         case 2:
-                            nom = "Nout";
+                            name = "Nout";
                             break;
                         case 3:
-                            nom = "Minotaur";
+                            name = "Minotaur";
                             break;
                         default:
                             Debug.Log("Error");
                             break;
                     }
                 }
-
-                NomP.text = nom;
+        
+                NomP.text = name;
                 break;
             
             case 1:
@@ -85,16 +84,16 @@ public class NomPerso : MonoBehaviour
                     switch (currentMythologie)
                     {
                         case 0:
-                            nom = "Berserker";
+                            name = "Berserker";
                             break;
                         case 1:
-                            nom = "Kirin";
+                            name = "Kirin";
                             break;
                         case 2:
-                            nom = "Atoum";
+                            name = "Atoum";
                             break;
                         case 3:
-                            nom = "Sirène";
+                            name = "Sirène";
                             break;
                         default:
                             Debug.Log("Error");
@@ -106,16 +105,16 @@ public class NomPerso : MonoBehaviour
                     switch (currentMythologie)
                     {
                         case 0:
-                            nom = "Berserker";
+                            name = "Berserker";
                             break;
                         case 1:
-                            nom = "Kirin";
+                            name = "Kirin";
                             break;
                         case 2:
-                            nom = "Atoum";
+                            name = "Atoum";
                             break;
                         case 3:
-                            nom = "Siren";
+                            name = "Siren";
                             break;
                         default:
                             Debug.Log("Error");
@@ -123,24 +122,25 @@ public class NomPerso : MonoBehaviour
                     }
                 }
         
-                NomP.text = nom;
+                NomP.text = name;
                 break;
             
-            case 2:if (currentLanguage == 0)
+            case 2:
+                if (currentLanguage == 0)
                 {
                     switch (currentMythologie)
                     {
                         case 0:
-                            nom = "Fenrir";
+                            name = "Fenrir";
                             break;
                         case 1:
-                            nom = "Kitsune";
+                            name = "Kitsune";
                             break;
                         case 2:
-                            nom = "Osiris";
+                            name = "Osiris";
                             break;
                         case 3:
-                            nom = "Harpie";
+                            name = "Harpie";
                             break;
                         default:
                             Debug.Log("Error");
@@ -152,16 +152,16 @@ public class NomPerso : MonoBehaviour
                     switch (currentMythologie)
                     {
                         case 0:
-                            nom = "Fenrir";
+                            name = "Fenrir";
                             break;
                         case 1:
-                            nom = "Kitsune";
+                            name = "Kitsune";
                             break;
                         case 2:
-                            nom = "Osiris";
+                            name = "Osiris";
                             break;
                         case 3:
-                            nom = "Harpy";
+                            name = "Harpy";
                             break;
                         default:
                             Debug.Log("Error");
@@ -169,7 +169,7 @@ public class NomPerso : MonoBehaviour
                     }
                 }
         
-                NomP.text = nom;
+                NomP.text = name;
                 break;
             
             case 3:
@@ -178,16 +178,16 @@ public class NomPerso : MonoBehaviour
                     switch (currentMythologie)
                     {
                         case 0:
-                            nom = "Troll";
+                            name = "Troll";
                             break;
                         case 1:
-                            nom = "Yuki-Onna";
+                            name = "Yuki-Onna";
                             break;
                         case 2:
-                            nom = "Nephtys";
+                            name = "Nephtys";
                             break;
                         case 3:
-                            nom = "Cerbère";
+                            name = "Cerbère";
                             break;
                         default:
                             Debug.Log("Error");
@@ -199,16 +199,16 @@ public class NomPerso : MonoBehaviour
                     switch (currentMythologie)
                     {
                         case 0:
-                            nom = "Troll";
+                            name = "Troll";
                             break;
                         case 1:
-                            nom = "Yuki-Onna";
+                            name = "Yuki-Onna";
                             break;
                         case 2:
-                            nom = "Nephtys";
+                            name = "Nephtys";
                             break;
                         case 3:
-                            nom = "Cerberus";
+                            name = "Cerberus";
                             break;
                         default:
                             Debug.Log("Error");
@@ -216,7 +216,7 @@ public class NomPerso : MonoBehaviour
                     }
                 }
         
-                NomP.text = nom;
+                NomP.text = name;
                 break;
             
             case 4:
@@ -225,16 +225,16 @@ public class NomPerso : MonoBehaviour
                     switch (currentMythologie)
                     {
                         case 0:
-                            nom = "Valkyrie";
+                            name = "Valkyrie";
                             break;
                         case 1:
-                            nom = "Jorogumo";
+                            name = "Jorogumo";
                             break;
                         case 2:
-                            nom = "Anubis";
+                            name = "Anubis";
                             break;
                         case 3:
-                            nom = "Hydre";
+                            name = "Hydre";
                             break;
                         default:
                             Debug.Log("Error");
@@ -246,16 +246,16 @@ public class NomPerso : MonoBehaviour
                     switch (currentMythologie)
                     {
                         case 0:
-                            nom = "Valkyrie";
+                            name = "Valkyrie";
                             break;
                         case 1:
-                            nom = "Jorogumo";
+                            name = "Jorogumo";
                             break;
                         case 2:
-                            nom = "Anubis";
+                            name = "Anubis";
                             break;
                         case 3:
-                            nom = "Hydra";
+                            name = "Hydra";
                             break;
                         default:
                             Debug.Log("Error");
@@ -263,7 +263,7 @@ public class NomPerso : MonoBehaviour
                     }
                 }
         
-                NomP.text = nom;
+                NomP.text = name;
                 break;
             
             case 5:
@@ -272,16 +272,16 @@ public class NomPerso : MonoBehaviour
                     switch (currentMythologie)
                     {
                         case 0:
-                            nom = "Sorcier";
+                            name = "Sorcier";
                             break;
                         case 1:
-                            nom = "Furi";
+                            name = "Furi";
                             break;
                         case 2:
-                            nom = "Isis";
+                            name = "Isis";
                             break;
                         case 3:
-                            nom = "Méduse";
+                            name = "Méduse";
                             break;
                         default:
                             Debug.Log("Error");
@@ -293,16 +293,16 @@ public class NomPerso : MonoBehaviour
                     switch (currentMythologie)
                     {
                         case 0:
-                            nom = "Wizard";
+                            name = "Wizard";
                             break;
                         case 1:
-                            nom = "Furi";
+                            name = "Furi";
                             break;
                         case 2:
-                            nom = "Isis";
+                            name = "Isis";
                             break;
                         case 3:
-                            nom = "Medusa";
+                            name = "Medusa";
                             break;
                         default:
                             Debug.Log("Error");
@@ -310,7 +310,7 @@ public class NomPerso : MonoBehaviour
                     }
                 }
         
-                NomP.text = nom;
+                NomP.text = name;
                 break;
             
             default:

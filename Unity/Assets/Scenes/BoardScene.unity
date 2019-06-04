@@ -486,8 +486,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad13978cbb6480468005fc147bd497b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NomP: {fileID: 0}
-  player: {fileID: 0}
+  NomP: {fileID: 542549739}
+  indexPlayer: 0
   button: 4
 --- !u!114 &72523142
 MonoBehaviour:
@@ -584,6 +584,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 72523136}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -857,8 +868,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad13978cbb6480468005fc147bd497b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NomP: {fileID: 0}
-  player: {fileID: 0}
+  NomP: {fileID: 407045927}
+  indexPlayer: 0
   button: 3
 --- !u!114 &299082864
 MonoBehaviour:
@@ -955,6 +966,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 299082858}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1178,8 +1200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad13978cbb6480468005fc147bd497b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NomP: {fileID: 0}
-  player: {fileID: 0}
+  NomP: {fileID: 564102450}
+  indexPlayer: 0
   button: 2
 --- !u!114 &326203659
 MonoBehaviour:
@@ -1276,6 +1298,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 326203653}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1414,6 +1447,78 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: Berserk
+    clip: {fileID: 8300000, guid: ef47e2a14334aa242bca70bd812a840f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Draugr
+    clip: {fileID: 8300000, guid: 668fb10700174ea419ed3a22a3be63d7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Fenrir
+    clip: {fileID: 8300000, guid: 7a0e83aa950579a4182fc39d8986fd18, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Troll
+    clip: {fileID: 8300000, guid: 46a59f4b9660a7f4facfa4e499bc9d0f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Valkyrie
+    clip: {fileID: 8300000, guid: 54508e641d5722b4b944a1eca17f2ec5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Sorcier
+    clip: {fileID: 8300000, guid: 613d0a848e334b5489d5eb571377f363, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Minautore
+    clip: {fileID: 8300000, guid: c67cf43d0eaba3c4c81e562d89880e4b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Sirene
+    clip: {fileID: 8300000, guid: 7408041f8feffdf40b93072fd4ffa00f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Harpie
+    clip: {fileID: 8300000, guid: efc50504c7179764a840ccdbce7c53fb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Cerbere
+    clip: {fileID: 8300000, guid: de8bd055e982d5a4a9e26b0420c2c224, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hydre
+    clip: {fileID: 8300000, guid: 8b2286f7efed7b646a9078ae76e562cd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Meduse
+    clip: {fileID: 8300000, guid: 13dcbf973d86ef045ba99bc630a57972, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
 --- !u!1 &407045925
 GameObject:
@@ -2613,8 +2718,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad13978cbb6480468005fc147bd497b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NomP: {fileID: 0}
-  player: {fileID: 0}
+  NomP: {fileID: 2029376245}
+  indexPlayer: 0
   button: 1
 --- !u!114 &684581090
 MonoBehaviour:
@@ -2711,6 +2816,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 684581084}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3270,7 +3386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NomP: {fileID: 1232911918}
-  player: {fileID: 0}
+  indexPlayer: 0
   button: 0
 --- !u!114 &1226398109
 MonoBehaviour:
@@ -3366,6 +3482,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1226398103}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4190,8 +4317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad13978cbb6480468005fc147bd497b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NomP: {fileID: 0}
-  player: {fileID: 0}
+  NomP: {fileID: 1832754923}
+  indexPlayer: 0
   button: 5
 --- !u!114 &1823257733
 MonoBehaviour:
@@ -4288,6 +4415,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1823257727}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
