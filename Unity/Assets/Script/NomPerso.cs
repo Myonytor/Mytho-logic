@@ -9,7 +9,9 @@ using UnityEngine.UI;
 public class NomPerso : MonoBehaviour
 {
     private int currentLanguage;
-    private int currentMythologie;
+    private int currentMythology;
+
+    public int CurrentMythology => currentMythology;
 
     public Text NomP; 
 
@@ -23,7 +25,7 @@ public class NomPerso : MonoBehaviour
         currentLanguage = PlayerPrefs.GetInt("lang",0);
 
         string playerpref = "mythology" + player;
-        currentMythologie = PlayerPrefs.GetInt(playerpref, 0);
+        currentMythology = PlayerPrefs.GetInt(playerpref, 0);
         name = "test";
         NomP.text = name;
     }
@@ -33,7 +35,7 @@ public class NomPerso : MonoBehaviour
         switch (button)
         {
             case 0:
-                switch (currentMythologie)
+                switch (currentMythology)
                 {
                     case 3:
                         name = "Draugr";
@@ -57,7 +59,7 @@ public class NomPerso : MonoBehaviour
                 break;
             
             case 1:
-                switch (currentMythologie)
+                switch (currentMythology)
                 {
                     case 3:
                         name = "Berserker";
@@ -81,7 +83,7 @@ public class NomPerso : MonoBehaviour
                 break;
             
             case 2:
-                switch (currentMythologie)
+                switch (currentMythology)
                 {
                     case 3:
                         name = "Fenrir";
@@ -105,7 +107,7 @@ public class NomPerso : MonoBehaviour
                 break;
             
             case 3:
-                switch (currentMythologie)
+                switch (currentMythology)
                 {
                     case 3:
                         name = "Troll";
@@ -129,7 +131,7 @@ public class NomPerso : MonoBehaviour
                 break;
             
             case 4:
-                switch (currentMythologie)
+                switch (currentMythology)
                 {
                     case 3:
                         name = "Valkyrie";
@@ -153,7 +155,7 @@ public class NomPerso : MonoBehaviour
                 break;
             
             case 5:
-                switch (currentMythologie)
+                switch (currentMythology)
                 {
                     case 3:
                         if (currentLanguage == 0) name = "Sorcier";
@@ -181,5 +183,11 @@ public class NomPerso : MonoBehaviour
                 Debug.Log("Error at the button " + button);
                 break;
         }
+    }
+
+    public void ChangePlayer(int index, int mythology)
+    {
+        player = index;
+        currentMythology = mythology;
     }
 }

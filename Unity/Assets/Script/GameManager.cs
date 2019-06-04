@@ -95,18 +95,6 @@ public class GameManager : MonoBehaviour
         
         ChangeSpriteButton();
         NewTurn();
-        
-        // selon la sélection de la mythologie dans l'interface on renvoie un int qui va être l'index * 6
-        /*
-        foreach (var p in Players)
-        {
-            foreach (var m in p._monsters)
-            {
-                //Debug.Log(m.name);
-                Debug.Log(m._position.x + "; " + m._position.y);
-            }
-        }
-        */
     }
 
     private List<GameObject> CreateList(int mythologie)
@@ -182,11 +170,6 @@ public class GameManager : MonoBehaviour
             {
                 indexPlayer = indexPlayer == 0 ? 1 : 0;
                 mouse.player = Players[indexPlayer];
-                
-                foreach (var button in Buttons)
-                {
-                    button.GetComponent<NomPerso>().player = indexPlayer;
-                }
             }
 
             skipTurn = false;
@@ -402,7 +385,9 @@ public class GameManager : MonoBehaviour
         {
             Buttons[i].GetComponent<UnityEngine.UI.Image>().sprite = Players[indexPlayer].Mythologie
                 .Monsters[i * 2 % Players[indexPlayer].Mythologie.Monsters.Count].GetComponent<SpriteRenderer>().sprite;
-            Debug.Log(Buttons[i].name);
+            Buttons[i].GetComponent<NomPerso>().ChangePlayer(indexPlayer, (int) Players[indexPlayer].Mythologie.Name);
+            
+            Debug.Log(Buttons[i].GetComponent<NomPerso>().player + ", " + Buttons[i].GetComponent<NomPerso>().CurrentMythology);
         }
     }
 
