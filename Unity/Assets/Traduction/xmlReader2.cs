@@ -29,6 +29,8 @@ public class xmlReader2 : MonoBehaviour
     string Choix1;
     string Username;
     string Valider;
+
+    string EstP;
     
     
     
@@ -49,6 +51,7 @@ public class xmlReader2 : MonoBehaviour
     public Text textChoix1;
     public Text textUsername;
     public Text textValider;
+    public Text textEstP;
     
 
     List<Dictionary<string, string>> languages = new List<Dictionary<string, string>>();
@@ -90,6 +93,7 @@ public class xmlReader2 : MonoBehaviour
         languages[currentLanguage].TryGetValue("Choix1", out Choix1);
         languages[currentLanguage].TryGetValue("Username", out Username);
         languages[currentLanguage].TryGetValue("Valider", out Valider);
+        languages[currentLanguage].TryGetValue("EstP", out EstP);
         
         
 
@@ -112,6 +116,7 @@ public class xmlReader2 : MonoBehaviour
         textChoix1.text = Choix1;
         textUsername.text = Username;
         textValider.text = Valider;
+        textEstP.text = EstP;
 
 
 
@@ -180,6 +185,9 @@ public class xmlReader2 : MonoBehaviour
                 if (value.Name == "Username")
                     obj.Add(value.Name, value.InnerText);
                 
+                if (value.Name == "EstP")
+                    obj.Add(value.Name, value.InnerText);
+
             }
 
             languages.Add(obj);

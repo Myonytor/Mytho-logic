@@ -42,19 +42,11 @@ public class GameManager : MonoBehaviour
     public Text B2;
     public bool skipTurn;
 
-    private float DisplayTime = 5;
-    public GameObject TDisplay;
-    public Text Display1;
-    public Text Display2;
-    public int currentLangage;
-    private string a;
-
     public GameObject AudioManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentLangage = PlayerPrefs.GetInt("lang",0);
         AudioManager.GetComponent<AudioManager>().Play("MainMusic");
         //PrefabsMonsters[0].GetComponent<SpriteRenderer>().sprite;
         decompte = timer;
@@ -108,7 +100,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) // Détecter le bouton échap
+        if (Input.GetKeyDown(KeyCode.Escape)) // Détecter le bouton échap correspondant au bouton pause
         {
             if (pauseMenu.activeSelf)
                 Resume();
@@ -116,7 +108,7 @@ public class GameManager : MonoBehaviour
                 Pause();
         }
 
-        if (!pauseMenu.activeSelf && Input.GetKeyDown(KeyCode.Space))
+        if (!pauseMenu.activeSelf && Input.GetKeyDown(KeyCode.Space)) // Détecter le bouton espace correspondant au bouton passer
         {
             if(newTurnPanel.activeSelf)
                 StartNewTurn();
@@ -124,7 +116,7 @@ public class GameManager : MonoBehaviour
                 skipTurnFunc();
         }
 
-        if((int)(decompte - Time.deltaTime) != (int)(decompte))
+        if((int)(decompte - Time.deltaTime) != (int)(decompte)) // Affiche le temps qui s'écoule en seconde
         {
             timeText.text = "" + (int)(decompte - Time.deltaTime);
         }
@@ -135,10 +127,12 @@ public class GameManager : MonoBehaviour
             mouse.Clear();
             decompte = timer;
             if (indexPlayer == 1 || PlayerPrefs.GetInt("online") != 0)
+                // Si le tour du deuxième joueur vient de se finir où le jeu se déroule sur le même ordinateur
             {
                 NextBoard();
                 int w = 0;
-                for(int i = 0; i < Players.Count; i++)
+                
+                for(int i = 0; i < Players.Count; i++) // Vérifie si il y a un gagnant
                 {
                     foreach (var m in Players[i]._monsters)
                     {
@@ -153,7 +147,7 @@ public class GameManager : MonoBehaviour
                         i = Players.Count;
                 }
 
-                if (Math.Abs(w) == 3)
+                if (Math.Abs(w) == 3) // Affichage du gagnant et du menu qui va avec
                 {
                     AudioManager.GetComponent<AudioManager>().Play("Fireworks");
                     endGame.text = (w > 0 ? Players[0].Name : Players[1].Name) + " WIN !";
@@ -162,71 +156,17 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (PlayerPrefs.GetInt("online") == 0)
+            if (PlayerPrefs.GetInt("online") == 0) // Si le jeu se déroule sur un même ordinateur il y a un changement de l'index du joueur
             {
                 indexPlayer = indexPlayer == 0 ? 1 : 0;
                 mouse.player = Players[indexPlayer];
             }
 
+            // Changement de l'affichage après changement du joueur
             skipTurn = false;
             ChangeSpriteButton();
             if(!endGamePanel.activeSelf)
                 NewTurn();
-        }
-        
-        if (DisplayTime > 0)
-        {
-            TDisplay.SetActive(true);
-            
-            DisplayTime = DisplayTime - Time.deltaTime;
-
-            if (currentLangage == 0)
-            {
-                Display1.text = Players[0].Name + " a choisi la mythologie " + Players[0].Mythologie.Name;
-                Display2.text = Players[1].Name + " a choisi la mythologie " + Players[1].Mythologie.Name;
-            }
-            else
-            {
-                for (int i = 0; i < 2; i++)
-                {
-                    switch ((int) Players[i].Mythologie.Name)
-                    {
-                        case 0:
-                            a = "Egyptian";
-                            break;
-                        
-                        case 1:
-                            a = "Greek";
-                            break;
-                        
-                        case 2:
-                            a = "Japanese";
-                            break;
-                        
-                        case 3:
-                            a = "Nordic";
-                            break;
-                        
-                        default:
-                            Debug.Log("Error switch");
-                            break;
-                    }
-
-                    if (i == 0)
-                    {
-                        Display1.text = Players[0].Name + " choose the " + a + " mythology";;
-                    }
-                    else
-                    {
-                        Display2.text = Players[1].Name + " choose the " + a + " mythology";
-                    }
-                }
-            }
-        }
-
-        else
-        {
-            TDisplay.SetActive(false);
         }
     }
 
@@ -299,8 +239,6 @@ public class GameManager : MonoBehaviour
         {
             if (monsters.Value.Count == 2) // S'il y a deux monstres qui veulent aller sur cette case
             {
-                Debug.Log("Deux monstres se retrouvent sur la même case");
-
                 int power = 0;
                 var m = monsters.Value;
                 int attack = m[0].Power - m[1].Power;
@@ -312,11 +250,7 @@ public class GameManager : MonoBehaviour
                 if (attacks.ContainsKey(monsters.Key)) // S'il y a des monstres qui attaquent cette case
                 {
                     foreach (var monster in attacks[monsters.Key])
-                    {
                         attack += (monster.Player == m[0].Player ? monster.Power : -monster.Power);
-                    }
-
-                    Debug.Log("Il y a des attaques extérieur");
                 }
 
                 var movement = m[1]._movement;
@@ -360,9 +294,7 @@ public class GameManager : MonoBehaviour
                 {
                     m[0]._position = monsters.Key;
                     Move(m[0]);
-                    Debug.Log("Il ne reste plus que le monstre " + m[0].Name);
                 }
-                else Debug.Log("Il y a toujours deux monstres");
             }
             else // Sinon, il n'y a qu'un monstre qui veut atteindre cette case
             {
@@ -376,15 +308,10 @@ public class GameManager : MonoBehaviour
                     UsePowerSpecial(m, Mythologie.Mytho.Nordique, ref attack);
 
                     foreach (var monster in attacks[monsters.Key])
-                    {
                         attack += (monster.Player == m.Player ? monster.Power : -monster.Power);
-                    }
 
                     if (attack <= 0) // Si le monstre perd
-                    {
-                        if (m.wounded) Debug.Log(m.Name + " est mort d'attaque extérieur");
                         State(m);
-                    }
                 }
             }
         }
@@ -440,14 +367,11 @@ public class GameManager : MonoBehaviour
     // Met en place les images des monstres ainsi que les noms qui leur sont liés sur les boutons d'ajout des monstres
     public void ChangeSpriteButton()
     {
-        Debug.Log(Buttons.Count);
         for(int i = 0; i < Buttons.Count; i ++)
         {
             Buttons[i].GetComponent<UnityEngine.UI.Image>().sprite = Players[indexPlayer].Mythologie
                 .Monsters[i * 2 % Players[indexPlayer].Mythologie.Monsters.Count].GetComponent<SpriteRenderer>().sprite;
             Buttons[i].GetComponent<NomPerso>().ChangePlayer(indexPlayer, (int) Players[indexPlayer].Mythologie.Name);
-            
-            Debug.Log(Buttons[i].GetComponent<NomPerso>().player + ", " + Buttons[i].GetComponent<NomPerso>().CurrentMythology);
         }
 
         ButtonMythology.GetComponent<UnityEngine.UI.Image>().sprite =

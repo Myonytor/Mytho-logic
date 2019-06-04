@@ -18,6 +18,9 @@ public class PlayerRegistrationMenu : MonoBehaviour
     private string username;
     public int indexPlayer;
     
+    public List<Text> Displays;
+    public int currentLangage;
+    
     // Update is called once per frame
     void Update()
     {
@@ -27,6 +30,7 @@ public class PlayerRegistrationMenu : MonoBehaviour
         }
     }
 
+    // Sauvegarde ce que le joueur tape pour son pseudo
     public void RegisterButton()
     {
         username = usernameGameobject.GetComponent<InputField>().text;
@@ -35,26 +39,26 @@ public class PlayerRegistrationMenu : MonoBehaviour
             string playprefs = "player" + indexPlayer;
             PlayerPrefs.SetString(playprefs, username);
             
-            Debug.Log(username);
             UsernameChoice.SetActive(false);
             MythoChoice.SetActive(true);
             usernameGameobject.GetComponent<InputField>().text = "";
         }
     }
 
+    // Enregistre le choix de la mythology du joueur
     public void ButtonChoice(int mythology)
     {
         string playpref = "mythology" + indexPlayer;
         PlayerPrefs.SetInt(playpref, mythology);
-        
-        Debug.Log(mythology);
     }
     
+    // Enregistre si le jeu se passe en ligne où sur le même ordinateur
     public void Online(int choice)
     {
         PlayerPrefs.SetInt("online", choice);
     }
     
+    // Rejoue les scènes de sélection de la mythology et du surnom du joueur si besoin sinon passe à la scène suivante
     public void ChangeScene()
     {
         if (indexPlayer == 0 && PlayerPrefs.GetInt("online") == 0)
@@ -64,9 +68,13 @@ public class PlayerRegistrationMenu : MonoBehaviour
             UsernameChoice.SetActive(true);
         }
         else
+        {
+            SetScreenStartGame();
             StartCoroutine(LoadAsync());
+        }
     }
 
+    // Change l'index du joueur
     public void ChangeIndexPlayer()
     {
         indexPlayer = 1;
@@ -88,5 +96,53 @@ public class PlayerRegistrationMenu : MonoBehaviour
 
             yield return null;
         }
+    }
+    
+    private void SetScreenStartGame()
+    {
+        string a = "";
+        string[] names = {PlayerPrefs.GetString("player0", "Player 1"), PlayerPrefs.GetString("player1", "Player 2")};
+        currentLangage = PlayerPrefs.GetInt("lang",0);
+
+        for (int i = 0; i < 2; i++)
+        {
+            switch (PlayerPrefs.GetInt("mythology" + i))
+            {
+                case 0:
+                    a = (currentLangage == 0 ? "Egyptian" : "Egyptienne");
+                    break;
+
+                case 1:
+                    a = (currentLangage == 0 ? "Greek" : "Grecque");
+                    break;
+
+                case 2:
+                    a = (currentLangage == 0 ? "Japanese" : "Japonaise");
+                    break;
+
+                case 3:
+                    a = (currentLangage == 0 ? "Nordic" : "Nordique");
+                    break;
+
+                default:
+                    Debug.Log("Error switch");
+                    break;
+            }
+
+            if (currentLangage == 0)
+            {
+                Displays[i].text = names[i] + " choose the " + a + " mythology";
+            }
+            else
+            {
+                Displays[i].text = names[i] + " a choisi la mythologie " + a;
+            }
+        }
+    }
+    
+    // Quitte l'application
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

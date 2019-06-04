@@ -23,6 +23,7 @@
         <DescriN>Toutes vos unités blessés auront plus de puissance</DescriN>
         <DescriE>Empêche les ennemis de se déplacer au prochain tour</DescriE>
         <DescriG>Toutes vos unités feront plus de dégats</DescriG>
+        <EstP>est prêt</EstP>
 
     </language>
 
@@ -48,6 +49,7 @@
         <DescriG>All your units will do more damage</DescriG>
         <Passer>Pass</Passer>
         <Temps>Time left</Temps>
+        <EstP>is ready</EstP>
 
     </language>
 

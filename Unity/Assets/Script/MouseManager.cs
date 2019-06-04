@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Script;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,8 +56,10 @@ public class MouseManager : MonoBehaviour
                         ClearSelection(selectedObject);
                         selectedObject = hitObject;
                         unit = player._monsters[i];
-                        Debug.Log("Sélection d'un monstre");
-                        AudioManager.GetComponent<AudioManager>().Play("" + unit.Name);
+                        if(!(player.Mythologie.Name == Mythologie.Mytho.Egyptienne))
+                            AudioManager.GetComponent<AudioManager>().Play("" + unit.Name);
+                        else
+                            AudioManager.GetComponent<AudioManager>().Play("Egyptian");
                     }
                 }
                 else if(!Equals(unit, null)) // Définie un mouvement
@@ -85,10 +88,7 @@ public class MouseManager : MonoBehaviour
                     Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
                     int x = (int) (p.x - unit._position.x - unit._movement.x), y = (int) (p.y - unit._position.y - unit._movement.y);
                     if (IsClickable(x, y))
-                    {
                         unit.DefineAttack(new Vector2(x, y), hoveredObject.transform.position);
-                        Debug.Log("Ajout d'une attaque");
-                    }
                 }
             }
 
@@ -102,6 +102,7 @@ public class MouseManager : MonoBehaviour
         }
     }
 
+    // Change de joueur
     public void ChangePlayer(Player p)
     {
         player = p;
@@ -150,6 +151,7 @@ public class MouseManager : MonoBehaviour
         return x <= 1 && x >= -1 && y <= 1 && y >= -1 && x + y <= 1 && x + y >= -1;
     }
 
+    // Indique si la case voulu est une case objectif ou non
     bool IsAGoal(Vector2 v)
     {
         bool output = false;
@@ -175,11 +177,13 @@ public class MouseManager : MonoBehaviour
         player = null;
     }
 
+    // Ajoute un monstre dans le spawn
     public void AddMonsterOnSpawn(int index)
     {
         player.Add(index);
     }
 
+    // Active la mythologie du joueur
     public void ActivatedMythology()
     {
         player.Mythologie.activated = true;
