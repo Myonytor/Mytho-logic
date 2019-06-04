@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Script;
 using UnityEditor;
@@ -49,10 +50,21 @@ public class GameManager : MonoBehaviour
         mouse.onMenu = pauseMenu.activeSelf;
 
         // Entré des noms des joueurs à la place de Zeus et Poseidon"
-        GameObject player = new GameObject("Player 1");
-        GameObject player0 = new GameObject("Player 2");
+        string name0;
+        string name1;
+        int mytho0 = PlayerPrefs.GetInt("mythology0");
+        int mytho1 = PlayerPrefs.GetInt("mythology1");
+
+        if (PlayerPrefs.GetString("player0").Length != 0) name0 = PlayerPrefs.GetString("player0");
+        else name0 = "Player 1";
+        
+        if (PlayerPrefs.GetString("player1").Length != 0) name1 = PlayerPrefs.GetString("player1");
+        else name1 = "Player 2";
+        
+        GameObject player = new GameObject("Player");
+        GameObject player0 = new GameObject(name0);
         player0.transform.parent = player.transform;
-        GameObject player1 = new GameObject("Poseidon");
+        GameObject player1 = new GameObject(name1);
         player1.transform.parent = player.transform;
         
         /*
@@ -64,8 +76,8 @@ public class GameManager : MonoBehaviour
          */
         Players = new List<Player>()
             {
-                new Player("Player 1", "Spawn1", CreateList(0), player0, prefabParticle, 0, 0),
-                new Player("Player 2", "Spawn2", CreateList(2), player1, prefabParticle, 2, 1)
+                new Player(name0, "Spawn1", CreateList(0), player0, prefabParticle, mytho0, 0),
+                new Player(name1, "Spawn2", CreateList(2), player1, prefabParticle, mytho1, 1)
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         

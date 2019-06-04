@@ -6,31 +6,38 @@ using UnityEngine.UI;
 
 public class ChoixMytho : MonoBehaviour
 {
-    
+
     public int choix;
-    
+    public int choix1;
+
     public void Nord()
     {
         choix = 0;
-        PlayerPrefs.SetInt("choix", choix);
     }
 
     public void Jap()
     {
         choix = 1;
-        PlayerPrefs.SetInt("choix", choix);
     }
-    
+
     public void Egy()
     {
         choix = 2;
-        PlayerPrefs.SetInt("choix", choix);
     }
-    
+
     public void Gre()
     {
         choix = 3;
-        PlayerPrefs.SetInt("choix", choix);
     }
-    
+
+    public void Mytho0()
+    {
+        PlayerPrefs.SetInt("choix0", choix);
+    }
+
+    public void Mytho1()
+    {
+        choix1 = choix;
+        PlayerPrefs.SetInt("choix1", choix1);
+    }
 }
