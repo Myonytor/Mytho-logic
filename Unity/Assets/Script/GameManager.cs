@@ -42,18 +42,11 @@ public class GameManager : MonoBehaviour
     public Text B2;
     public bool skipTurn;
 
-    private float DisplayTime = 5;
-    public GameObject TDisplay;
-    public Text Display1;
-    public Text Display2;
-    public int currentLangage;
-
     public GameObject AudioManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentLangage = PlayerPrefs.GetInt("lang",0);
         AudioManager.GetComponent<AudioManager>().Play("MainMusic");
         //PrefabsMonsters[0].GetComponent<SpriteRenderer>().sprite;
         decompte = timer;
@@ -174,56 +167,6 @@ public class GameManager : MonoBehaviour
             ChangeSpriteButton();
             if(!endGamePanel.activeSelf)
                 NewTurn();
-        }
-        
-        if (DisplayTime > 0)
-        {
-            TDisplay.SetActive(true);
-            
-            DisplayTime = DisplayTime - Time.deltaTime;
-
-            // Affiche les choix des mythologies des deux joueurs au début du premier tour
-            if (currentLangage == 0)
-            {
-                Display1.text = Players[0].Name + " a choisi la mythologie " + Players[0].Mythologie.Name;
-                Display2.text = Players[1].Name + " a choisi la mythologie " + Players[1].Mythologie.Name;
-            }
-            else // Traduction en anglais
-            {
-                for (int i = 0; i < 2; i++)
-                {
-                    string mythology = "";
-                    switch ((int) Players[i].Mythologie.Name)
-                    {
-                        case 0:
-                            mythology = "Egyptian";
-                            break;
-                        
-                        case 1:
-                            mythology = "Greek";
-                            break;
-                        
-                        case 2:
-                            mythology = "Japanese";
-                            break;
-                        
-                        case 3:
-                            mythology = "Nordic";
-                            break;
-                        
-                        default:
-                            Debug.Log("Error switch");
-                            break;
-                    }
-
-                    if (i == 0) Display1.text = Players[0].Name + " choose the " + mythology + " mythology";
-                    else Display2.text = Players[1].Name + " choose the " + mythology + " mythology";
-                }
-            }
-        }
-        else
-        {
-            TDisplay.SetActive(false);
         }
     }
 
