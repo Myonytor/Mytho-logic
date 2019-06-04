@@ -2356,7 +2356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8962264, g: 0.30860624, b: 0.30860624, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3150,6 +3150,11 @@ MonoBehaviour:
   board: {fileID: 124286717}
   indexPlayer: 0
   mouse: {fileID: 1184362323}
+  prefabMythology:
+  - {fileID: 6806331422476832075, guid: 2130729ef0dbe0346b7bf7bd93825217, type: 3}
+  - {fileID: 5397772871180590477, guid: 070d9246dae729e4eaac20f5ec7f1ec1, type: 3}
+  - {fileID: 5814381516844308709, guid: b8ed858eaf1d34c469d934f0fcb243fa, type: 3}
+  - {fileID: 5235655149214744790, guid: 1c95e18b06699ff4f9ec87b2a98ab48a, type: 3}
   PrefabsMonsters:
   - {fileID: 4040123846935963415, guid: b12e05c77e353f34fb3e8780f9197af7, type: 3}
   - {fileID: 502458130616307688, guid: 576fad808f2f463479e075896568a06b, type: 3}
@@ -3213,6 +3218,7 @@ MonoBehaviour:
   - {fileID: 299082858}
   - {fileID: 72523136}
   - {fileID: 1823257727}
+  ButtonMythology: {fileID: 558601830}
   prefabParticle: {fileID: 656166367190478373, guid: 7429679ce5453654eb96bd5b307d8eb8,
     type: 3}
   pauseMenu: {fileID: 57633659}
