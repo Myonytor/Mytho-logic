@@ -1409,6 +1409,78 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: Berserk
+    clip: {fileID: 8300000, guid: ef47e2a14334aa242bca70bd812a840f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Draugr
+    clip: {fileID: 8300000, guid: 668fb10700174ea419ed3a22a3be63d7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Fenrir
+    clip: {fileID: 8300000, guid: 7a0e83aa950579a4182fc39d8986fd18, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Troll
+    clip: {fileID: 8300000, guid: 46a59f4b9660a7f4facfa4e499bc9d0f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Valkyrie
+    clip: {fileID: 8300000, guid: 54508e641d5722b4b944a1eca17f2ec5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Sorcier
+    clip: {fileID: 8300000, guid: 613d0a848e334b5489d5eb571377f363, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Minautore
+    clip: {fileID: 8300000, guid: c67cf43d0eaba3c4c81e562d89880e4b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Sirene
+    clip: {fileID: 8300000, guid: 7408041f8feffdf40b93072fd4ffa00f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Harpie
+    clip: {fileID: 8300000, guid: efc50504c7179764a840ccdbce7c53fb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Cerbere
+    clip: {fileID: 8300000, guid: de8bd055e982d5a4a9e26b0420c2c224, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hydre
+    clip: {fileID: 8300000, guid: 8b2286f7efed7b646a9078ae76e562cd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Meduse
+    clip: {fileID: 8300000, guid: 13dcbf973d86ef045ba99bc630a57972, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &407045925
 GameObject:
   m_ObjectHideFlags: 0
