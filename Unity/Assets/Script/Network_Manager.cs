@@ -22,7 +22,7 @@ public class Network_Manager : NetworkManager
 
     void SetIPAddress()
     {
-        string ipAddress = GameObject.Find("InputFieldIPAddress").transform.Find("Text").GetComponent<Text>().text;
+        string ipAddress = "localhost";// GameObject.Find("InputFieldIPAddress").transform.Find("Text").GetComponent<Text>().text;
         NetworkManager.singleton.networkAddress = ipAddress;
     }
 

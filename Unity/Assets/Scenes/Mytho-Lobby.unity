@@ -3236,7 +3236,7 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 7747430184597847057, guid: dc35d38a4608da645829583b741d2f43,
     type: 3}
   m_AutoCreatePlayer: 1
-  m_PlayerSpawnMethod: 0
+  m_PlayerSpawnMethod: 1
   m_OfflineScene: Mytho-Lobby
   m_OnlineScene: BoardScene
   m_SpawnPrefabs: []
@@ -3249,7 +3249,7 @@ MonoBehaviour:
     m_DisconnectTimeout: 2000
     m_ConnectTimeout: 2000
     m_MinUpdateTimeout: 10
-    m_PingTimeout: 500
+    m_PingTimeout: 900
     m_ReducedPingTimeout: 100
     m_AllCostTimeout: 20
     m_NetworkDropThreshold: 5
@@ -3282,7 +3282,7 @@ MonoBehaviour:
     m_MaxTimerTimeout: 12000
     m_MinNetSimulatorTimeout: 1
     m_MaxNetSimulatorTimeout: 12000
-  m_Channels: 0500000000000000
+  m_Channels: 0000000005000000
   m_UseWebSockets: 0
   m_UseSimulator: 0
   m_SimulatedLatency: 1
@@ -3385,7 +3385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dictionary: {fileID: 4900000, guid: 092fa8b642509f94098a0d7b13db80c3, type: 3}
   languageName: 
-  currentLanguage: 1
+  currentLanguage: 0
   textPlay: {fileID: 976861379}
   textReseauC: {fileID: 1479261884}
   textReseauR: {fileID: 1099648074}
