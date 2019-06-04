@@ -41,11 +41,11 @@ public class PlayerRegistrationMenu : MonoBehaviour
         }
     }
 
-    public void ButtonChoice(int choice)
+    public void ButtonChoice(int mythology)
     {
         string playpref = "mythology" + indexPlayer;
-        PlayerPrefs.SetInt(playpref, choice);
+        PlayerPrefs.SetInt(playpref, mythology);
         
-        Debug.Log(choice);
+        Debug.Log(mythology);
     }
 }
