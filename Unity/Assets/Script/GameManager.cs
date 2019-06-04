@@ -76,25 +76,6 @@ public class GameManager : MonoBehaviour
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         
-        /*
-        Players[0].Add(1);
-        Players[0].Add(3);
-        Players[0].Add(5);
-        Players[0].Add(0);
-        Players[0].Add(2);
-        Players[0].Add(4);
-        Players[0].Add(1);
-        
-        
-        Players[1].Add(0);
-        Players[1].Add(2);
-        Players[1].Add(4);
-        Players[1].Add(1);
-        Players[1].Add(3);
-        Players[1].Add(5);
-        Players[1].Add(1);
-        */
-        
         ChangeSpriteButton();
         NewTurn();
     }
@@ -373,8 +354,8 @@ public class GameManager : MonoBehaviour
     // Utilise le pouvoir de la mythologie de chaque joueurs si elle est activée
     private void UsePowerSpecial(Unit monster, Mythologie.Mytho mythologie, ref int power)
     {
-        if (Players[0].Mythologie.Name == mythologie) Players[0].Mythologie.PowerSpecial(monster, ref power);
-        if (Players[1].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
+        if (Players[0].Mythologie.activated && Players[0].Mythologie.Name == mythologie) Players[0].Mythologie.PowerSpecial(monster, ref power);
+        if (Players[1].Mythologie.activated && Players[1].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
     }
 
     // Met en place les images des monstres sur les boutons d'ajout des monstres
