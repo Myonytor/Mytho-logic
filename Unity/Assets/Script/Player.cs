@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
 					spawn.z = -5 + spawn.y;
 					spawn.y += 0.125f;
 
+					// Récupération de la prefab du monstre voulu
 					GameObject prefab;
 					if (index * 2 < 12) prefab = _mythologie.Monsters[index * 2 % _mythologie.Monsters.Count];
 					else prefab = prefabSmall[index * 2 % 12];
@@ -76,12 +77,10 @@ public class Player : MonoBehaviour
 
 				i += 1;
 			}
-
-			if (!add) Debug.Log("Le monstre n'a pas pu être ajouté, manque de place");
-			// message au joueur
 		}
 		else
 		{
+			// message au joueur
 			Debug.Log("Il y a déjà 6 monstres sur le plateau");
 		}
 	}
@@ -100,7 +99,6 @@ public class Player : MonoBehaviour
 		}
 		monster.Delete();
         FindObjectOfType<AudioManager>().Play("Die1Sound");
-        Debug.Log(name + " à été tué");
 	}
 	
 	// Vérifie si la case est vide

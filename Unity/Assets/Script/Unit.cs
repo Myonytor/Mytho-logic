@@ -14,7 +14,6 @@ public class Unit : MonoBehaviour
 	private int _power;
 	public int Power => _power;
 	
-	// false correspond à vivant et true à blessé
 	public bool wounded;
 	
 	public Vector2 _movement;
@@ -54,12 +53,14 @@ public class Unit : MonoBehaviour
 		particleAttack.transform.position = monster.transform.position;
 	}
 	
+	// Défini le mouvement du monstre et met en place les particules correspondantes
 	public void DefineMovement(Vector2 coordinates, Vector3 direction)
 	{
 		var origin = prefabMonster.transform.position;
 		var particleSystem = particleMove.GetComponent<ParticleSystem>();
         float x = direction.x - origin.x, y = direction.y - origin.y;
 
+        // Réinitialisation d'un éventuel mouvement et initialisation du mouvement
 		ClearParticleAttack();
 		particleAttack.transform.position = new Vector3(direction.x, direction.y, -1);
 		_movement = coordinates;
@@ -68,14 +69,17 @@ public class Unit : MonoBehaviour
         var e = particleSystem.emission;
 		e.enabled = true;
 		
+		// Gestion de l'angle du rayon des particules
         double teta = Math.Atan2(y, x) * 180 / Math.PI;
 		particleSystem.transform.eulerAngles = new Vector3((float)(-teta), 90, 90);
 
+		// Gestion de la longueur du rayon de particules
         double distance = Math.Sqrt(x * x + y * y);
         var m = particleSystem.main;
 		m.startLifetime = (float)distance / 3;
     }
 
+	// Défini l'attaque du monstre et met en place les particules correspondantes
 	public void DefineAttack(Vector2 coordinates, Vector3 direction)
 	{
 		var origin = particleAttack.transform.position;
@@ -87,14 +91,17 @@ public class Unit : MonoBehaviour
         var e = particleSystem.emission;
 		e.enabled = true;
 		
+		// Gestion de l'angle du rayon des particules
         double teta = Math.Atan2(y, x) * 180 / Math.PI;
 		particleSystem.transform.eulerAngles = new Vector3((float)(-teta), 90, 90);
 
+		// Gestion de la longueur du rayon de particules
         double distance = Math.Sqrt(x * x + y * y);
         var m = particleSystem.main;
 		m.startLifetime = (float)distance;
 	}
 
+	// Déplace la prefab du monstre et réinitialise ce qu'il faut réinitialiser
 	public void MovePrefab(Vector3 direction)
 	{
 		var vec = new Vector3(direction.x, direction.y + 0.125f, -5 + direction.y);
@@ -103,6 +110,7 @@ public class Unit : MonoBehaviour
 		particleMove.transform.position = vec;
 	}
 
+	// Efface les particules de mouvement du monstre
 	public void ClearParticleMovement()
 	{
 		var p = particleMove.GetComponent<ParticleSystem>();
@@ -113,6 +121,7 @@ public class Unit : MonoBehaviour
 		particleMove.transform.position = prefabMonster.transform.position;
 	}
 	
+	// Efface les particules d'attaque du monstre
 	public void ClearParticleAttack()
 	{
 		var p = particleAttack.GetComponent<ParticleSystem>();
@@ -123,6 +132,7 @@ public class Unit : MonoBehaviour
 		particleAttack.transform.position = prefabMonster.transform.position;
 	}
 
+	// Supprime la prefab du monstre
 	public void Delete()
 	{
 		Destroy(prefabMonster);

@@ -55,7 +55,6 @@ public class MouseManager : MonoBehaviour
                         ClearSelection(selectedObject);
                         selectedObject = hitObject;
                         unit = player._monsters[i];
-                        Debug.Log("Sélection d'un monstre");
                         AudioManager.GetComponent<AudioManager>().Play("" + unit.Name);
                     }
                 }
@@ -85,10 +84,7 @@ public class MouseManager : MonoBehaviour
                     Vector2 p = hoveredObject.transform.parent.GetComponent<Tile>().coordinate;
                     int x = (int) (p.x - unit._position.x - unit._movement.x), y = (int) (p.y - unit._position.y - unit._movement.y);
                     if (IsClickable(x, y))
-                    {
                         unit.DefineAttack(new Vector2(x, y), hoveredObject.transform.position);
-                        Debug.Log("Ajout d'une attaque");
-                    }
                 }
             }
 
