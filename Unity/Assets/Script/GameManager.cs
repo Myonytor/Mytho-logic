@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         
+        /*
         Players[0].Add(1);
         Players[0].Add(3);
         Players[0].Add(5);
@@ -92,19 +93,18 @@ public class GameManager : MonoBehaviour
         Players[1].Add(3);
         Players[1].Add(5);
         Players[1].Add(1);
+        */
         
         ChangeSpriteButton();
         NewTurn();
     }
 
-    private List<GameObject> CreateList(int mythologie)
+    // Crée la liste de monstres correspondant à la mythologie donnée
+    private List<GameObject> CreateList(int mythology)
     {
-        List<GameObject> prefabsSmall = PrefabsMonsters.GetRange(0, 6);
-        int start = mythologie * 12 + 6;
+        int start = mythology * 12 + 6;
         List<GameObject> prefabsMythology = PrefabsMonsters.GetRange(start, 12);
-        prefabsMythology.AddRange(prefabsSmall);
-        
-        Debug.Log(prefabsMythology.Count);
+        prefabsMythology.AddRange(PrefabsMonsters.GetRange(0, 6));
 
         return prefabsMythology;
     }
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) // Détecter le bouton echap
+        if (Input.GetKeyDown(KeyCode.Escape)) // Détecter le bouton échap
         {
             if (pauseMenu.activeSelf)
                 Resume();
