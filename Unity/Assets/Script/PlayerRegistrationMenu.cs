@@ -18,6 +18,11 @@ public class PlayerRegistrationMenu : MonoBehaviour
     private string username;
     public int indexPlayer;
     
+    public GameObject TDisplay;
+    public Text Display1;
+    public Text Display2;
+    public int currentLangage;
+    
     // Update is called once per frame
     void Update()
     {
@@ -92,6 +97,58 @@ public class PlayerRegistrationMenu : MonoBehaviour
             LoadText.text = (progress * 100).ToString("F0") + "%";
 
             yield return null;
+        }
+    }
+    
+    private void SetScreenStartGame()
+    {
+        string a;
+        string name0 = PlayerPrefs.GetString("player0", "Player 1"), name1 = PlayerPrefs.GetString("player1", "Player 2");
+        currentLangage = PlayerPrefs.GetInt("lang",0);
+        TDisplay.SetActive(true);
+
+        if (currentLangage == 0)
+        {
+            Display1.text = name0 + " a choisi la mythologie " + Players[0].Mythologie.Name;
+            Display2.text = Players[1].Name + " a choisi la mythologie " + Players[1].Mythologie.Name;
+        }
+        else
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                switch ((int) Players[i].Mythologie.Name)
+                {
+                    case 0:
+                        a = "Egyptian";
+                        break;
+
+                    case 1:
+                        a = "Greek";
+                        break;
+
+                    case 2:
+                        a = "Japanese";
+                        break;
+
+                    case 3:
+                        a = "Nordic";
+                        break;
+
+                    default:
+                        Debug.Log("Error switch");
+                        break;
+                }
+
+                if (i == 0)
+                {
+                    Display1.text = Players[0].Name + " choose the " + a + " mythology";
+                    ;
+                }
+                else
+                {
+                    Display2.text = Players[1].Name + " choose the " + a + " mythology";
+                }
+            }
         }
     }
 }
