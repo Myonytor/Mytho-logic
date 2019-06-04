@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 	public List<Unit> _monsters;
 	private GameObject _transform;
 
+	private List<GameObject> prefabSmall;
 	private GameObject prefabParticle;
 
     public Player(string name, string spawn, List<GameObject> monsters, GameObject transform, GameObject particle, int mythologie, int id)
@@ -31,7 +32,8 @@ public class Player : MonoBehaviour
 		_spawn = spawn;
 		_monsters = new List<Unit>();
 		_transform = transform;
-		_mythologie = new Mythologie(mythologie, monsters, id);
+		_mythologie = new Mythologie(mythologie, monsters.GetRange(0, 12), id);
+		prefabSmall = monsters.GetRange(12, 6);
 		prefabParticle = particle;
 	}
 
@@ -57,7 +59,10 @@ public class Player : MonoBehaviour
 					spawn.z = -5 + spawn.y;
 					spawn.y += 0.125f;
 
-					GameObject prefab = _mythologie.Monsters[index * 2 % _mythologie.Monsters.Count];
+					GameObject prefab;
+					if (index * 2 < 12) prefab = _mythologie.Monsters[index * 2 % _mythologie.Monsters.Count];
+					else prefab = prefabSmall[index * 2 % 12];
+					
 					GameObject monster =
 						Instantiate(prefab, spawn, Quaternion.identity, _transform.transform) as GameObject;
 					monster.name = name;
