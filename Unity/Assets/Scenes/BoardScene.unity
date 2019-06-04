@@ -1635,6 +1635,12 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Egyptian
+    clip: {fileID: 8300000, guid: 9a83fb8a47b8b6342851c2411f112f57, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &387607388
 GameObject:
   m_ObjectHideFlags: 0
@@ -3232,10 +3238,6 @@ MonoBehaviour:
   B1: {fileID: 95714668}
   B2: {fileID: 1956741307}
   skipTurn: 0
-  TDisplay: {fileID: 0}
-  Display1: {fileID: 0}
-  Display2: {fileID: 0}
-  currentLangage: 0
   AudioManager: {fileID: 338636363}
 --- !u!4 &722744976
 Transform:
