@@ -26,7 +26,7 @@ public class NomPerso : MonoBehaviour
 
         string playerpref = "mythology" + player;
         currentMythology = PlayerPrefs.GetInt(playerpref, 0);
-        name = "test";
+        name = "";
         NomP.text = name;
     }
 

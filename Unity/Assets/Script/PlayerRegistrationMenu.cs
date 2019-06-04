@@ -41,7 +41,6 @@ public class PlayerRegistrationMenu : MonoBehaviour
             string playprefs = "player" + indexPlayer;
             PlayerPrefs.SetString(playprefs, username);
             
-            Debug.Log(username);
             UsernameChoice.SetActive(false);
             MythoChoice.SetActive(true);
             usernameGameobject.GetComponent<InputField>().text = "";
@@ -53,8 +52,6 @@ public class PlayerRegistrationMenu : MonoBehaviour
     {
         string playpref = "mythology" + indexPlayer;
         PlayerPrefs.SetInt(playpref, mythology);
-        
-        Debug.Log(mythology);
     }
     
     // Enregistre si le jeu se passe en ligne où sur le même ordinateur
