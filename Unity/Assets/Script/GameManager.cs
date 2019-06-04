@@ -44,14 +44,14 @@ public class GameManager : MonoBehaviour
         AudioManager.GetComponent<AudioManager>().Play("MainMusic");
         //PrefabsMonsters[0].GetComponent<SpriteRenderer>().sprite;
         decompte = timer;
-        indexPlayer = 0;
+        indexPlayer = (PlayerPrefs.GetInt("online") == 2 ? 1 : 0);
         board.Setup();
         mouse.goal = board.goal;
         mouse.onMenu = pauseMenu.activeSelf;
 
         // Entré des noms des joueurs et de leurs mythologies
-        int mytho0 = PlayerPrefs.GetInt("mythology0");
-        int mytho1 = PlayerPrefs.GetInt("mythology1");
+        int mytho0 = PlayerPrefs.GetInt("mythology0", 0);
+        int mytho1 = PlayerPrefs.GetInt("mythology1", 1);
 
         string name0 = PlayerPrefs.GetString("player0", "Player 1");
         string name1 = PlayerPrefs.GetString("player1", "Player 2");
@@ -71,8 +71,8 @@ public class GameManager : MonoBehaviour
          */
         Players = new List<Player>()
             {
-                new Player(name0, "Spawn1", CreateList(0), player0, prefabParticle, mytho0, 0),
-                new Player(name1, "Spawn2", CreateList(2), player1, prefabParticle, mytho1, 1)
+                new Player(name0, "Spawn1", CreateList(mytho0), player0, prefabParticle, mytho0, 0),
+                new Player(name1, "Spawn2", CreateList(mytho1), player1, prefabParticle, mytho1, 1)
             };
         mouse.ChangePlayer(Players[indexPlayer]);
         
@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
         {
             mouse.Clear();
             decompte = timer;
-            if (indexPlayer == 1)
+            if (indexPlayer == 1 || PlayerPrefs.GetInt("online") != 0)
             {
                 NextBoard();
                 int w = 0;
@@ -182,8 +182,13 @@ public class GameManager : MonoBehaviour
                     Time.timeScale = 0;
                 }
             }
-            indexPlayer = indexPlayer == 0 ? 1 : 0;
-            mouse.player = Players[indexPlayer];
+
+            if (PlayerPrefs.GetInt("online") == 0)
+            {
+                indexPlayer = indexPlayer == 0 ? 1 : 0;
+                mouse.player = Players[indexPlayer];
+            }
+
             skipTurn = false;
             ChangeSpriteButton();
             if(!endGamePanel.activeSelf)
