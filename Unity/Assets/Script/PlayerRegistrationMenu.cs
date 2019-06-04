@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerRegistrationMenu : MonoBehaviour
 {
+    private string SceneToLoad = "BoardScene";
+    
     public GameObject usernameGameobject;
     public GameObject UsernameChoice;
     public GameObject MythoChoice;
@@ -12,12 +14,6 @@ public class PlayerRegistrationMenu : MonoBehaviour
     private string username;
     public int indexPlayer;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -52,5 +48,10 @@ public class PlayerRegistrationMenu : MonoBehaviour
     public void Online(int choice)
     {
         PlayerPrefs.SetInt("online", choice);
+    }
+    
+    public void ChangeScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(SceneToLoad);
     }
 }
