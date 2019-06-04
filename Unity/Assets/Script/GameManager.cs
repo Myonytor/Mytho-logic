@@ -21,10 +21,12 @@ public class GameManager : MonoBehaviour
     
     private float decompte;
 
+    public List<GameObject> prefabMythology;
     public List<GameObject> PrefabsMonsters;
     public List<Player> Players;
     
     public List<GameObject> Buttons;
+    public GameObject ButtonMythology;
         
     public GameObject prefabParticle;
     public GameObject pauseMenu;
@@ -82,6 +84,7 @@ public class GameManager : MonoBehaviour
         
         ChangeSpriteButton();
         NewTurn();
+        PlayerPrefs.DeleteAll();
     }
 
     // Crée la liste de monstres correspondant à la mythologie donnée
@@ -370,7 +373,7 @@ public class GameManager : MonoBehaviour
         if (Players[1].Mythologie.activated && Players[1].Mythologie.Name == mythologie) Players[1].Mythologie.PowerSpecial(monster, ref power);
     }
 
-    // Met en place les images des monstres sur les boutons d'ajout des monstres
+    // Met en place les images des monstres ainsi que les noms qui leur sont liés sur les boutons d'ajout des monstres
     public void ChangeSpriteButton()
     {
         Debug.Log(Buttons.Count);
@@ -382,6 +385,9 @@ public class GameManager : MonoBehaviour
             
             Debug.Log(Buttons[i].GetComponent<NomPerso>().player + ", " + Buttons[i].GetComponent<NomPerso>().CurrentMythology);
         }
+
+        ButtonMythology.GetComponent<UnityEngine.UI.Image>().sprite =
+            prefabMythology[(int) Players[indexPlayer].Mythologie.Name].GetComponent<SpriteRenderer>().sprite;
     }
 
     // Passe directement au joueur suivant
@@ -438,7 +444,6 @@ public class GameManager : MonoBehaviour
     // Quitte l'application
     public void Quit()
     {
-        PlayerPrefs.DeleteAll();
         Application.Quit();
     }
 }
