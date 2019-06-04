@@ -154,7 +154,15 @@ namespace Script
 
 	    public Tuple<string, int> GetArg(int index)
 	    {
-		    return listMonster[_name][index];
+		    List<Tuple<string, int>> small = new List<Tuple<string, int>>()
+		    {
+			    new Tuple<string, int>("Serpent", 3),
+			    new Tuple<string, int>("Loup", 3),
+			    new Tuple<string, int>("Aigle", 3)
+		    };
+		    
+		    if (index < 6) return listMonster[_name][index];
+		    else return small[index % 6];
 	    }
     }
 }
