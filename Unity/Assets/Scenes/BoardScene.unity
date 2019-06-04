@@ -486,8 +486,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad13978cbb6480468005fc147bd497b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NomP: {fileID: 0}
-  player: {fileID: 0}
+  NomP: {fileID: 542549739}
+  indexPlayer: 0
   button: 4
 --- !u!114 &72523142
 MonoBehaviour:
@@ -584,6 +584,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 72523136}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -857,8 +868,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad13978cbb6480468005fc147bd497b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NomP: {fileID: 0}
-  player: {fileID: 0}
+  NomP: {fileID: 407045927}
+  indexPlayer: 0
   button: 3
 --- !u!114 &299082864
 MonoBehaviour:
@@ -955,6 +966,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 299082858}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1178,8 +1200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad13978cbb6480468005fc147bd497b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NomP: {fileID: 0}
-  player: {fileID: 0}
+  NomP: {fileID: 564102450}
+  indexPlayer: 0
   button: 2
 --- !u!114 &326203659
 MonoBehaviour:
@@ -1276,6 +1298,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 326203653}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2685,8 +2718,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad13978cbb6480468005fc147bd497b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NomP: {fileID: 0}
-  player: {fileID: 0}
+  NomP: {fileID: 2029376245}
+  indexPlayer: 0
   button: 1
 --- !u!114 &684581090
 MonoBehaviour:
@@ -2783,6 +2816,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 684581084}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3342,7 +3386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NomP: {fileID: 1232911918}
-  player: {fileID: 0}
+  indexPlayer: 0
   button: 0
 --- !u!114 &1226398109
 MonoBehaviour:
@@ -3438,6 +3482,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1226398103}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4262,8 +4317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad13978cbb6480468005fc147bd497b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NomP: {fileID: 0}
-  player: {fileID: 0}
+  NomP: {fileID: 1832754923}
+  indexPlayer: 0
   button: 5
 --- !u!114 &1823257733
 MonoBehaviour:
@@ -4360,6 +4415,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1823257727}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
