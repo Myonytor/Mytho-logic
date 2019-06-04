@@ -1334,7 +1334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dictionary: {fileID: 4900000, guid: 47abc44d133bda4419c756ee68b3dccf, type: 3}
   languageName: 
-  currentLanguage: 1
+  currentLanguage: 0
   textPasser: {fileID: 52682511}
   textTemps: {fileID: 1575762923}
   textQuit: {fileID: 2030219776}
