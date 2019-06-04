@@ -38,9 +38,7 @@ public class PlayerRegistrationMenu : MonoBehaviour
         {
             string playprefs = "player" + indexPlayer;
             PlayerPrefs.SetString(playprefs, username);
-            
-            UsernameChoice.SetActive(false);
-            MythoChoice.SetActive(true);
+
             usernameGameobject.GetComponent<InputField>().text = "";
         }
     }
@@ -83,7 +81,6 @@ public class PlayerRegistrationMenu : MonoBehaviour
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(SceneToLoad);
 
-        MythoChoice.SetActive(false);
         loadingScreen.SetActive(true);
 
         while (!operation.isDone)
