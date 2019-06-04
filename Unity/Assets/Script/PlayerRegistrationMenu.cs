@@ -64,8 +64,7 @@ public class PlayerRegistrationMenu : MonoBehaviour
         if (indexPlayer == 0 && PlayerPrefs.GetInt("online") == 0)
         {
             indexPlayer = 1;
-            MythoChoice.SetActive(false);
-            UsernameChoice.SetActive(true);
+            MythoChoice.SetActive(true);
         }
         else
         {
