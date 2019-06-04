@@ -49,17 +49,12 @@ public class GameManager : MonoBehaviour
         mouse.goal = board.goal;
         mouse.onMenu = pauseMenu.activeSelf;
 
-        // Entré des noms des joueurs à la place de Zeus et Poseidon"
-        string name0;
-        string name1;
+        // Entré des noms des joueurs et de leurs mythologies
         int mytho0 = PlayerPrefs.GetInt("mythology0");
         int mytho1 = PlayerPrefs.GetInt("mythology1");
 
-        if (PlayerPrefs.GetString("player0").Length != 0) name0 = PlayerPrefs.GetString("player0");
-        else name0 = "Player 1";
-        
-        if (PlayerPrefs.GetString("player1").Length != 0) name1 = PlayerPrefs.GetString("player1");
-        else name1 = "Player 2";
+        string name0 = PlayerPrefs.GetString("player0", "Player 1");
+        string name1 = PlayerPrefs.GetString("player1", "Player 2");
         
         GameObject player = new GameObject("Player");
         GameObject player0 = new GameObject(name0);
@@ -129,6 +124,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        foreach (var button in Buttons)
+        {
+            button.GetComponent<NomPerso>().indexPlayer = indexPlayer;
+        }
+        
         if (Input.GetKeyDown(KeyCode.Escape)) // Détecter le bouton echap
         {
             if (pauseMenu.activeSelf)

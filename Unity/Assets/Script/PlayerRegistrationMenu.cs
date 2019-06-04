@@ -44,7 +44,8 @@ public class PlayerRegistrationMenu : MonoBehaviour
     public void ButtonChoice(int choice)
     {
         string playpref = "mythology" + indexPlayer;
-        Debug.Log(playpref);
         PlayerPrefs.SetInt(playpref, choice);
+        
+        Debug.Log(choice);
     }
 }

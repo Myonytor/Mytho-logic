@@ -8,17 +8,17 @@ public class NomPerso5 : MonoBehaviour
     private int currentLanguage;
     private int currentMythologie;
 
-    public Text NomP; 
-    
+    public Text NomP;
 
     private string nom;
-    
 
+    public Player player;
     
     void Start()
     {
         currentLanguage = PlayerPrefs.GetInt("lang",0);
-        currentMythologie = PlayerPrefs.GetInt("choix", 0);
+        string playerpref = "choice" + player.Index;
+        currentMythologie = PlayerPrefs.GetInt(playerpref, 0);
         nom = "";
     }
 
