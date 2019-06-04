@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Script;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,7 +56,10 @@ public class MouseManager : MonoBehaviour
                         ClearSelection(selectedObject);
                         selectedObject = hitObject;
                         unit = player._monsters[i];
-                        AudioManager.GetComponent<AudioManager>().Play("" + unit.Name);
+                        if(!(player.Mythologie.Name == Mythologie.Mytho.Egyptienne))
+                            AudioManager.GetComponent<AudioManager>().Play("" + unit.Name);
+                        else
+                            AudioManager.GetComponent<AudioManager>().Play("Egyptian");
                     }
                 }
                 else if(!Equals(unit, null)) // Définie un mouvement
