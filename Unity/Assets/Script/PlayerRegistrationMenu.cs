@@ -68,6 +68,7 @@ public class PlayerRegistrationMenu : MonoBehaviour
         }
         else
         {
+            MythoChoice.SetActive(false);
             SetScreenStartGame();
             StartCoroutine(LoadAsync());
         }
