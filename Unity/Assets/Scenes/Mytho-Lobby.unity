@@ -3552,7 +3552,6 @@ GameObject:
   - component: {fileID: 1097383022}
   - component: {fileID: 1097383023}
   - component: {fileID: 1097383024}
-  - component: {fileID: 1097383025}
   m_Layer: 5
   m_Name: Translate
   m_TagString: Untagged
@@ -3626,27 +3625,11 @@ MonoBehaviour:
   textLanguages: {fileID: 1051990295}
   textGraphism: {fileID: 174285910}
   textBack: {fileID: 760878253}
-  selectDropdown: {fileID: 212738093}
---- !u!114 &1097383025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1097383020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7d6cdadb811b5e4496e856ea7d8f378, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dictionary: {fileID: 4900000, guid: 055c7d26168f2e94b8b1ca9e6643dd96, type: 3}
-  languageName: 
-  currentLanguage: 0
   textChoix: {fileID: 1619606358}
   textNord: {fileID: 2092317497}
   textJap: {fileID: 1191427323}
   textEgy: {fileID: 1076951626}
-  textGre: {fileID: 1246109870}
+  textGre: {fileID: 1554095019}
   textCapaN: {fileID: 1556349398}
   textCapaJ: {fileID: 1439292314}
   textCapaG: {fileID: 1554095019}
@@ -3658,7 +3641,7 @@ MonoBehaviour:
   textChoix1: {fileID: 375451874}
   textUsername: {fileID: 827102015}
   textValider: {fileID: 3969591}
-  textEstP: {fileID: 340476670}
+  selectDropdown: {fileID: 212738093}
 --- !u!1 &1099648072
 GameObject:
   m_ObjectHideFlags: 0
