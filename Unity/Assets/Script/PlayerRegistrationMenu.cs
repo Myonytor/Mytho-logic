@@ -38,6 +38,8 @@ public class PlayerRegistrationMenu : MonoBehaviour
         {
             string playprefs = "player" + indexPlayer;
             PlayerPrefs.SetString(playprefs, username);
+            
+            Debug.Log(indexPlayer);
 
             usernameGameobject.GetComponent<InputField>().text = "";
         }
